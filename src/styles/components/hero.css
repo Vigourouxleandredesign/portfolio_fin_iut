@@ -1,0 +1,110 @@
+/**
+ * @file Hero — layout and non-canvas presentation
+ * @description Full-viewport bust stack; canvas reveals base image via brush.
+ */
+
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: calc(100dvh - var(--header-height));
+  min-height: calc(100svh - var(--header-height));
+  display: grid;
+  align-items: end;
+  justify-items: center;
+  overflow: hidden;
+  background-color: var(--color-bg);
+}
+
+.hero__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.hero__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-hero-canvas);
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.hero--mode-hover .hero__canvas {
+  cursor: pointer;
+}
+
+.hero__content {
+  position: relative;
+  z-index: var(--z-hero-content);
+  width: min(100%, var(--layout-max));
+  padding: var(--space-8) var(--space-4) var(--space-12);
+  text-align: center;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--color-bg) 92%, transparent),
+    transparent
+  );
+}
+
+.hero__title {
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-display);
+  font-size: clamp(var(--text-2xl), 5vw, var(--text-4xl));
+  line-height: 1.1;
+  text-shadow: 0 2px 24px color-mix(in srgb, var(--color-bg) 80%, transparent);
+}
+
+.hero__lead {
+  margin: 0;
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  max-width: 36ch;
+  margin-inline: auto;
+}
+
+.hero__hint {
+  margin: var(--space-4) 0 0;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.hero__hint--drag {
+  display: none;
+}
+
+.hero--mode-drag .hero__hint--hover {
+  display: none;
+}
+
+.hero--mode-drag .hero__hint--drag {
+  display: block;
+}
+
+@media (min-width: 48rem) {
+  .hero {
+    min-height: max(calc(100dvh - var(--header-height)), 32rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__canvas {
+    display: none;
+  }
+
+  .hero__hint {
+    display: none;
+  }
+}

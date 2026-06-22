@@ -1,0 +1,33 @@
+---
+description: Mandatory security rules — secrets, RLS, auth, storage
+alwaysApply: true
+---
+
+# Security (non-negotiable)
+
+Read `docs/SECURITY.md` before auth, evaluator, Supabase, or private media work.
+
+## Never
+
+- Put `service_role` or any secret in front code, Git, or `.env.example` values
+- Commit `.env` or private URLs in public HTML/bundle
+- Add private Supabase tables **without RLS**
+- Use **public** Storage buckets for evaluator content
+- Use `innerHTML` with API/user content (XSS)
+- Rely on hidden URLs or client-only role checks
+
+## Always
+
+- Front: `VITE_SUPABASE_ANON_KEY` only; env via Netlify dashboard
+- Enforce access with **Supabase RLS + Storage policies**
+- Roles (`evaluator`) in DB (`profiles.role`), not TS-only
+- Private media: Storage + **signed URLs**; fetch **after** login
+- Keep `public/_headers` security headers updated
+- Run security checklist in `docs/SECURITY.md` §10 before deploy
+
+## Hybrid stack
+
+- **Public site:** static (Netlify) — no private data in bundle
+- **Evaluator area:** `pages/evaluator.html` + `src/scripts/features/auth/` + `evaluator/`
+
+If a task weakens security, **stop** and update `docs/SECURITY.md` first.

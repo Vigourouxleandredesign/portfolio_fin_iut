@@ -1,0 +1,98 @@
+<!--
+  @file Evaluator area
+  @description Private space for professors — auth via Supabase, media via RLS + signed URLs.
+  @route /evaluator.html
+-->
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Espace évaluateur — Portfolio</title>
+    <meta name="description" content="Accès réservé aux évaluateurs MIAW." />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="site-header__nav" aria-label="Navigation principale">
+        <a class="site-header__logo" href="/">Portfolio</a>
+      </nav>
+    </header>
+
+    <main id="main" class="evaluator-page" data-evaluator-app>
+      <section class="evaluator-panel" data-view-missing hidden>
+        <h1 class="evaluator-panel__title">Configuration requise</h1>
+        <p class="evaluator-panel__text">
+          Supabase n’est pas configuré. Définissez
+          <code>VITE_SUPABASE_URL</code> et <code>VITE_SUPABASE_ANON_KEY</code>
+          (voir <code>docs/SUPABASE.md</code>).
+        </p>
+      </section>
+
+      <section class="evaluator-panel" data-view-login>
+        <div class="evaluator-login" data-auth-login>
+          <h1 class="evaluator-login__title">Espace évaluateur</h1>
+          <p class="evaluator-login__lead">Connexion réservée aux comptes autorisés.</p>
+          <form class="evaluator-login__form" data-auth-login-form novalidate>
+            <label class="evaluator-login__field">
+              <span class="evaluator-login__label">Email</span>
+              <input
+                class="evaluator-login__input"
+                type="email"
+                name="email"
+                data-auth-email
+                autocomplete="username"
+                required
+              />
+            </label>
+            <label class="evaluator-login__field">
+              <span class="evaluator-login__label">Mot de passe</span>
+              <input
+                class="evaluator-login__input"
+                type="password"
+                name="password"
+                data-auth-password
+                autocomplete="current-password"
+                required
+              />
+            </label>
+            <p class="evaluator-login__error" data-auth-error hidden></p>
+            <button class="evaluator-login__submit" type="submit" data-auth-submit>
+              Se connecter
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <section class="evaluator-panel" data-view-denied hidden>
+        <h1 class="evaluator-panel__title">Accès refusé</h1>
+        <p class="evaluator-panel__text">
+          Ce compte n’a pas le rôle évaluateur. Contactez l’administrateur du portfolio.
+        </p>
+        <button class="evaluator-panel__button" type="button" data-auth-logout-denied>
+          Se déconnecter
+        </button>
+      </section>
+
+      <section class="evaluator-panel" data-view-dashboard hidden>
+        <div class="evaluator-dashboard" data-evaluator-dashboard>
+          <header class="evaluator-dashboard__header">
+            <h1 class="evaluator-dashboard__title">Médias du portfolio</h1>
+            <button class="evaluator-dashboard__logout" type="button" data-auth-logout>
+              Se déconnecter
+            </button>
+          </header>
+          <p class="evaluator-dashboard__status" data-evaluator-status hidden></p>
+          <div data-evaluator-asset-list></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p class="site-footer__copy">&copy; <span data-year></span> Portfolio</p>
+    </footer>
+
+    <script type="module" src="/src/scripts/entries/evaluator.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+# Dependencies (never commit — reinstall with npm install)
+node_modules/
+**/node_modules/
+
+# Build output
+dist/
+build/
+
+# Vite
+.vite/
+
+# Environment & secrets (NEVER commit real values)
+.env
+.env.*
+!.env.example
+
+# API keys, certs, credentials
+*.pem
+*.key
+*.p12
+secrets/
+credentials.json
+*.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Test & coverage
+coverage/
+.nyc_output/
+
+# TypeScript
+*.tsbuildinfo
+
+# Generated API docs (optional tooling)
+docs/api/
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editors (personal settings; share extensions.json intentionally if needed)
+.idea/
+*.swp
+*.swo
+*~
+
+# Host deploy local state
+.netlify/
+.vercel/
+
+# Cache
+.cache/
+*.tmp
+*.bak
+
+# Optional: uncomment if you do not want to share VS Code workspace settings
+# .vscode/

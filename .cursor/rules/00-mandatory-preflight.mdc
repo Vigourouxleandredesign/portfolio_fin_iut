@@ -1,0 +1,26 @@
+---
+description: Mandatory preflight — read architecture and security before any change
+alwaysApply: true
+---
+
+# Mandatory preflight (non-negotiable)
+
+Before creating, editing, or deleting **any** project file:
+
+1. Read `docs/ARCHITECTURE.md` and follow it exactly.
+2. Read `docs/SECURITY.md` — **security and reliability first**.
+3. Read `AGENTS.md` at the repository root.
+4. If adding source files, follow `docs/DOCUMENTATION.md` (file header on line 1).
+
+## Quick rules
+
+- **Stack:** Vite + Vanilla TypeScript + CSS — **no framework** unless the user explicitly asks.
+- **Separation:** HTML = structure/SEO; CSS = style; TS = behavior only.
+- **Naming:** English, `kebab-case` for all files and folders.
+- **Colors:** Only in `src/styles/variables.css` — use `var(--color-*)` elsewhere.
+- **Secrets:** Never in Git or front — see `docs/SECURITY.md`.
+- **UI text:** French in HTML is OK; technical identifiers stay English.
+
+If a request conflicts with architecture or security, **stop** and propose a doc update first.
+
+Do not skip these steps to save time.

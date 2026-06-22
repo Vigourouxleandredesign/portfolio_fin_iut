@@ -1,0 +1,16 @@
+/**
+ * @file Design tokens — brand colors only
+ * @description Single source of truth for all color values in the project.
+ * @see {@link ../../docs/ARCHITECTURE.md}
+ */
+
+:root {
+  --color-bg: #0a0a0b;
+  --color-surface: #141416;
+  --color-text: #f4f4f5;
+  --color-text-muted: #a1a1aa;
+  --color-accent: #6ee7b7;
+  --color-accent-hover: #34d399;
+  --color-border: #27272a;
+  --color-hero-mask: #18181b;
+}

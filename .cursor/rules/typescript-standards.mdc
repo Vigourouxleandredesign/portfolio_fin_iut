@@ -1,0 +1,16 @@
+---
+description: TypeScript — modules, features, JSDoc, no editorial HTML
+globs: "**/*.ts"
+alwaysApply: false
+---
+
+# TypeScript standards
+
+- ES modules only; English `kebab-case` file names.
+- Features: `src/scripts/features/<name>/<name>.ts` export `initX(root: HTMLElement): () => void`.
+- Page entries: `src/scripts/entries/<page>.ts` — import CSS in order, then init features.
+- **No** `innerHTML` for editorial/SEO content.
+- **No** CSS-in-TS except canvas/WebGL pixels.
+- Three.js: only in `features/three-scene/`, lazy `import()`.
+- JSDoc file header on line 1 + JSDoc on every public export.
+- Scope DOM queries under `root`; handle `null`.

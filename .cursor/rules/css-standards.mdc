@@ -1,0 +1,16 @@
+---
+description: CSS rules — variables, tokens, BEM, import order
+globs: "**/*.css"
+alwaysApply: false
+---
+
+# CSS standards
+
+- **Colors:** Define only in `src/styles/variables.css` on `:root` as `--color-*`.
+- **Never** use `#`, `rgb()`, `hsl()`, or color names in other CSS files.
+- Non-color tokens: `src/styles/tokens.css` only (`--space-*`, `--font-*`, etc.).
+- One UI block = one file in `src/styles/components/` matching BEM block name (`hero.css` → `.hero`).
+- BEM: `block__element--modifier`.
+- No IDs for styling.
+- File header comment required (see `docs/DOCUMENTATION.md`).
+- Do not scatter `@import` in component files; import via page entry in fixed order.

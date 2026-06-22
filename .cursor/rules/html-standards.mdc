@@ -1,0 +1,15 @@
+---
+description: HTML — semantics, SEO, data hooks, documentation header
+globs: "**/*.html"
+alwaysApply: false
+---
+
+# HTML standards
+
+- Files live in `pages/` — one file per route.
+- Mandatory `<!-- @file ... -->` header as first lines.
+- Semantic landmarks; one `<h1>` per page; `<html lang="fr">`.
+- No inline `<script>` or `<style>`.
+- Hook TS with `data-*` (English kebab-case): `data-hero-reveal`, etc.
+- Critical content in HTML (not canvas) for SEO and accessibility.
+- Real `<a href>` links; complete meta + Open Graph per page.
