@@ -1,0 +1,53 @@
+/**
+ * @file Button — shared call-to-action styles
+ * @description `.button` block with primary and ghost variants.
+ */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-text);
+  background-color: transparent;
+  cursor: pointer;
+  transition:
+    color var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.button:hover {
+  color: var(--color-text);
+  border-color: var(--color-ember);
+  transform: translateY(-1px);
+}
+
+.button--primary {
+  color: var(--color-bg);
+  background-color: var(--color-ember);
+  border-color: var(--color-ember);
+}
+
+.button--primary:hover {
+  color: var(--color-bg);
+  background-color: var(--color-ember-hover);
+  border-color: var(--color-ember-hover);
+}
+
+.button--ghost {
+  color: var(--color-text-muted);
+}
+
+.button--ghost:hover {
+  color: var(--color-text);
+}

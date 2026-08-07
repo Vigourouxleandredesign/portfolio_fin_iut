@@ -11,7 +11,7 @@
 
 .evaluator-login__title {
   margin: 0 0 var(--space-2);
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: var(--text-2xl);
 }
 
@@ -62,7 +62,7 @@
   padding: var(--space-3) var(--space-4);
   border: none;
   border-radius: var(--radius-md);
-  background-color: var(--color-accent);
+  background-color: var(--color-ember);
   color: var(--color-bg);
   font: inherit;
   font-weight: 600;
@@ -70,7 +70,7 @@
 }
 
 .evaluator-login__submit:hover {
-  background-color: var(--color-accent-hover);
+  background-color: var(--color-ember-hover);
 }
 
 .evaluator-login__submit:disabled {

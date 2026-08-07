@@ -1,6 +1,217 @@
 /**
- * @file Home page — page-specific overrides
- * @description Only rules that apply exclusively to the home route.
+ * @file Home page — page-specific overrides + canvas decor layer
+ * @description The homepage is treated as one painting: canvas grain overlay,
+ *   chalk/fusain sketches in the margins (bust, column, laurel), ember paint
+ *   splashes, and a cursor-driven charcoal/splash brush that accumulates as
+ *   you browse (see features/home-brush). Decor images live in
+ *   src/assets/decor/ — black backgrounds blended with `screen` so they melt
+ *   into the charcoal page. Colors via var(--color-*).
  */
 
-/* Placeholder for home-only layout tweaks */
+/* The hero already fills the viewport, so the first section keeps its own rhythm. */
+.hero-3d + .section {
+  padding-top: var(--space-24);
+}
+
+/* Side decor bleeds past the layout — clip at main to avoid horizontal scroll. */
+main {
+  position: relative;
+  overflow: clip;
+}
+
+/*
+ * Sections stay below `.home-brush` so the paint overlays the page again
+ * (like the first brush pass). The hero alone sits above the brush
+ * (`--z-hero-stage`) so the bust is never painted over.
+ */
+.section,
+.clients-marquee,
+.skills-gallery {
+  position: relative;
+  z-index: 1;
+}
+
+.section > .container,
+.clients-marquee > .container,
+.clients-marquee__viewport {
+  position: relative;
+  z-index: 1;
+}
+
+/* While painting with left-click — block text selection / blue highlight */
+html.is-home-brush-painting,
+html.is-home-brush-painting * {
+  user-select: none !important;
+  -webkit-user-select: none !important;
+}
+
+/* —— Cursor brush — charcoal + splash trail accumulating across the page —— */
+
+.home-brush {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-home-brush);
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  /*
+   * Screen lights pigments up on charcoal so color splashes read clearly
+   * on the black page (dark fusain alone would vanish — trail is color-led).
+   */
+  mix-blend-mode: screen;
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-brush {
+    display: none;
+  }
+}
+
+/* —— Canvas grain — the whole page reads as one painted surface —— */
+
+.home-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 240px 240px;
+  mix-blend-mode: overlay;
+}
+
+/* —— Decor primitives —— */
+
+.home-decor {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  /* Assets are painted on pure black: screen makes the black vanish on charcoal. */
+  mix-blend-mode: screen;
+}
+
+/* Univers — chalk sweep carries the hero's fractured-marble motif into the page. */
+.home-decor--stroke-univers {
+  top: calc(-1 * var(--space-8));
+  left: min(-4rem, -6vw);
+  width: clamp(18rem, 46vw, 38rem);
+  aspect-ratio: 16 / 9;
+  opacity: 0.3;
+  transform: rotate(-4deg);
+  background-image: url('../../assets/decor/stroke-chalk.png');
+}
+
+/* Univers — sketched antique bust watches over the section from the right. */
+.home-decor--bust {
+  top: 50%;
+  right: min(-3rem, -4vw);
+  width: clamp(15rem, 28vw, 24rem);
+  aspect-ratio: 3 / 4;
+  opacity: 0.5;
+  transform: translateY(-46%);
+  background-image: url('../../assets/decor/bust-sketch.png');
+  animation: home-decor-drift 14s ease-in-out infinite alternate;
+}
+
+/* Univers — a flick of ember paint near the eyebrow. */
+.home-decor--splash-univers {
+  top: var(--space-10);
+  left: clamp(1rem, 12vw, 14rem);
+  width: clamp(5rem, 9vw, 8rem);
+  aspect-ratio: 1;
+  opacity: 0.55;
+  transform: rotate(18deg);
+  background-image: url('../../assets/decor/splash-ember.png');
+}
+
+/* Featured projects — ionic column sketched in the left margin. */
+.home-decor--column {
+  top: 8%;
+  left: min(-2.5rem, -3vw);
+  width: clamp(11rem, 20vw, 18rem);
+  aspect-ratio: 9 / 16;
+  opacity: 0.4;
+  background-image: url('../../assets/decor/column-sketch.png');
+  animation: home-decor-drift 18s ease-in-out infinite alternate-reverse;
+}
+
+/* Featured projects — ember splash answering from the bottom right. */
+.home-decor--splash-featured {
+  bottom: var(--space-8);
+  right: min(-2rem, -3vw);
+  width: clamp(8rem, 15vw, 13rem);
+  aspect-ratio: 1;
+  opacity: 0.35;
+  transform: rotate(-32deg) scaleX(-1);
+  background-image: url('../../assets/decor/splash-ember.png');
+}
+
+/* Clients — a quiet chalk sweep under the marquee. */
+.home-decor--stroke-clients {
+  bottom: calc(-1 * var(--space-6));
+  right: min(-3rem, -5vw);
+  width: clamp(16rem, 40vw, 32rem);
+  aspect-ratio: 16 / 9;
+  opacity: 0.18;
+  transform: rotate(6deg) scaleX(-1);
+  background-image: url('../../assets/decor/stroke-chalk.png');
+}
+
+/* CTA — laurel branch, the painter signs the canvas. */
+.home-decor--laurel {
+  top: 50%;
+  right: clamp(-2rem, 4vw, 10rem);
+  width: clamp(13rem, 24vw, 21rem);
+  aspect-ratio: 4 / 3;
+  opacity: 0.45;
+  transform: translateY(-50%) rotate(8deg);
+  background-image: url('../../assets/decor/laurel-sketch.png');
+  animation: home-decor-drift 16s ease-in-out infinite alternate;
+}
+
+.home-decor--splash-cta {
+  top: var(--space-6);
+  left: clamp(-2rem, 6vw, 12rem);
+  width: clamp(5rem, 8vw, 7rem);
+  aspect-ratio: 1;
+  opacity: 0.4;
+  transform: rotate(64deg);
+  background-image: url('../../assets/decor/splash-ember.png');
+}
+
+/* Slow atelier drift — barely perceptible breathing. */
+@keyframes home-decor-drift {
+  from {
+    translate: 0 -0.4rem;
+  }
+
+  to {
+    translate: 0 0.4rem;
+  }
+}
+
+@media (max-width: 60rem) {
+  /* Keep the canvas readable on small screens: only light accents remain. */
+  .home-decor--bust,
+  .home-decor--column,
+  .home-decor--laurel,
+  .home-decor--stroke-clients {
+    display: none;
+  }
+
+  .home-decor--stroke-univers,
+  .home-decor--splash-featured {
+    opacity: 0.2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-decor {
+    animation: none;
+  }
+}

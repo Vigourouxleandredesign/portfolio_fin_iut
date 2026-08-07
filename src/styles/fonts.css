@@ -1,0 +1,10 @@
+/**
+ * @file Font faces — self-hosted via Fontsource
+ * @description Ubuntu (body / developer) + Updock (display). Bundled by Vite so CSP stays `style-src 'self'`.
+ */
+
+@import '@fontsource/ubuntu/300.css';
+@import '@fontsource/ubuntu/400.css';
+@import '@fontsource/ubuntu/500.css';
+@import '@fontsource/ubuntu/700.css';
+@import '@fontsource/updock/400.css';

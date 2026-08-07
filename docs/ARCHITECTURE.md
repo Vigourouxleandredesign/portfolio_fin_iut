@@ -1,7 +1,7 @@
 # Architecture — Portfolio (source of truth)
 
 **Version:** 1.1  
-**Stack:** Vite + Vanilla TypeScript + CSS (MPA) · optional Supabase (evaluator area)  
+**Stack:** Vite + Vanilla TypeScript + CSS (MPA) · **Supabase** (evaluator area — users/assets TBD)  
 **Status:** Mandatory for all contributors and AI agents.
 
 Before any change, read this document and `docs/SECURITY.md`. If a rule must change, update this file first, then `docs/SECURITY.md`, `AGENTS.md`, and `.cursor/rules/`.
@@ -17,6 +17,35 @@ Before any change, read this document and `docs/SECURITY.md`. If a rule must cha
 5. **Single source of truth** — Colors → `variables.css` only; project data → `src/data/` only.
 6. **English technical naming** — File names, folders, `data-*`, CSS blocks, TS symbols, and code comments in **English**. UI copy in HTML may be **French**.
 7. **Security first** — No secrets in front or Git; private data enforced by Supabase RLS + Storage policies (see `docs/SECURITY.md`).
+8. **Decisions already taken win** — e.g. the 3D fractured-bust hero on home (`features/three-scene/`) is source of truth; do not replace with legacy patterns. The previous canvas-brush hero is not deleted (see `pages/hero-legacy.html`), but it is no longer the home hero.
+9. **Legacy reference only** — `reference/legacy-portfolio/` may inspire undecided content/sections; it must never override architecture, stack, or decided UI (hero, nav, DA).
+
+---
+
+## 1.1 Product positioning & public IA
+
+- **Positioning:** Creative developer by conviction — Bac+2 infographie webdesign + Bac+3 développement web; front-end focus, back basics (Spring Boot, Symfony).
+- **Visual DA (fil rouge):** Marble + Greco-Roman atmosphere + paint / fusain splashes **across the whole site**, not only the hero. Dark charcoal base — colors only in `variables.css`. Continuity between section blocks via recurring motifs and motion (see `docs/ROADMAP.md` Phase D).
+- **Canvas decor layer (home):** the homepage reads as one painting — SVG-noise canvas grain (`.home-grain`), chalk/fusain sketches in the margins (bust, ionic column, laurel) and ember splashes (`.home-decor--*` in `src/styles/pages/home.css`). Assets in `src/assets/decor/`: black-background PNGs blended with `mix-blend-mode: screen` on the charcoal page; white-background `marble-touches.png` blended with `multiply` on marble plaques. Decor is `aria-hidden`, hidden or faded on small screens, drift animation disabled under `prefers-reduced-motion`.
+- **Interactive cursor brush (home):** `features/home-brush/` draws a continuous multi-bristle chalk stroke along the cursor (pressure from speed → width, human jitter, multi-pigment `--color-splash-*` + ember). No PNG stamp. Z-index sandwich: section content (`1`) < brush (`--z-home-brush: 40`) < hero stage / bust (`--z-hero-stage: 60`). Canvas uses `mix-blend-mode: screen`. Accumulates for the visit; no-ops under `prefers-reduced-motion`.
+- **Skills presentation:** Dark atelier background + suspended marble plaques (moodboard `marble-presentation`) with black cloud veils top/bottom — `.skills-gallery` / `.marble-slab`. Reference assets in `src/assets/moodboard/` and `Assets/Moodboard/`.
+- **Motion:** GSAP (planned) in `src/scripts/features/page-motion/` — page-scoped / lazy; respect `prefers-reduced-motion`. Do not load heavy animation on pages that do not need it.
+- **Typography:** Ubuntu (`--font-body` / `--font-heading`) + Updock (`--font-display`, Creative / flourish only). Self-hosted via Fontsource (`src/styles/fonts.css`) so CSP stays `style-src 'self'`.
+- **Public navigation:**
+
+| Label (FR) | Route | Status |
+|------------|-------|--------|
+| Accueil (logo) | `pages/index.html` | Hero **3D fractured bust** (`features/three-scene/`) **defined** |
+| Mes projets | `pages/projects.html` | Listing + filter |
+| Mon CV | `pages/cv.html` | PDF → `public/documents/cv.pdf` |
+| Contact | `pages/contact.html` | Netlify Forms |
+| Mon univers | Section `#univers` on home | Not a separate route |
+
+Evaluator area remains private: `pages/evaluator.html` (not in public nav).
+
+`pages/hero-legacy.html` is not in public nav either: it archives the previous canvas-brush hero
+(`features/hero-reveal/`) so nothing was deleted when the home hero was replaced — `noindex`,
+unlisted, reachable only by direct URL.
 
 ---
 
@@ -30,7 +59,10 @@ portfolio/
 │   ├── ARCHITECTURE.md          # This file
 │   ├── DOCUMENTATION.md         # File headers & doc generation
 │   ├── SECURITY.md              # ★ Mandatory security (auth, RLS, storage)
-│   └── SUPABASE.md              # ★ Supabase setup + official doc links
+│   ├── SUPABASE.md              # ★ Supabase setup + official doc links
+│   └── ROADMAP.md               # Todo / project status
+├── reference/
+│   └── legacy-portfolio/        # Old static site — visual reference ONLY (not in Vite build)
 ├── pages/                       # One HTML file = one route (MPA)
 │   ├── index.html
 │   └── evaluator.html           # Private evaluator area (Supabase auth)
@@ -49,7 +81,7 @@ portfolio/
 │   │   ├── entries/             # One TS entry per HTML page
 │   │   ├── modules/             # Pure utilities (optional DOM)
 │   │   ├── components/          # DOM logic tied to a UI block
-│   │   └── features/            # hero-reveal, three-scene, auth, evaluator (private)
+│   │   └── features/            # hero-reveal, three-scene, home-brush, auth, evaluator (private)
 │   ├── assets/                  # Images, fonts (imported via Vite)
 │   └── data/                    # Typed content (projects, site meta)
 ├── vite.config.ts
@@ -126,15 +158,33 @@ Import chain per page entry (via TS or a single page CSS bundle), never scattere
 
 ## 6. HTML ↔ CSS ↔ TS mapping
 
-Example — hero reveal:
+Example — 3D bust hero (home):
 
 | Layer | File |
 |-------|------|
-| HTML | `pages/index.html` — structure, text, `data-hero-reveal` |
-| CSS | `src/styles/components/hero.css` — layout and non-canvas visuals |
-| TS | `src/scripts/features/hero-reveal/hero-reveal.ts` — canvas brush |
+| HTML | `pages/index.html` — structure, text, `data-hero-3d`, `data-hero-3d-canvas`, static `<img data-hero-3d-fallback>` |
+| CSS | `src/styles/components/hero-3d.css` — layout, headline overlay, fallback/`prefers-reduced-motion` visibility |
+| TS | `src/scripts/features/three-scene/bust-hero*.ts` — Three.js scene, GLTF/Draco load, Rapier force field + spring-back, right-click-drag camera orbit with a delayed spring-back (`bust-hero-orbit.ts`) |
 
-TS **enhances** existing markup; it does not generate the hero from scratch.
+TS **enhances** existing markup; it does not generate the hero from scratch. The `<img>`
+fallback is real markup (visible by default), not `noscript`: it covers no-JS, slow-load and
+WebGL-unavailable cases without any inline script/style.
+
+Example — cursor brush (home, whole page):
+
+| Layer | File |
+|-------|------|
+| HTML | `pages/index.html` — `<canvas class="home-brush" data-home-brush>`, first child of `<main>` |
+| CSS | `src/styles/pages/home.css` + `hero-3d.css` — brush above sections (`--z-home-brush: 40`), hero/bust above brush (`--z-hero-stage: 60`), `mix-blend-mode: screen` |
+| TS | `src/scripts/features/home-brush/*.ts` — pointer tracking, stroke interpolation, canvas resize preserving accumulated content |
+
+Archived example — canvas-brush hero (now `pages/hero-legacy.html`, not the home hero):
+
+| Layer | File |
+|-------|------|
+| HTML | `pages/hero-legacy.html` — `data-hero-reveal` |
+| CSS | `src/styles/components/hero.css` |
+| TS | `src/scripts/features/hero-reveal/hero-reveal.ts` |
 
 ---
 
@@ -148,7 +198,7 @@ TS **enhances** existing markup; it does not generate the hero from scratch.
 | TS entry | same stem as page | `home.ts` ↔ `index.html` (document mapping in header) |
 | Feature | `features/<name>/<name>.ts` | `hero-reveal/hero-reveal.ts` |
 | Types | `<name>.types.ts` | `hero-reveal.types.ts` |
-| Data | plural noun | `projects.ts`, `site-meta.ts` |
+| Data | plural noun | `skills.ts`, `site-meta.ts` |
 | Assets | `context-description.ext` | `hero-portrait.webp` |
 
 **Forbidden:** `utils.ts`, `helpers.ts`, `misc.ts`, `final-v2.css`, `IMG_1234.jpg`, camelCase or snake_case file names.
@@ -159,9 +209,11 @@ TS **enhances** existing markup; it does not generate the hero from scratch.
 
 ## 8. Data & assets
 
-- Structured **public** content in `src/data/*.ts` with exported types.
+- Editorial content (headings, project copy, timeline) is **authored in HTML** so crawlers index it without running scripts.
+- `src/data/*.ts` holds only the typed values behaviour needs (e.g. the skills taxonomy driving the projects filter), with exported types.
 - Images in `src/assets/` when processed by Vite; `public/` only for fixed paths (favicon, `robots.txt`, `_headers`, default `og` image).
-- **Private** media (evaluator: video, 3D, full-res) → Supabase Storage only — never `public/` or Git (see `docs/SECURITY.md`).
+- **Private** media (evaluator: video, 3D, full-res) → **Supabase Storage** + `project_assets` table — **not** Git / `public/` (see `docs/SUPABASE.md` §0)
+- **Public** portfolio media → `src/assets/` or Vite imports; keep lightweight for the static site
 
 ---
 
@@ -227,5 +279,10 @@ Netlify serves the front; Supabase enforces auth and access. Compatible — see 
 | HTML | TS entry | Page CSS |
 |------|----------|----------|
 | `pages/index.html` | `src/scripts/entries/home.ts` | `src/styles/pages/home.css` |
+| `pages/projects.html` | `src/scripts/entries/projects.ts` | `src/styles/pages/projects.css` |
+| `pages/cv.html` | `src/scripts/entries/cv.ts` | `src/styles/pages/cv.css` |
+| `pages/contact.html` | `src/scripts/entries/contact.ts` | `src/styles/pages/contact.css` |
+| `pages/evaluator.html` | `src/scripts/entries/evaluator.ts` | `src/styles/pages/evaluator.css` |
+| `pages/hero-legacy.html` (unlisted) | `src/scripts/entries/hero-legacy.ts` | `src/styles/components/hero.css` (no page-specific CSS) |
 
 Document any stem mismatch in both file headers.

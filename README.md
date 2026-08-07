@@ -1,6 +1,6 @@
 # Portfolio — Vite + Vanilla TypeScript
 
-Site portfolio statique (MPA) : hero canvas reveal, sections projets, Three.js optionnel plus bas sur le site.
+Site portfolio statique (MPA) : creative developer (designer & développeur), hero 3D (buste marbre fracturé + force field curseur, Three.js/Rapier), DA sombre/fusain. Supabase pour l’espace évaluateur.
 
 ## Documentation obligatoire
 
@@ -9,6 +9,7 @@ Site portfolio statique (MPA) : hero canvas reveal, sections projets, Three.js o
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Charte d’architecture (référence unique) |
 | [docs/SECURITY.md](docs/SECURITY.md) | **Sécurité obligatoire** (auth, RLS, storage, Netlify) |
 | [docs/SUPABASE.md](docs/SUPABASE.md) | **Supabase** — configuration + documentation officielle |
+| [docs/ROADMAP.md](docs/ROADMAP.md) | **Todo / reprise** — ce qui est fait et ce qui reste |
 | [docs/DOCUMENTATION.md](docs/DOCUMENTATION.md) | En-têtes de fichiers & génération de doc |
 | [AGENTS.md](AGENTS.md) | Instructions obligatoires pour les IA |
 
@@ -37,10 +38,11 @@ npm run preview  # prévisualiser dist/
 ## Structure rapide
 
 ```
-pages/           → HTML (SEO, contenu FR)
-src/styles/      → CSS (couleurs → variables.css uniquement)
-src/scripts/     → TypeScript (entries par page, features)
-src/data/        → Données typées
+pages/                         → HTML (SEO, contenu FR)
+src/styles/                    → CSS (couleurs → variables.css uniquement)
+src/scripts/                   → TypeScript (entries par page, features)
+src/data/                      → Données typées
+reference/legacy-portfolio/    → Ancien site (inspiration visuelle, hors build Vite)
 ```
 
 ## Déploiement

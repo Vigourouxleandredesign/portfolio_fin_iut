@@ -1,16 +1,43 @@
 /**
  * @file Design tokens — brand colors only
- * @description Single source of truth for all color values in the project.
+ * @description Dark premium / charcoal (fusain) palette. Single source of truth for colors.
  * @see {@link ../../docs/ARCHITECTURE.md}
  */
 
 :root {
-  --color-bg: #0a0a0b;
-  --color-surface: #141416;
-  --color-text: #f4f4f5;
-  --color-text-muted: #a1a1aa;
-  --color-accent: #6ee7b7;
-  --color-accent-hover: #34d399;
-  --color-border: #27272a;
-  --color-hero-mask: #18181b;
+  /* Charcoal base */
+  --color-bg: #0a0a0a;
+  --color-surface: #141414;
+  --color-surface-elevated: #1c1c1c;
+
+  /* Chalk text */
+  --color-text: #f0eee9;
+  --color-text-muted: #9a9690;
+
+  /* Fusain splash — chalk + warm ash */
+  --color-accent: #d4cfc4;
+  --color-accent-hover: #ebe6dc;
+  --color-ember: #b8956c;
+  --color-ember-hover: #c9a87e;
+  /* Brand mark (logo SVG) */
+  --color-logo: #b78b1d;
+
+  --color-border: #2a2a2a;
+  --color-hero-mask: #111111;
+
+  /* Marble (skills gallery / fil rouge matière) */
+  --color-marble: #ebe8e2;
+  --color-marble-deep: #d4cfc6;
+  --color-marble-vein: #9a9590;
+  --color-marble-ink: #1a1816;
+  --color-atelier: #050505;
+
+  /* Paint-splash palette — home cursor brush only (features/home-brush).
+     Brighter pigments that stay readable under mix-blend-mode: screen on
+     charcoal (still not neon chalk-white). */
+  --color-splash-crimson: #d4685a;
+  --color-splash-cobalt: #5a9bc4;
+  --color-splash-gold: #e0b85a;
+  --color-splash-violet: #9a78b4;
+  --color-splash-teal: #5ab894;
 }

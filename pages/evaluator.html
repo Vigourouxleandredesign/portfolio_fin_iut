@@ -11,12 +11,47 @@
     <title>Espace évaluateur — Portfolio</title>
     <meta name="description" content="Accès réservé aux évaluateurs MIAW." />
     <meta name="robots" content="noindex, nofollow" />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/logo-leandre.svg" />
   </head>
   <body>
     <header class="site-header">
       <nav class="site-header__nav" aria-label="Navigation principale">
-        <a class="site-header__logo" href="/">Portfolio</a>
+        <a class="site-header__logo" href="/pages/index.html" aria-label="Léandre — Accueil">
+          <img
+            class="site-header__logo-image"
+            data-site-logo
+            src="/logo-leandre.svg"
+            alt=""
+            width="91"
+            height="91"
+            decoding="async"
+          />
+        </a>
+        <button
+          class="site-header__toggle"
+          type="button"
+          data-nav-toggle
+          aria-expanded="false"
+          aria-controls="main-nav"
+          hidden
+        >
+          <span class="visually-hidden">Ouvrir le menu</span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+        </button>
+        <ul class="site-header__list" id="main-nav" data-nav-list>
+          <li>
+            <a class="site-header__link" href="/pages/projects.html">Mes projets</a>
+          </li>
+          <li>
+            <a class="site-header__link" href="/pages/cv.html">Mon CV</a>
+          </li>
+          <li>
+            <a class="site-header__link" href="/pages/contact.html">Contact</a>
+          </li>
+        </ul>
       </nav>
     </header>
 
@@ -90,7 +125,11 @@
     </main>
 
     <footer class="site-footer">
-      <p class="site-footer__copy">&copy; <span data-year></span> Portfolio</p>
+      <div class="site-footer__bottom">
+        <p class="site-footer__copy">
+          &copy; <span data-year></span> Léandre — Creative developer
+        </p>
+      </div>
     </footer>
 
     <script type="module" src="/src/scripts/entries/evaluator.ts"></script>

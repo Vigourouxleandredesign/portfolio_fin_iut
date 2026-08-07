@@ -2,7 +2,9 @@
 
 **Read this file, `docs/ARCHITECTURE.md`, and `docs/SECURITY.md` before writing or modifying any project file.**
 
-This repository is a portfolio (Vite + Vanilla TypeScript + CSS, MPA) with a planned **evaluator** area (Supabase). Rules below are **non-negotiable**. **Security and reliability come first.**
+This repository is a portfolio (Vite + Vanilla TypeScript + CSS, MPA) with a **Supabase** evaluator area (schema ready; **users and private assets added later**). Rules below are **non-negotiable**. **Security and reliability come first.**
+
+**Current focus:** DA fil rouge (marbre / antique / splash peinture-fusain) + motion fluide (GSAP prévu) — see `docs/ROADMAP.md` Phase D. **Architecture is always priority** over `reference/legacy-portfolio/` (content inspiration only). **Later:** Supabase Auth users (evaluators) + Storage uploads for private media (`project_assets`).
 
 ---
 
@@ -65,9 +67,20 @@ This repository is a portfolio (Vite + Vanilla TypeScript + CSS, MPA) with a pla
 
 ## Hero reveal & Three.js
 
-- **Hero brush:** `features/hero-reveal/` only; target `[data-hero-reveal]`; text stays in HTML.
+- **Home hero (current):** `features/three-scene/bust-hero*` — 3D fractured bust + Rapier
+  force field + right-click-drag camera orbit (`bust-hero-orbit.ts`, spring-back on release),
+  target `[data-hero-3d]` / `[data-hero-3d-canvas]`; text and the static `<img
+  data-hero-3d-fallback>` stay in HTML.
+- **Hero brush (archived, not deleted):** `features/hero-reveal/` only; target
+  `[data-hero-reveal]`; lives on `pages/hero-legacy.html` (unlisted), not the home hero anymore.
+- **Home cursor brush (current):** `features/home-brush/` only; target `[data-home-brush]`
+  (canvas spanning `<main>`; z-index above sections, below `--z-hero-stage` so the bust
+  stays in front; `mix-blend-mode: screen`); continuous pressure-aware chalk stroke
+  while left mouse / primary pointer is held (multi-pigment), colors from
+  `variables.css` only, no-op under `prefers-reduced-motion`.
+- **Page motion (GSAP):** `features/page-motion/` only when added; lazy / page-scoped; ask before adding the dependency.
 - **Three.js:** `features/three-scene/` only; lazy `import()`; not on pages without 3D.
-- Respect `prefers-reduced-motion` (skip mask / reduce motion).
+- Respect `prefers-reduced-motion` (skip mask / reduce motion / static GSAP fallbacks).
 
 ---
 

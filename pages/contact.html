@@ -1,0 +1,208 @@
+<!--
+  @file Contact page
+  @description Contact channels and Netlify Forms submission (no secret in the front bundle).
+  @route /contact.html
+-->
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact — Léandre</title>
+    <meta
+      name="description"
+      content="Contacter Léandre — creative developer, infographiste webdesigner et développeur web."
+    />
+    <meta property="og:title" content="Contact — Léandre" />
+    <meta
+      property="og:description"
+      content="Une question, un projet, une collaboration — écrivez-moi."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/logo-leandre.svg" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Aller au contenu</a>
+
+    <header class="site-header">
+      <nav class="site-header__nav" aria-label="Navigation principale">
+        <a class="site-header__logo" href="/pages/index.html" aria-label="Léandre — Accueil">
+          <img
+            class="site-header__logo-image"
+            data-site-logo
+            src="/logo-leandre.svg"
+            alt=""
+            width="91"
+            height="91"
+            decoding="async"
+          />
+        </a>
+        <button
+          class="site-header__toggle"
+          type="button"
+          data-nav-toggle
+          aria-expanded="false"
+          aria-controls="main-nav"
+          hidden
+        >
+          <span class="visually-hidden">Ouvrir le menu</span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+        </button>
+        <ul class="site-header__list" id="main-nav" data-nav-list>
+          <li>
+            <a class="site-header__link" href="/pages/projects.html">Mes projets</a>
+          </li>
+          <li>
+            <a class="site-header__link" href="/pages/cv.html">Mon CV</a>
+          </li>
+          <li>
+            <a
+              class="site-header__link"
+              href="/pages/contact.html"
+              aria-current="page"
+              >Contact</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main" class="page-shell">
+      <h1 class="page-shell__title">Contact</h1>
+      <p class="page-shell__lead">
+        Une question, un projet, une collaboration — écrivez-moi. Je réponds sous
+        48 heures.
+      </p>
+
+      <div class="grid grid--3">
+        <div class="contact-card">
+          <span class="contact-card__label">Email</span>
+          <p class="contact-card__value">
+            <a href="mailto:vigourouxleandredesign@gmail.com">
+              vigourouxleandredesign@gmail.com
+            </a>
+          </p>
+        </div>
+        <div class="contact-card">
+          <span class="contact-card__label">Téléphone</span>
+          <p class="contact-card__value">
+            <a href="tel:+687705203">+687 70 52 03</a>
+          </p>
+        </div>
+        <div class="contact-card">
+          <span class="contact-card__label">Localisation</span>
+          <p class="contact-card__value">Nouméa, Nouvelle-Calédonie</p>
+        </div>
+      </div>
+
+      <section class="section" aria-labelledby="form-title">
+        <span class="section__eyebrow">Formulaire</span>
+        <h2 class="section__title" id="form-title">Parlez-moi de votre projet</h2>
+
+        <!-- Netlify Forms: handled by the host, no API key in the bundle. -->
+        <form
+          class="contact-form"
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+        >
+          <input type="hidden" name="form-name" value="contact" />
+
+          <p class="contact-form__honeypot">
+            <label>
+              Ne remplissez pas ce champ
+              <input name="bot-field" tabindex="-1" autocomplete="off" />
+            </label>
+          </p>
+
+          <div class="contact-form__field">
+            <label class="contact-form__label" for="contact-name">Nom</label>
+            <input
+              class="contact-form__input"
+              id="contact-name"
+              name="name"
+              type="text"
+              autocomplete="name"
+              required
+            />
+          </div>
+
+          <div class="contact-form__field">
+            <label class="contact-form__label" for="contact-email">Email</label>
+            <input
+              class="contact-form__input"
+              id="contact-email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+            />
+          </div>
+
+          <div class="contact-form__field">
+            <label class="contact-form__label" for="contact-message">Message</label>
+            <textarea
+              class="contact-form__textarea"
+              id="contact-message"
+              name="message"
+              rows="6"
+              required
+            ></textarea>
+          </div>
+
+          <div class="contact-form__actions">
+            <button class="button button--primary" type="submit">Envoyer</button>
+            <p class="contact-form__note">
+              Vos informations servent uniquement à répondre à votre message.
+            </p>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <p class="site-footer__tagline">
+          Hâte de collaborer avec vous sur des projets exigeants.
+        </p>
+
+        <nav aria-labelledby="footer-nav-title">
+          <h2 class="site-footer__heading" id="footer-nav-title">Plan du site</h2>
+          <ul class="site-footer__nav">
+            <li><a class="site-footer__link" href="/pages/index.html">Accueil</a></li>
+            <li><a class="site-footer__link" href="/pages/projects.html">Mes projets</a></li>
+            <li><a class="site-footer__link" href="/pages/cv.html">Mon CV</a></li>
+            <li><a class="site-footer__link" href="/pages/contact.html">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div>
+          <h2 class="site-footer__heading">Contact direct</h2>
+          <ul class="site-footer__nav">
+            <li>
+              <a class="site-footer__link" href="mailto:vigourouxleandredesign@gmail.com">
+                vigourouxleandredesign@gmail.com
+              </a>
+            </li>
+            <li>
+              <a class="site-footer__link" href="tel:+687705203">+687 70 52 03</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="site-footer__bottom">
+        <p class="site-footer__copy">
+          &copy; <span data-year></span> Léandre — Creative developer
+        </p>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/scripts/entries/contact.ts"></script>
+  </body>
+</html>

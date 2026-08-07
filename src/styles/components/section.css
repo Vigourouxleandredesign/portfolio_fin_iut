@@ -1,0 +1,103 @@
+/**
+ * @file Section — shared editorial section shell
+ * @description `.section` block used across public pages. Colors via var(--color-*) only.
+ */
+
+.section {
+  padding-block: var(--space-20);
+  border-top: 1px solid var(--color-border);
+}
+
+.section--flush {
+  border-top: 0;
+}
+
+.section--surface {
+  background-color: var(--color-surface);
+}
+
+.section__header {
+  max-width: 56ch;
+  margin-bottom: var(--space-12);
+}
+
+.section__eyebrow {
+  display: block;
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-ember);
+}
+
+.section__title {
+  margin: 0 0 var(--space-4);
+  font-family: var(--font-heading);
+  font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
+  line-height: 1.1;
+  letter-spacing: var(--tracking-tight);
+}
+
+/* Painterly flourish — Updock reserved for one accent word per title. */
+.section__title-accent {
+  font-family: var(--font-display);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.5em;
+  line-height: 0.8;
+  color: var(--color-ember);
+}
+
+.section__lead {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-lg);
+}
+
+.section__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-12);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 40rem) {
+  .grid--2,
+  .grid--3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 60rem) {
+  .grid--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(var(--space-4));
+  transition:
+    opacity var(--duration-slow) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

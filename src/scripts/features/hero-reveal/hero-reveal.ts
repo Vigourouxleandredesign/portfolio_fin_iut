@@ -197,6 +197,11 @@ function getLocalPoint(
   };
 }
 
+/**
+ * Draws an image with CSS `object-fit: cover` + `object-position: center top`.
+ * Must stay in sync with `.hero__image` in `hero.css`, otherwise the bust
+ * jumps between the base `<img>` and the canvas top layer.
+ */
 function drawImageCover(
   context: CanvasRenderingContext2D,
   image: HTMLImageElement,
@@ -211,11 +216,15 @@ function drawImageCover(
   let offsetY = 0;
 
   if (imageAspect > boxAspect) {
+    // Image wider than box — crop left/right, keep top edge.
     drawWidth = height * imageAspect;
     offsetX = (width - drawWidth) / 2;
+    offsetY = 0;
   } else {
+    // Image taller than box — crop bottom, keep top edge (center top).
     drawHeight = width / imageAspect;
-    offsetY = (height - drawHeight) / 2;
+    offsetX = 0;
+    offsetY = 0;
   }
 
   context.drawImage(image, offsetX, offsetY, drawWidth, drawHeight);

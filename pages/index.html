@@ -1,6 +1,8 @@
 <!--
   @file Home page
-  @description Landing page with hero bust reveal (developer over designer).
+  @description Creative Developer landing — 3D fractured bust hero (cursor force field,
+    right-click-drag orbit), left-click chalk brush, discreet interaction hint,
+    univers, skills, featured projects, clients marquee.
   @route /
 -->
 <!DOCTYPE html>
@@ -8,53 +10,554 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio</title>
+    <title>Léandre — Creative developer</title>
     <meta
       name="description"
-      content="Portfolio développeur et designer — projets, expérimentations et contact."
+      content="Portfolio creative developer — infographiste webdesigner et développeur web. Front-end par intérêt, design et code."
     />
-    <meta property="og:title" content="Portfolio" />
+    <meta property="og:title" content="Léandre — Creative developer" />
     <meta
       property="og:description"
-      content="Portfolio développeur et designer — projets, expérimentations et contact."
+      content="Creative developer par conviction — infographie, webdesign et développement web."
     />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="fr_FR" />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/logo-leandre.svg" />
   </head>
   <body>
+    <a class="skip-link" href="#main">Aller au contenu</a>
+
     <header class="site-header">
       <nav class="site-header__nav" aria-label="Navigation principale">
-        <a class="site-header__logo" href="/">Portfolio</a>
+        <a class="site-header__logo" href="/pages/index.html" aria-label="Léandre — Accueil">
+          <img
+            class="site-header__logo-image"
+            data-site-logo
+            src="/logo-leandre.svg"
+            alt=""
+            width="91"
+            height="91"
+            decoding="async"
+          />
+        </a>
+        <button
+          class="site-header__toggle"
+          type="button"
+          data-nav-toggle
+          aria-expanded="false"
+          aria-controls="main-nav"
+          hidden
+        >
+          <span class="visually-hidden">Ouvrir le menu</span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+        </button>
+        <ul class="site-header__list" id="main-nav" data-nav-list>
+          <li>
+            <a class="site-header__link" href="/pages/projects.html">Mes projets</a>
+          </li>
+          <li>
+            <a class="site-header__link" href="/pages/cv.html">Mon CV</a>
+          </li>
+          <li>
+            <a class="site-header__link" href="/pages/contact.html">Contact</a>
+          </li>
+        </ul>
       </nav>
     </header>
 
     <main id="main">
-      <section class="hero" data-hero-reveal aria-label="Accueil">
-        <div class="hero__media">
+      <canvas class="home-brush" data-home-brush aria-hidden="true"></canvas>
+      <div class="home-grain" aria-hidden="true"></div>
+
+      <section class="hero-3d" data-hero-3d aria-label="Présentation">
+        <p class="hero-3d__hint">
+          Clic gauche&nbsp;: peindre — Clic droit&nbsp;: tourner le buste
+        </p>
+        <div class="hero-3d__stage">
+          <!-- Shown until the 3D scene is ready (or if JS/WebGL is unavailable). -->
           <img
-            class="hero__image hero__image--base"
+            class="hero-3d__fallback"
+            data-hero-3d-fallback
             src=""
-            alt="Portrait designer — buste en marbre"
+            alt="Buste sculpté fracturé, Creative Developer"
             width="1080"
             height="1920"
             decoding="async"
+            fetchpriority="high"
           />
-          <canvas class="hero__canvas" aria-hidden="true"></canvas>
+          <canvas class="hero-3d__canvas" data-hero-3d-canvas aria-hidden="true"></canvas>
+          <h1 class="hero-3d__headline">
+            <span class="hero-3d__word hero-3d__word--creative">Creative</span>
+            <span class="hero-3d__word hero-3d__word--developer">Developer</span>
+          </h1>
         </div>
-        <div class="hero__content">
-          <h1 class="hero__title">Développeur &amp; designer</h1>
-          <p class="hero__lead">
-            Survole pour révéler — glisse sur mobile. Contenu indexable en HTML.
-          </p>
-          <p class="hero__hint hero__hint--hover">Survole le buste</p>
-          <p class="hero__hint hero__hint--drag">Glisse sur le buste</p>
+      </section>
+
+      <section class="section section--flush" id="univers" aria-labelledby="univers-title">
+        <div class="home-decor home-decor--stroke-univers" aria-hidden="true"></div>
+        <div class="home-decor home-decor--bust" aria-hidden="true"></div>
+        <div class="home-decor home-decor--splash-univers" aria-hidden="true"></div>
+        <div class="container">
+          <div class="section__header" data-reveal>
+            <span class="section__eyebrow">Mon univers</span>
+            <h2 class="section__title" id="univers-title">
+              Deux métiers, une seule
+              <em class="section__title-accent">exigence</em>
+            </h2>
+            <p class="section__lead">
+              Infographiste webdesigner et développeur de formation — Bac+2 en
+              infographie webdesign, Bac+3 en développement web. Creative
+              developer par conviction : je me porte sur le front par intérêt,
+              avec des bases back (Spring Boot, Symfony) acquises en formation.
+            </p>
+          </div>
+
+          <div class="grid grid--3">
+            <article class="skill-card" data-reveal>
+              <span class="skill-card__index">01</span>
+              <h3 class="skill-card__title">Concevoir</h3>
+              <p class="skill-card__description">
+                Direction artistique, maquettes et design system. Une intention
+                claire avant la première ligne de code.
+              </p>
+            </article>
+            <article class="skill-card" data-reveal>
+              <span class="skill-card__index">02</span>
+              <h3 class="skill-card__title">Développer</h3>
+              <p class="skill-card__description">
+                Front-end exigeant — HTML sémantique, CSS structuré, TypeScript.
+                Les bases du back pour dialoguer avec toute la chaîne.
+              </p>
+            </article>
+            <article class="skill-card" data-reveal>
+              <span class="skill-card__index">03</span>
+              <h3 class="skill-card__title">Animer</h3>
+              <p class="skill-card__description">
+                Canvas, 3D temps réel et micro-interactions, utilisés pour
+                servir le propos — jamais pour alourdir la page.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills: suspended marble plaques in a dark atelier (moodboard marble-presentation). -->
+      <section
+        class="skills-gallery"
+        id="competences"
+        aria-labelledby="skills-title"
+        data-skills-gallery
+      >
+        <div class="skills-gallery__veil skills-gallery__veil--top" aria-hidden="true"></div>
+
+        <div class="skills-gallery__stage">
+          <div class="skills-gallery__inner">
+            <header class="skills-gallery__header" data-reveal>
+              <span class="skills-gallery__eyebrow">Compétences</span>
+              <h2 class="skills-gallery__title" id="skills-title">
+                Ce que je sais
+                <em class="section__title-accent">faire</em>
+              </h2>
+              <p class="skills-gallery__lead">
+                Six matières suspendues — du dispositif interactif au code.
+              </p>
+            </header>
+
+            <div class="skills-gallery__track">
+              <article class="marble-slab" data-reveal>
+                <div class="marble-slab__rig" aria-hidden="true">
+                  <span class="marble-slab__cable"></span>
+                  <span class="marble-slab__clamp"></span>
+                </div>
+                <div class="marble-slab__plaque">
+                  <h3 class="marble-slab__title">Dispositifs interactifs</h3>
+                </div>
+                <p class="marble-slab__meta">01 — Interactif</p>
+                <p class="marble-slab__description">
+                  Bornes, interfaces embarquées et expériences tactiles — du
+                  concept au prototype.
+                </p>
+              </article>
+
+              <article class="marble-slab" data-reveal>
+                <div class="marble-slab__rig" aria-hidden="true">
+                  <span class="marble-slab__cable"></span>
+                  <span class="marble-slab__clamp"></span>
+                </div>
+                <div class="marble-slab__plaque">
+                  <h3 class="marble-slab__title">Développement web</h3>
+                </div>
+                <p class="marble-slab__meta">02 — Code</p>
+                <p class="marble-slab__description">
+                  Front-end exigeant, intégration soignée, bases back pour
+                  dialoguer avec toute la chaîne.
+                </p>
+              </article>
+
+              <article class="marble-slab" data-reveal>
+                <div class="marble-slab__rig" aria-hidden="true">
+                  <span class="marble-slab__cable"></span>
+                  <span class="marble-slab__clamp"></span>
+                </div>
+                <div class="marble-slab__plaque">
+                  <h3 class="marble-slab__title">Webdesign &amp; UI/UX</h3>
+                </div>
+                <p class="marble-slab__meta">03 — Web</p>
+                <p class="marble-slab__description">
+                  Interfaces sur mesure, design systems et parcours utilisateurs
+                  clairs.
+                </p>
+              </article>
+
+              <article class="marble-slab" data-reveal>
+                <div class="marble-slab__rig" aria-hidden="true">
+                  <span class="marble-slab__cable"></span>
+                  <span class="marble-slab__clamp"></span>
+                </div>
+                <div class="marble-slab__plaque">
+                  <h3 class="marble-slab__title">Design produit</h3>
+                </div>
+                <p class="marble-slab__meta">04 — Produit</p>
+                <p class="marble-slab__description">
+                  Conception d’objets et de supports, du croquis au prototype 3D.
+                </p>
+              </article>
+
+              <article class="marble-slab" data-reveal>
+                <div class="marble-slab__rig" aria-hidden="true">
+                  <span class="marble-slab__cable"></span>
+                  <span class="marble-slab__clamp"></span>
+                </div>
+                <div class="marble-slab__plaque">
+                  <h3 class="marble-slab__title">Création 3D</h3>
+                </div>
+                <p class="marble-slab__meta">05 — 3D</p>
+                <p class="marble-slab__description">
+                  Modélisation, rendu et intégration temps réel sur le web.
+                </p>
+              </article>
+
+              <article class="marble-slab" data-reveal>
+                <div class="marble-slab__rig" aria-hidden="true">
+                  <span class="marble-slab__cable"></span>
+                  <span class="marble-slab__clamp"></span>
+                </div>
+                <div class="marble-slab__plaque">
+                  <h3 class="marble-slab__title">Animation 2D/3D</h3>
+                </div>
+                <p class="marble-slab__meta">06 — Motion</p>
+                <p class="marble-slab__description">
+                  Habillages animés, transitions et micro-interactions.
+                </p>
+              </article>
+            </div>
+          </div>
+        </div>
+
+        <div class="skills-gallery__veil skills-gallery__veil--bottom" aria-hidden="true"></div>
+      </section>
+
+      <section class="section section--flush" aria-labelledby="featured-title">
+        <div class="home-decor home-decor--column" aria-hidden="true"></div>
+        <div class="home-decor home-decor--splash-featured" aria-hidden="true"></div>
+        <div class="container">
+          <div class="section__header" data-reveal>
+            <span class="section__eyebrow">Sélection</span>
+            <h2 class="section__title" id="featured-title">Projets récents</h2>
+            <p class="section__lead">
+              Un aperçu — le détail complet vit sur la page projets.
+            </p>
+          </div>
+
+          <div class="grid grid--3">
+            <article class="project-card" data-reveal>
+              <div class="project-card__visual">
+                <span class="project-card__initial" aria-hidden="true">B</span>
+              </div>
+              <div class="project-card__body">
+                <p class="project-card__meta">
+                  <span>Dispositifs interactifs</span>
+                  <span>2025</span>
+                </p>
+                <h3 class="project-card__title">Borne tactile 2BeAlive</h3>
+                <p class="project-card__summary">
+                  Design produit, modélisation 3D et interface tactile d’une
+                  borne interactive installée en point de vente.
+                </p>
+              </div>
+            </article>
+
+            <article class="project-card" data-reveal>
+              <div class="project-card__visual">
+                <span class="project-card__initial" aria-hidden="true">P</span>
+              </div>
+              <div class="project-card__body">
+                <p class="project-card__meta">
+                  <span>Webdesign</span>
+                  <span>2024</span>
+                </p>
+                <h3 class="project-card__title">Pacific Dataviz Challenge</h3>
+                <p class="project-card__summary">
+                  Visualisation de données primée pour le programme Blue Pacific
+                  2050.
+                </p>
+              </div>
+            </article>
+
+            <article class="project-card" data-reveal>
+              <div class="project-card__visual">
+                <span class="project-card__initial" aria-hidden="true">T</span>
+              </div>
+              <div class="project-card__body">
+                <p class="project-card__meta">
+                  <span>Design produit</span>
+                  <span>2024</span>
+                </p>
+                <h3 class="project-card__title">Timbre &amp; timbre à date</h3>
+                <p class="project-card__summary">
+                  Création d’un timbre et de son oblitération pour le concours
+                  OPT Nouvelle-Calédonie.
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <div class="section__actions" data-reveal>
+            <a class="button button--primary" href="/pages/projects.html">
+              Voir tous les projets
+            </a>
+            <a class="button button--ghost" href="/pages/cv.html">Mon CV</a>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="clients-marquee"
+        aria-labelledby="clients-title"
+        data-reveal
+      >
+        <div class="home-decor home-decor--stroke-clients" aria-hidden="true"></div>
+        <div class="container">
+          <header class="clients-marquee__header">
+            <span class="clients-marquee__eyebrow">Collaborations</span>
+            <h2 class="clients-marquee__title" id="clients-title">
+              Entreprises qui me font confiance
+            </h2>
+          </header>
+        </div>
+
+        <div class="clients-marquee__viewport">
+          <ul class="clients-marquee__track">
+            <li class="clients-marquee__item">
+              <img
+                class="clients-marquee__logo"
+                data-client-logo="enercal"
+                src=""
+                alt="Enercal"
+                width="160"
+                height="80"
+                decoding="async"
+                loading="lazy"
+              />
+            </li>
+            <li class="clients-marquee__item">
+              <img
+                class="clients-marquee__logo"
+                data-client-logo="claro"
+                src=""
+                alt="Claro Opticien"
+                width="160"
+                height="80"
+                decoding="async"
+                loading="lazy"
+              />
+            </li>
+            <li class="clients-marquee__item">
+              <img
+                class="clients-marquee__logo"
+                data-client-logo="csb"
+                src=""
+                alt="CSB"
+                width="160"
+                height="80"
+                decoding="async"
+                loading="lazy"
+              />
+            </li>
+            <li class="clients-marquee__item">
+              <img
+                class="clients-marquee__logo"
+                data-client-logo="hyper-u"
+                src=""
+                alt="Hyper U"
+                width="160"
+                height="80"
+                decoding="async"
+                loading="lazy"
+              />
+            </li>
+            <li class="clients-marquee__item">
+              <img
+                class="clients-marquee__logo"
+                data-client-logo="visualcom"
+                src=""
+                alt="VisualCom"
+                width="160"
+                height="80"
+                decoding="async"
+                loading="lazy"
+              />
+            </li>
+            <li class="clients-marquee__item">
+              <img
+                class="clients-marquee__logo"
+                data-client-logo="quintessence"
+                src=""
+                alt="Quintessence"
+                width="160"
+                height="80"
+                decoding="async"
+                loading="lazy"
+              />
+            </li>
+            <!-- Duplicate set for seamless CSS loop -->
+            <li class="clients-marquee__item" aria-hidden="true">
+              <img
+                class="clients-marquee__logo"
+                data-client-logo="enercal"
+                src=""
+                alt=""
+                width="160"
+                height="80"
+                decoding="async"
+                loading="lazy"
+              />
+            </li>
+            <li class="clients-marquee__item" aria-hidden="true">
+              <img
+                class="clients-marquee__logo"
+                data-client-logo="claro"
+                src=""
+                alt=""
+                width="160"
+                height="80"
+                decoding="async"
+                loading="lazy"
+              />
+            </li>
+            <li class="clients-marquee__item" aria-hidden="true">
+              <img
+                class="clients-marquee__logo"
+                data-client-logo="csb"
+                src=""
+                alt=""
+                width="160"
+                height="80"
+                decoding="async"
+                loading="lazy"
+              />
+            </li>
+            <li class="clients-marquee__item" aria-hidden="true">
+              <img
+                class="clients-marquee__logo"
+                data-client-logo="hyper-u"
+                src=""
+                alt=""
+                width="160"
+                height="80"
+                decoding="async"
+                loading="lazy"
+              />
+            </li>
+            <li class="clients-marquee__item" aria-hidden="true">
+              <img
+                class="clients-marquee__logo"
+                data-client-logo="visualcom"
+                src=""
+                alt=""
+                width="160"
+                height="80"
+                decoding="async"
+                loading="lazy"
+              />
+            </li>
+            <li class="clients-marquee__item" aria-hidden="true">
+              <img
+                class="clients-marquee__logo"
+                data-client-logo="quintessence"
+                src=""
+                alt=""
+                width="160"
+                height="80"
+                decoding="async"
+                loading="lazy"
+              />
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section section--surface section--flush" aria-labelledby="cta-title">
+        <div class="home-decor home-decor--laurel" aria-hidden="true"></div>
+        <div class="home-decor home-decor--splash-cta" aria-hidden="true"></div>
+        <div class="container container--narrow">
+          <div class="section__header" data-reveal>
+            <span class="section__eyebrow">Travaillons ensemble</span>
+            <h2 class="section__title" id="cta-title">
+              Un <em class="section__title-accent">projet</em> en tête ?
+            </h2>
+            <p class="section__lead">
+              Design, développement front, 3D ou les trois à la fois — parlons-en.
+            </p>
+          </div>
+          <div data-reveal>
+            <a class="button button--primary" href="/pages/contact.html">
+              Me contacter
+            </a>
+          </div>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <p class="site-footer__copy">&copy; <span data-year></span> Portfolio</p>
+      <div class="site-footer__inner">
+        <p class="site-footer__tagline">
+          Hâte de collaborer avec vous sur des projets exigeants.
+        </p>
+
+        <nav aria-labelledby="footer-nav-title">
+          <h2 class="site-footer__heading" id="footer-nav-title">Plan du site</h2>
+          <ul class="site-footer__nav">
+            <li><a class="site-footer__link" href="/pages/index.html">Accueil</a></li>
+            <li><a class="site-footer__link" href="/pages/projects.html">Mes projets</a></li>
+            <li><a class="site-footer__link" href="/pages/cv.html">Mon CV</a></li>
+            <li><a class="site-footer__link" href="/pages/contact.html">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div>
+          <h2 class="site-footer__heading">Contact direct</h2>
+          <ul class="site-footer__nav">
+            <li>
+              <a class="site-footer__link" href="mailto:vigourouxleandredesign@gmail.com">
+                vigourouxleandredesign@gmail.com
+              </a>
+            </li>
+            <li>
+              <a class="site-footer__link" href="tel:+687705203">+687 70 52 03</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="site-footer__bottom">
+        <p class="site-footer__copy">
+          &copy; <span data-year></span> Léandre — Creative developer
+        </p>
+      </div>
     </footer>
 
     <script type="module" src="/src/scripts/entries/home.ts"></script>

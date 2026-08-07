@@ -1,0 +1,8 @@
+/**
+ * @file Contact page — page-specific overrides
+ * @description Only rules that apply exclusively to the contact route.
+ */
+
+.page-shell .contact-card {
+  height: 100%;
+}

@@ -6,6 +6,20 @@ Security rules: [SECURITY.md](./SECURITY.md) · Architecture: [ARCHITECTURE.md](
 
 ---
 
+## 0. Project status (keep in sync)
+
+| Area | Status |
+|------|--------|
+| **Supabase project** | Configured (schema, RLS, bucket `evaluator-assets`) |
+| **Evaluator users** | **Later** — create in Auth when evaluators are known; set `profiles.role = 'evaluator'` |
+| **Private assets** | **Later** — upload to **Storage** + row in **`project_assets`** (not Git / not `public/`) |
+| **Front priority now** | Public site: hero, sections, **Three.js**, etc. |
+| **Evaluator UI** | Implemented (`pages/evaluator.html`) — usable once users + assets exist |
+
+**Rule for all future work:** public portfolio media → `src/assets/` or `Assets/`; **evaluator-only** media (full videos, 3D files, dossiers complets) → **Supabase Storage** + metadata in `project_assets`. See [§2.5 Storage layout](#25-storage-layout) below.
+
+---
+
 ## 1. Official Supabase documentation
 
 | Topic | Official link |

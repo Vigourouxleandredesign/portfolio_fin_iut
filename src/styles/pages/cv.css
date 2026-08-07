@@ -1,0 +1,8 @@
+/**
+ * @file CV page — page-specific overrides
+ * @description Only rules that apply exclusively to the CV route.
+ */
+
+.cv-download-wrapper {
+  margin: 0 0 var(--space-8);
+}

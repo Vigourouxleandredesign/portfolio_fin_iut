@@ -1,0 +1,149 @@
+/**
+ * @file Hero 3D — layout for the fractured bust stage
+ * @description Canvas + headline overlay + static `<img>` fallback (shown
+ *   by default, hidden once `.hero-3d--active` is added by TS after the
+ *   scene loads — covers no-JS, WebGL failure and slow-load cases without
+ *   any inline script/style). Reduced motion always keeps the fallback.
+ *   Stage background is transparent so the page charcoal and `.home-brush`
+ *   paint trail show around the bust; the section sits above the brush.
+ */
+
+.hero-3d {
+  position: relative;
+  /* Above `.home-brush` — bust + headline stay in front; paint shows around via transparency */
+  z-index: var(--z-hero-stage);
+  width: 100%;
+  min-height: calc(100dvh - var(--header-height));
+  min-height: calc(100svh - var(--header-height));
+  overflow: hidden;
+  /* Transparent so the home-brush trail (below this stage) shows around the bust */
+  background-color: transparent;
+}
+
+.hero-3d__stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-3d__fallback {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-hero-base);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.hero-3d__canvas {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-hero-canvas);
+  display: none;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
+.hero-3d--active .hero-3d__canvas {
+  display: block;
+}
+
+.hero-3d--active .hero-3d__fallback {
+  display: none;
+}
+
+/* Full-stage positioning context so % top/bottom resolve against the viewport hero */
+.hero-3d__headline {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-hero-content);
+  margin: 0;
+  pointer-events: none;
+}
+
+.hero-3d__word {
+  position: absolute;
+  z-index: 1;
+  margin: 0;
+  line-height: 0.9;
+  color: var(--color-text);
+}
+
+/* Left of the bust — Creative (display) */
+.hero-3d__word--creative {
+  top: 14%;
+  left: 8%;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(3rem, 12vw, 7.5rem);
+  letter-spacing: 0.02em;
+  text-shadow: 0 4px 40px color-mix(in srgb, var(--color-bg) 70%, transparent);
+}
+
+/* Right of the bust — Developer (body / uppercase), kept above the 3D canvas */
+.hero-3d__word--developer {
+  right: 8%;
+  bottom: 18%;
+  z-index: 2;
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: clamp(1.75rem, 5.5vw, 3.5rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 28px color-mix(in srgb, var(--color-bg) 85%, transparent);
+}
+
+/* Discreet interaction tuto — top of the hero */
+.hero-3d__hint {
+  position: absolute;
+  top: var(--space-4);
+  left: 50%;
+  z-index: var(--z-hero-content);
+  margin: 0;
+  transform: translateX(-50%);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 400;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  opacity: 0.45;
+  pointer-events: none;
+  text-align: center;
+  max-width: min(92vw, 36rem);
+  line-height: 1.4;
+}
+
+@media (min-width: 48rem) {
+  .hero-3d {
+    min-height: max(calc(100dvh - var(--header-height)), 32rem);
+  }
+
+  .hero-3d__hint {
+    top: var(--space-6);
+  }
+
+  .hero-3d__word--creative {
+    top: 15%;
+    left: 10%;
+  }
+
+  .hero-3d__word--developer {
+    right: 11%;
+    bottom: 19%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-3d__canvas {
+    display: none !important;
+  }
+
+  .hero-3d__fallback {
+    display: block !important;
+  }
+
+}

@@ -109,6 +109,13 @@ Required headers (minimum):
 
 **CSP:** Add/update when Three.js or external scripts are integrated — restrict `script-src` and `connect-src` to self + `*.supabase.co`.
 
+**Three.js / Rapier / Draco (2026-08-07):** the 3D hero (`features/three-scene/`) needs two narrow, justified additions — no external CDN, everything self-hosted under `public/draco/`:
+
+- `script-src 'self' 'wasm-unsafe-eval'` — `'wasm-unsafe-eval'` (not the broader `'unsafe-eval'`) is required by some browsers to run `WebAssembly.instantiate` for the Rapier physics engine and the Draco geometry decoder. It does **not** enable JS `eval()`/`Function()` — scope stays WASM-only.
+- `worker-src 'self' blob:` — `DRACOLoader` decodes meshes in a `Blob`-based Web Worker it creates itself; without `worker-src`, browsers fall back to `script-src`, which blocks `blob:` workers. `'self'` is kept alone on `script-src` for regular scripts; only `worker-src` gets `blob:`.
+
+Both are self-hosted-only allowances (no `https:` wildcard, no external origin) — they do not weaken protection against third-party script injection.
+
 HTTPS is enforced by Netlify in production.
 
 ---
