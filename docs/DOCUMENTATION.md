@@ -12,9 +12,9 @@ Every file in `pages/`, `src/styles/`, `src/scripts/`, and `src/data/` starts wi
 
 ```ts
 /**
- * @file Hero reveal — canvas brush mask
- * @module features/hero-reveal
- * @description Initializes scratch reveal on `[data-hero-reveal]`. SEO text stays in HTML.
+ * @file Home brush — cursor paint stroke
+ * @module features/home-brush
+ * @description Paints a pressure-aware stroke on `[data-home-brush]`. SEO text stays in HTML.
  * @see {@link ../../docs/ARCHITECTURE.md}
  */
 ```
@@ -23,8 +23,8 @@ Every file in `pages/`, `src/styles/`, `src/scripts/`, and `src/data/` starts wi
 
 ```css
 /**
- * @file Hero — layout and visual states (non-canvas)
- * @description Styles for `.hero`. Colors via `var(--color-*)` only.
+ * @file Hero 3D — layout and visual states (non-canvas)
+ * @description Styles for `.hero-3d`. Colors via `var(--color-*)` only.
  * @requires variables.css, tokens.css (via entry import order)
  */
 ```
@@ -34,7 +34,7 @@ Every file in `pages/`, `src/styles/`, `src/scripts/`, and `src/data/` starts wi
 ```html
 <!--
   @file Home page
-  @description Landing page with hero reveal and portfolio sections.
+  @description Landing page with 3D bust hero and portfolio sections.
   @route /
 -->
 ```
@@ -57,11 +57,11 @@ Document every **exported** function, type, and constant:
 
 ```ts
 /**
- * Mounts the hero brush effect on the given root element.
- * @param root - Element with `[data-hero-reveal]`
+ * Mounts the cursor brush on the given root element.
+ * @param root - Element containing `[data-home-brush]`
  * @returns Teardown function (removes listeners, cancels RAF)
  */
-export function initHeroReveal(root: HTMLElement): () => void {
+export function initHomeBrush(root: HTMLElement): () => void {
   // ...
 }
 ```
@@ -83,7 +83,9 @@ Until then, file headers + JSDoc in the repo are sufficient.
 | File | Role |
 |------|------|
 | `docs/ARCHITECTURE.md` | Structure, rules, naming |
-| `docs/SECURITY.md` | Security (auth, RLS, storage, headers) |
+| `docs/SECURITY.md` | Security (static site, headers, teacher pack) |
+| `docs/DA.md` | Art direction (source of truth) |
+| `docs/TESTING.md` | Test gate |
 | `docs/DOCUMENTATION.md` | This file |
 | `README.md` | Install, dev, build, deploy |
 

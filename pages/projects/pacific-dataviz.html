@@ -1,0 +1,213 @@
+<!--
+  @file Project — Pacific Dataviz Challenge
+  @description Public case study — dataviz web project.
+  @route /pages/projects/pacific-dataviz.html
+-->
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pacific Dataviz Challenge — Léandre</title>
+    <meta
+      name="description"
+      content="Pacific Dataviz Challenge — visualisation de données pour le programme Blue Pacific 2050."
+    />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/logo-leandre.svg" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Aller au contenu</a>
+    <header class="site-header">
+      <nav class="site-header__nav" aria-label="Navigation principale">
+        <a class="site-header__logo" href="/pages/index.html" aria-label="Léandre — Accueil">
+          <img class="site-header__logo-image" data-site-logo src="/logo-leandre.svg" alt="" width="91" height="91" decoding="async" />
+        </a>
+        <button class="site-header__toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="main-nav" hidden>
+          <span class="visually-hidden">Ouvrir le menu</span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+        </button>
+        <ul class="site-header__list" id="main-nav" data-nav-list>
+          <li><a class="site-header__link" href="/pages/projects.html" aria-current="page">Mes projets</a></li>
+          <li><a class="site-header__link" href="/pages/cv.html">Mon CV</a></li>
+          <li><a class="site-header__link" href="/pages/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main" class="page-shell page-shell--project">
+      <div class="project-detail__grain" aria-hidden="true"></div>
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <ol class="breadcrumb__list">
+          <li class="breadcrumb__item"><a class="breadcrumb__link" href="/pages/projects.html">Mes projets</a></li>
+          <li class="breadcrumb__item"><span class="breadcrumb__current" aria-current="page">Pacific Dataviz</span></li>
+        </ol>
+      </nav>
+
+      <header class="project-detail__header" data-reveal>
+        <p class="project-detail__meta"><span>Webdesign &amp; UI/UX</span><span>2024</span></p>
+        <h1 class="project-detail__title">Pacific Dataviz Challenge</h1>
+        <p class="project-detail__lead">
+          Visualisation de données primée pour le programme Blue Pacific 2050 :
+          recherche, mise en récit et direction artistique.
+        </p>
+        <ul class="project-detail__tags">
+          <li class="project-detail__tag">Dataviz</li>
+          <li class="project-detail__tag">Direction artistique</li>
+        </ul>
+        <div class="project-detail__actions">
+          <a
+            class="button button--primary"
+            href="https://leandredatavizchallenge.figma.site/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Voir la réalisation</a
+          >
+          <a class="button button--ghost" href="/pages/projects.html">Retour à la liste</a>
+        </div>
+      </header>
+
+      <div class="project-detail__layout project-detail__layout--split">
+        <section class="project-detail__hero" aria-label="Visuel du projet" data-reveal>
+          <div class="project-detail__hero-frame">
+            <div class="project-detail__hero-media" role="img" aria-label="Pacific Dataviz Challenge">
+              <span class="project-detail__hero-initial" aria-hidden="true">P</span>
+            </div>
+            <div class="project-detail__hero-splash" aria-hidden="true"></div>
+            <p class="project-detail__hero-caption">Dataviz · Blue Pacific 2050</p>
+          </div>
+        </section>
+
+        <section class="project-detail__preview" aria-labelledby="dataviz-preview-title" data-reveal>
+          <div class="project-detail__preview-header">
+            <div>
+              <h2 class="project-detail__preview-title" id="dataviz-preview-title">Aperçu du site</h2>
+              <p class="project-detail__preview-lead">Démonstration interactive dans le moniteur marbre.</p>
+            </div>
+            <div class="project-detail__preview-actions">
+              <span class="project-detail__preview-url">https://leandredatavizchallenge.figma.site</span>
+              <a
+                class="button button--ghost project-detail__preview-open"
+                href="https://leandredatavizchallenge.figma.site/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Ouvrir le site</a
+              >
+            </div>
+          </div>
+          <div class="project-detail__mockup" data-project-site-preview>
+            <img
+              class="project-detail__mockup-frame"
+              src="/src/assets/mockups/mac-marble.png"
+              alt=""
+              width="1920"
+              height="1080"
+              decoding="async"
+              loading="lazy"
+            />
+            <div class="project-detail__mockup-screen">
+              <iframe
+                class="project-detail__preview-iframe"
+                src="https://leandredatavizchallenge.figma.site/"
+                title="Aperçu Pacific Dataviz Challenge"
+                loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin"
+              ></iframe>
+              <div class="project-detail__preview-fallback">
+                <p class="project-detail__preview-fallback-text">
+                  Ce site n’autorise pas l’aperçu intégré (sécurité du domaine).
+                </p>
+                <a
+                  class="button button--primary"
+                  href="https://leandredatavizchallenge.figma.site/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Voir la réalisation</a
+                >
+              </div>
+            </div>
+          </div>
+          <p class="project-detail__preview-note">Prototype Figma site — navigation possible dans l’iframe si autorisée.</p>
+        </section>
+
+        <section class="project-detail__snapshot" aria-labelledby="dataviz-snapshot-title" data-reveal>
+          <span class="project-detail__snapshot-eyebrow">En bref</span>
+          <h2 class="project-detail__snapshot-title" id="dataviz-snapshot-title">Survol du projet</h2>
+          <p class="project-detail__pitch">
+            Projet de visualisation de données autour du programme Blue Pacific 2050 :
+            recherche, narration visuelle et direction artistique — démonstration en ligne.
+          </p>
+          <ul class="project-detail__highlights">
+            <li>Challenge dataviz — mise en récit de données complexes</li>
+            <li>Prototype interactif publié (Figma site)</li>
+            <li>Fiche longue à rédiger / intégrer depuis le DOCX</li>
+          </ul>
+          <p class="project-detail__teaser">Le récit détaillé de la démarche arrivera dans la version longue…</p>
+        </section>
+
+        <section class="project-detail__gallery" aria-labelledby="dataviz-gallery-title" data-reveal>
+          <div class="project-detail__gallery-header">
+            <h2 class="project-detail__gallery-title" id="dataviz-gallery-title">Visuels</h2>
+            <p class="project-detail__gallery-lead">Captures du projet dataviz à ajouter.</p>
+          </div>
+          <div class="project-detail__gallery-grid">
+            <figure class="project-detail__figure">
+              <div class="project-detail__figure-visual"><span class="project-detail__figure-placeholder">Dataviz</span></div>
+              <figcaption class="project-detail__figure-caption">Vue principale — à intégrer</figcaption>
+            </figure>
+            <figure class="project-detail__figure">
+              <div class="project-detail__figure-visual"><span class="project-detail__figure-placeholder">Détail</span></div>
+              <figcaption class="project-detail__figure-caption">Zoom données — à intégrer</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="project-detail__narrative" id="recit-complet" data-reveal>
+          <details class="project-detail__details" data-project-narrative-details>
+            <summary class="project-detail__details-summary">
+              <span class="project-detail__details-label">Fiche de réflexion</span>
+              <span class="project-detail__details-cta">Lire la version longue</span>
+              <span class="project-detail__details-hint">Contenu académique à venir — même structure que Visualcom.</span>
+            </summary>
+            <div class="project-detail__details-body project-detail__content--placeholder">
+              <p>Texte complet à intégrer après relecture du DOCX.</p>
+            </div>
+          </details>
+        </section>
+
+        <aside class="project-detail__reflective" data-project-slug="pacific-dataviz" data-project-reflective aria-labelledby="reflective-dataviz-title" data-reveal>
+          <h2 class="project-detail__reflective-title" id="reflective-dataviz-title">Fiche réflexion (évaluateurs)</h2>
+          <p class="project-detail__reflective-text">Accès évaluateur et lien bidirectionnel — Phase B.</p>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <p class="site-footer__tagline">Hâte de collaborer avec vous sur des projets exigeants.</p>
+        <nav aria-labelledby="footer-nav-title-dataviz">
+          <h2 class="site-footer__heading" id="footer-nav-title-dataviz">Plan du site</h2>
+          <ul class="site-footer__nav">
+            <li><a class="site-footer__link" href="/pages/index.html">Accueil</a></li>
+            <li><a class="site-footer__link" href="/pages/projects.html">Mes projets</a></li>
+            <li><a class="site-footer__link" href="/pages/cv.html">Mon CV</a></li>
+            <li><a class="site-footer__link" href="/pages/contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div>
+          <h2 class="site-footer__heading">Contact direct</h2>
+          <ul class="site-footer__nav">
+            <li><a class="site-footer__link" href="mailto:vigourouxleandredesign@gmail.com">vigourouxleandredesign@gmail.com</a></li>
+            <li><a class="site-footer__link" href="tel:+687705203">+687 70 52 03</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <p class="site-footer__copy">&copy; <span data-year></span> Léandre — Creative developer</p>
+      </div>
+    </footer>
+    <script type="module" src="/src/scripts/entries/project-detail.ts"></script>
+  </body>
+</html>

@@ -8,9 +8,26 @@
  *   into the charcoal page. Colors via var(--color-*).
  */
 
-/* The hero already fills the viewport, so the first section keeps its own rhythm. */
-.hero-3d + .section {
+/* Hero → featured projects: generous handoff without a hard seam */
+.hero-3d-shell + .home-featured {
   padding-top: var(--space-24);
+}
+
+/* Featured projects — cover carousel after the wow */
+.home-featured__header {
+  max-width: 42rem;
+}
+
+.home-featured__header .section__title {
+  font-size: clamp(var(--text-3xl), 5vw, var(--text-5xl));
+}
+
+.home-featured .project-carousel {
+  margin-top: var(--space-8);
+}
+
+.home-univers-teaser {
+  padding-top: var(--space-20);
 }
 
 /* Side decor bleeds past the layout — clip at main to avoid horizontal scroll. */
@@ -20,15 +37,19 @@ main {
 }
 
 /*
- * Sections stay below `.home-brush` so the paint overlays the page again
- * (like the first brush pass). The hero alone sits above the brush
- * (`--z-hero-stage`) so the bust is never painted over.
+ * Sections stay below `.home-brush` so paint overlays the page.
+ * Hero atmosphere (`--z-hero-atmosphere`) sits under the brush; the bust
+ * stage (`--z-hero-stage`) and featured carousel stay above it.
  */
 .section,
 .clients-marquee,
 .skills-gallery {
   position: relative;
   z-index: 1;
+}
+
+.home-featured {
+  z-index: var(--z-home-featured);
 }
 
 .section > .container,

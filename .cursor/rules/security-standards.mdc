@@ -1,33 +1,26 @@
 ---
-description: Mandatory security rules — secrets, RLS, auth, storage
+description: Mandatory security rules — static site, secrets, headers, private teacher pack
 alwaysApply: true
 ---
 
 # Security (non-negotiable)
 
-Read `docs/SECURITY.md` before auth, evaluator, Supabase, or private media work.
+Read `docs/SECURITY.md` before touching headers, iframes, forms, private content or dependencies.
 
 ## Never
 
-- Put `service_role` or any secret in front code, Git, or `.env.example` values
-- Commit `.env` or private URLs in public HTML/bundle
-- Add private Supabase tables **without RLS**
-- Use **public** Storage buckets for evaluator content
-- Use `innerHTML` with API/user content (XSS)
-- Rely on hidden URLs or client-only role checks
+- Put a secret, token or password in front code, Git, or `.env.example` values (`VITE_*` = public)
+- Put reflective PDFs or the teacher password in this repo, `public/` or a Vite import
+- Use a client-side password, JS check or hidden URL as an access control
+- Use `innerHTML` with dynamic content (XSS); add inline `<script>`/`style=""` (CSP)
+- Add `frame-src https:` or any third-party script CDN
+- Publish raw client data (Vill’âge Jeunes) or SAE credentials (Lab Horizon)
+- Re-add Supabase / app auth (removed 2026-10-21) without a new decision in `docs/SECURITY.md` §0
 
 ## Always
 
-- Front: `VITE_SUPABASE_ANON_KEY` only; env via Netlify dashboard
-- Enforce access with **Supabase RLS + Storage policies**
-- Roles (`evaluator`) in DB (`profiles.role`), not TS-only
-- Private media: Storage + **signed URLs**; fetch **after** login
-- Keep `public/_headers` security headers updated
-- Run security checklist in `docs/SECURITY.md` §10 before deploy
-
-## Hybrid stack
-
-- **Public site:** static (Netlify) — no private data in bundle
-- **Evaluator area:** `pages/evaluator.html` + `src/scripts/features/auth/` + `evaluator/`
+- **Delivery (locked):** public site open; reflective PDFs on a **second** Netlify site with server-side password (`docs/SECURITY.md` §0, `docs/content/teacher-site.md`)
+- Keep `public/_headers` strict; a new iframe origin goes in `frame-src` **and** in `tests/feature/catalog-and-headers.test.ts`
+- `npm run gate` green before done; `npm run audit:prod` before deploy
 
 If a task weakens security, **stop** and update `docs/SECURITY.md` first.

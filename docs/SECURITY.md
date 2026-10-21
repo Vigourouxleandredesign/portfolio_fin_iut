@@ -1,193 +1,134 @@
 # Security — Portfolio (mandatory)
 
-**Version:** 1.0  
+**Version:** 2.0 (2026-10-21 — Supabase removed from the codebase)  
 **Status:** Non-negotiable for all contributors and AI agents.
 
-**Principle:** Never trust the client. Security is enforced **server-side** (Supabase RLS, Storage policies, Netlify env). The front must not contain secrets or private data in the bundle.
+**Principle:** the public site is a **static, backend-less** build. Nothing private ever enters this repo or its bundle. The only private content (reflective sheets) lives on a **separate** Netlify site protected **server-side** by Netlify’s password.
 
-Read this document before any auth, evaluator area, Supabase, or private media work.
-
-Related: [ARCHITECTURE.md](./ARCHITECTURE.md) · [AGENTS.md](../AGENTS.md)
+Related: [ARCHITECTURE.md](./ARCHITECTURE.md) · [AGENTS.md](../AGENTS.md) · [TESTING.md](./TESTING.md)
 
 ---
 
-## 1. Core model (Netlify + Supabase)
+## 0. Decision — Netlify password (locked 2026-10-06)
 
-| Layer | Role |
-|-------|------|
-| **Netlify** | Static front (`dist/`) — no secrets, no private URLs in public pages |
-| **Supabase Auth** | Identities, sessions, JWT — use **PKCE** for SPA |
-| **Supabase DB** | Metadata only — **RLS required** on every private table |
-| **Supabase Storage** | Images, video, 3D — **private buckets** + policies + signed URLs |
+Supabase is **out** and its code was **deleted** on 2026-10-21 (client, auth, evaluator page, SQL migration, tests, CSP origins). Do not recreate Supabase, app auth, RLS, or an `evaluator.html` page. Git history keeps the old design if a future decision reopens a backend.
 
-External API calls over HTTPS are expected. Security does not rely on hiding URLs.
+| Site | Protection | Contents |
+|------|------------|----------|
+| **Public portfolio** (this repo) | None (open) | Home, projects, CV, contact. No reflective PDFs, no password, no private URL. |
+| **Teacher site** (`docs/content/teacher-site.md`) | Netlify **Password protection** (dashboard, server-side) | One page per competence + the reflective PDFs. Password shared with teachers out of band. |
+
+Rules:
+
+- Never put the password or the PDFs in this repo, in `public/`, or in any Vite import.
+- Never password-protect the **public** portfolio.
+- Never replace the Netlify password by a client-side form, a JS check or a “secret” URL.
+- The public site may link **to** the teacher site (the link is not a secret — the password is the lock).
+- After the jury: delete the teacher site (or rotate the password) and remove the public link.
 
 ---
 
-## 2. Secrets & environment variables
+## 1. Secrets & environment variables
 
 | Rule | Detail |
 |------|--------|
-| **Anon key only in front** | `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` — public by design |
-| **Never `service_role` in front or Git** | Bypasses all RLS — server/Edge Functions only if ever needed |
-| **Never commit `.env`** | Use `.env.example` (names only, no values) |
-| **Netlify env vars** | Set in dashboard; separate **preview** vs **production** |
-| **Key rotation** | Regenerate in Supabase + update Netlify if leaked |
+| **No secret in the front** | Anything `VITE_*` is compiled into the public bundle. There is currently **no** env var required. |
+| **Never commit `.env`** | `.gitignore` covers `.env`, `.env.*` (except `.env.example`, names only). |
+| **Guard** | `npm run check:secrets` (part of `npm run gate`) scans tracked sources for keys/tokens (`scripts/check-no-secrets.mjs`). |
+| **Netlify** | Build settings only; no secret needed for a static build. |
 
 ---
 
-## 3. Authentication (evaluator role)
+## 2. Content & privacy (curation rules)
+
+| Source | Rule |
+|--------|------|
+| **Vill’âge Jeunes** (client app in production) | Only curated, anonymised screenshots. No repo dump, no real member data, no admin screens. |
+| **Lab Horizon (SAE 501)** | Never publish the seed accounts / `.env` of the SAE repo. Screens captured from a local Docker run must not show credentials. |
+| **Visualcom / clients** | Public pages only; logos used with the employer’s agreement. |
+| **Images** | Export as WebP/JPG through the pipeline (strips EXIF/GPS). No personal documents (ID, payslips…) anywhere. |
+| **Reflective sheets** | Teacher site only (§0). |
+
+---
+
+## 3. Front-end (Vite / TypeScript)
 
 | Rule | Detail |
 |------|--------|
-| **Individual accounts** | No shared password for evaluators in production |
-| **Disable public sign-up** | Create evaluator accounts manually or via invite |
-| **Email verification** | Required for evaluator accounts |
-| **MFA / 2FA** | Strongly recommended for evaluator accounts |
-| **Role in database** | `profiles.role` (`evaluator`, `student`) — **never** role-only in front TS |
-| **Session** | Use Supabase client; logout must clear session |
-| **No auth logic bypass** | Private routes load content **after** valid session check |
-
-Future code location: `src/scripts/features/auth/`
+| **No `innerHTML` with dynamic content** | Use `textContent` / DOM APIs. Static template strings authored in code are fine. |
+| **No inline `<script>` / `style=""`** | CSP forbids them (`script-src 'self'`, `style-src 'self'`). Use classes + tokens; set dynamic values with `element.style.setProperty('--x', …)` from TS. |
+| **External links** | `target="_blank"` always with `rel="noopener noreferrer"`. |
+| **Debug tooling** | Tweakpane is lazy-loaded only with `?debug` — never in the main bundle. |
+| **Third-party scripts** | None (no analytics, no CDN). Fonts and decoders are self-hosted (`@fontsource/*`, `public/draco/`). |
 
 ---
 
-## 4. Row Level Security (RLS) — mandatory
+## 4. Netlify headers (`public/_headers`)
 
-RLS must be **enabled** on every table containing private or role-gated data.
+Current policy (tested by `tests/feature/catalog-and-headers.test.ts`, C8/C9):
+
+- `X-Frame-Options: DENY` + CSP `frame-ancestors 'none'` — no one can frame the portfolio.
+- `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`.
+- `Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()`.
+- `Strict-Transport-Security` (1 year, preload) + CSP `upgrade-insecure-requests`.
+- `Cross-Origin-Opener-Policy: same-origin`.
+- **CSP:** `default-src 'self'`; `connect-src 'self'`; `img-src 'self' data: blob:`; `font-src 'self' data:`; `object-src 'none'`; `base-uri 'self'`; `form-action 'self'`.
+- `/assets/*` — immutable long cache (Vite hashes file names).
+
+**Three.js / Rapier / Draco (2026-08-07):** `script-src 'self' 'wasm-unsafe-eval'` (WASM only — does **not** allow JS `eval`) and `worker-src 'self' blob:` (Draco’s blob worker). Self-hosted only.
+
+**Iframes (project previews):** each embedded origin is listed explicitly in `frame-src` (`https://visualcom.nc`, `https://magicallab.netlify.app`, `https://*.figma.site`) — never `frame-src https:`. Remote sites may refuse embedding; the UI keeps an “Ouvrir le site” fallback. Shot-mode mockups need no `frame-src`. Adding an iframe = adding its origin here **and** in the test.
+
+---
+
+## 5. Contact form
+
+Netlify Forms (`data-netlify="true"`) with a honeypot field (`bot-field`, tested in E2E smoke). No custom endpoint, no email address exposed by JS.
+
+---
+
+## 6. Supply chain
 
 | Rule | Detail |
 |------|--------|
-| **Default deny** | No policy = no access |
-| **Explicit policies** | Separate SELECT / INSERT / UPDATE / DELETE |
-| **Public data** | Only rows explicitly marked public (e.g. `is_public = true`) |
-| **Evaluator read** | Policy checks `auth.uid()` + `profiles.role = 'evaluator'` |
-| **Student write** | Own rows only (`auth.uid() = owner_id`) where applicable |
-| **Test all roles** | Anonymous, authenticated non-evaluator, evaluator |
-
-Never ship private tables without RLS. Never rely on hiding table names.
+| **Minimal dependencies** | Runtime: `three`, `@dimforge/rapier3d-compat`, `@fontsource/*`, `tweakpane` (debug, lazy). Any new runtime dependency must be justified in the PR. |
+| **Lockfile committed** | `package-lock.json` — install with `npm ci` on Netlify/CI. |
+| **Audit** | `npm run audit:prod` before each deploy; fix `high`/`critical`. |
+| **Pinned 3D stack** | `three` pinned (`0.185.1`) — upgrade deliberately, re-test the hero. |
 
 ---
 
-## 5. Storage (images, video, 3D)
+## 7. Teacher site (password-protected)
 
-| Rule | Detail |
-|------|--------|
-| **Private buckets** | Evaluator content — not public buckets |
-| **Storage policies** | Mirror RLS logic (role + ownership) |
-| **Signed URLs** | Prefer time-limited URLs for video / `.glb` / large files |
-| **No private media in `public/` or Git** | No private imports in Vite bundle |
-| **Validate uploads** | MIME type, extension, max file size |
-| **Avoid user-uploaded SVG** | XSS risk if served inline — prefer PNG/WebP or strict sanitization |
-
-Future code location: `src/scripts/features/evaluator/`
+- Separate Netlify site, separate folder **outside** this repo (see `docs/content/teacher-site.md`).
+- Server-side lock: Netlify **Password protection** (dashboard, Pro plan) **or** `Basic-Auth` in that site’s `_headers` (all plans). The `_headers` file stays in the local teacher folder (drag-and-drop deploy, no Git) — never a JS gate.
+- Long unique password, shared out of band (email to the jury) — never in Git, HTML, issues or chat logs.
+- Its own `_headers`: `X-Robots-Tag: noindex, nofollow`, `X-Frame-Options: DENY`, same strict CSP.
+- One shared password is acceptable: temporary pack, low sensitivity.
+- Delete the site or rotate the password after the jury.
 
 ---
 
-## 6. Front-end (Vite / TypeScript)
-
-| Rule | Detail |
-|------|--------|
-| **No private URLs in public HTML** | No hardcoded signed URLs or private paths in `pages/` (public routes) |
-| **Fetch after auth** | Evaluator media loaded only post-login |
-| **No `innerHTML` with user/API content** | Prevents XSS — use `textContent` or safe DOM APIs |
-| **No secrets in source** | Grep for `service_role`, API keys, tokens before commit |
-| **No security by obscurity** | `/evaluator` path may be known — policies must block unauthorized access |
-
----
-
-## 7. Netlify headers & HTTPS
-
-Maintain `public/_headers` for production (see file in repo).
-
-Required headers (minimum):
-
-- `X-Frame-Options: DENY`
-- `X-Content-Type-Options: nosniff`
-- `Referrer-Policy: strict-origin-when-cross-origin`
-- `Permissions-Policy` — disable unused APIs (camera, mic, geolocation)
-
-**CSP:** Add/update when Three.js or external scripts are integrated — restrict `script-src` and `connect-src` to self + `*.supabase.co`.
-
-**Three.js / Rapier / Draco (2026-08-07):** the 3D hero (`features/three-scene/`) needs two narrow, justified additions — no external CDN, everything self-hosted under `public/draco/`:
-
-- `script-src 'self' 'wasm-unsafe-eval'` — `'wasm-unsafe-eval'` (not the broader `'unsafe-eval'`) is required by some browsers to run `WebAssembly.instantiate` for the Rapier physics engine and the Draco geometry decoder. It does **not** enable JS `eval()`/`Function()` — scope stays WASM-only.
-- `worker-src 'self' blob:` — `DRACOLoader` decodes meshes in a `Blob`-based Web Worker it creates itself; without `worker-src`, browsers fall back to `script-src`, which blocks `blob:` workers. `'self'` is kept alone on `script-src` for regular scripts; only `worker-src` gets `blob:`.
-
-Both are self-hosted-only allowances (no `https:` wildcard, no external origin) — they do not weaken protection against third-party script injection.
-
-HTTPS is enforced by Netlify in production.
-
----
-
-## 8. Abuse prevention
-
-| Risk | Mitigation |
-|------|------------|
-| Login brute force | Supabase rate limits; no public sign-up |
-| Data scraping | RLS + signed URLs; monitor Supabase logs |
-| SQL injection | Supabase client only — no raw SQL in front |
-| XSS | No unsafe HTML injection; CSP headers |
-| Dependency vulnerabilities | Run `npm audit`; keep Vite and `@supabase/supabase-js` updated |
-
----
-
-## 9. Privacy (RGPD — school context)
-
-| Rule | Detail |
-|------|--------|
-| **Data minimization** | Store only necessary personal data |
-| **EU region** | Prefer Supabase region **EU (Frankfurt)** for personal data |
-| **Retention** | Plan deletion of accounts and media after MIAW session |
-| **Transparency** | Legal / info page: who accesses data, why, how long |
-
----
-
-## 10. Git & deployment checklist
+## 8. Deployment checklist
 
 Before merge / deploy:
 
-- [ ] No secrets in diff (`.env`, keys, tokens)
-- [ ] RLS enabled and tested on new tables
-- [ ] Storage buckets private with policies
-- [ ] No `service_role` in client code
-- [ ] Private assets not in `public/` or static imports on public pages
-- [ ] `.env.example` updated if new env vars added
-- [ ] Netlify env vars set for production
+- [ ] `npm run gate` green (typecheck + secrets + tests + build)
+- [ ] `npm run audit:prod` — no high/critical
+- [ ] No secret, PDF or password in the diff
+- [ ] New iframe origin → `frame-src` + test updated
+- [ ] Screens of client apps are curated/anonymised (§2)
+- [ ] `.env.example` updated if a `VITE_*` var is added (names only)
 
 ---
 
-## 11. Option 1 fallback (Netlify password only)
+## 9. Forbidden
 
-If Supabase is not used yet:
+- Any secret, token or password in front code, Git, `.env.example` values or logs
+- Reflective PDFs or teacher password in this repo / bundle
+- Client-side password or hidden URL as an access control
+- `frame-src https:` wildcard, inline scripts/styles, third-party script CDNs
+- Raw dumps of client projects (Vill’âge Jeunes) or SAE credentials (Lab Horizon)
+- Re-adding Supabase/auth without a new written decision in §0
 
-- Acceptable only for **temporary MVP**
-- Long unique password — never in Git
-- Rotate after MIAW
-- Do not store highly sensitive data behind password alone
-- Migrate to Supabase before adding evaluator media at scale
-
----
-
-## 12. Forbidden (security)
-
-- `service_role` key in front, Git, or logs
-- Private tables without RLS
-- Public Storage buckets for evaluator content
-- Hardcoded private media URLs in public pages or bundle
-- Shared evaluator password in production (when Supabase is active)
-- Trusting client-side role checks without server policy
-- Committing `.env` or real keys to `.env.example`
-- Skipping this document when adding auth or private content
-
----
-
-## 13. Document updates
-
-When adding Supabase, auth, or evaluator features:
-
-1. Update this file if new patterns appear
-2. Update `ARCHITECTURE.md` (structure + forbidden list)
-3. Update `AGENTS.md` and `.cursor/rules/security-standards.mdc`
-
-**Priority order if conflict:** `SECURITY.md` + RLS policies > convenience > UX shortcuts.
+**Priority order if conflict:** `SECURITY.md` > convenience > UX shortcuts.

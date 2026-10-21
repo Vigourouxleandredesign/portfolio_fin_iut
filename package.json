@@ -3,23 +3,40 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "check:secrets": "node scripts/check-no-secrets.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "gate": "npm run typecheck && npm run check:secrets && npm run test && npm run build",
+    "test:e2e": "playwright test",
+    "test:e2e:prod": "playwright test",
+    "gate:full": "npm run gate && npm run test:e2e",
+    "audit:prod": "npm audit --omit=dev",
+    "shots": "node scripts/capture-project-shots.mjs",
+    "decor:paint": "node scripts/generate-paint-decor.mjs"
   },
   "dependencies": {
     "@dimforge/rapier3d-compat": "^0.19.3",
     "@fontsource/ubuntu": "^5.3.0",
     "@fontsource/updock": "^5.3.0",
-    "@supabase/supabase-js": "^2.49.8",
     "three": "0.185.1",
     "tweakpane": "^4.0.5"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.10.1",
+    "@playwright/test": "^1.49.1",
     "@tweakpane/core": "^2.0.5",
     "@types/three": "^0.185.3",
+    "happy-dom": "^16.8.1",
     "typescript": "~5.7.2",
-    "vite": "^6.0.3"
+    "vite": "^6.0.3",
+    "vitest": "^3.0.5"
   }
 }

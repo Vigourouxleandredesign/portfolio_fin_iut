@@ -1,8 +1,99 @@
 /**
- * @file Projects page — page-specific overrides
- * @description Only rules that apply exclusively to the projects route.
+ * @file Projects page — atmosphere and listing layout
+ * @description Full-bleed moodboard backdrop (`bg-projets.jpg` via
+ *   `--projects-page-bg`), soft readability veil, light grain. No column
+ *   plate overlays — the photo already carries the temple composition.
+ *   Colors via var(--color-*) only.
  */
 
-.page-shell .project-card__title {
-  font-size: var(--text-xl);
+.projects-page {
+  background-color: var(--color-bg);
+  background-image: var(--projects-page-bg, none);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.projects-page__main {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+}
+
+.projects-page__backdrop-veil {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 70% 60% at 50% 35%,
+      color-mix(in srgb, var(--color-bg) 15%, transparent) 0%,
+      color-mix(in srgb, var(--color-bg) 55%, transparent) 55%,
+      color-mix(in srgb, var(--color-bg) 82%, transparent) 100%
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--color-bg) 45%, transparent) 0%,
+      color-mix(in srgb, var(--color-bg) 25%, transparent) 35%,
+      color-mix(in srgb, var(--color-bg) 70%, transparent) 100%
+    );
+}
+
+.projects-page__grain {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 240px 240px;
+  mix-blend-mode: overlay;
+}
+
+.projects-page__intro,
+.projects-page__grid,
+.project-filter,
+.projects-page__actions {
+  position: relative;
+  z-index: 1;
+}
+
+.projects-page__intro {
+  max-width: 40rem;
+  margin-bottom: var(--space-12);
+}
+
+.projects-page__eyebrow {
+  display: block;
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-ember);
+}
+
+.projects-page__title {
+  margin-bottom: var(--space-4);
+  font-size: clamp(var(--text-3xl), 5vw, var(--text-5xl));
+}
+
+.projects-page__lead {
+  max-width: 46ch;
+}
+
+.projects-page__grid {
+  gap: var(--space-8);
+}
+
+.projects-page__actions {
+  margin-top: var(--space-16);
+}
+
+@media (max-width: 60rem) {
+  .projects-page {
+    background-attachment: scroll;
+  }
 }

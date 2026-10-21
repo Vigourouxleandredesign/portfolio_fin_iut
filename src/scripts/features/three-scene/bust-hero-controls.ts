@@ -1,21 +1,14 @@
 /**
  * @file Bust hero — Tweakpane dev panel
  * @module features/three-scene/bust-hero-controls
- * @description Live-tunable force field / spring parameters. Hidden by
- *   default — mount only with an explicit `?debug` query param.
+ * @description Live-tunable force field / spring parameters. Lazy-loaded by
+ *   bust-hero.ts only when the URL has `?debug` (keeps Tweakpane out of the
+ *   production bundle).
  * @see {@link ../../../../docs/ARCHITECTURE.md}
  */
 
 import { Pane } from 'tweakpane';
 import type { BustOrbitParams, BustPhysicsParams } from './bust-hero.types';
-
-/**
- * Whether the debug panel should be mounted — opt-in via `?debug` only
- * (no longer auto-shown in the Vite dev server).
- */
-export function shouldShowDebugPanel(): boolean {
-  return new URLSearchParams(window.location.search).has('debug');
-}
 
 /**
  * Creates the Tweakpane panel bound to the given (mutable) physics + orbit

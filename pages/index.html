@@ -1,8 +1,8 @@
 <!--
   @file Home page
-  @description Creative Developer landing — 3D fractured bust hero (cursor force field,
-    right-click-drag orbit), left-click chalk brush, discreet interaction hint,
-    univers, skills, featured projects, clients marquee.
+  @description Creative Developer landing — 3D bust hero (+ optional atmosphere
+    plate), featured project cover carousel, collaborations, univers teaser,
+    skills gallery, contact CTA.
   @route /
 -->
 <!DOCTYPE html>
@@ -72,257 +72,231 @@
       <canvas class="home-brush" data-home-brush aria-hidden="true"></canvas>
       <div class="home-grain" aria-hidden="true"></div>
 
-      <section class="hero-3d" data-hero-3d aria-label="Présentation">
-        <p class="hero-3d__hint">
-          Clic gauche&nbsp;: peindre — Clic droit&nbsp;: tourner le buste
-        </p>
-        <div class="hero-3d__stage">
-          <!-- Shown until the 3D scene is ready (or if JS/WebGL is unavailable). -->
+      <!--
+        Atmosphere sits outside `.hero-3d` so it can stack *below* `.home-brush`.
+        The transparent bust stage stays above the brush (see tokens.css sandwich).
+      -->
+      <div class="hero-3d-shell">
+        <div class="hero-3d-backdrop" aria-hidden="true">
           <img
-            class="hero-3d__fallback"
-            data-hero-3d-fallback
+            class="hero-3d__atmosphere"
+            data-hero-3d-atmosphere
             src=""
-            alt="Buste sculpté fracturé, Creative Developer"
-            width="1080"
-            height="1920"
+            alt=""
+            width="1920"
+            height="1080"
             decoding="async"
-            fetchpriority="high"
           />
-          <canvas class="hero-3d__canvas" data-hero-3d-canvas aria-hidden="true"></canvas>
-          <h1 class="hero-3d__headline">
-            <span class="hero-3d__word hero-3d__word--creative">Creative</span>
-            <span class="hero-3d__word hero-3d__word--developer">Developer</span>
-          </h1>
+          <div class="hero-3d__atmosphere-veil"></div>
         </div>
-      </section>
-
-      <section class="section section--flush" id="univers" aria-labelledby="univers-title">
-        <div class="home-decor home-decor--stroke-univers" aria-hidden="true"></div>
-        <div class="home-decor home-decor--bust" aria-hidden="true"></div>
-        <div class="home-decor home-decor--splash-univers" aria-hidden="true"></div>
-        <div class="container">
-          <div class="section__header" data-reveal>
-            <span class="section__eyebrow">Mon univers</span>
-            <h2 class="section__title" id="univers-title">
-              Deux métiers, une seule
-              <em class="section__title-accent">exigence</em>
-            </h2>
-            <p class="section__lead">
-              Infographiste webdesigner et développeur de formation — Bac+2 en
-              infographie webdesign, Bac+3 en développement web. Creative
-              developer par conviction : je me porte sur le front par intérêt,
-              avec des bases back (Spring Boot, Symfony) acquises en formation.
-            </p>
+        <section class="hero-3d" data-hero-3d aria-label="Présentation">
+          <p class="hero-3d__hint">
+            Clic gauche&nbsp;: peindre — Clic droit&nbsp;: tourner le buste
+          </p>
+          <div class="hero-3d__stage">
+            <!-- Shown until the 3D scene is ready (or if JS/WebGL is unavailable). -->
+            <img
+              class="hero-3d__fallback"
+              data-hero-3d-fallback
+              src=""
+              alt="Buste sculpté fracturé, Creative Developer"
+              width="1080"
+              height="1920"
+              decoding="async"
+              fetchpriority="high"
+            />
+            <canvas class="hero-3d__canvas" data-hero-3d-canvas aria-hidden="true"></canvas>
+            <h1 class="hero-3d__headline">
+              <span class="hero-3d__word hero-3d__word--creative">Creative</span>
+              <span class="hero-3d__word hero-3d__word--developer">Developer</span>
+            </h1>
           </div>
-
-          <div class="grid grid--3">
-            <article class="skill-card" data-reveal>
-              <span class="skill-card__index">01</span>
-              <h3 class="skill-card__title">Concevoir</h3>
-              <p class="skill-card__description">
-                Direction artistique, maquettes et design system. Une intention
-                claire avant la première ligne de code.
-              </p>
-            </article>
-            <article class="skill-card" data-reveal>
-              <span class="skill-card__index">02</span>
-              <h3 class="skill-card__title">Développer</h3>
-              <p class="skill-card__description">
-                Front-end exigeant — HTML sémantique, CSS structuré, TypeScript.
-                Les bases du back pour dialoguer avec toute la chaîne.
-              </p>
-            </article>
-            <article class="skill-card" data-reveal>
-              <span class="skill-card__index">03</span>
-              <h3 class="skill-card__title">Animer</h3>
-              <p class="skill-card__description">
-                Canvas, 3D temps réel et micro-interactions, utilisés pour
-                servir le propos — jamais pour alourdir la page.
-              </p>
-            </article>
+          <div class="hero-3d__actions">
+            <a class="button button--primary" href="#projets">Voir mes projets</a>
+            <a class="button button--ghost" href="/pages/contact.html">Me contacter</a>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
-      <!-- Skills: suspended marble plaques in a dark atelier (moodboard marble-presentation). -->
       <section
-        class="skills-gallery"
-        id="competences"
-        aria-labelledby="skills-title"
-        data-skills-gallery
+        class="section section--flush home-featured"
+        id="projets"
+        aria-labelledby="featured-title"
       >
-        <div class="skills-gallery__veil skills-gallery__veil--top" aria-hidden="true"></div>
-
-        <div class="skills-gallery__stage">
-          <div class="skills-gallery__inner">
-            <header class="skills-gallery__header" data-reveal>
-              <span class="skills-gallery__eyebrow">Compétences</span>
-              <h2 class="skills-gallery__title" id="skills-title">
-                Ce que je sais
-                <em class="section__title-accent">faire</em>
-              </h2>
-              <p class="skills-gallery__lead">
-                Six matières suspendues — du dispositif interactif au code.
-              </p>
-            </header>
-
-            <div class="skills-gallery__track">
-              <article class="marble-slab" data-reveal>
-                <div class="marble-slab__rig" aria-hidden="true">
-                  <span class="marble-slab__cable"></span>
-                  <span class="marble-slab__clamp"></span>
-                </div>
-                <div class="marble-slab__plaque">
-                  <h3 class="marble-slab__title">Dispositifs interactifs</h3>
-                </div>
-                <p class="marble-slab__meta">01 — Interactif</p>
-                <p class="marble-slab__description">
-                  Bornes, interfaces embarquées et expériences tactiles — du
-                  concept au prototype.
-                </p>
-              </article>
-
-              <article class="marble-slab" data-reveal>
-                <div class="marble-slab__rig" aria-hidden="true">
-                  <span class="marble-slab__cable"></span>
-                  <span class="marble-slab__clamp"></span>
-                </div>
-                <div class="marble-slab__plaque">
-                  <h3 class="marble-slab__title">Développement web</h3>
-                </div>
-                <p class="marble-slab__meta">02 — Code</p>
-                <p class="marble-slab__description">
-                  Front-end exigeant, intégration soignée, bases back pour
-                  dialoguer avec toute la chaîne.
-                </p>
-              </article>
-
-              <article class="marble-slab" data-reveal>
-                <div class="marble-slab__rig" aria-hidden="true">
-                  <span class="marble-slab__cable"></span>
-                  <span class="marble-slab__clamp"></span>
-                </div>
-                <div class="marble-slab__plaque">
-                  <h3 class="marble-slab__title">Webdesign &amp; UI/UX</h3>
-                </div>
-                <p class="marble-slab__meta">03 — Web</p>
-                <p class="marble-slab__description">
-                  Interfaces sur mesure, design systems et parcours utilisateurs
-                  clairs.
-                </p>
-              </article>
-
-              <article class="marble-slab" data-reveal>
-                <div class="marble-slab__rig" aria-hidden="true">
-                  <span class="marble-slab__cable"></span>
-                  <span class="marble-slab__clamp"></span>
-                </div>
-                <div class="marble-slab__plaque">
-                  <h3 class="marble-slab__title">Design produit</h3>
-                </div>
-                <p class="marble-slab__meta">04 — Produit</p>
-                <p class="marble-slab__description">
-                  Conception d’objets et de supports, du croquis au prototype 3D.
-                </p>
-              </article>
-
-              <article class="marble-slab" data-reveal>
-                <div class="marble-slab__rig" aria-hidden="true">
-                  <span class="marble-slab__cable"></span>
-                  <span class="marble-slab__clamp"></span>
-                </div>
-                <div class="marble-slab__plaque">
-                  <h3 class="marble-slab__title">Création 3D</h3>
-                </div>
-                <p class="marble-slab__meta">05 — 3D</p>
-                <p class="marble-slab__description">
-                  Modélisation, rendu et intégration temps réel sur le web.
-                </p>
-              </article>
-
-              <article class="marble-slab" data-reveal>
-                <div class="marble-slab__rig" aria-hidden="true">
-                  <span class="marble-slab__cable"></span>
-                  <span class="marble-slab__clamp"></span>
-                </div>
-                <div class="marble-slab__plaque">
-                  <h3 class="marble-slab__title">Animation 2D/3D</h3>
-                </div>
-                <p class="marble-slab__meta">06 — Motion</p>
-                <p class="marble-slab__description">
-                  Habillages animés, transitions et micro-interactions.
-                </p>
-              </article>
-            </div>
-          </div>
-        </div>
-
-        <div class="skills-gallery__veil skills-gallery__veil--bottom" aria-hidden="true"></div>
-      </section>
-
-      <section class="section section--flush" aria-labelledby="featured-title">
         <div class="home-decor home-decor--column" aria-hidden="true"></div>
         <div class="home-decor home-decor--splash-featured" aria-hidden="true"></div>
         <div class="container">
-          <div class="section__header" data-reveal>
+          <div class="section__header home-featured__header" data-reveal>
             <span class="section__eyebrow">Sélection</span>
-            <h2 class="section__title" id="featured-title">Projets récents</h2>
+            <h2 class="section__title" id="featured-title">
+              Projets
+              <em class="section__title-accent">récents</em>
+            </h2>
             <p class="section__lead">
-              Un aperçu — le détail complet vit sur la page projets.
+              La preuve du travail — ouvre une fiche pour le contexte, les choix
+              et le résultat.
             </p>
           </div>
 
-          <div class="grid grid--3">
-            <article class="project-card" data-reveal>
-              <div class="project-card__visual">
-                <span class="project-card__initial" aria-hidden="true">B</span>
-              </div>
-              <div class="project-card__body">
-                <p class="project-card__meta">
-                  <span>Dispositifs interactifs</span>
-                  <span>2025</span>
-                </p>
-                <h3 class="project-card__title">Borne tactile 2BeAlive</h3>
-                <p class="project-card__summary">
-                  Design produit, modélisation 3D et interface tactile d’une
-                  borne interactive installée en point de vente.
-                </p>
-              </div>
-            </article>
+          <div
+            class="project-carousel"
+            data-project-carousel
+            data-reveal
+            aria-roledescription="carousel"
+            aria-label="Projets récents"
+          >
+            <div class="project-carousel__shell">
+              <button
+                type="button"
+                class="project-carousel__btn project-carousel__btn--prev"
+                data-carousel-prev
+                aria-label="Projet précédent"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m15 18-6-6 6-6" />
+                </svg>
+              </button>
 
-            <article class="project-card" data-reveal>
-              <div class="project-card__visual">
-                <span class="project-card__initial" aria-hidden="true">P</span>
-              </div>
-              <div class="project-card__body">
-                <p class="project-card__meta">
-                  <span>Webdesign</span>
-                  <span>2024</span>
-                </p>
-                <h3 class="project-card__title">Pacific Dataviz Challenge</h3>
-                <p class="project-card__summary">
-                  Visualisation de données primée pour le programme Blue Pacific
-                  2050.
-                </p>
-              </div>
-            </article>
+              <div class="project-carousel__track">
+                <div class="project-carousel__stage">
+                  <div class="project-carousel__slides">
+                    <article class="project-carousel__slide" data-carousel-slide data-current>
+                      <div class="project-carousel__slide-inner">
+                        <a
+                          class="project-carousel__link"
+                          href="/pages/projects/magicallab.html"
+                          >MagicalLab — Voir le projet</a
+                        >
+                        <div class="project-carousel__media">
+                          <img
+                            class="project-carousel__image"
+                            data-carousel-image="magicallab"
+                            src=""
+                            alt=""
+                            width="720"
+                            height="1080"
+                            decoding="async"
+                          />
+                          <span class="project-carousel__initial" aria-hidden="true">M</span>
+                          <span class="project-carousel__tech" aria-hidden="true">
+                            <span class="project-carousel__tech-label">React</span>
+                          </span>
+                        </div>
+                      </div>
+                    </article>
 
-            <article class="project-card" data-reveal>
-              <div class="project-card__visual">
-                <span class="project-card__initial" aria-hidden="true">T</span>
+                    <article class="project-carousel__slide" data-carousel-slide data-next>
+                      <div class="project-carousel__slide-inner">
+                        <a
+                          class="project-carousel__link"
+                          href="/pages/projects/micromonde.html"
+                          >Micro-monde — Voir le projet</a
+                        >
+                        <div class="project-carousel__media">
+                          <img
+                            class="project-carousel__image"
+                            data-carousel-image="micromonde"
+                            src=""
+                            alt=""
+                            width="720"
+                            height="1080"
+                            decoding="async"
+                          />
+                          <span class="project-carousel__initial" aria-hidden="true">M</span>
+                          <span
+                            class="project-carousel__tech project-carousel__tech--icon"
+                            aria-hidden="true"
+                          >
+                            <img
+                              class="project-carousel__tech-icon"
+                              data-carousel-tech-icon="blender"
+                              src=""
+                              alt=""
+                              width="28"
+                              height="28"
+                              decoding="async"
+                            />
+                            <span class="project-carousel__tech-label">Blender</span>
+                          </span>
+                        </div>
+                      </div>
+                    </article>
+
+                    <article class="project-carousel__slide" data-carousel-slide data-previous>
+                      <div class="project-carousel__slide-inner">
+                        <a
+                          class="project-carousel__link"
+                          href="/pages/projects/village-jeunes.html"
+                          >Vill'âge Jeunes (DDEC) — Voir le projet</a
+                        >
+                        <div class="project-carousel__media">
+                          <img
+                            class="project-carousel__image"
+                            data-carousel-image="village-jeunes"
+                            src=""
+                            alt=""
+                            width="720"
+                            height="1080"
+                            decoding="async"
+                          />
+                          <span class="project-carousel__initial" aria-hidden="true">V</span>
+                          <span class="project-carousel__tech" aria-hidden="true">
+                            <span class="project-carousel__tech-label">JS</span>
+                          </span>
+                        </div>
+                      </div>
+                    </article>
+                  </div>
+
+                  <div class="project-carousel__infos">
+                    <div class="project-carousel__info" data-carousel-info data-current>
+                      <div class="project-carousel__info-inner">
+                        <div class="project-carousel__copy">
+                          <p class="project-carousel__eyebrow"><span>Développement web · 2026</span></p>
+                          <h3 class="project-carousel__title"><span>MagicalLab</span></h3>
+                          <p class="project-carousel__summary">
+                            <span>Laboratoire 3D immersif en React Three Fiber.</span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="project-carousel__info" data-carousel-info data-next>
+                      <div class="project-carousel__info-inner">
+                        <div class="project-carousel__copy">
+                          <p class="project-carousel__eyebrow"><span>Réalité augmentée · 2026</span></p>
+                          <h3 class="project-carousel__title"><span>Micro-monde</span></h3>
+                          <p class="project-carousel__summary">
+                            <span>Fresques et modèles 3D pour un parcours AR.</span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="project-carousel__info" data-carousel-info data-previous>
+                      <div class="project-carousel__info-inner">
+                        <div class="project-carousel__copy">
+                          <p class="project-carousel__eyebrow"><span>Développement web · 2026</span></p>
+                          <h3 class="project-carousel__title"><span>Vill'âge Jeunes</span></h3>
+                          <p class="project-carousel__summary">
+                            <span>Application web en Vanilla JavaScript.</span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="project-card__body">
-                <p class="project-card__meta">
-                  <span>Design produit</span>
-                  <span>2024</span>
-                </p>
-                <h3 class="project-card__title">Timbre &amp; timbre à date</h3>
-                <p class="project-card__summary">
-                  Création d’un timbre et de son oblitération pour le concours
-                  OPT Nouvelle-Calédonie.
-                </p>
-              </div>
-            </article>
+
+              <button
+                type="button"
+                class="project-carousel__btn project-carousel__btn--next"
+                data-carousel-next
+                aria-label="Projet suivant"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m9 18 6-6-6-6" />
+                </svg>
+              </button>
+            </div>
           </div>
 
           <div class="section__actions" data-reveal>
@@ -344,7 +318,7 @@
           <header class="clients-marquee__header">
             <span class="clients-marquee__eyebrow">Collaborations</span>
             <h2 class="clients-marquee__title" id="clients-title">
-              Entreprises qui me font confiance
+              Entreprises avec qui j’ai pu travailler
             </h2>
           </header>
         </div>
@@ -498,6 +472,180 @@
             </li>
           </ul>
         </div>
+      </section>
+
+      <section
+        class="section section--flush home-univers-teaser"
+        id="univers"
+        aria-labelledby="univers-title"
+      >
+        <div class="home-decor home-decor--stroke-univers" aria-hidden="true"></div>
+        <div class="home-decor home-decor--bust" aria-hidden="true"></div>
+        <div class="home-decor home-decor--splash-univers" aria-hidden="true"></div>
+        <div class="container">
+          <div class="section__header" data-reveal>
+            <span class="section__eyebrow">Mon univers</span>
+            <h2 class="section__title" id="univers-title">
+              Deux métiers, une seule
+              <em class="section__title-accent">exigence</em>
+            </h2>
+            <p class="section__lead">
+              Infographiste webdesigner et développeur — Bac+2 / Bac+3. Creative
+              developer par conviction : le front par intérêt, des bases back
+              (Spring Boot, Symfony) pour dialoguer avec toute la chaîne.
+            </p>
+          </div>
+
+          <div class="grid grid--3">
+            <article class="skill-card" data-reveal>
+              <span class="skill-card__index">01</span>
+              <h3 class="skill-card__title">Concevoir</h3>
+              <p class="skill-card__description">
+                Direction artistique, maquettes et design system. Une intention
+                claire avant la première ligne de code.
+              </p>
+            </article>
+            <article class="skill-card" data-reveal>
+              <span class="skill-card__index">02</span>
+              <h3 class="skill-card__title">Développer</h3>
+              <p class="skill-card__description">
+                Front-end exigeant — HTML sémantique, CSS structuré, TypeScript.
+                Les bases du back pour dialoguer avec toute la chaîne.
+              </p>
+            </article>
+            <article class="skill-card" data-reveal>
+              <span class="skill-card__index">03</span>
+              <h3 class="skill-card__title">Animer</h3>
+              <p class="skill-card__description">
+                Canvas, 3D temps réel et micro-interactions, utilisés pour
+                servir le propos — jamais pour alourdir la page.
+              </p>
+            </article>
+          </div>
+
+          <div class="section__actions" data-reveal>
+            <a class="button button--primary" href="#competences">
+              Découvrir mes compétences
+            </a>
+            <a class="button button--ghost" href="/pages/cv.html">Mon CV</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills: suspended marble plaques in a dark atelier (moodboard marble-presentation). -->
+      <section
+        class="skills-gallery"
+        id="competences"
+        aria-labelledby="skills-title"
+        data-skills-gallery
+      >
+        <div class="skills-gallery__veil skills-gallery__veil--top" aria-hidden="true"></div>
+
+        <div class="skills-gallery__stage">
+          <div class="skills-gallery__inner">
+            <header class="skills-gallery__header" data-reveal>
+              <span class="skills-gallery__eyebrow">Compétences</span>
+              <h2 class="skills-gallery__title" id="skills-title">
+                Ce que je sais
+                <em class="section__title-accent">faire</em>
+              </h2>
+              <p class="skills-gallery__lead">
+                Six matières suspendues — du dispositif interactif au code.
+              </p>
+            </header>
+
+            <div class="skills-gallery__track">
+              <article class="marble-slab" data-reveal>
+                <div class="marble-slab__rig" aria-hidden="true">
+                  <span class="marble-slab__cable"></span>
+                  <span class="marble-slab__clamp"></span>
+                </div>
+                <div class="marble-slab__plaque">
+                  <h3 class="marble-slab__title">Dispositifs interactifs</h3>
+                </div>
+                <p class="marble-slab__meta">01 — Interactif</p>
+                <p class="marble-slab__description">
+                  Bornes, interfaces embarquées et expériences tactiles — du
+                  concept au prototype.
+                </p>
+              </article>
+
+              <article class="marble-slab" data-reveal>
+                <div class="marble-slab__rig" aria-hidden="true">
+                  <span class="marble-slab__cable"></span>
+                  <span class="marble-slab__clamp"></span>
+                </div>
+                <div class="marble-slab__plaque">
+                  <h3 class="marble-slab__title">Développement web</h3>
+                </div>
+                <p class="marble-slab__meta">02 — Code</p>
+                <p class="marble-slab__description">
+                  Front-end exigeant, intégration soignée, bases back pour
+                  dialoguer avec toute la chaîne.
+                </p>
+              </article>
+
+              <article class="marble-slab" data-reveal>
+                <div class="marble-slab__rig" aria-hidden="true">
+                  <span class="marble-slab__cable"></span>
+                  <span class="marble-slab__clamp"></span>
+                </div>
+                <div class="marble-slab__plaque">
+                  <h3 class="marble-slab__title">Webdesign &amp; UI/UX</h3>
+                </div>
+                <p class="marble-slab__meta">03 — Web</p>
+                <p class="marble-slab__description">
+                  Interfaces sur mesure, design systems et parcours utilisateurs
+                  clairs.
+                </p>
+              </article>
+
+              <article class="marble-slab" data-reveal>
+                <div class="marble-slab__rig" aria-hidden="true">
+                  <span class="marble-slab__cable"></span>
+                  <span class="marble-slab__clamp"></span>
+                </div>
+                <div class="marble-slab__plaque">
+                  <h3 class="marble-slab__title">Design produit</h3>
+                </div>
+                <p class="marble-slab__meta">04 — Produit</p>
+                <p class="marble-slab__description">
+                  Conception d’objets et de supports, du croquis au prototype 3D.
+                </p>
+              </article>
+
+              <article class="marble-slab" data-reveal>
+                <div class="marble-slab__rig" aria-hidden="true">
+                  <span class="marble-slab__cable"></span>
+                  <span class="marble-slab__clamp"></span>
+                </div>
+                <div class="marble-slab__plaque">
+                  <h3 class="marble-slab__title">Création 3D</h3>
+                </div>
+                <p class="marble-slab__meta">05 — 3D</p>
+                <p class="marble-slab__description">
+                  Modélisation, rendu et intégration temps réel sur le web.
+                </p>
+              </article>
+
+              <article class="marble-slab" data-reveal>
+                <div class="marble-slab__rig" aria-hidden="true">
+                  <span class="marble-slab__cable"></span>
+                  <span class="marble-slab__clamp"></span>
+                </div>
+                <div class="marble-slab__plaque">
+                  <h3 class="marble-slab__title">Animation 2D/3D</h3>
+                </div>
+                <p class="marble-slab__meta">06 — Motion</p>
+                <p class="marble-slab__description">
+                  Habillages animés, transitions et micro-interactions.
+                </p>
+              </article>
+            </div>
+          </div>
+        </div>
+
+        <div class="skills-gallery__veil skills-gallery__veil--bottom" aria-hidden="true"></div>
       </section>
 
       <section class="section section--surface section--flush" aria-labelledby="cta-title">

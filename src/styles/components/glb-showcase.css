@@ -1,0 +1,196 @@
+/**
+ * @file GLB showcase — canvas frame for project pages
+ * @description Styles for `.glb-showcase` / `[data-glb-showcase]`. Colors via tokens only.
+ * @requires variables.css, tokens.css (via entry import order)
+ */
+
+.glb-showcase {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      ellipse 70% 60% at 50% 55%,
+      color-mix(in srgb, var(--color-ember) 18%, transparent) 0%,
+      transparent 70%
+    ),
+    color-mix(in srgb, var(--color-bg) 55%, transparent);
+}
+
+.glb-showcase[data-glb-ready='true'] .glb-showcase__fallback {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.glb-showcase[data-glb-error='true'] .glb-showcase__fallback {
+  opacity: 1;
+  color: var(--color-text-muted);
+}
+
+.glb-showcase__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.glb-showcase__fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  text-align: center;
+  transition: opacity var(--duration-normal) var(--ease-out);
+}
+
+.glb-showcase__credit {
+  margin: var(--space-3) 0 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-text-muted);
+  text-wrap: pretty;
+}
+
+.glb-showcase__credit a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.project-stage__portal {
+  position: relative;
+  justify-self: center;
+  width: min(100%, 26rem);
+  text-decoration: none;
+  color: inherit;
+  filter: drop-shadow(0 24px 48px color-mix(in srgb, var(--color-bg) 85%, transparent));
+}
+
+.project-stage__portal .glb-showcase {
+  aspect-ratio: 4 / 5;
+  border-radius: 0;
+}
+
+.project-stage__portal-badge {
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  z-index: 2;
+  transform: translateX(-50%);
+  padding: var(--space-2) var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text);
+  background: color-mix(in srgb, var(--color-bg) 72%, transparent);
+  backdrop-filter: blur(8px);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.project-stage__title--artistic {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.12em 0.08em;
+  font-family: var(--font-heading);
+}
+
+.project-stage__title-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.22em;
+  letter-spacing: 0.01em;
+  line-height: 0.85;
+}
+
+.project-stage__title-body {
+  font-family: var(--font-heading);
+  font-weight: 300;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.72em;
+}
+
+.project-detail__lore {
+  display: grid;
+  gap: var(--space-8);
+  align-items: center;
+}
+
+.project-detail__lore-visual {
+  width: min(100%, 22rem);
+  margin-inline: auto;
+}
+
+.project-detail__lore-copy {
+  max-width: 38rem;
+}
+
+.project-detail__lore-eyebrow {
+  display: block;
+  margin-bottom: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.project-detail__lore-title {
+  margin: 0 0 var(--space-5);
+  font-family: var(--font-heading);
+  font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
+  line-height: 1.1;
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text);
+}
+
+.project-detail__lore-title-flourish {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.15em;
+}
+
+.project-detail__lore-text {
+  margin: 0 0 var(--space-4);
+  color: color-mix(in srgb, var(--color-text) 90%, transparent);
+  font-size: var(--text-base);
+  line-height: 1.65;
+  text-wrap: pretty;
+}
+
+.project-detail__lore-text:last-of-type {
+  margin-bottom: 0;
+}
+
+@media (min-width: 64rem) {
+  .project-stage__portal {
+    justify-self: end;
+    width: min(100%, 30rem);
+  }
+
+  .project-detail__lore {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: var(--space-10);
+  }
+
+  .project-detail__lore-visual {
+    margin-inline: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-stage__portal-badge {
+    backdrop-filter: none;
+  }
+}

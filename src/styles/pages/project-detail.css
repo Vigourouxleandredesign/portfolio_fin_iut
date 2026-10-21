@@ -1,0 +1,215 @@
+/**
+ * @file Project detail page — route-specific overrides
+ * @description Applies only to pages/projects/*.html. Full-bleed project stage
+ *   (atmosphere + marble device mockup) used by MagicalLab, Visualcom, etc.
+ */
+
+.page-shell--project {
+  padding-top: var(--space-10);
+}
+
+.page-shell--flush.project-stage-page {
+  padding-top: 0;
+}
+
+/* —— Full-bleed project stage (interactive demos) —— */
+
+.project-stage {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: min(100svh, 58rem);
+  padding: var(--space-8) var(--space-4) var(--space-10);
+  overflow: clip;
+}
+
+.project-stage__atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.project-stage__atmosphere img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  transform: scale(1.04);
+  filter: saturate(0.85) brightness(0.55);
+}
+
+.project-stage__veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      to top,
+      var(--color-bg) 0%,
+      color-mix(in srgb, var(--color-bg) 72%, transparent) 28%,
+      color-mix(in srgb, var(--color-bg) 35%, transparent) 55%,
+      color-mix(in srgb, var(--color-bg) 55%, transparent) 100%
+    ),
+    radial-gradient(
+      ellipse 70% 55% at 70% 45%,
+      transparent 0%,
+      color-mix(in srgb, var(--color-bg) 55%, transparent) 100%
+    );
+}
+
+.project-stage__splash {
+  position: absolute;
+  right: -4%;
+  bottom: 8%;
+  z-index: 1;
+  width: min(28vw, 14rem);
+  aspect-ratio: 1;
+  pointer-events: none;
+  opacity: 0.4;
+  background-image: url('../../assets/decor/splash-ember.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  mix-blend-mode: screen;
+}
+
+.project-stage__inner {
+  position: relative;
+  z-index: 2;
+  width: min(100%, var(--layout-max));
+  margin-inline: auto;
+}
+
+.breadcrumb--on-stage {
+  margin-bottom: var(--space-6);
+}
+
+.breadcrumb--on-stage .breadcrumb__link,
+.breadcrumb--on-stage .breadcrumb__current {
+  text-shadow: 0 1px 12px color-mix(in srgb, var(--color-bg) 80%, transparent);
+}
+
+.project-stage__compose {
+  display: grid;
+  gap: var(--space-8);
+  align-items: end;
+}
+
+.project-stage__copy {
+  max-width: 28rem;
+}
+
+.project-stage__title {
+  margin: 0 0 var(--space-4);
+  font-family: var(--font-heading);
+  font-size: clamp(var(--text-4xl), 7vw, var(--text-6xl));
+  line-height: 0.98;
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text);
+  text-shadow: 0 2px 28px color-mix(in srgb, var(--color-bg) 70%, transparent);
+}
+
+.project-stage__lead {
+  margin: 0 0 var(--space-6);
+  color: color-mix(in srgb, var(--color-text) 88%, transparent);
+  font-size: var(--text-lg);
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+.project-stage__device {
+  justify-self: center;
+  width: min(100%, 36rem);
+  filter: drop-shadow(0 24px 48px color-mix(in srgb, var(--color-bg) 85%, transparent));
+}
+
+.project-stage__device--dual {
+  width: min(100%, 44rem);
+}
+
+.project-stage__device--dual .project-detail__demo-badge {
+  bottom: 6%;
+}
+
+.project-stage__mockup {
+  max-width: none;
+}
+
+.project-stage__hint {
+  margin: var(--space-6) 0 0;
+  width: 100%;
+  max-width: none;
+  font-size: var(--text-base);
+  line-height: 1.55;
+  color: var(--color-text-muted);
+  text-wrap: pretty;
+}
+
+.project-stage__body {
+  position: relative;
+  z-index: 2;
+  width: min(100%, var(--layout-max));
+  margin-inline: auto;
+  padding: var(--space-12) var(--space-4) var(--space-20);
+  display: grid;
+  gap: var(--space-12);
+}
+
+.project-stage__back {
+  margin: 0;
+}
+
+@media (min-width: 64rem) {
+  .project-stage {
+    padding-inline: var(--space-8);
+    padding-bottom: var(--space-12);
+  }
+
+  .project-stage__compose {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.15fr);
+    gap: var(--space-10);
+    align-items: center;
+  }
+
+  .project-stage__device {
+    justify-self: end;
+    width: min(100%, 42rem);
+  }
+
+  .project-stage__device--dual {
+    width: min(100%, 50rem);
+  }
+
+  .project-stage__atmosphere img {
+    object-position: 58% 35%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-stage__atmosphere img {
+    transform: none;
+  }
+}
+
+.project-detail__hero-media--visualcom {
+  background-image:
+    radial-gradient(
+      70% 100% at 50% 100%,
+      color-mix(in srgb, var(--color-ember) 15%, transparent),
+      transparent 60%
+    ),
+    url('../../assets/clients/logo-visualcom.png');
+  background-size: cover, min(55%, 18rem);
+  background-repeat: no-repeat;
+  background-position: center, center;
+}
+
+.project-detail__figure-visual--visualcom-logo {
+  background-image: url('../../assets/clients/logo-visualcom.png');
+  background-size: min(70%, 10rem);
+  background-repeat: no-repeat;
+  background-position: center;
+  mix-blend-mode: screen;
+}

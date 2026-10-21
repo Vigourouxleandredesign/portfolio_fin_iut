@@ -1,0 +1,378 @@
+<!--
+  @file Project — MagicalLab
+  @description Artistic case study: atmosphere hero, Updock+Ubuntu title, portal
+    GLB as live-demo CTA, robot GLB + lore. No reflective sheet (brief).
+  @route /pages/projects/magicallab.html
+  @see docs/content/projects/magicallab.md
+-->
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MagicalLab — Léandre</title>
+    <meta
+      name="description"
+      content="MagicalLab, un laboratoire 3D immersif en React Three Fiber. Entrez par le portail et explorez au clavier."
+    />
+    <meta property="og:title" content="MagicalLab — Léandre" />
+    <meta
+      property="og:description"
+      content="Un simple projet de front à l’IUT, poussé plus loin : une caméra qui suit un personnage, des histoires, et une ambiance."
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:locale" content="fr_FR" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/logo-leandre.svg" />
+  </head>
+  <body class="project-magicallab">
+    <a class="skip-link" href="#main">Aller au contenu</a>
+    <header class="site-header">
+      <nav class="site-header__nav" aria-label="Navigation principale">
+        <a class="site-header__logo" href="/pages/index.html" aria-label="Léandre — Accueil">
+          <img
+            class="site-header__logo-image"
+            data-site-logo
+            src="/logo-leandre.svg"
+            alt=""
+            width="91"
+            height="91"
+            decoding="async"
+          />
+        </a>
+        <button
+          class="site-header__toggle"
+          type="button"
+          data-nav-toggle
+          aria-expanded="false"
+          aria-controls="main-nav"
+          hidden
+        >
+          <span class="visually-hidden">Ouvrir le menu</span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+        </button>
+        <ul class="site-header__list" id="main-nav" data-nav-list>
+          <li>
+            <a class="site-header__link" href="/pages/projects.html" aria-current="page"
+              >Mes projets</a
+            >
+          </li>
+          <li><a class="site-header__link" href="/pages/cv.html">Mon CV</a></li>
+          <li><a class="site-header__link" href="/pages/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main" class="page-shell page-shell--flush project-stage-page">
+      <div class="project-detail__grain" aria-hidden="true"></div>
+
+      <section class="project-stage" aria-label="MagicalLab, entrée par le portail">
+        <div class="project-stage__atmosphere" aria-hidden="true">
+          <img
+            src="/src/assets/projects/magicallab/scene-portal.jpg"
+            alt=""
+            width="1920"
+            height="1080"
+            decoding="async"
+          />
+        </div>
+        <div class="project-stage__veil" aria-hidden="true"></div>
+        <div class="project-stage__splash" aria-hidden="true"></div>
+
+        <div class="project-stage__inner">
+          <nav class="breadcrumb breadcrumb--on-stage" aria-label="Fil d'Ariane">
+            <ol class="breadcrumb__list">
+              <li class="breadcrumb__item">
+                <a class="breadcrumb__link" href="/pages/projects.html">Mes projets</a>
+              </li>
+              <li class="breadcrumb__item">
+                <span class="breadcrumb__current" aria-current="page">MagicalLab</span>
+              </li>
+            </ol>
+          </nav>
+
+          <div class="project-stage__compose">
+            <header class="project-stage__copy">
+              <p class="project-detail__meta">
+                <span>Développement web</span><span>2025</span><span>Académique</span>
+              </p>
+              <h1 class="project-stage__title project-stage__title--artistic">
+                <span class="project-stage__title-display">Magical</span
+                ><span class="project-stage__title-body">Lab</span>
+              </h1>
+              <p class="project-stage__lead">
+                Un petit robot traverse une étrange lumière au fond de l’atelier où il était
+                entreposé, puis atterrit dans un laboratoire aux airs médiévaux. Entrez par le
+                portail.
+              </p>
+              <a
+                class="button button--primary"
+                href="https://magicallab.netlify.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Tester la scène</a
+              >
+            </header>
+
+            <a
+              class="project-stage__portal"
+              href="https://magicallab.netlify.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Ouvrir MagicalLab, la démo interactive"
+            >
+              <div
+                class="glb-showcase"
+                data-glb-showcase
+                data-glb-src="/documents/elements/magic_portal.glb"
+                data-glb-yaw="0.15"
+                data-glb-lift="0.12"
+              >
+                <canvas class="glb-showcase__canvas" data-glb-canvas></canvas>
+                <p class="glb-showcase__fallback">Chargement du portail…</p>
+              </div>
+              <span class="project-stage__portal-badge" aria-hidden="true"
+                >Entrer par le portail</span
+              >
+            </a>
+          </div>
+
+          <p class="glb-showcase__credit">
+            Modèle
+            <a
+              href="https://sketchfab.com/3d-models/magic-portal-dc447f04768a4bfe8932d976bd2b1677"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Magic Portal</a
+            >
+            de
+            <a href="https://sketchfab.com/nickbroad" target="_blank" rel="noopener noreferrer"
+              >Nick Broad</a
+            >, téléchargé sur Sketchfab, licence
+            <a
+              href="https://creativecommons.org/licenses/by/4.0/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >CC BY 4.0</a
+            >.
+          </p>
+
+          <p class="project-stage__hint">
+            Dans la démo, les flèches déplacent le personnage. Près d’un objet, la touche F
+            déclenche une histoire. La caméra le suit, pour une immersion simple mais déjà
+            complète.
+          </p>
+        </div>
+      </section>
+
+      <div class="project-stage__body">
+        <section
+          class="project-detail__snapshot"
+          aria-labelledby="magicallab-snapshot-title"
+          data-reveal
+        >
+          <span class="project-detail__snapshot-eyebrow">En bref</span>
+          <h2 class="project-detail__snapshot-title" id="magicallab-snapshot-title">
+            Un exercice, puis une aventure
+          </h2>
+          <p class="project-detail__pitch">
+            À la base, c’est un simple projet de front de l’IUT. L’objectif était de manipuler un
+            objet .glb avec React et Three Fiber. J’ai décidé de laisser cours à mon imagination,
+            et de pousser l’expérience plus loin.
+          </p>
+          <ul class="project-detail__highlights">
+            <li>React Three Fiber, Leva et post-prod pour l’ambiance</li>
+            <li>Une caméra qui suit le personnage, et des histoires selon la position</li>
+            <li>Des assets légers, pour que le chargement reste agréable</li>
+          </ul>
+        </section>
+
+        <section
+          class="project-detail__lore"
+          aria-labelledby="magicallab-lore-title"
+          data-reveal
+        >
+          <div class="project-detail__lore-visual">
+            <div
+              class="glb-showcase"
+              data-glb-showcase
+              data-glb-src="/documents/elements/robot.glb"
+              data-glb-yaw="-0.35"
+              data-glb-lift="0.06"
+            >
+              <canvas class="glb-showcase__canvas" data-glb-canvas></canvas>
+              <p class="glb-showcase__fallback">Chargement du robot…</p>
+            </div>
+            <p class="glb-showcase__credit">
+              Modèle téléchargé sur Sketchfab. Le fichier ne contient plus le nom du créateur,
+              alors le crédit exact reste à compléter.
+            </p>
+          </div>
+
+          <div class="project-detail__lore-copy">
+            <span class="project-detail__lore-eyebrow">Personnage</span>
+            <h2 class="project-detail__lore-title" id="magicallab-lore-title">
+              Le petit robot de
+              <span class="project-detail__lore-title-flourish">l’atelier</span>
+            </h2>
+            <p class="project-detail__lore-text">
+              C’est un petit robot entreposé au fond de l’atelier. En traversant une étrange
+              lumière apparue là, il atterrit dans un mystérieux laboratoire aux airs médiévaux,
+              habité par un étrange petit bonhomme qui parle seul.
+            </p>
+            <p class="project-detail__lore-text">
+              Les quelques petites histoires que vous pourrez trouver, et votre imagination, vous
+              permettront peut-être de comprendre pourquoi vous êtes là.
+            </p>
+          </div>
+        </section>
+
+        <section
+          class="project-detail__narrative project-detail__narrative--open"
+          aria-labelledby="magicallab-story-title"
+          data-reveal
+        >
+          <h2 class="project-detail__snapshot-title" id="magicallab-story-title">
+            Du brief à l’ambiance
+          </h2>
+          <div class="project-detail__details-body">
+            <p>
+              Ce projet est à la base un simple projet de front de l’IUT, dont l’objectif était de
+              manipuler un objet .glb à travers React et Three Fiber. Mais j’ai décidé de laisser
+              cours à mon imagination, et de pousser l’expérience plus loin, avec une immersion
+              plus complète grâce à une caméra qui suit un personnage, des commandes pour le
+              déplacer, et aussi des histoires déclenchées en fonction de la position.
+            </p>
+            <p>
+              J’ai essayé de rester simple, et d’optimiser le tout pour que le chargement des
+              assets ne soit pas trop lourd, et pour que l’univers reste agréable et cohérent.
+              J’ai utilisé Leva et la post-prod pour l’ambiance, et pour positionner les éléments
+              et la scène à ma guise.
+            </p>
+            <p>
+              C’est un petit projet sans prétention. Il a quand même le mérite de montrer qu’avec
+              peu de choses, on peut déjà raconter une histoire et installer une ambiance pour un
+              utilisateur. Ce côté artistique un peu fou se ressent aussi sur la page d’accueil,
+              et il fait partie de mon profil.
+            </p>
+          </div>
+        </section>
+
+        <section
+          class="project-detail__gallery"
+          aria-labelledby="magicallab-gallery-title"
+          data-reveal
+        >
+          <div class="project-detail__gallery-header">
+            <h2 class="project-detail__gallery-title" id="magicallab-gallery-title">Dans la scène</h2>
+            <p class="project-detail__gallery-lead">
+              Quelques angles du laboratoire. Chaque image ouvre aussi la démo.
+            </p>
+          </div>
+          <div class="project-detail__gallery-grid">
+            <figure class="project-detail__figure">
+              <a
+                class="project-detail__demo-link"
+                href="https://magicallab.netlify.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="project-detail__figure-visual">
+                  <img
+                    src="/src/assets/projects/magicallab/scene-lab-shelf.jpg"
+                    alt="MagicalLab, bibliothèque et orrery"
+                    width="960"
+                    height="540"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </a>
+              <figcaption class="project-detail__figure-caption">Atelier · orrery</figcaption>
+            </figure>
+            <figure class="project-detail__figure">
+              <a
+                class="project-detail__demo-link"
+                href="https://magicallab.netlify.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="project-detail__figure-visual">
+                  <img
+                    src="/src/assets/projects/magicallab/scene-portal.jpg"
+                    alt="MagicalLab, le portail"
+                    width="960"
+                    height="540"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </a>
+              <figcaption class="project-detail__figure-caption">Portail</figcaption>
+            </figure>
+            <figure class="project-detail__figure">
+              <a
+                class="project-detail__demo-link"
+                href="https://magicallab.netlify.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="project-detail__figure-visual">
+                  <img
+                    src="/src/assets/projects/magicallab/scene-ritual.jpg"
+                    alt="MagicalLab, interaction avec la touche F"
+                    width="960"
+                    height="540"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </a>
+              <figcaption class="project-detail__figure-caption">Interaction · F</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <p class="project-stage__back">
+          <a class="button button--ghost" href="/pages/projects.html">Retour à la liste</a>
+        </p>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <p class="site-footer__tagline">Hâte de collaborer avec vous sur des projets exigeants.</p>
+        <nav aria-labelledby="footer-nav-title-magicallab">
+          <h2 class="site-footer__heading" id="footer-nav-title-magicallab">Plan du site</h2>
+          <ul class="site-footer__nav">
+            <li><a class="site-footer__link" href="/pages/index.html">Accueil</a></li>
+            <li><a class="site-footer__link" href="/pages/projects.html">Mes projets</a></li>
+            <li><a class="site-footer__link" href="/pages/cv.html">Mon CV</a></li>
+            <li><a class="site-footer__link" href="/pages/contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div>
+          <h2 class="site-footer__heading">Contact direct</h2>
+          <ul class="site-footer__nav">
+            <li>
+              <a class="site-footer__link" href="mailto:vigourouxleandredesign@gmail.com"
+                >vigourouxleandredesign@gmail.com</a
+              >
+            </li>
+            <li>
+              <a class="site-footer__link" href="tel:+687705203">+687 70 52 03</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <p class="site-footer__copy">
+          &copy; <span data-year></span> Léandre — Creative developer
+        </p>
+      </div>
+    </footer>
+    <script type="module" src="/src/scripts/entries/project-detail.ts"></script>
+  </body>
+</html>

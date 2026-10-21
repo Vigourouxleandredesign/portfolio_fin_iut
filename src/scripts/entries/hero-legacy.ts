@@ -15,8 +15,8 @@ import '../../styles/components/site-header.css';
 import '../../styles/components/site-footer.css';
 import '../../styles/components/hero.css';
 
-import bustDesigner from '../../../Assets/Hero/Buste_Designer.jpg';
-import bustDeveloper from '../../../Assets/Hero/Buste_Dev.jpg';
+import bustDesigner from '../../assets/hero/bust-designer.jpg';
+import bustDeveloper from '../../assets/hero/bust-developer.jpg';
 
 import { initSiteFooter } from '../components/site-footer';
 import { initSiteLogo } from '../components/site-logo';

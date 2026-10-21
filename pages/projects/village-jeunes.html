@@ -1,0 +1,142 @@
+<!--
+  @file Project — Vill'âge Jeunes (DDEC)
+  @description Public case study placeholder — content from DOCX to be added.
+  @route /pages/projects/village-jeunes.html
+-->
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vill'âge Jeunes (DDEC) — Léandre</title>
+    <meta
+      name="description"
+      content="Projet Vill'âge Jeunes — développement Vanilla JS pour la DDEC."
+    />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/logo-leandre.svg" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Aller au contenu</a>
+    <header class="site-header">
+      <nav class="site-header__nav" aria-label="Navigation principale">
+        <a class="site-header__logo" href="/pages/index.html" aria-label="Léandre — Accueil">
+          <img class="site-header__logo-image" data-site-logo src="/logo-leandre.svg" alt="" width="91" height="91" decoding="async" />
+        </a>
+        <button class="site-header__toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="main-nav" hidden>
+          <span class="visually-hidden">Ouvrir le menu</span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+        </button>
+        <ul class="site-header__list" id="main-nav" data-nav-list>
+          <li><a class="site-header__link" href="/pages/projects.html" aria-current="page">Mes projets</a></li>
+          <li><a class="site-header__link" href="/pages/cv.html">Mon CV</a></li>
+          <li><a class="site-header__link" href="/pages/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main" class="page-shell page-shell--project">
+      <div class="project-detail__grain" aria-hidden="true"></div>
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <ol class="breadcrumb__list">
+          <li class="breadcrumb__item"><a class="breadcrumb__link" href="/pages/projects.html">Mes projets</a></li>
+          <li class="breadcrumb__item"><span class="breadcrumb__current" aria-current="page">Vill'âge Jeunes</span></li>
+        </ol>
+      </nav>
+
+      <header class="project-detail__header" data-reveal>
+        <p class="project-detail__meta"><span>Développement web</span><span>2025</span></p>
+        <h1 class="project-detail__title">Vill'âge Jeunes (DDEC)</h1>
+        <p class="project-detail__lead">
+          Application web en Vanilla JavaScript — fiche détaillée à compléter à partir
+          du document de réflexion.
+        </p>
+        <ul class="project-detail__tags">
+          <li class="project-detail__tag">Vanilla JS</li>
+          <li class="project-detail__tag">Front-end</li>
+        </ul>
+        <div class="project-detail__actions">
+          <a class="button button--ghost" href="/pages/projects.html">Retour à la liste</a>
+        </div>
+      </header>
+
+      <div class="project-detail__layout project-detail__layout--split">
+        <section class="project-detail__hero" aria-label="Visuel du projet" data-reveal>
+          <div class="project-detail__hero-frame">
+            <div class="project-detail__hero-media" role="img" aria-label="Vill'âge Jeunes">
+              <span class="project-detail__hero-initial" aria-hidden="true">V</span>
+            </div>
+            <div class="project-detail__hero-splash" aria-hidden="true"></div>
+            <p class="project-detail__hero-caption">DDEC · Vanilla JS</p>
+          </div>
+        </section>
+        <section class="project-detail__snapshot" aria-labelledby="village-snapshot-title" data-reveal>
+          <span class="project-detail__snapshot-eyebrow">En bref</span>
+          <h2 class="project-detail__snapshot-title" id="village-snapshot-title">Survol du projet</h2>
+          <p class="project-detail__pitch">Application web Vill'âge Jeunes pour la DDEC — développement front en Vanilla JavaScript.</p>
+          <ul class="project-detail__highlights">
+            <li>Projet Bac+3 — stack sans framework</li>
+            <li>Fiche longue alimentée par le DOCX à venir</li>
+          </ul>
+          <p class="project-detail__teaser">Version longue avec ma méthode de réflexion — bientôt…</p>
+        </section>
+        <section class="project-detail__gallery" aria-labelledby="village-gallery-title" data-reveal>
+          <div class="project-detail__gallery-header">
+            <h2 class="project-detail__gallery-title" id="village-gallery-title">Visuels</h2>
+            <p class="project-detail__gallery-lead">Captures interface à ajouter.</p>
+          </div>
+          <div class="project-detail__gallery-grid">
+            <figure class="project-detail__figure">
+              <div class="project-detail__figure-visual"><span class="project-detail__figure-placeholder">UI</span></div>
+              <figcaption class="project-detail__figure-caption">Écran principal — à intégrer</figcaption>
+            </figure>
+          </div>
+        </section>
+        <section class="project-detail__narrative" id="recit-complet" data-reveal>
+          <details class="project-detail__details" data-project-narrative-details>
+            <summary class="project-detail__details-summary">
+              <span class="project-detail__details-label">Fiche de réflexion</span>
+              <span class="project-detail__details-cta">Lire la version longue</span>
+              <span class="project-detail__details-hint">DOCX à intégrer — ton académique conservé.</span>
+            </summary>
+            <div class="project-detail__details-body project-detail__content--placeholder">
+              <p>Contenu complet après réception du DOCX.</p>
+            </div>
+          </details>
+        </section>
+        <aside class="project-detail__reflective" data-project-slug="village-jeunes" data-project-reflective aria-labelledby="reflective-village-title" data-reveal>
+          <h2 class="project-detail__reflective-title" id="reflective-village-title">Fiche réflexion (évaluateurs)</h2>
+          <p class="project-detail__reflective-text">Accès évaluateur et lien bidirectionnel — Phase B.</p>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <p class="site-footer__tagline">Hâte de collaborer avec vous sur des projets exigeants.</p>
+        <nav aria-labelledby="footer-nav-title-village">
+          <h2 class="site-footer__heading" id="footer-nav-title-village">Plan du site</h2>
+          <ul class="site-footer__nav">
+            <li><a class="site-footer__link" href="/pages/index.html">Accueil</a></li>
+            <li><a class="site-footer__link" href="/pages/projects.html">Mes projets</a></li>
+            <li><a class="site-footer__link" href="/pages/cv.html">Mon CV</a></li>
+            <li><a class="site-footer__link" href="/pages/contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div>
+          <h2 class="site-footer__heading">Contact direct</h2>
+          <ul class="site-footer__nav">
+            <li><a class="site-footer__link" href="mailto:vigourouxleandredesign@gmail.com">vigourouxleandredesign@gmail.com</a></li>
+            <li><a class="site-footer__link" href="tel:+687705203">+687 70 52 03</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <p class="site-footer__copy">&copy; <span data-year></span> Léandre — Creative developer</p>
+      </div>
+    </footer>
+    <script type="module" src="/src/scripts/entries/project-detail.ts"></script>
+  </body>
+</html>

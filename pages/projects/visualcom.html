@@ -1,0 +1,429 @@
+<!--
+  @file Project — Visualcom
+  @description Case study with full-bleed stage hero (atmosphere + dual marble
+    mockup). Click mockup opens https://visualcom.nc (new tab). Academic narrative
+    retained in details. Reflective sheet link for evaluators (Phase B).
+  @route /pages/projects/visualcom.html
+-->
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Refonte site Visualcom — Léandre</title>
+    <meta
+      name="description"
+      content="Refonte WordPress, thème custom, déploiement GitHub et connexion Claude — projet Visualcom."
+    />
+    <meta property="og:title" content="Refonte site Visualcom — Léandre" />
+    <meta
+      property="og:description"
+      content="Modernisation du CMS WordPress de Visualcom à l’ère de l’IA, avec thème sur mesure et outillage de déploiement."
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:locale" content="fr_FR" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/logo-leandre.svg" />
+  </head>
+  <body class="project-visualcom">
+    <a class="skip-link" href="#main">Aller au contenu</a>
+
+    <header class="site-header">
+      <nav class="site-header__nav" aria-label="Navigation principale">
+        <a class="site-header__logo" href="/pages/index.html" aria-label="Léandre — Accueil">
+          <img
+            class="site-header__logo-image"
+            data-site-logo
+            src="/logo-leandre.svg"
+            alt=""
+            width="91"
+            height="91"
+            decoding="async"
+          />
+        </a>
+        <button
+          class="site-header__toggle"
+          type="button"
+          data-nav-toggle
+          aria-expanded="false"
+          aria-controls="main-nav"
+          hidden
+        >
+          <span class="visually-hidden">Ouvrir le menu</span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+        </button>
+        <ul class="site-header__list" id="main-nav" data-nav-list>
+          <li>
+            <a class="site-header__link" href="/pages/projects.html" aria-current="page"
+              >Mes projets</a
+            >
+          </li>
+          <li><a class="site-header__link" href="/pages/cv.html">Mon CV</a></li>
+          <li><a class="site-header__link" href="/pages/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main" class="page-shell page-shell--flush project-stage-page">
+      <div class="project-detail__grain" aria-hidden="true"></div>
+
+      <section class="project-stage" aria-label="Visualcom — aperçu du site">
+        <div class="project-stage__atmosphere" aria-hidden="true">
+          <img
+            src="/src/assets/projects/visualcom/desktop.png"
+            alt=""
+            width="1920"
+            height="1080"
+            decoding="async"
+          />
+        </div>
+        <div class="project-stage__veil" aria-hidden="true"></div>
+        <div class="project-stage__splash" aria-hidden="true"></div>
+
+        <div class="project-stage__inner">
+          <nav class="breadcrumb breadcrumb--on-stage" aria-label="Fil d'Ariane">
+            <ol class="breadcrumb__list">
+              <li class="breadcrumb__item">
+                <a class="breadcrumb__link" href="/pages/projects.html">Mes projets</a>
+              </li>
+              <li class="breadcrumb__item">
+                <span class="breadcrumb__current" aria-current="page">Visualcom</span>
+              </li>
+            </ol>
+          </nav>
+
+          <div class="project-stage__compose">
+            <header class="project-stage__copy">
+              <p class="project-detail__meta">
+                <span>Développement web</span><span>2025</span>
+              </p>
+              <h1 class="project-stage__title">Visualcom</h1>
+              <p class="project-stage__lead">
+                Refonte WordPress sur mesure — thème custom, déploiement GitHub et réflexion
+                Claude / MCP, sans perdre l’historique éditorial.
+              </p>
+              <a
+                class="button button--primary"
+                href="https://visualcom.nc"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Voir le site</a
+              >
+            </header>
+
+            <a
+              class="project-stage__device project-stage__device--dual project-detail__demo-link project-detail__demo-link--mockup"
+              href="https://visualcom.nc"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div
+                class="project-detail__mockup project-detail__mockup--laptop-phone project-stage__mockup"
+                data-project-site-preview
+                data-preview-mode="shots"
+              >
+                <img
+                  class="project-detail__mockup-frame"
+                  src="/src/assets/mockups/laptop-iphone-marble.png"
+                  alt=""
+                  width="1152"
+                  height="864"
+                  decoding="async"
+                />
+                <img
+                  class="project-detail__mockup-screens"
+                  src="/src/assets/projects/visualcom/mockup-screens.png"
+                  alt="Aperçu Visualcom — desktop et mobile (ouvrir le site)"
+                  width="1152"
+                  height="864"
+                  decoding="async"
+                />
+                <span class="project-detail__demo-badge" aria-hidden="true">Ouvrir le site</span>
+              </div>
+            </a>
+          </div>
+
+          <p class="project-stage__hint">
+            Cliquez sur le mockup pour ouvrir https://visualcom.nc dans une nouvelle fenêtre.
+            Les écrans affichés sont des captures figées (haut de page) — naviguez librement sur
+            le site live.
+          </p>
+        </div>
+      </section>
+
+      <div class="project-stage__body">
+        <section
+          class="project-detail__snapshot"
+          aria-labelledby="visualcom-snapshot-title"
+          data-reveal
+        >
+          <span class="project-detail__snapshot-eyebrow">En bref</span>
+          <h2 class="project-detail__snapshot-title" id="visualcom-snapshot-title">
+            Survol du projet
+          </h2>
+          <p class="project-detail__pitch">
+            En une semaine sur un serveur de travail (puis basculé en production), j’ai
+            accompagné Visualcom pour moderniser son site WordPress : garder la centaine
+            d’actualités existantes, aligner les pages avec l’équipe, et préparer l’usage de
+            Claude Desktop sans ouvrir des brèches sur le site live.
+          </p>
+          <ul class="project-detail__highlights">
+            <li>Réunion de cadrage + exemples de sites du secteur et maquette interne</li>
+            <li>Thème custom à la place d’Astra — blocs métier modifiables dans l’éditeur</li>
+            <li>Plugin de déploiement du thème depuis la branche main GitHub en un clic</li>
+            <li>
+              Connexion Claude : MCP natif et plugins tiers écartés (droits trop larges) ; piste
+              HTTP + compte éditeur non finalisée
+            </li>
+          </ul>
+          <p class="project-detail__teaser">
+            Pour le détail de ma réflexion — problématique, process et essais MCP — la fiche
+            complète est juste en dessous…
+          </p>
+        </section>
+
+        <section class="project-detail__gallery" aria-labelledby="visualcom-gallery-title" data-reveal>
+          <div class="project-detail__gallery-header">
+            <h2 class="project-detail__gallery-title" id="visualcom-gallery-title">Visuels</h2>
+            <p class="project-detail__gallery-lead">
+              Captures desktop du site live — même format pour une lecture homogène.
+            </p>
+          </div>
+          <div class="project-detail__gallery-grid">
+            <figure class="project-detail__figure">
+              <a
+                class="project-detail__demo-link"
+                href="https://visualcom.nc"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="project-detail__figure-visual">
+                  <img
+                    src="/src/assets/projects/visualcom/desktop.png"
+                    alt="Visualcom — page d’accueil desktop"
+                    width="1280"
+                    height="720"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </a>
+              <figcaption class="project-detail__figure-caption">Accueil</figcaption>
+            </figure>
+            <figure class="project-detail__figure">
+              <a
+                class="project-detail__demo-link"
+                href="https://visualcom.nc"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="project-detail__figure-visual">
+                  <img
+                    src="/src/assets/projects/visualcom/section-expertises.png"
+                    alt="Visualcom — section quatre expertises"
+                    width="1280"
+                    height="720"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </a>
+              <figcaption class="project-detail__figure-caption">Expertises</figcaption>
+            </figure>
+            <figure class="project-detail__figure">
+              <a
+                class="project-detail__demo-link"
+                href="https://visualcom.nc"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="project-detail__figure-visual">
+                  <img
+                    src="/src/assets/projects/visualcom/section-cap-pilote.png"
+                    alt="Visualcom — section CAP Pilote"
+                    width="1280"
+                    height="720"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </a>
+              <figcaption class="project-detail__figure-caption">CAP Pilote</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section
+          class="project-detail__narrative"
+          id="recit-complet"
+          aria-labelledby="visualcom-narrative-title"
+          data-reveal
+        >
+          <h2 class="visually-hidden" id="visualcom-narrative-title">
+            Récit complet du projet
+          </h2>
+          <details class="project-detail__details" data-project-narrative-details>
+            <summary class="project-detail__details-summary">
+              <span class="project-detail__details-label">Fiche de réflexion</span>
+              <span class="project-detail__details-cta">
+                Lire la version longue (UX/UI et développement front)
+              </span>
+              <span class="project-detail__details-hint">
+                Ton d’origine conservé — pour celles et ceux qui veulent suivre le raisonnement
+                pas à pas.
+              </span>
+            </summary>
+            <div class="project-detail__details-body">
+              <h2>Problématique</h2>
+              <p>
+                Comment moderniser, adapter et rendre accessible un CMS à l’ère de
+                l’Intelligence Artificielle, tout en conservant au maximum la sécurité et la
+                fiabilité de l’outil ?
+              </p>
+
+              <h2>Contexte et client final</h2>
+              <p>
+                L’équipe souhaitait moderniser entièrement le site de l’entreprise et pouvoir
+                tous participer à son évolution. Ils souhaitaient également pouvoir le faire à
+                l’aide de l’interface de Claude Desktop (l’abonnement Claude de l’entreprise).
+                J’aurais donc 1 semaine pour mettre en place le nouveau site Visualcom sur
+                lequel je pourrais travailler en dev (serveur dupliqué sur lequel on a redirigé
+                le domaine par la suite).
+              </p>
+
+              <h2>Process mis en place</h2>
+              <p>
+                Au travers d’une réunion, j’ai pu rassembler les demandes et souhaits de toute
+                l’équipe en leur montrant des exemples de sites d’entreprises plus ou moins dans
+                le même secteur d’activité afin d’avoir un plan de refonte plus net. J’ai même
+                pu composer avec une maquette Claude faite par un de mes collaborateurs et
+                validée en partie par l’équipe.
+              </p>
+              <p>Le défi consistait principalement en deux choses :</p>
+              <ul>
+                <li>
+                  Conserver la base de données et le CMS WordPress actuel avec la centaine
+                  d’actualités déjà publiées, à moderniser. Mais aussi créer le contenu et les
+                  pages en fonction de ce sur quoi l’équipe s’était mise plus ou moins
+                  d’accord.
+                </li>
+                <li>
+                  Rendre accessibles à des non-développeurs et non habitués de WordPress des
+                  fonctionnalités WordPress. La réflexion que j’ai faite a été en deux temps.
+                  Pour moi, il fallait que quelqu’un de formé WordPress (3 personnes dans
+                  l’équipe) puisse intervenir si l’IA ne produisait pas correctement, mais il
+                  fallait que les non-initiés et initiés puissent utiliser Claude pour accélérer
+                  la création d’articles WordPress.
+                </li>
+              </ul>
+
+              <h2>Solution</h2>
+              <p>
+                La solution a donc été plurielle. Tout d’abord, le thème WordPress que l’on
+                avait au départ était Astra : c’est un bon thème, le plus utilisé et solide,
+                mais beaucoup trop générique et contraignant sur les demandes de l’équipe. En
+                effet, il m’aurait fallu créer trop de blocs sur un thème enfant ou en snippet
+                PHP, ce qui n’était pas adapté au besoin. J’ai donc opté pour le thème custom,
+                qui nous oblige, à nous, à le mettre à jour si besoin de modification ou de
+                faille, mais qui nous permettait une plus grande liberté, surtout pour les
+                risques d’incompatibilité pour les autres solutions à suivre.
+              </p>
+              <p>
+                Pour nous permettre de mettre facilement et rapidement à jour le thème
+                WordPress, j’ai dû mettre en place un plugin PHP WordPress qui permet
+                manuellement, en un clic, de mettre à jour le thème WordPress en fonction de la
+                dernière version présente sur la branche main du repo GitHub du thème custom.
+              </p>
+              <p>
+                Pour les articles comme les pages, le choix du thème custom n’est pas anodin,
+                puisqu’il m’a permis de créer les blocs métier adaptés et modifiables, ce qui
+                permettait à l’équipe à l’aise avec WordPress de pouvoir naviguer et modifier
+                rapidement et facilement le site en cas de besoin.
+              </p>
+              <p>
+                Viennent maintenant les solutions les plus complexes, c’est-à-dire la tentative
+                de plugin MCP, créé pour connecter le site WordPress au Claude de l’entreprise
+                à travers un compte en éditeur uniquement pour pouvoir suivre systématiquement
+                les modifications, et lui restreindre les accès dont lui ou les collègues non
+                qualifiés n’ont pas besoin. L’objectif était de cadrer le tout pour éviter que
+                l’équipe ou l’IA puisse faire de trop grosses erreurs sur un site en production
+                (même si ce site est sauvegardé tous les jours).
+              </p>
+              <p>
+                Pour ce plugin, j’ai tenté plusieurs approches. La première, c’est par le MCP
+                proposé directement par Claude, mais celui-ci demandait de se connecter avec un
+                compte WordPress (pas un compte uniquement créé pour le site) et ce compte
+                avait les droits super-admin. J’ai donc tenté une autre approche, celle
+                d’utiliser un plugin WordPress prévu à cet effet. Toutefois, le plugin
+                semblait très jeune (peu d’étoiles même s’il était mis en avant par WordPress)
+                et donnait à l’agent beaucoup trop de droits, comme des droits de suppression ;
+                j’ai donc décidé d’écarter cette possibilité. Enfin, puisque toute l’équipe est
+                en Claude Desktop et peut accéder au serveur WordPress via HTTP avec une clé
+                liée au compte éditeur, j’ai tenté cette approche ; malheureusement, par manque
+                de temps, je n’ai pas pu aller au bout de mes tests.
+              </p>
+            </div>
+          </details>
+        </section>
+
+        <aside
+          class="project-detail__reflective"
+          data-project-slug="visualcom"
+          data-project-reflective
+          aria-labelledby="reflective-visualcom-title"
+          data-reveal
+        >
+          <h2 class="project-detail__reflective-title" id="reflective-visualcom-title">
+            Fiche réflexion (évaluateurs)
+          </h2>
+          <p class="project-detail__reflective-text">
+            La version publique ci-dessus est la même base que la fiche académique. L’accès
+            authentifié évaluateur et le lien bidirectionnel projet ↔ fiche arriveront avec
+            l’espace privé (Phase B).
+          </p>
+        </aside>
+
+        <p class="project-stage__back">
+          <a class="button button--ghost" href="/pages/projects.html">Retour à la liste</a>
+        </p>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <p class="site-footer__tagline">Hâte de collaborer avec vous sur des projets exigeants.</p>
+        <nav aria-labelledby="footer-nav-title-visualcom">
+          <h2 class="site-footer__heading" id="footer-nav-title-visualcom">Plan du site</h2>
+          <ul class="site-footer__nav">
+            <li><a class="site-footer__link" href="/pages/index.html">Accueil</a></li>
+            <li><a class="site-footer__link" href="/pages/projects.html">Mes projets</a></li>
+            <li><a class="site-footer__link" href="/pages/cv.html">Mon CV</a></li>
+            <li><a class="site-footer__link" href="/pages/contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div>
+          <h2 class="site-footer__heading">Contact direct</h2>
+          <ul class="site-footer__nav">
+            <li>
+              <a class="site-footer__link" href="mailto:vigourouxleandredesign@gmail.com"
+                >vigourouxleandredesign@gmail.com</a
+              >
+            </li>
+            <li>
+              <a class="site-footer__link" href="tel:+687705203">+687 70 52 03</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <p class="site-footer__copy">
+          &copy; <span data-year></span> Léandre — Creative developer
+        </p>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/scripts/entries/project-detail.ts"></script>
+  </body>
+</html>

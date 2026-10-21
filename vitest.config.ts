@@ -1,0 +1,14 @@
+/**
+ * @file Vitest configuration
+ * @description Unit + feature tests (happy-dom). See docs/TESTING.md.
+ */
+import { defineConfig } from 'vitest/config';
+
+export default defineConfig({
+  test: {
+    environment: 'happy-dom',
+    include: ['tests/unit/**/*.test.ts', 'tests/feature/**/*.test.ts'],
+    setupFiles: ['tests/setup.ts'],
+    css: false,
+  },
+});

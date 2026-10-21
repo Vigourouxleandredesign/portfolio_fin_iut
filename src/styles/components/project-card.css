@@ -1,6 +1,7 @@
 /**
  * @file Project card — portfolio item teaser
- * @description `.project-card` block. Visual falls back to a charcoal placeholder until covers exist.
+ * @description `.project-card` block. Full-card stretch link + visible CTA.
+ *   Visual falls back to a glazed charcoal placeholder until covers exist.
  */
 
 .project-card {
@@ -8,52 +9,104 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  border: 1px solid var(--color-border);
+  border: 1px solid color-mix(in srgb, var(--color-marble) 28%, var(--color-border));
   border-radius: var(--radius-lg);
   background-color: var(--color-surface);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--color-marble-ink) 18%, transparent),
+    0 18px 40px color-mix(in srgb, var(--color-bg) 55%, transparent);
   transition:
     border-color var(--duration-normal) var(--ease-out),
-    transform var(--duration-normal) var(--ease-out);
+    transform var(--duration-normal) var(--ease-out),
+    box-shadow var(--duration-normal) var(--ease-out);
 }
 
-.project-card:hover {
-  border-color: color-mix(in srgb, var(--color-ember) 60%, var(--color-border));
-  transform: translateY(-4px);
+.project-card:has(.project-card__link) {
+  cursor: pointer;
+}
+
+.project-card:hover,
+.project-card:focus-within {
+  border-color: color-mix(in srgb, var(--color-ember) 55%, var(--color-border));
+  transform: translateY(-6px);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--color-ember) 35%, transparent),
+    0 28px 56px color-mix(in srgb, var(--color-bg) 65%, transparent);
 }
 
 .project-card__visual {
   position: relative;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 10;
   display: grid;
   place-items: center;
   overflow: hidden;
   background-image:
     radial-gradient(
-      120% 100% at 20% 0%,
-      color-mix(in srgb, var(--color-ember) 22%, transparent),
-      transparent 60%
+      110% 90% at 18% 0%,
+      color-mix(in srgb, var(--color-ember) 28%, transparent),
+      transparent 55%
     ),
     linear-gradient(
-      160deg,
+      165deg,
       var(--color-surface-elevated),
-      var(--color-bg)
+      var(--color-bg) 70%,
+      color-mix(in srgb, var(--color-atelier) 80%, var(--color-bg))
     );
 }
 
+/* Water / glass reflection wash over the placeholder */
+.project-card__glaze {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      118deg,
+      color-mix(in srgb, var(--color-marble) 22%, transparent) 0%,
+      transparent 42%,
+      color-mix(in srgb, var(--color-ember) 12%, transparent) 58%,
+      transparent 78%
+    ),
+    linear-gradient(
+      to bottom,
+      transparent 55%,
+      color-mix(in srgb, var(--color-atelier) 35%, transparent) 100%
+    );
+  mix-blend-mode: soft-light;
+  opacity: 0.9;
+  transition: opacity var(--duration-normal) var(--ease-out);
+}
+
+.project-card:hover .project-card__glaze,
+.project-card:focus-within .project-card__glaze {
+  opacity: 1;
+}
+
 .project-card__image {
+  position: relative;
+  z-index: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
 .project-card__initial {
+  position: relative;
+  z-index: 0;
   font-family: var(--font-heading);
   font-size: var(--text-6xl);
   font-weight: 700;
   line-height: 1;
   letter-spacing: var(--tracking-tight);
-  color: color-mix(in srgb, var(--color-text) 14%, transparent);
+  color: color-mix(in srgb, var(--color-text) 16%, transparent);
   user-select: none;
+  transition: color var(--duration-normal) var(--ease-out);
+}
+
+.project-card:hover .project-card__initial,
+.project-card:focus-within .project-card__initial {
+  color: color-mix(in srgb, var(--color-ember) 35%, var(--color-text));
 }
 
 .project-card__body {
@@ -61,6 +114,7 @@
   flex-direction: column;
   gap: var(--space-3);
   padding: var(--space-6);
+  flex: 1;
 }
 
 .project-card__meta {
@@ -105,9 +159,59 @@
   color: var(--color-text-muted);
 }
 
+/* Visible CTA — decorative; hit target is the stretch link */
+.project-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: auto;
+  padding-top: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-ember);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.project-card__cta::after {
+  content: '→';
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.project-card:hover .project-card__cta,
+.project-card:focus-within .project-card__cta {
+  color: var(--color-accent);
+}
+
+.project-card:hover .project-card__cta::after,
+.project-card:focus-within .project-card__cta::after {
+  transform: translateX(0.25rem);
+}
+
 .project-card__link {
   position: absolute;
   inset: 0;
+  z-index: 2;
   text-indent: -9999px;
   overflow: hidden;
+}
+
+.project-card__link:focus-visible {
+  outline: 2px solid var(--color-ember);
+  outline-offset: -2px;
+}
+
+/* Home featured weight */
+.project-card--featured .project-card__visual {
+  aspect-ratio: 4 / 3;
+}
+
+.project-card--featured .project-card__title {
+  font-size: clamp(var(--text-xl), 2.2vw, var(--text-2xl));
+}
+
+.project-card--featured .project-card__body {
+  padding: var(--space-8);
+  gap: var(--space-4);
 }

@@ -1,24 +1,38 @@
 # AGENTS.md — Mandatory instructions for AI
 
-**Read this file, `docs/ARCHITECTURE.md`, and `docs/SECURITY.md` before writing or modifying any project file.**
+**Read this file, `docs/ARCHITECTURE.md`, `docs/SECURITY.md`, `docs/TESTING.md` and — for anything visual — `docs/DA.md` before writing or modifying any project file.**
 
-This repository is a portfolio (Vite + Vanilla TypeScript + CSS, MPA) with a **Supabase** evaluator area (schema ready; **users and private assets added later**). Rules below are **non-negotiable**. **Security and reliability come first.**
+This repository is a portfolio (Vite + Vanilla TypeScript + CSS, MPA). It is a **static site with no backend** (Supabase was removed on 2026-10-21). Teacher reflective sheets live on a **second Netlify site** behind the dashboard password (`docs/SECURITY.md` §0). The public site stays open. Rules below are **non-negotiable**. **Security and reliability come first.**
 
-**Current focus:** DA fil rouge (marbre / antique / splash peinture-fusain) + motion fluide (GSAP prévu) — see `docs/ROADMAP.md` Phase D. **Architecture is always priority** over `reference/legacy-portfolio/` (content inspiration only). **Later:** Supabase Auth users (evaluators) + Storage uploads for private media (`project_assets`).
+**Current focus:** delivery **30 Oct 2026** — apply DA v3 (`docs/DA.md`), fill project pages from `docs/content/projects/<slug>.md` + `docs/content/assets-kit.md`, build the teacher site (`docs/content/teacher-site.md`), deploy — see `docs/ROADMAP.md`.
 
 ---
 
 ## Pre-flight checklist (every task)
 
 1. Read `docs/ARCHITECTURE.md` (full architecture).
-2. Read `docs/SECURITY.md` (mandatory — especially for auth, private content, Supabase).
-3. Read `docs/SUPABASE.md` when changing auth, Storage, RLS, or evaluator features.
-4. Read `docs/DOCUMENTATION.md` if adding or editing source files.
-4. Use **English** for all file names, folders, `data-*`, BEM blocks, TS/CSS symbols, and code comments.
-5. Keep **HTML / CSS / TS** strictly separated.
-6. Add or update the **file documentation header** (line 1) on every created/edited `.html`, `.css`, `.ts` file.
-7. Never hardcode **colors** outside `src/styles/variables.css`.
-8. Never commit secrets; respect `.gitignore` and `.env.example` (names only).
+2. Read `docs/SECURITY.md` (mandatory — especially for private content, headers, iframes).
+3. Read `docs/TESTING.md` — **test gate** (anti-regression).
+4. Read `docs/DA.md` + `docs/skills/portfolio-da/SKILL.md` before any page, style or asset change.
+5. Read `docs/DOCUMENTATION.md` if adding or editing source files.
+6. Use **English** for all file names, folders, `data-*`, BEM blocks, TS/CSS symbols, and code comments.
+7. Keep **HTML / CSS / TS** strictly separated.
+8. Add or update the **file documentation header** (line 1) on every created/edited `.html`, `.css`, `.ts` file.
+9. Never hardcode **colors** outside `src/styles/variables.css`.
+10. Never commit secrets; respect `.gitignore` and `.env.example` (names only).
+
+---
+
+## Test gate (mandatory — every code change)
+
+After modifying `pages/`, `src/`, `public/`, scripts, or config:
+
+1. Run **`npm run gate`** (typecheck + secrets + Vitest + production build).
+2. If you changed public routes / UX / HTML, also run **`npm run test:e2e`** when feasible (`gate:full`).
+3. **Do not** mark the task done or start another topic while tests are red.
+4. New behaviour ⇒ add/update ≥ 1 relevant test in the same change (see `docs/TESTING.md`).
+
+Do **not** invent tests for unimplemented features; activate D1/D2/D3 suites when those phases start.
 
 ---
 
@@ -28,21 +42,19 @@ This repository is a portfolio (Vite + Vanilla TypeScript + CSS, MPA) with a **S
 - **Vanilla TypeScript** — no React/Vue/Svelte
 - **MPA** — one HTML file per route under `pages/`
 - **Netlify** — static hosting (public site)
-- **Supabase** (evaluator area) — auth, RLS, Storage; see `docs/SUPABASE.md`
+- **Teacher pack** — second Netlify site + password (`docs/SECURITY.md` §0, `docs/content/teacher-site.md`). No app auth, no Supabase.
 - **No custom Node backend** unless explicitly requested
 
 ---
 
 ## Security (summary — full rules in `docs/SECURITY.md`)
 
-- **Never** `service_role` in front or Git — anon key only (`VITE_*`).
-- **Never** private media in `public/` or static bundle on public pages.
-- **Always** RLS on private Supabase tables; Storage policies on private buckets.
-- **Roles** (`evaluator`) in DB — not client-only checks.
-- **No** `innerHTML` with user/API content (XSS).
-- **Signed URLs** for private video / 3D assets.
-- Keep `public/_headers` updated.
-- Run deploy checklist in `docs/SECURITY.md` §10 before shipping auth/private features.
+- **Never** a secret, password or reflective PDF in Git, `public/` or the bundle (`VITE_*` vars are public).
+- **Never** a client-side password / hidden URL as a lock — the teacher site uses Netlify’s server-side password.
+- **No** `innerHTML` with dynamic content (XSS); no inline scripts/styles (CSP).
+- New iframe ⇒ explicit origin in `public/_headers` `frame-src` + test.
+- Client projects: curated, anonymised screenshots only (Vill’âge Jeunes, Lab Horizon credentials).
+- Run the deploy checklist in `docs/SECURITY.md` §8.
 
 ---
 
@@ -51,7 +63,6 @@ This repository is a portfolio (Vite + Vanilla TypeScript + CSS, MPA) with a **S
 | Need | Location |
 |------|----------|
 | Page markup & SEO text | `pages/*.html` |
-| Evaluator page (future) | `pages/evaluator.html` |
 | Brand colors only | `src/styles/variables.css` |
 | Other design tokens | `src/styles/tokens.css` |
 | Component styles | `src/styles/components/<block>.css` |
@@ -59,25 +70,29 @@ This repository is a portfolio (Vite + Vanilla TypeScript + CSS, MPA) with a **S
 | Page bootstrapping | `src/scripts/entries/<page>.ts` |
 | Reusable DOM logic | `src/scripts/components/` |
 | Hero canvas / Three.js | `src/scripts/features/` |
-| Auth / evaluator (future) | `src/scripts/features/auth/`, `evaluator/` |
 | Typed **public** content | `src/data/` |
-| Private media | Supabase Storage — not Git |
+| Project page briefs (authoring) | `docs/content/projects/<slug>.md` |
+| Project visuals (ready to use) | `src/assets/projects/<slug>/` — inventory `docs/content/assets-kit.md` |
+| Paint decor (DA) | `src/assets/decor/paint/*.svg` — generated by `scripts/generate-paint-decor.mjs` |
+| Private reflective PDFs | Second Netlify site (password). Not in this repo (`SECURITY.md` §0) |
 
 ---
 
 ## Hero reveal & Three.js
 
-- **Home hero (current):** `features/three-scene/bust-hero*` — 3D fractured bust + Rapier
-  force field + right-click-drag camera orbit (`bust-hero-orbit.ts`, spring-back on release),
-  target `[data-hero-3d]` / `[data-hero-3d-canvas]`; text and the static `<img
-  data-hero-3d-fallback>` stay in HTML.
-- **Hero brush (archived, not deleted):** `features/hero-reveal/` only; target
-  `[data-hero-reveal]`; lives on `pages/hero-legacy.html` (unlisted), not the home hero anymore.
+- **Home hero (current):** `features/three-scene/bust-hero*` — fractured bust (`bust.glb`) + Rapier;
+  three-point lighting (`createLights` in `bust-hero-scene.ts`); optional full-bleed atmosphere
+  plate (`.hero-3d__atmosphere`, `src/assets/hero/hero-atmosphere.jpg`); Tweakpane lazy-loaded with `?debug`.
+  Target `[data-hero-3d]` / `[data-hero-3d-canvas]`; static fallback `<img>`.
+- **Home featured projects:** cover carousel `[data-project-carousel]`
+ (`components/project-carousel` + `project-carousel.css`) — no external deps.
+- **Project GLB showcases:** `features/three-scene/glb-showcase` on
+ `[data-glb-showcase]` (lazy from `project-detail` entry) — MagicalLab portal/robot.
 - **Home cursor brush (current):** `features/home-brush/` only; target `[data-home-brush]`
-  (canvas spanning `<main>`; z-index above sections, below `--z-hero-stage` so the bust
-  stays in front; `mix-blend-mode: screen`); continuous pressure-aware chalk stroke
-  while left mouse / primary pointer is held (multi-pigment), colors from
-  `variables.css` only, no-op under `prefers-reduced-motion`.
+  (canvas spanning `<main>`; above hero atmosphere / page sections, below `--z-hero-stage`
+  so the bust stays in front); continuous pressure-aware stroke while left mouse / primary
+  pointer is held. DA v3: gouache pigments copper / gold / phtalo (`--color-splash-*`), no
+  `mix-blend-mode: screen` (see `docs/DA.md` §6), no-op under `prefers-reduced-motion`.
 - **Page motion (GSAP):** `features/page-motion/` only when added; lazy / page-scoped; ask before adding the dependency.
 - **Three.js:** `features/three-scene/` only; lazy `import()`; not on pages without 3D.
 - Respect `prefers-reduced-motion` (skip mask / reduce motion / static GSAP fallbacks).
@@ -107,7 +122,7 @@ import '../../styles/layout.css';
 - Global Three.js on all pages
 - Skipping JSDoc file headers or public export docs
 - Committing `.env`, keys, `dist/`, `node_modules/`
-- **Security:** `service_role` in client; private tables without RLS; public buckets for evaluator files; hardcoded private URLs in public pages
+- **Security:** secrets/passwords/PDFs in Git or bundle; client-side locks; `frame-src https:` wildcard; raw dumps of client projects
 
 ---
 

@@ -1,5 +1,5 @@
 /**
- * @file Clients marquee — trusted companies logo banner
+ * @file Clients marquee — collaboration logos banner
  * @description Infinite logo strip: grayscale (marble) by default;
  *   grow + full color on hover (legacy portfolio behavior).
  *   Colors via var(--color-*) only. Respects prefers-reduced-motion.
@@ -12,7 +12,7 @@
 }
 
 .clients-marquee__header {
-  max-width: 40ch;
+  max-width: 48ch;
   margin: 0 auto var(--space-10);
   text-align: center;
 }
@@ -116,13 +116,22 @@
 
 @media (prefers-reduced-motion: reduce) {
   .clients-marquee__viewport {
-    overflow-x: auto;
+    overflow-x: hidden;
     mask-image: none;
   }
 
   .clients-marquee__track {
     animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    max-width: var(--layout-max);
+    margin-inline: auto;
     padding-inline: var(--space-4);
+  }
+
+  .clients-marquee__item[aria-hidden='true'] {
+    display: none;
   }
 
   .clients-marquee__item,

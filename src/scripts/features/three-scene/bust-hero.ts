@@ -37,7 +37,6 @@ import {
   createOrbitState,
   stepOrbitSpringBack,
 } from './bust-hero-orbit';
-import { createBustHeroPanel, shouldShowDebugPanel } from './bust-hero-controls';
 
 const DEFAULT_PARAMS: BustPhysicsParams = {
   influenceRadius: 0.9,
@@ -183,9 +182,13 @@ export async function initBustHero(
     const resizeObserver = new ResizeObserver(resize);
     resizeObserver.observe(root);
 
-    const disposePanel = shouldShowDebugPanel()
-      ? createBustHeroPanel(params, orbitParams)
-      : null;
+    // Tweakpane only ships when `?debug` is in the URL (lazy chunk, never in the main bundle).
+    let disposePanel: (() => void) | null = null;
+    if (new URLSearchParams(window.location.search).has('debug')) {
+      void import('./bust-hero-controls').then(({ createBustHeroPanel }) => {
+        disposePanel = createBustHeroPanel(params, orbitParams);
+      });
+    }
 
     const clock = new THREE.Clock();
     let animationFrame = 0;

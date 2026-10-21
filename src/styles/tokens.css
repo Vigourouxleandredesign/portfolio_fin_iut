@@ -4,11 +4,11 @@
  */
 
 :root {
-  /* Ubuntu — body, UI, Developer, section titles; Updock — Creative / flourish only */
+  /* Ubuntu — body, UI, structure; Updock — 1–2 decorative words max (docs/DA.md §4); Ubuntu Mono — metadata / cartels */
   --font-body: 'Ubuntu', system-ui, sans-serif;
   --font-heading: 'Ubuntu', system-ui, sans-serif;
   --font-display: 'Updock', cursive;
-  --font-mono: ui-monospace, SFMono-Regular, 'Cascadia Mono', Menlo, Consolas,
+  --font-mono: 'Ubuntu Mono', ui-monospace, SFMono-Regular, 'Cascadia Mono', Menlo, Consolas,
     monospace;
 
   --text-xs: 0.75rem;
@@ -49,17 +49,20 @@
   --z-header: 100;
   /*
    * Home paint sandwich:
-   *   section content (1) < home-brush (40) < hero-3d / bust (60) < grain (90)
-   * Brush overlays the page like before, but the transparent hero stage keeps
-   * the bust in front so paint never covers the marble.
+   *   section content (1) < hero atmosphere (20) < home-brush (40)
+   *   < featured (50) < hero bust stage (60) < grain (90)
+   * Atmosphere is a sibling behind the brush; the transparent bust stage
+   * stays above so paint never covers the marble.
    */
   --z-home-brush: 40;
   --z-hero-stage: 60;
-  /* Headline above the WebGL canvas so Creative / Developer stay readable */
-  --z-hero-content: 30;
-  --z-hero-canvas: 10;
-  --z-hero-reveal-text: 5;
+  /* Featured carousel sits above the brush so paint never covers covers */
+  --z-home-featured: 50;
+  /* Atmosphere plate only — must stay below `--z-home-brush` */
+  --z-hero-atmosphere: 20;
   --z-hero-base: 1;
+  --z-hero-canvas: 10;
+  --z-hero-content: 30;
 
   --layout-max: 72rem;
   --layout-narrow: 48rem;

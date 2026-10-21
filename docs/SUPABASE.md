@@ -116,13 +116,17 @@ Path convention:
 
 ```
 evaluator-assets/
-  {user_id}/
-    hero.webp
+  {user_id}/                 # optional per-uploader media
     demo.mp4
-    scene.glb
+  reflective/
+    {project_slug}/
+      mission-reflection.pdf
+      project-sheet.pdf
 ```
 
-Register metadata in `project_assets` with matching `storage_path` (e.g. `{user_id}/demo.mp4`).
+**Reflective sheets:** prefer **PDF** (not DOCX) for browser preview via signed URLs. Source DOCX live outside the repo (`../Fiche réflexive/`) — see `docs/content/reflective-sheets-inventory.md`. Never commit reflective PDFs into `public/` or the static bundle.
+
+Register metadata in `project_assets` with matching `storage_path` (e.g. `reflective/visualcom/mission-reflection.pdf`).
 
 ### 2.6 Redirect URLs (auth)
 

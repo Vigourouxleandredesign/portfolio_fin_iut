@@ -1,0 +1,169 @@
+<!--
+  @file Project — Micro-monde
+  @description Public case study stub — fresque AR + 3D models. Cover used on
+    home featured carousel; full narrative to follow.
+  @route /pages/projects/micromonde.html
+-->
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Micro-monde — Léandre</title>
+    <meta
+      name="description"
+      content="Micro-monde — parcours en réalité augmentée autour de fresques et de modèles 3D Blender."
+    />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/logo-leandre.svg" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Aller au contenu</a>
+    <header class="site-header">
+      <nav class="site-header__nav" aria-label="Navigation principale">
+        <a class="site-header__logo" href="/pages/index.html" aria-label="Léandre — Accueil">
+          <img
+            class="site-header__logo-image"
+            data-site-logo
+            src="/logo-leandre.svg"
+            alt=""
+            width="91"
+            height="91"
+            decoding="async"
+          />
+        </a>
+        <button
+          class="site-header__toggle"
+          type="button"
+          data-nav-toggle
+          aria-expanded="false"
+          aria-controls="main-nav"
+          hidden
+        >
+          <span class="visually-hidden">Ouvrir le menu</span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+        </button>
+        <ul class="site-header__list" id="main-nav" data-nav-list>
+          <li>
+            <a class="site-header__link" href="/pages/projects.html" aria-current="page"
+              >Mes projets</a
+            >
+          </li>
+          <li><a class="site-header__link" href="/pages/cv.html">Mon CV</a></li>
+          <li><a class="site-header__link" href="/pages/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main" class="page-shell page-shell--project">
+      <div class="project-detail__grain" aria-hidden="true"></div>
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <ol class="breadcrumb__list">
+          <li class="breadcrumb__item">
+            <a class="breadcrumb__link" href="/pages/projects.html">Mes projets</a>
+          </li>
+          <li class="breadcrumb__item">
+            <span class="breadcrumb__current" aria-current="page">Micro-monde</span>
+          </li>
+        </ol>
+      </nav>
+
+      <header class="project-detail__header" data-reveal>
+        <p class="project-detail__meta"><span>Réalité augmentée</span><span>2026</span></p>
+        <h1 class="project-detail__title">Micro-monde</h1>
+        <p class="project-detail__lead">
+          Un parcours AR autour de fresques : les modèles 3D viennent enrichir le mur, et
+          l’utilisateur découvre un micro-univers au bout de son téléphone.
+        </p>
+        <ul class="project-detail__tags">
+          <li class="project-detail__tag">Blender</li>
+          <li class="project-detail__tag">AR</li>
+          <li class="project-detail__tag">3D</li>
+        </ul>
+        <div class="project-detail__actions">
+          <a
+            class="button button--primary"
+            href="https://micromonde-ar.netlify.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Ouvrir la démo</a
+          >
+          <a class="button button--ghost" href="/pages/projects.html">Retour à la liste</a>
+        </div>
+      </header>
+
+      <div class="project-detail__layout project-detail__layout--split">
+        <section class="project-detail__hero" aria-label="Visuel du projet" data-reveal>
+          <div class="project-detail__hero-frame">
+            <div class="project-detail__hero-media">
+              <img
+                src="/src/assets/projects/micromonde/cover.png"
+                alt="Fresque Micro-monde avec superposition AR"
+                width="1280"
+                height="720"
+                decoding="async"
+              />
+            </div>
+            <div class="project-detail__hero-splash" aria-hidden="true"></div>
+            <p class="project-detail__hero-caption">Fresque · modèle 3D Blender</p>
+          </div>
+        </section>
+        <section
+          class="project-detail__snapshot"
+          aria-labelledby="micromonde-snapshot-title"
+          data-reveal
+        >
+          <span class="project-detail__snapshot-eyebrow">En bref</span>
+          <h2 class="project-detail__snapshot-title" id="micromonde-snapshot-title">
+            Survol du projet
+          </h2>
+          <p class="project-detail__pitch">
+            Modélisation Blender et parcours AR sur Netlify. La fiche détaillée arrive ensuite
+            (captures sur place, récit, brief).
+          </p>
+          <ul class="project-detail__highlights">
+            <li>Fresques comme cibles AR</li>
+            <li>Assets 3D préparés dans Blender</li>
+            <li>Démo mobile à tester sur téléphone</li>
+          </ul>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <p class="site-footer__tagline">Hâte de collaborer avec vous sur des projets exigeants.</p>
+        <nav aria-labelledby="footer-nav-title-micromonde">
+          <h2 class="site-footer__heading" id="footer-nav-title-micromonde">Plan du site</h2>
+          <ul class="site-footer__nav">
+            <li><a class="site-footer__link" href="/pages/index.html">Accueil</a></li>
+            <li><a class="site-footer__link" href="/pages/projects.html">Mes projets</a></li>
+            <li><a class="site-footer__link" href="/pages/cv.html">Mon CV</a></li>
+            <li><a class="site-footer__link" href="/pages/contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div>
+          <h2 class="site-footer__heading">Contact direct</h2>
+          <ul class="site-footer__nav">
+            <li>
+              <a class="site-footer__link" href="mailto:vigourouxleandredesign@gmail.com"
+                >vigourouxleandredesign@gmail.com</a
+              >
+            </li>
+            <li>
+              <a class="site-footer__link" href="tel:+687705203">+687 70 52 03</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <p class="site-footer__copy">
+          &copy; <span data-year></span> Léandre — Creative developer
+        </p>
+      </div>
+    </footer>
+    <script type="module" src="/src/scripts/entries/project-detail.ts"></script>
+  </body>
+</html>
