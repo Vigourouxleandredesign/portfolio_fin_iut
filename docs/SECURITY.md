@@ -1,30 +1,39 @@
 # Security — Portfolio (mandatory)
 
-**Version:** 2.0 (2026-10-21 — Supabase removed from the codebase)  
+**Version:** 2.1 (2026-10-21 — single Netlify site, jury area behind server-side Basic-Auth)  
 **Status:** Non-negotiable for all contributors and AI agents.
 
-**Principle:** the public site is a **static, backend-less** build. Nothing private ever enters this repo or its bundle. The only private content (reflective sheets) lives on a **separate** Netlify site protected **server-side** by Netlify’s password.
+**Principle:** one **static, backend-less** Netlify site. Everything is public except the **jury area** (`/jury/*`: competence pages + reflective PDFs), locked **server-side** by Netlify Basic-Auth. The password exists only in a Netlify environment variable — never in Git, HTML or JS.
 
 Related: [ARCHITECTURE.md](./ARCHITECTURE.md) · [AGENTS.md](../AGENTS.md) · [TESTING.md](./TESTING.md)
 
 ---
 
-## 0. Decision — Netlify password (locked 2026-10-06)
+## 0. Decision — one Netlify site, jury area behind a server-side password (locked 2026-10-21)
 
-Supabase is **out** and its code was **deleted** on 2026-10-21 (client, auth, evaluator page, SQL migration, tests, CSP origins). Do not recreate Supabase, app auth, RLS, or an `evaluator.html` page. Git history keeps the old design if a future decision reopens a backend.
+Supabase is **out** and its code was **deleted** on 2026-10-21. Do not recreate Supabase, app auth, RLS or an `evaluator.html` page.
+**Revision 2026-10-21 (Léandre):** no second site — the reflective sheets live **in this site**, under `/jury/`, password-protected by Netlify.
 
-| Site | Protection | Contents |
-|------|------------|----------|
-| **Public portfolio** (this repo) | None (open) | Home, projects, CV, contact. No reflective PDFs, no password, no private URL. |
-| **Teacher site** (`docs/content/teacher-site.md`) | Netlify **Password protection** (dashboard, server-side) | One page per competence + the reflective PDFs. Password shared with teachers out of band. |
+| Zone | URL | Protection | Contents |
+|------|-----|------------|----------|
+| **Public portfolio** | `/`, `/projects/*`, `/cv`, `/contact` | None (open) | Home, case studies, CV, contact. |
+| **Jury area** | `/jury`, `/jury/*`, `/pages/jury/*` | **Basic-Auth** (Netlify, server-side) | One page per competence (`pages/jury/*.html`) + PDFs (`public/jury/fiches/<slug>/*.pdf`). Spec: `docs/content/teacher-site.md`. |
+
+How the lock works:
+
+1. Netlify env var **`JURY_BASIC_AUTH`** = `jury:<password ≥ 16 chars>` (Site configuration › Environment variables, scope *Builds*). Never in Git.
+2. `netlify.toml` runs `npm run build && node scripts/inject-jury-auth.mjs`: the script appends `Basic-Auth` + `noindex` + `no-store` rules for the 3 jury paths to **`dist/_headers`** (build output only).
+3. On Netlify, a missing or weak credential **fails the build** — the jury area can never ship unprotected. Locally it only warns.
+4. Basic-Auth via `_headers` is available on **all** Netlify plans.
 
 Rules:
 
-- Never put the password or the PDFs in this repo, in `public/`, or in any Vite import.
-- Never password-protect the **public** portfolio.
-- Never replace the Netlify password by a client-side form, a JS check or a “secret” URL.
-- The public site may link **to** the teacher site (the link is not a secret — the password is the lock).
-- After the jury: delete the teacher site (or rotate the password) and remove the public link.
+- The **GitHub repo must be private**: the PDFs are committed under `public/jury/`, so a public repo would expose them without password.
+- Jury text lives **only in the jury HTML pages**. Never import jury content into TS/JSON: `/assets/*.js` bundles are public.
+- Never link a PDF from a public page. Public pages may link to `/jury` (one « Espace jury » link in footer + CV) — the URL is not a secret, the password is the lock.
+- Never a client-side password, JS check or « secret » URL.
+- Never password-protect the public portfolio.
+- After the jury: remove `public/jury/`, the env var and the public link (or rotate the password).
 
 ---
 
@@ -32,10 +41,10 @@ Rules:
 
 | Rule | Detail |
 |------|--------|
-| **No secret in the front** | Anything `VITE_*` is compiled into the public bundle. There is currently **no** env var required. |
+| **No secret in the front** | Anything `VITE_*` is compiled into the public bundle. The only secret is `JURY_BASIC_AUTH` (no `VITE_` prefix → never bundled; read only by `scripts/inject-jury-auth.mjs` at build time). |
 | **Never commit `.env`** | `.gitignore` covers `.env`, `.env.*` (except `.env.example`, names only). |
-| **Guard** | `npm run check:secrets` (part of `npm run gate`) scans tracked sources for keys/tokens (`scripts/check-no-secrets.mjs`). |
-| **Netlify** | Build settings only; no secret needed for a static build. |
+| **Guard** | `npm run check:secrets` (part of `npm run gate`) scans sources + `netlify.toml` for keys/tokens and for any committed `Basic-Auth: user:pass` / `JURY_BASIC_AUTH=` value. `tests/unit/jury-auth.test.ts` checks the lock. |
+| **Netlify** | `netlify.toml` (build + jury lock). `JURY_BASIC_AUTH` set in the dashboard, scope *Builds*. |
 
 ---
 
@@ -47,7 +56,7 @@ Rules:
 | **Lab Horizon (SAE 501)** | Never publish the seed accounts / `.env` of the SAE repo. Screens captured from a local Docker run must not show credentials. |
 | **Visualcom / clients** | Public pages only; logos used with the employer’s agreement. |
 | **Images** | Export as WebP/JPG through the pipeline (strips EXIF/GPS). No personal documents (ID, payslips…) anywhere. |
-| **Reflective sheets** | Teacher site only (§0). |
+| **Reflective sheets** | `/jury/` only, behind Basic-Auth (§0). Private GitHub repo. |
 
 ---
 
@@ -98,14 +107,14 @@ Netlify Forms (`data-netlify="true"`) with a honeypot field (`bot-field`, tested
 
 ---
 
-## 7. Teacher site (password-protected)
+## 7. Jury area (password-protected)
 
-- Separate Netlify site, separate folder **outside** this repo (see `docs/content/teacher-site.md`).
-- Server-side lock: Netlify **Password protection** (dashboard, Pro plan) **or** `Basic-Auth` in that site’s `_headers` (all plans). The `_headers` file stays in the local teacher folder (drag-and-drop deploy, no Git) — never a JS gate.
-- Long unique password, shared out of band (email to the jury) — never in Git, HTML, issues or chat logs.
-- Its own `_headers`: `X-Robots-Tag: noindex, nofollow`, `X-Frame-Options: DENY`, same strict CSP.
-- One shared password is acceptable: temporary pack, low sensitivity.
-- Delete the site or rotate the password after the jury.
+- Pages `pages/jury/*.html` (built to `/pages/jury/`, pretty routes `/jury`, `/jury/<competence>` in `public/_redirects`); PDFs in `public/jury/fiches/<slug>/`.
+- Lock = §0 (Basic-Auth injected at build). All three path families are protected: `/jury`, `/jury/*`, `/pages/jury/*`.
+- Extra headers on those paths: `X-Robots-Tag: noindex, nofollow`, `Cache-Control: private, no-store`. `robots.txt` adds `Disallow: /jury`.
+- Jury pages load only shared CSS/JS (no jury text in bundles) and no third-party resource.
+- Long unique password, shared with the jury out of band (e-mail) — never in Git, HTML, issues or chat logs.
+- Verify after each deploy (private window): `/jury` → 401 prompt; `/jury/fiches/visualcom/mission-reflection.pdf` → 401 without credentials; `/pages/jury/index.html` → 401.
 
 ---
 
@@ -115,7 +124,8 @@ Before merge / deploy:
 
 - [ ] `npm run gate` green (typecheck + secrets + tests + build)
 - [ ] `npm run audit:prod` — no high/critical
-- [ ] No secret, PDF or password in the diff
+- [ ] No secret or password in the diff; PDFs only under `public/jury/fiches/`
+- [ ] `JURY_BASIC_AUTH` set on Netlify; post-deploy 401 checks of §7 done
 - [ ] New iframe origin → `frame-src` + test updated
 - [ ] Screens of client apps are curated/anonymised (§2)
 - [ ] `.env.example` updated if a `VITE_*` var is added (names only)
@@ -125,7 +135,7 @@ Before merge / deploy:
 ## 9. Forbidden
 
 - Any secret, token or password in front code, Git, `.env.example` values or logs
-- Reflective PDFs or teacher password in this repo / bundle
+- The jury password anywhere but the Netlify env var; reflective PDFs outside `public/jury/`; jury text in JS bundles; a public GitHub repo while PDFs are committed
 - Client-side password or hidden URL as an access control
 - `frame-src https:` wildcard, inline scripts/styles, third-party script CDNs
 - Raw dumps of client projects (Vill’âge Jeunes) or SAE credentials (Lab Horizon)

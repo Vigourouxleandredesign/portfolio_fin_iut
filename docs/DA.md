@@ -110,26 +110,34 @@ Le pigment du projet colore : le liseré du cartel, l’anneau/halo au survol de
 
 ---
 
-## 6. Pigment : gouache en relief
+## 6. Pigment : gouache en relief & lavis
 
-**Matière :** gouache épaisse, coups de pinceau réels — arêtes en relief, stries de brosse, bords nets, **aucun trou**, extrémités effilées et épaisseur irrégulière. Lumière du haut gauche qui accroche les crêtes. Sur le phtalo, un **reflet néon** (`--color-pigment-phtalo-glint`) en halo discret.
+Les gestes reprennent les **6 références peinture fournies par Léandre** (coup de brosse chargé, raclée verticale multicolore, empâtement multicolore, éclaboussure, floraison aquarelle, tache à coulures). Les formes sont **originales** (générées, pas décalquées) mais suivent la structure de chaque référence. Deux registres :
 
-**Vocabulaire (gestes autorisés) :**
+- **Empâtement (gouache en relief)** : départ chargé et arrondi, stries de brosse, bords qui accrochent la lumière, queue qui s’effiloche en poils secs + éclats. Lumière du haut gauche, petit reflet ivoire `--color-light-beam` sur les crêtes, ombre portée douce.
+- **Lavis (aquarelle)** : aplat translucide, pigment qui s’accumule sur le bord (liseré plus sombre), granulation, rayons/gouttes et coulures terminées par une perle.
 
-| Geste | Fichier prêt à l’emploi (`src/assets/decor/paint/`) |
-|-------|------------------------------------------------------|
-| Coup de brosse chargé (départ épais, queue qui s’effiloche en poils secs + éclats) | `swipe-copper.svg`, `swipe-phtalo.svg`, `swipe-gold.svg`, `swipe-trio.svg` (cuivre + or + phtalo, pièce signature) |
-| Raclée verticale au couteau, bords granuleux | `smear-copper-vertical.svg` |
-| Soulignement | `underline-copper.svg`, `underline-phtalo.svg` |
-| Éclaboussure (tache + pointes + gouttelettes) | `splatter-copper.svg`, `splatter-phtalo.svg` |
-| Tache & coulures terminées par une goutte | `drips-gold.svg`, `drips-copper.svg` |
-| Carrés au couteau | `knife-phtalo-cluster.svg`, `knife-gold-pair.svg` |
-| Points & cercles | `dots-gold.svg`, `ring-phtalo.svg` |
-| Craie / fusain (existant) | `src/assets/decor/*-sketch.png`, `stroke-chalk.png` |
+**Vocabulaire (fichiers prêts à l’emploi dans `src/assets/decor/paint/`) :**
 
-Rendu : les coups de brosse et carrés ont un relief de gouache (filtre `impasto`) ; éclaboussures et coulures ont un rendu de tache marbrée plus plat (filtre `stain`). Le phtalo garde son halo néon.
+| Référence | Geste | Texture (`.webp`, relief inclus) |
+|-----------|-------|-----------------------------------|
+| Coup de brosse bleu | Coup de brosse chargé, horizontal | `swipe-copper`, `swipe-gold`, `swipe-phtalo` |
+| (dérivé) | Soulignement | `underline-copper`, `underline-phtalo` |
+| Raclée rose/turquoise | Raclée verticale 3 pigments, bas émietté | `smear-vertical-trio` |
+| Empâtement multicolore | Grappe de coups de brosse diagonaux + trait ivoire + éclats — **pièce signature** | `impasto-cluster` |
+| Éclaboussure rose | Éclaboussure aquarelle (corps, rayons, 2 fouets, embruns) | `splat-copper`, `splat-phtalo` |
+| Floraison multicolore | Floraisons superposées phtalo → cuivre → or | `bloom-trio` |
+| Tache jaune à coulures | Tache + coulures à perle (or → cuivre) | `drip-gold`, `drip-copper` |
+| (ponctuation) | Gouttes | `droplets-gold` |
 
-Ces SVG contiennent leur propre filtre de relief et leurs dégradés : on les pose en `<img src alt="" aria-hidden="true">` ou en `background-image`, **sans** `mix-blend-mode: screen` (la gouache est opaque). Pour en créer d’autres : ajouter une entrée dans `scripts/generate-paint-decor.mjs` puis `node scripts/generate-paint-decor.mjs`.
+Chaque geste existe aussi en **silhouette vectorielle** : `src/assets/decor/paint/silhouettes/<nom>.svg` (un seul chemin, `fill="currentColor"`). Usages : `mask-image` (révéler une image ou un dégradé dans la forme d’une tache), icône inline recolorée au pigment du projet, animation `clip-path`/`mask-position` au survol.
+
+**Règles d’emploi :**
+- Texture : `<img src="…/swipe-copper.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">` ou `background-image`. **Jamais** de `mix-blend-mode: screen` (la gouache est opaque).
+- Phtalo : ajouter le reflet néon discret `filter: drop-shadow(0 0 14px color-mix(in srgb, var(--color-pigment-phtalo-glint) 28%, transparent))`.
+- Silhouette recolorée : `background: var(--color-pigment-…); mask: url(…/silhouettes/x.svg) center / contain no-repeat;`.
+- Régénérer / ajouter un geste : `npm run decor:paint` (`scripts/generate-paint-decor.py` — Python 3 + numpy, opencv-python, scikit-image, pillow).
+- Hérité DA v2, **à retirer lors de la migration de l’accueil** : `src/assets/decor/*-sketch.png`, `stroke-chalk.png`, `splash-ember.png`, `marble-touches.png`.
 
 **Où :** sur le marbre et les bustes, en marge, sous un mot Updock, au survol d’une carte, et via le pinceau du curseur.
 **Jamais :** sous un paragraphe, en fond de page, en rouge, texture trouée/craie sèche, plus de 2 pigments par zone.
@@ -144,7 +152,7 @@ Ces SVG contiennent leur propre filtre de relief et leurs dégradés : on les po
 |-----------|-------|
 | Bouton principal | Pilule `--color-ember`, texte `--color-bg`, Ubuntu 700 capitales `0.12em`, hauteur ≥ 48 px |
 | Bouton secondaire | Pilule contour `--color-border`, texte `--color-marble` |
-| Lien fort | Texte craie + `underline-copper.svg` dessous (apparition au survol) |
+| Lien fort | Texte craie + `underline-copper.webp` dessous (apparition au survol) |
 | Carte projet (« œuvre ») | Image étalonnée (§5) + faisceau en coin haut gauche + vignette ; cartel Mono dessous (liseré pigment du projet) ; survol : carte qui se soulève de 10 px, liseré 1 px + halo au pigment du projet, coup de brosse au pigment qui apparaît en bas de l’image |
 | Titre de section | Jeu A (collision) + gravure fantôme B optionnelle ; eyebrow en Mono cendre |
 | Hero page projet | Image d’ambiance étalonnée plein cadre + titre Updock/Ubuntu (comme MagicalLab) + cartel + CTA démo |

@@ -1,7 +1,7 @@
 # Architecture — Portfolio (source of truth)
 
 **Version:** 1.2 (2026-10-21 — backend removed, DA v3)  
-**Stack:** Vite + Vanilla TypeScript + CSS (MPA) · static Netlify hosting · no backend  
+**Stack:** Vite + Vanilla TypeScript + CSS (MPA) · one static Netlify site (public + `/jury` behind Basic-Auth) · no backend  
 **Status:** Mandatory for all contributors and AI agents.
 
 Before any change, read this document and `docs/SECURITY.md`. If a rule must change, update this file first, then `docs/SECURITY.md`, `AGENTS.md`, and `.cursor/rules/`.
@@ -16,7 +16,7 @@ Before any change, read this document and `docs/SECURITY.md`. If a rule must cha
 4. **Performance** — Heavy JS (Three.js, hero canvas) only on pages/sections that need it; prefer `import()`.
 5. **Single source of truth** — Colors → `variables.css` only; project data → `src/data/` only.
 6. **English technical naming** — File names, folders, `data-*`, CSS blocks, TS symbols, and code comments in **English**. UI copy in HTML may be **French**.
-7. **Security first** — No secrets in front or Git; no private content in this repo — reflective sheets live on a separate password-protected Netlify site (see `docs/SECURITY.md`).
+7. **Security first** — No secrets in front or Git; the only private zone is `/jury` (reflective sheets), locked server-side by Netlify Basic-Auth injected at build (see `docs/SECURITY.md` §0).
 8. **Decisions already taken win** — e.g. the 3D fractured-bust hero on home (`features/three-scene/`) is source of truth; do not replace with legacy patterns. The previous canvas-brush reveal hero was removed on 2026-10-21 (git history keeps it).
 9. **DA is frozen** — `docs/DA.md` (v3 « Le Sanctuaire nocturne ») is the visual source of truth; recipes in `docs/skills/portfolio-da/SKILL.md`. Old references (legacy portfolio, moodboards) now live outside the repo in `../Sources/` and never override it.
 
@@ -41,7 +41,7 @@ Before any change, read this document and `docs/SECURITY.md`. If a rule must cha
 | Contact | `pages/contact.html` | Netlify Forms |
 | Mon univers | Section `#univers` on home (after projects) | Not a separate route |
 
-Reflective sheets for the jury are **not** part of this site: they live on a separate password-protected Netlify site (`docs/content/teacher-site.md`). The public footer/CV may link to it.
+Reflective sheets for the jury live under **`/jury`** (pages `pages/jury/*.html`, PDFs `public/jury/fiches/`), password-protected by Netlify (`docs/content/teacher-site.md`). Not in the public nav; one « Espace jury » link in footer + CV.
 
 ---
 
@@ -207,7 +207,7 @@ Example — cursor brush (home, whole page):
 - Editorial content (headings, project copy, timeline) is **authored in HTML** so crawlers index it without running scripts.
 - `src/data/*.ts` holds only the typed values behaviour needs (e.g. the skills taxonomy driving the projects filter), with exported types.
 - Images in `src/assets/` when processed by Vite; `public/` only for fixed paths (favicon, `robots.txt`, `_headers`, default `og` image).
-- **Private** media (reflective sheets) → **never** in Git / public bundle — teacher site only (`docs/SECURITY.md` §0).
+- **Private** media (reflective PDFs) → `public/jury/fiches/` only, behind Basic-Auth; jury text only in `pages/jury/*.html`, never in TS/JSON bundles (`docs/SECURITY.md` §0).
 - **Public** portfolio media → `src/assets/` or Vite imports; keep lightweight for the static site
 - **Project page briefs (authoring):** `docs/content/projects/<slug>.md` — one brief per case-study page (DA + copy intent). Not served as public site content.
 - **Ready-to-use project visuals:** `src/assets/projects/<slug>/` (WebP, `shots/` = screenshots from `scripts/capture-project-shots.mjs`) — inventory in `docs/content/assets-kit.md`.
@@ -220,14 +220,14 @@ Example — cursor brush (home, whole page):
 
 ---
 
-## 8.1 Deployment (public + temporary teacher pack)
+## 8.1 Deployment (one site, public + jury area)
 
-| Zone | Hosting | Access |
-|------|---------|--------|
-| Public pages | This repo → Netlify static (`dist/`) | Open |
-| Fiches réflexives | **Second** Netlify site (PDFs only, not in this Git repo) | Netlify password (dashboard). See `docs/SECURITY.md` §0 |
+| Zone | Source | Access |
+|------|--------|--------|
+| Public pages | `pages/*.html`, `pages/projects/*.html` | Open |
+| Jury area | `pages/jury/*.html` + `public/jury/fiches/**.pdf` | Netlify Basic-Auth on `/jury`, `/jury/*`, `/pages/jury/*` — injected into `dist/_headers` by `scripts/inject-jury-auth.mjs` from env `JURY_BASIC_AUTH` (`netlify.toml`) |
 
-There is no evaluator page or auth code in this repo (removed 2026-10-21). Do not put reflective PDFs in `public/`.
+GitHub repo must stay **private** while PDFs are committed. There is no app auth in this repo.
 
 ---
 
@@ -262,7 +262,7 @@ There is no evaluator page or auth code in this repo (removed 2026-10-21). Do no
 - Skipping file documentation headers
 - Ignoring `AGENTS.md`, `docs/SECURITY.md`, or this document
 - `service_role` or secrets in client code or Git
-- Reflective sheets / teacher password in `public/` or static bundle imports
+- Jury password anywhere but the Netlify env var; jury text imported in TS/JSON bundles
 - Re-adding a backend SDK (Supabase…) without a new decision in `docs/SECURITY.md` §0
 
 ---

@@ -10,7 +10,9 @@ Site portfolio statique (MPA) de creative developer : hero 3D (buste marbre frac
 | [docs/DA.md](docs/DA.md) | **Direction artistique** (source de vérité) — recettes : [docs/skills/portfolio-da/SKILL.md](docs/skills/portfolio-da/SKILL.md) |
 | [docs/SECURITY.md](docs/SECURITY.md) | **Sécurité obligatoire** (site statique, headers, site enseignants protégé) |
 | [docs/TESTING.md](docs/TESTING.md) | Gate anti-régression |
-| [docs/ROADMAP.md](docs/ROADMAP.md) | **Todo / reprise** — ce qui est fait et ce qui reste |
+| [docs/ROADMAP.md](docs/ROADMAP.md) | **État, planning, décisions, questions ouvertes** |
+| [docs/work-packages/](docs/work-packages/README.md) | **Lots exécutants** : protocole, prompts, critères d’acceptation |
+| [docs/content/](docs/content/) | Contenus prêts à intégrer (briefs projets, accueil, CV, espace jury) |
 | [docs/content/assets-kit.md](docs/content/assets-kit.md) | Inventaire des visuels projets prêts à intégrer |
 | [AGENTS.md](AGENTS.md) | Instructions obligatoires pour les IA |
 
@@ -30,12 +32,12 @@ npm run gate     # typecheck + secrets + tests + build (avant chaque commit)
 npm run build    # build production → dist/
 npm run preview  # prévisualiser dist/
 node scripts/capture-project-shots.mjs          # captures des démos en ligne
-node scripts/generate-paint-decor.mjs           # régénère les SVG de peinture
+npm run decor:paint                             # régénère les taches de peinture (Python : numpy, opencv-python, scikit-image, pillow)
 ```
 
 **Routes :** `/` (→ `/pages/index.html`), `/projects`, `/projects/<slug>`, `/cv`, `/contact` — voir `public/_redirects`.
 
-**Fiches réflexives :** sur un **second** site Netlify protégé par mot de passe (jamais dans ce repo) — voir [docs/SECURITY.md](docs/SECURITY.md) §0 et `docs/content/teacher-site.md`.
+**Fiches réflexives :** zone **`/jury`** du même site, protégée par mot de passe Netlify (variable `JURY_BASIC_AUTH`, jamais dans le repo) — voir [docs/SECURITY.md](docs/SECURITY.md) §0 et `docs/content/teacher-site.md`. Le repo GitHub doit rester **privé**.
 
 ## Structure rapide
 
@@ -52,7 +54,7 @@ Les sources lourdes (PSD, .blend, références) vivent **hors du repo**, dans le
 
 ## Déploiement
 
-Build `dist/` puis déploiement statique sur **Netlify** (`npm ci && npm run build`, publish `dist`).
+Netlify lit `netlify.toml` : `npm run build && node scripts/inject-jury-auth.mjs`, publish `dist`. Définir `JURY_BASIC_AUTH` dans les variables d’environnement Netlify.
 
 ## IA (Cursor / Claude Code)
 
