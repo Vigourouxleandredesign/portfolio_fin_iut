@@ -29,8 +29,8 @@ import fondTestHero from '../../assets/hero/hero-atmosphere.jpg';
 import bustModel from '../../assets/hero/bust.glb';
 import marbleAtelierEmpty from '../../assets/moodboard/marble-atelier-empty.jpg';
 import magicallabCover from '../../assets/projects/magicallab/scene-portal.jpg';
-import micromondeCover from '../../assets/projects/micromonde/cover.png';
-import villageJeunesCover from '../../assets/projects/village-jeunes/cover.png';
+import micromondeCover from '../../assets/projects/micromonde/cover.webp';
+import villageJeunesCover from '../../assets/projects/village-jeunes/cover.webp';
 import blenderMark from '../../assets/tech/blender-mark.svg';
 
 import { initSiteFooter } from '../components/site-footer';
