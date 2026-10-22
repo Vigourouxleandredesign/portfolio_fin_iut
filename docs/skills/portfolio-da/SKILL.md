@@ -17,7 +17,7 @@ Tu appliques une DA **déjà validée**. Tu n’inventes pas de nouvelle couleur
 
 1. **Une scène par écran** : fond nuit + une seule source de lumière (feu, haut gauche) + un geste de pigment.
 2. **Couleurs** : uniquement les tokens de `variables.css`. Pigments = cuivre, or patiné, vert phtalo (+ reflet `--color-pigment-phtalo-glint`). Jamais rose, bleu électrique, violet, rouge.
-3. **Pigment = gouache en relief**, pas de craie trouée, pas de néon plat. Utilise les SVG de `src/assets/decor/paint/` (relief intégré), sans `mix-blend-mode: screen`.
+3. **Pigment = gouache en relief**, pas de craie trouée, pas de néon plat. Utilise les textures `src/assets/decor/paint/*.webp` (relief intégré) ou leurs silhouettes `silhouettes/*.svg`, sans `mix-blend-mode: screen`.
 4. **Typo** : Ubuntu (structure), Updock (1–2 mots, discret, jamais une signature), Ubuntu Mono (cartels/métadonnées). Le logo LV or est la seule signature.
 5. **Images projets étalonnées** « Odyssée » (classe `.is-graded`, voir recette) — toutes cohérentes entre elles.
 6. **Conservés** : buste 3D du hero, pinceau du curseur. On améliore, on ne remplace pas.
@@ -78,12 +78,20 @@ Le texte accessible du h2 doit rester complet : ajouter `<span class="visually-h
 
 ### Geste de pigment (décor)
 ```html
-<img class="paint paint--under-title" src="/src/assets/decor/paint/underline-copper.svg" alt="" aria-hidden="true" width="460" height="90" loading="lazy">
+<img class="paint paint--under-title" src="/src/assets/decor/paint/underline-copper.webp" alt="" aria-hidden="true" width="460" height="78" loading="lazy" decoding="async">
 ```
-Pas de `mix-blend-mode`. Un geste par zone. Masquer ou réduire sous 48rem. Catalogue complet : `docs/DA.md §6` (swipe, smear, underline, splatter, drips, knife, dots, ring).
+Pas de `mix-blend-mode`. Un geste par zone, 2 pigments max. Masquer ou réduire sous 48rem. Phtalo : ajouter le `drop-shadow` glint de `docs/DA.md §6`. Catalogue : `docs/DA.md §6` (swipe, underline, smear-vertical-trio, impasto-cluster, splat, bloom-trio, drip, droplets).
+
+Silhouette recolorée au pigment du projet (ex. carte) :
+```css
+.project-card__stain {
+  background: var(--project-pigment, var(--color-pigment-copper));
+  mask: url("/src/assets/decor/paint/silhouettes/splat-copper.svg") center / contain no-repeat;
+}
+```
 
 ### Carte projet (survol)
-Carte = `.graded-image` + cartel. Au survol/focus : `translateY(-10px)`, `box-shadow` liseré 1 px + halo au pigment du projet (`color-mix(... 35%, transparent)`), apparition (opacity/clip-path) d’un `swipe-*.svg` / `underline-*.svg` au pigment du projet en bas de l’image. Focus clavier = même rendu (`:focus-visible`).
+Carte = `.graded-image` + cartel. Au survol/focus : `translateY(-10px)`, `box-shadow` liseré 1 px + halo au pigment du projet (`color-mix(... 35%, transparent)`), apparition (opacity/clip-path) d’un `swipe-*.webp` / `underline-*.webp` au pigment du projet en bas de l’image (ou silhouette `mask` recolorée). Focus clavier = même rendu (`:focus-visible`).
 
 ### Pinceau du curseur (évolution)
 Fichiers : `src/scripts/features/home-brush/*`. Garder l’API `initHomeBrush`. Cibles : trait plein et opaque (plus de petites ellipses dispersées), largeur pilotée par la vitesse avec effilement au début et à la fin du geste, couleur interpolée cuivre → or → phtalo le long du trait, `mix-blend-mode: normal` dans `home.css`. Palette lue depuis `--color-splash-*` (déjà repointés).

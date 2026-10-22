@@ -9,7 +9,7 @@ Avant toute modification de `pages/`, `src/styles/`, `src/assets/` ou d’un vis
 
 1. Lire `docs/DA.md` (source de vérité) et suivre `docs/skills/portfolio-da/SKILL.md` (recettes).
 2. Couleurs : uniquement les tokens de `src/styles/variables.css` — pigments cuivre / or patiné / vert phtalo (+ reflet `--color-pigment-phtalo-glint`). Jamais rose, bleu électrique, violet, rouge.
-3. Chaque écran : fond nuit + une source de lumière (feu, haut gauche) + un geste de pigment (SVG de `src/assets/decor/paint/`, sans `mix-blend-mode: screen`).
+3. Chaque écran : fond nuit + une source de lumière (feu, haut gauche) + un geste de pigment (texture `.webp` ou silhouette `silhouettes/*.svg` de `src/assets/decor/paint/`, sans `mix-blend-mode: screen`).
 4. Typo : Ubuntu (structure), Updock (1–2 mots, discret, jamais de signature), Ubuntu Mono (cartels). Le logo LV or est la seule signature.
 5. Images de projets : étalonnage « Odyssée » (`.graded-image`).
 6. Le buste 3D du hero et le pinceau du curseur sont conservés (améliorer, ne pas remplacer).

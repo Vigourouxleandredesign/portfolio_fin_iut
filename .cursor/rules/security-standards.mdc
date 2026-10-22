@@ -10,7 +10,7 @@ Read `docs/SECURITY.md` before touching headers, iframes, forms, private content
 ## Never
 
 - Put a secret, token or password in front code, Git, or `.env.example` values (`VITE_*` = public)
-- Put reflective PDFs or the teacher password in this repo, `public/` or a Vite import
+- Put the jury password anywhere but the Netlify env var; put PDFs outside `public/jury/fiches/`; import jury text into TS/JSON
 - Use a client-side password, JS check or hidden URL as an access control
 - Use `innerHTML` with dynamic content (XSS); add inline `<script>`/`style=""` (CSP)
 - Add `frame-src https:` or any third-party script CDN
@@ -19,7 +19,7 @@ Read `docs/SECURITY.md` before touching headers, iframes, forms, private content
 
 ## Always
 
-- **Delivery (locked):** public site open; reflective PDFs on a **second** Netlify site with server-side password (`docs/SECURITY.md` §0, `docs/content/teacher-site.md`)
+- **Delivery (locked 2026-10-21):** one Netlify site; public pages open; `/jury` (pages + PDFs) behind server-side Basic-Auth from env `JURY_BASIC_AUTH`, injected by `scripts/inject-jury-auth.mjs` (`docs/SECURITY.md` §0, `docs/content/teacher-site.md`). GitHub repo private.
 - Keep `public/_headers` strict; a new iframe origin goes in `frame-src` **and** in `tests/feature/catalog-and-headers.test.ts`
 - `npm run gate` green before done; `npm run audit:prod` before deploy
 

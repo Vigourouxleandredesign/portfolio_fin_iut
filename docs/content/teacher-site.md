@@ -1,6 +1,6 @@
-# Site enseignants (« Espace jury ») — spécification
+# Espace jury (`/jury`) — spécification
 
-**Statut :** spec validée 2026-10-21 · **À construire hors de ce repo** (dossier voisin `../Site enseignants/`) · Sécurité : `docs/SECURITY.md` §0 et §7.
+**Statut :** spec validée 2026-10-21 (révisée : **même site Netlify** que le portfolio, zone protégée par mot de passe) · Sécurité : `docs/SECURITY.md` §0 et §7.
 
 ## Objectif
 
@@ -27,42 +27,41 @@ Seules les compétences réellement travaillées sont présentées (le référen
 
 | Projet | Fichier (dans `fiches/<slug>/`) | Source |
 |--------|----------------------------------|--------|
-| Visualcom | `mission-reflection.pdf`, `project-sheet.pdf` | `Fiche de reflexion mission Refonte Visualcom` (**⚠ corriger le copier-coller « staff et adhérents »**), `Fiche projet refonte site Visualcom` |
+| Visualcom | `mission-reflection.pdf`, `project-sheet.pdf` | `Fiche de reflexion mission Refonte Visualcom` (**⚠ paragraphe « Conception d’interface » copié de Vill’âge Jeunes — voir `reflective-sheets-inventory.md`**), `Fiche projet refonte site Visualcom` |
 | Vill’âge Jeunes | `mission-reflection.pdf`, `project-sheet.pdf` | `Fiche de reflexion mission Village jeunes`, `Fiche projet Village Jeunes` |
 
-## Arborescence
+## Arborescence (dans ce repo)
 
 ```
-Site enseignants/                 # HORS du repo public, jamais commité avec lui
-  index.html                      # Accueil jury : intro 3 lignes + matrice compétences × projets
-  competences/
-    developpement-front.html
-    qualite-securite-performance.html
-    client-gestion-projet.html
-    strategie-analyse.html
-  fiches/
-    visualcom/{mission-reflection,project-sheet}.pdf
-    village-jeunes/{mission-reflection,project-sheet}.pdf
-  assets/
-    site.css                      # copie des tokens DA (variables.css + tokens.css) + styles du mini-site
-    logo-leandre.svg
-    fonts/                        # Ubuntu + Ubuntu Mono woff2 (copiés depuis node_modules/@fontsource)
-  _headers                        # Basic-Auth + noindex + CSP (voir plus bas)
-  robots.txt                      # Disallow: /
+pages/jury/
+  index.html                         # /jury — intro 3 lignes + matrice compétences × projets
+  developpement-front.html           # /jury/developpement-front
+  qualite-securite-performance.html
+  client-gestion-projet.html
+  strategie-analyse.html
+public/jury/fiches/
+  visualcom/{mission-reflection,project-sheet}.pdf
+  village-jeunes/{mission-reflection,project-sheet}.pdf
+src/scripts/entries/jury.ts          # styles + nav/footer communs, AUCUN texte jury
+src/styles/pages/jury.css
 ```
 
-HTML statique pur (pas de build, pas de JS requis). Un seul CSS.
+- `vite.config.ts` : ajouter les entrées `pages/jury/*.html` (même principe que `projectDetailPageInputs`).
+- `public/_redirects` : `/jury  /pages/jury/index.html  200` puis une ligne par compétence (`/jury/<slug>  /pages/jury/<slug>.html  200`). Pas de joker `/jury/*` (il masquerait les PDF).
+- `public/robots.txt` : `Disallow: /jury` et `Disallow: /pages/jury`.
+- **Tout le texte jury vit dans le HTML** (jamais dans un `.ts`/`.json` : les bundles `/assets/*.js` sont publics).
+- Verrou : `scripts/inject-jury-auth.mjs` (déjà en place, testé) ajoute le Basic-Auth au build Netlify à partir de la variable `JURY_BASIC_AUTH`.
 
 ## Gabarits
 
 ### `index.html` — Matrice
 
-- En-tête : logo LV, « Espace jury — Léandre Vigouroux, LP MIAW 2026 », lien « ← Portfolio public ».
+- En-tête du site (nav commune) + bandeau « Espace jury — Léandre Vigouroux, LP MIAW 2026 », lien « ← Retour au portfolio ».
 - Intro (3 lignes) : comment lire le site.
 - **Matrice** (`<table>` accessible, `<th scope>`): lignes = compétences, colonnes = projets ; cellule = ● lien vers la section du projet dans la page compétence. Ligne cliquable → page compétence.
 - 4 cartes compétence (titre, 1 phrase, nb de preuves) — même ordre que la matrice.
 
-### `competences/<slug>.html` — Compétence
+### `pages/jury/<slug>.html` — Compétence
 
 - Fil d’Ariane : `Espace jury › Compétences › <Bloc>`.
 - Titre du bloc + compétences UNC couvertes (liste, `Ubuntu Mono`, style cartel).
@@ -70,38 +69,27 @@ HTML statique pur (pas de build, pas de JS requis). Un seul CSS.
 - Par projet-preuve, un **cartel** :
   - nom du projet, contexte (alternance / client / SAE), année ;
   - 2-4 preuves (puces reprises du brouillon) ;
-  - boutons : « Lire la fiche réflexive (PDF) » (`target="_blank"`), « Fiche projet (PDF) », « Voir le projet sur le portfolio ↗ » (`https://<portfolio>/projects/<slug>`).
+  - boutons : « Lire la fiche réflexive (PDF) » (`target="_blank"`), « Fiche projet (PDF) », « Voir le projet sur le portfolio » (`/projects/<slug>`, même onglet). Les PDF : `/jury/fiches/<slug>/<fichier>.pdf`.
 - Pied de page : **← compétence précédente · Retour à la matrice · compétence suivante →** (boucle).
 - Ancre par projet (`#visualcom`, `#village-jeunes`) pour que la matrice pointe directement dessus.
 
 ## DA (version sobre du site public)
 
-- Fond `--color-bg`, texte `--color-text`, filets `--color-border`, accent unique `--color-pigment-gold` (titres, liens au survol) ; pas de 3D, pas de pinceau, pas de décor peinture lourd (au plus un `underline-copper.svg` sous le titre).
+- Fond `--color-bg`, texte `--color-text`, filets `--color-border`, accent unique `--color-pigment-gold` (titres, liens au survol) ; pas de 3D, pas de pinceau, pas de décor peinture lourd (au plus un `underline-copper.webp` sous le titre, `bloom-trio.webp` en fond à ≤ 0,35).
 - Typo : Ubuntu (titres/corps), Ubuntu Mono (cartels, compétences UNC). Pas d’Updock.
 - Lisibilité d’abord : corps 18 px, mesure 68 ch, contraste AA, focus visible, `@media print` propre (le jury peut imprimer une page compétence).
 
 ## Sécurité & déploiement
 
-- **Netlify, second site**, déploiement par glisser-déposer du dossier (pas de dépôt Git).
-- **Accès** : Netlify Pro → *Site configuration › Access & security › Password protection*. Plan gratuit → `Basic-Auth` dans `_headers` (disponible sur tous les plans) :
-
-  ```
-  /*
-    Basic-Auth: jury:<MOT_DE_PASSE_LONG>
-    X-Robots-Tag: noindex, nofollow
-    X-Frame-Options: DENY
-    X-Content-Type-Options: nosniff
-    Referrer-Policy: no-referrer
-    Content-Security-Policy: default-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self'; script-src 'none'; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'
-  ```
-
-  Le `_headers` reste **uniquement** dans ce dossier local (jamais dans un repo, jamais copié dans le portfolio public). Mot de passe envoyé au jury par mail, séparément du lien.
-- Le portfolio public affiche **un seul** lien « Espace jury » (footer + page CV) vers l’URL du site — sans mot de passe.
-- Après le jury : supprimer le site Netlify (ou changer le mot de passe) et retirer le lien public.
+- Même site Netlify que le portfolio, déployé depuis GitHub. **Le repo GitHub doit être privé** (les PDF sont commités dans `public/jury/`).
+- Mot de passe : variable Netlify `JURY_BASIC_AUTH` = `jury:<mot de passe ≥ 16 caractères>` (*Site configuration › Environment variables*, portée *Builds*). Sans elle, le build Netlify échoue volontairement.
+- Mot de passe envoyé au jury par e-mail, séparément du lien.
+- Le portfolio public affiche **un seul** lien « Espace jury » (footer + page CV) vers `/jury`.
+- Après le jury : retirer `public/jury/`, la variable et le lien (ou changer le mot de passe).
 
 ## Definition of Done
 
-- [ ] L’URL demande identifiant/mot de passe (tester en navigation privée).
+- [ ] `/jury`, `/jury/<slug>` et `/pages/jury/index.html` demandent identifiant/mot de passe (navigation privée).
 - [ ] Matrice → compétence → PDF → projet public → retour : tout en ≤ 2 clics, au clavier aussi.
-- [ ] `https://<site>/fiches/visualcom/mission-reflection.pdf` sans mot de passe → **401**.
-- [ ] Aucun PDF ni mot de passe dans le repo public (`npm run gate` + test C9).
+- [ ] `/jury/fiches/visualcom/mission-reflection.pdf` sans mot de passe → **401**.
+- [ ] Aucun mot de passe dans le repo (`npm run gate` : `check:secrets` + `jury-auth.test.ts`), aucun texte jury dans `dist/assets/*.js`.

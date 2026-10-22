@@ -45,7 +45,7 @@ New feature / bugfix in the same PR **must** add or update ≥ 1 relevant test (
 | **D0** — smoke public | **Active** for pages/features already shipped | `gate:full` or before handoff |
 | **D1** — catalogue content regression | **Deferred until** we insert more project content; **mandatory before prod** once content work starts | Content PRs + pre-prod |
 | **D2** — auth / evaluator E2E | **Removed** (no app auth; Supabase code deleted 2026-10-21 — C9 guards against its return) | — |
-| **D3** — security functional | **Removed with D2** | Manual check before deploy: public site open, no PDF in `dist/`, teacher site asks for the password |
+| **D3** — security functional | **Removed with D2** | Manual check after deploy: public site open; `/jury`, `/pages/jury/*`, `/jury/fiches/*.pdf` answer **401** without credentials (`SECURITY.md` §7). Automated part: `tests/unit/jury-auth.test.ts` + `check:secrets` |
 | **D4** — a11y (axe) | **Active now** | `test:e2e` / `gate:full` |
 | **D5** — perf / console smoke | **Active now** | `test:e2e` / `gate:full` |
 | **E** — scripts + AGENTS gate | **Active today** | Process |

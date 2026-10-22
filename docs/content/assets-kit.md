@@ -36,7 +36,9 @@ Existant : `cover.jpg`, `cover-featured.jpg`, `scene-*.jpg` + GLB `public/docume
 | `fresques-propositions-kuby-kolor.webp` | 1000×1431 | Contexte fresques — **créditer l’artiste Kuby Kolor** |
 
 Existant : `cover.png` (1,3 Mo → à convertir en WebP lors de l’intégration).  
-**Manque :** capture mobile du parcours → `npm run shots -- micromonde --headed`. **À confirmer par Léandre :** son rôle exact (dev AR / 3D) vs les fresques de Kuby Kolor.
+**Manque :** capture du parcours AR **prise sur téléphone** (sur desktop le site n’affiche que le QR « Scan to continue » d’8th Wall — utilisable seulement comme vignette « Essayer sur mobile »).
+
+**Rôle de Léandre (confirmé 2026-10-21) :** création des assets 3D, animation, intégration dans 8th Wall (calage sur les fresques, AR) ; direction artistique de l’expérience (typo, couleurs, ton, iconographie) ; conception de l’interface. Les **fresques** sont de l’artiste **Kuby Kolor** — à créditer sur la page.
 
 ### Vill’âge Jeunes — `village-jeunes/` · pigment **braise**
 
@@ -97,10 +99,22 @@ Captures desktop optionnelles : `ng serve` puis décommenter la cible dans le sc
 
 ## Décor peinture (DA §6) — `src/assets/decor/paint/`
 
-Générés par `npm run decor:paint` (gouache en relief, filtres inclus dans chaque SVG, aucune couleur hors palette).
+Générés par `npm run decor:paint` à partir des 6 références peinture (détail et règles : `docs/DA.md` §6). Chaque geste = texture `<nom>.webp` (relief/lavis inclus) + silhouette `silhouettes/<nom>.svg` (masque recolorable).
 
 | Famille | Fichiers | Usage type |
 |---------|----------|-----------|
+| Coups de brosse | `swipe-copper`, `swipe-gold`, `swipe-phtalo` | Derrière un titre de section, transition entre blocs |
+| Soulignés | `underline-copper`, `underline-phtalo` | Sous un mot-clé, un titre de carte, lien fort |
+| Raclée verticale | `smear-vertical-trio` | Bord de page / colonne, à côté du buste |
+| Empâtement (signature) | `impasto-cluster` | Une seule fois par page : hero, intro projets, 404 |
+| Éclaboussures | `splat-copper`, `splat-phtalo` | Coin de carte (silhouette au pigment du projet), fin de section |
+| Floraison | `bloom-trio` | Fond de la section compétences / page jury (opacité ≤ 0,35) |
+| Coulures | `drip-gold`, `drip-copper` | Haut d’une image (cartel), bas du hero |
+| Gouttes | `droplets-gold` | Puces, numéro de projet |
+
+Toujours décoratif (`alt=""`, `aria-hidden="true"`, `loading="lazy"`), **sans** `mix-blend-mode: screen`.
+
+---------|----------|-----------|
 | Coups de brosse | `swipe-copper`, `swipe-phtalo`, `swipe-gold`, `swipe-trio` | Derrière un titre de section, transition entre blocs |
 | Trait vertical | `smear-copper-vertical` | Bord de page / colonne |
 | Soulignés | `underline-copper`, `underline-phtalo` | Sous un mot-clé, un titre de carte |
@@ -121,8 +135,8 @@ Toujours en `<img src="…" alt="" aria-hidden="true">` décoratif ou `backgroun
 
 ## À fournir par Léandre
 
-- [ ] CV PDF → `public/documents/cv.pdf` (le bouton « Télécharger » de `cv.html` pointe dessus, actuellement 404)
+- [x] CV PDF → `public/documents/cv.pdf` (v2 du 2026-10-21)
 - [ ] Captures GPU : `npm run shots -- magicallab --headed` et `npm run shots -- micromonde --headed`
 - [ ] Captures locales : Lab Horizon (Docker) et Spring Boot
-- [ ] Rôle Micro-monde + crédit Kuby Kolor
+- [x] Rôle Micro-monde + crédit Kuby Kolor (voir section Micro-monde)
 - [ ] URL publique Lab Horizon s’il y en a une (sinon : captures seulement)

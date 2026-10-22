@@ -1,38 +1,33 @@
 # MagicalLab — brief page projet
 
-**Slug :** `magicallab`  
-**Route :** `/pages/projects/magicallab.html`  
-**Statut brief :** source of truth pour la DA de la fiche (2026-10)
+| Champ | Valeur |
+|---|---|
+| Slug / route | `magicallab` · `/projects/magicallab` → `pages/projects/magicallab.html` (**page existante, contenu validé**) |
+| Statut | Vedette n° II |
+| Pigment | cuivre (`--color-project-magicallab`) |
+| Année · contexte | 2026 · Projet front IUT (LP MIAW) |
+| Démo | https://magicallab.netlify.app/ (dépôt GitHub public, accepté) |
+| Stack réelle | React 19 · React Three Fiber · drei · Rapier · postprocessing · Leva · Vite |
 
-> Convention : un fichier `docs/content/projects/<slug>.md` par fiche.  
-> Ne pas servir ces briefs depuis `public/` (hors bundle public).
+## Intention (inchangée)
 
----
+Projet académique → place au côté artistique et à l’expression du style. Refléter le côté un peu fou du projet (et du profil), pas une case study corporate.
 
-## Intention
+## Ce qui est déjà en place (garder)
 
-Projet académique → place au côté artistique et à l’expression du style (fil rouge accueil : marbre / antique / splash + typo Updock + Ubuntu).
+- Hero : fond `scene-portal.jpg`, titre Magical / Lab, portail 3D (`public/documents/elements/magic_portal.glb`, `[data-glb-showcase]`) comme accès à la démo — **pas** de mockup Mac (test C).
+- Robot 3D (`robot.glb`) dans le corps ; crédit Sketchfab du portail : Nick Broad, *Magic Portal*, CC BY 4.0. Robot : **Komov (Sketchfab)** → afficher `Modèle 3D du robot : Komov, Sketchfab.` (licence à vérifier par Léandre sur la page du modèle ; si elle impose un lien, l’ajouter en L8).
+- Récit « un petit robot traverse une lumière… », commandes clavier (flèches, F), tests `magicallab-page.test.ts`.
 
-## Hero
+## Migration DA v3
 
-- **Conserver** le fond atmosphère actuel (`scene-portal.jpg`).
-- Titre artistique : jouer avec **Updock** + **Ubuntu** (comme Creative / Developer sur l’accueil).
-- Accès au site : **pas** le mockup Mac — utiliser le **modèle 3D du portail** (`public/documents/elements/magic_portal.glb`) de face, CTA vers la démo Netlify.
-
-## Corps
-
-- Afficher le **robot** 3D (`public/documents/elements/robot.glb`).
-- Pour chaque GLB : créditer le **créateur Sketchfab** (pas la démo Netlify). Portail : Nick Broad, *Magic Portal*, CC BY 4.0. Robot : métadonnées perdues à l’export, lien créateur à fournir.
-- Inventer une histoire cohérente : petit robot traversant une lumière au fond de l’atelier → laboratoire médiéval, petit bonhomme qui parle seul ; histoires + imagination pour comprendre pourquoi on est là.
-
-## Récit technique (ton)
-
-Projet front IUT (manipuler un `.glb` via React + R3F) poussé plus loin : caméra personnage, déplacements, histoires déclenchées par position, Leva + post-prod, assets légers, univers cohérent. Petit projet sans prétention qui montre qu’on peut déjà raconter une histoire.
+- Cartel : `N° II · 2026 · Projet front — IUT` · stack ci-dessus.
+- Titre : Ubuntu 700 « Magical » + **un seul** mot Updock discret (« Lab ») au lieu d’un gros titre manuscrit ; dégradé cuivre doux.
+- Gestes cuivre : `swipe-copper` derrière le titre, `splat-copper` en coin de la galerie.
+- Images en `.graded-image` (les scènes sont déjà sombres : étalonnage léger).
+- Nouvelle galerie « Dans la scène » : `shots/magicallab-scene-desktop.jpg` + `shots/magicallab-scene-mobile.jpg` (convertir en WebP au passage), plus `scene-lab-shelf.jpg`, `scene-ritual.jpg`.
+- Année : passer de 2025 à **2026** (cohérence avec le carrousel).
 
 ## Hors scope
 
-- **Pas** de fiche de réflexion pour ce projet.
-
-## Objectif DA
-
-Refléter le côté artistique un peu fou du projet (et du profil), pas une case study corporate.
+Pas de fiche de réflexion pour ce projet.
