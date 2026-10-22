@@ -20,7 +20,7 @@
     "gate:full": "npm run gate && npm run test:e2e",
     "audit:prod": "npm audit --omit=dev",
     "shots": "node scripts/capture-project-shots.mjs",
-    "decor:paint": "node scripts/generate-paint-decor.mjs"
+    "decor:paint": "python scripts/generate-paint-decor.py"
   },
   "dependencies": {
     "@dimforge/rapier3d-compat": "^0.19.3",

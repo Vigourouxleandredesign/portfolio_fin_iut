@@ -22,7 +22,13 @@ const FORBIDDEN = [
   { id: 'supabase_service_role_env', re: /SUPABASE_SERVICE_ROLE/ },
   { id: 'begin_private_key', re: /BEGIN (RSA |OPENSSH )?PRIVATE KEY/ },
   { id: 'aws_access_key_id', re: /AKIA[0-9A-Z]{16}/ },
+  // Jury password: only in the Netlify env var JURY_BASIC_AUTH, injected at build time
+  { id: 'basic_auth_credential', re: /Basic-Auth:\s*[^\s$]+:[^\s]+/ },
+  { id: 'jury_credential_assignment', re: /JURY_BASIC_AUTH\s*=\s*["']?[^"'\s<$]+:/ },
 ];
+
+/** Root-level config files scanned too (Netlify build config). */
+const ROOT_FILES = ['netlify.toml'];
 
 /**
  * @param {string} dir
@@ -59,6 +65,19 @@ for (const dirName of SCAN_DIRS) {
         hits.push(`${rule.id} → ${relative(ROOT, file)}`);
       }
     }
+  }
+}
+
+for (const name of ROOT_FILES) {
+  const file = join(ROOT, name);
+  try {
+    statSync(file);
+  } catch {
+    continue;
+  }
+  const text = readFileSync(file, 'utf8');
+  for (const rule of FORBIDDEN) {
+    if (rule.re.test(text)) hits.push(`${rule.id} → ${name}`);
   }
 }
 
