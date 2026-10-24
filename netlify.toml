@@ -6,4 +6,7 @@
   publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "20"
+  # Same major as .nvmrc and the GitHub Actions CI: production is built by the tested Node version.
+  NODE_VERSION = "22"
+  # Git hooks are a local CI gate; never install them on the build machine.
+  HUSKY = "0"
