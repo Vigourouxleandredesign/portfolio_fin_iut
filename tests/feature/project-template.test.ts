@@ -22,7 +22,7 @@ const PROJECT_SLUGS = [
  * Pages already migrated to the DA v3 template (cartel + page-hero).
  * Each project lot (L3b/c/d) adds its slugs here when it migrates its pages.
  */
-const MIGRATED_SLUGS: readonly string[] = ['lab-horizon'];
+const MIGRATED_SLUGS: readonly string[] = ['lab-horizon', 'micromonde', 'village-jeunes'];
 
 const read = (slug: string): string =>
   readFileSync(resolve(process.cwd(), `pages/projects/${slug}.html`), 'utf8');

@@ -1,18 +1,27 @@
 <!--
-  @file Project — Vill'âge Jeunes (DDEC)
-  @description Public case study placeholder — content from DOCX to be added.
+  @file Project — Vill’âge Jeunes
+  @description Case study N° IV (alternance Visualcom, client Vill’âge Jeunes / DDEC). Public captures only; no staff screens, no names.
   @route /pages/projects/village-jeunes.html
+  @see docs/content/projects/village-jeunes.md
 -->
 <!doctype html>
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vill'âge Jeunes (DDEC) — Léandre</title>
+    <title>Vill’âge Jeunes — Léandre Vigouroux</title>
     <meta
       name="description"
-      content="Projet Vill'âge Jeunes — développement Vanilla JS pour la DDEC."
+      content="Dématérialiser les inscriptions d’une association pour rendre du temps à l’humain. Une application web livrée en production, utilisée chaque jour par toute l’équipe."
     />
+    <meta property="og:title" content="Vill’âge Jeunes — Léandre Vigouroux" />
+    <meta
+      property="og:description"
+      content="Dématérialiser les inscriptions d’une association pour rendre du temps à l’humain. Une application web livrée en production, utilisée chaque jour par toute l’équipe."
+    />
+    <meta property="og:image" content="/src/assets/projects/village-jeunes/cover.webp" />
+    <meta property="og:type" content="article" />
+    <meta property="og:locale" content="fr_FR" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/logo-leandre.svg" />
   </head>
@@ -56,115 +65,197 @@
       </nav>
     </header>
 
-    <main id="main" class="page-shell page-shell--project">
+    <main id="main" class="project-page project-page--village-jeunes">
       <div class="project-detail__grain" aria-hidden="true"></div>
-      <nav class="breadcrumb" aria-label="Fil d'Ariane">
-        <ol class="breadcrumb__list">
-          <li class="breadcrumb__item">
-            <a class="breadcrumb__link" href="/pages/projects.html">Mes projets</a>
-          </li>
-          <li class="breadcrumb__item">
-            <span class="breadcrumb__current" aria-current="page">Vill'âge Jeunes</span>
-          </li>
-        </ol>
-      </nav>
 
-      <header class="project-detail__header" data-reveal>
-        <p class="project-detail__meta"><span>Développement web</span><span>2025</span></p>
-        <h1 class="project-detail__title">Vill'âge Jeunes (DDEC)</h1>
-        <p class="project-detail__lead">
-          Application web en Vanilla JavaScript — fiche détaillée à compléter à partir du document
-          de réflexion.
-        </p>
-        <ul class="project-detail__tags">
-          <li class="project-detail__tag">Vanilla JS</li>
-          <li class="project-detail__tag">Front-end</li>
-        </ul>
-        <div class="project-detail__actions">
-          <a class="button button--ghost" href="/pages/projects.html">Retour à la liste</a>
-        </div>
-      </header>
+      <section class="page-hero project-hero" aria-labelledby="village-jeunes-title">
+        <div class="light-beam" aria-hidden="true"><div class="light-beam__dust"></div></div>
 
-      <div class="project-detail__layout project-detail__layout--split">
-        <section class="project-detail__hero" aria-label="Visuel du projet" data-reveal>
-          <div class="project-detail__hero-frame">
-            <div class="project-detail__hero-media" role="img" aria-label="Vill'âge Jeunes">
-              <span class="project-detail__hero-initial" aria-hidden="true">V</span>
-            </div>
-            <div class="project-detail__hero-splash" aria-hidden="true"></div>
-            <p class="project-detail__hero-caption">DDEC · Vanilla JS</p>
-          </div>
-        </section>
-        <section
-          class="project-detail__snapshot"
-          aria-labelledby="village-snapshot-title"
-          data-reveal
-        >
-          <span class="project-detail__snapshot-eyebrow">En bref</span>
-          <h2 class="project-detail__snapshot-title" id="village-snapshot-title">
-            Survol du projet
-          </h2>
-          <p class="project-detail__pitch">
-            Application web Vill'âge Jeunes pour la DDEC — développement front en Vanilla
-            JavaScript.
-          </p>
-          <ul class="project-detail__highlights">
-            <li>Projet Bac+3 — stack sans framework</li>
-            <li>Fiche longue alimentée par le DOCX à venir</li>
-          </ul>
-          <p class="project-detail__teaser">
-            Version longue avec ma méthode de réflexion — bientôt…
-          </p>
-        </section>
-        <section
-          class="project-detail__gallery"
-          aria-labelledby="village-gallery-title"
-          data-reveal
-        >
-          <div class="project-detail__gallery-header">
-            <h2 class="project-detail__gallery-title" id="village-gallery-title">Visuels</h2>
-            <p class="project-detail__gallery-lead">Captures interface à ajouter.</p>
-          </div>
-          <div class="project-detail__gallery-grid">
-            <figure class="project-detail__figure">
-              <div class="project-detail__figure-visual">
-                <span class="project-detail__figure-placeholder">UI</span>
-              </div>
-              <figcaption class="project-detail__figure-caption">
-                Écran principal — à intégrer
-              </figcaption>
-            </figure>
-          </div>
-        </section>
-        <section class="project-detail__narrative" id="recit-complet" data-reveal>
-          <details class="project-detail__details" data-project-narrative-details>
-            <summary class="project-detail__details-summary">
-              <span class="project-detail__details-label">Fiche de réflexion</span>
-              <span class="project-detail__details-cta">Lire la version longue</span>
-              <span class="project-detail__details-hint"
-                >DOCX à intégrer — ton académique conservé.</span
+        <div class="page-hero__inner">
+          <div class="page-hero__body">
+            <nav class="breadcrumb" aria-label="Fil d'Ariane">
+              <ol class="breadcrumb__list">
+                <li class="breadcrumb__item">
+                  <a class="breadcrumb__link" href="/pages/projects.html">Mes projets</a>
+                </li>
+                <li class="breadcrumb__item">
+                  <span class="breadcrumb__current" aria-current="page">Vill’âge Jeunes</span>
+                </li>
+              </ol>
+            </nav>
+            <dl class="cartel cartel--village-jeunes">
+              <dt class="visually-hidden">Fiche du projet</dt>
+              <dd class="cartel__meta">
+                N° IV · 2026 · Alternance Visualcom — client Vill’âge Jeunes (DDEC)
+              </dd>
+              <dd class="cartel__stack">HTML · CSS · JavaScript (vanilla) · Documentation.js</dd>
+            </dl>
+            <h1 class="page-hero__title" id="village-jeunes-title">Vill’âge Jeunes</h1>
+            <p class="page-hero__lead">
+              Dématérialiser les inscriptions d’une association pour rendre du temps à l’humain. Une
+              application web livrée en production, utilisée chaque jour par toute l’équipe.
+            </p>
+            <div class="page-hero__actions">
+              <a
+                class="button button--primary"
+                href="https://villagejeunes.nc/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Voir le site<span class="visually-hidden"> (nouvel onglet)</span></a
               >
-            </summary>
-            <div class="project-detail__details-body project-detail__content--placeholder">
-              <p>Contenu complet après réception du DOCX.</p>
+              <a class="button" href="/pages/projects.html">Retour aux projets</a>
             </div>
-          </details>
-        </section>
-        <aside
-          class="project-detail__reflective"
-          data-project-slug="village-jeunes"
-          data-project-reflective
-          aria-labelledby="reflective-village-title"
-          data-reveal
+          </div>
+          <div class="page-hero__media">
+            <a
+              class="project-detail__demo-link project-detail__demo-link--mockup"
+              href="https://villagejeunes.nc/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div
+                class="project-detail__mockup project-detail__mockup--laptop-phone"
+                data-project-site-preview
+                data-preview-mode="shots"
+              >
+                <img
+                  class="project-detail__mockup-frame"
+                  src="/src/assets/mockups/laptop-iphone-marble.png"
+                  alt=""
+                  width="1152"
+                  height="864"
+                  decoding="async"
+                />
+                <img
+                  class="project-detail__mockup-screens"
+                  src="/src/assets/projects/village-jeunes/mockup-screens.png"
+                  alt="Aperçu du site public Vill’âge Jeunes — ordinateur et téléphone (ouvrir le site, nouvel onglet)"
+                  width="1152"
+                  height="864"
+                  decoding="async"
+                />
+                <span class="project-detail__demo-badge" aria-hidden="true">Ouvrir le site</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="project-brief" aria-labelledby="village-jeunes-brief-title" data-reveal>
+        <span class="project-section__eyebrow">En bref</span>
+        <h2 class="visually-hidden" id="village-jeunes-brief-title">En bref</h2>
+        <ul class="project-brief__list">
+          <li class="project-brief__item">
+            <span class="project-brief__label">Le besoin</span>
+            <p class="project-brief__text">
+              Les inscriptions et la gestion des adhérents se faisaient sur papier ; l’équipe
+              voulait se concentrer sur l’accompagnement.
+            </p>
+          </li>
+          <li class="project-brief__item">
+            <span class="project-brief__label">Mon rôle</span>
+            <p class="project-brief__text">
+              Maquette, UX/UI et développement front-end, au sein d’une équipe avec un chef de
+              projet et un développeur full stack.
+            </p>
+          </li>
+          <li class="project-brief__item">
+            <span class="project-brief__label">Le résultat</span>
+            <p class="project-brief__text">
+              Une V1 stable, utilisée par tout le staff : plus de 500 inscriptions dès le premier
+              mois.
+            </p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="project-brief" aria-label="Chiffre clé" data-reveal>
+        <span class="project-section__eyebrow">Chiffre clé</span>
+        <p class="project-section__title">Plus de 500 inscriptions dès le premier mois</p>
+        <img
+          class="paint paint--md"
+          src="/src/assets/decor/paint/underline-copper.webp"
+          alt=""
+          aria-hidden="true"
+          width="900"
+          height="153"
+          loading="lazy"
+          decoding="async"
+        />
+      </section>
+
+      <section class="project-story" id="recit" aria-labelledby="village-jeunes-story-title">
+        <h2 class="visually-hidden" id="village-jeunes-story-title">Récit du projet</h2>
+
+        <article class="project-story__block project-story__block--no-visual" data-reveal>
+          <div class="project-story__copy">
+            <span class="project-story__index" aria-hidden="true">I</span>
+            <h3 class="project-story__title">Partir du terrain</h3>
+            <p class="project-story__text">
+              Cahier des charges avec le client, puis visite sur place pour valider le besoin et
+              écouter les adhérents et le staff. Quelques questions simples (« quelles tâches vous
+              pèsent aujourd’hui ? ») ont évité un parcours séduisant sur le papier mais inutilisé.
+            </p>
+          </div>
+        </article>
+        <article class="project-story__block project-story__block--no-visual" data-reveal>
+          <div class="project-story__copy">
+            <span class="project-story__index" aria-hidden="true">II</span>
+            <h3 class="project-story__title">Du papier au code</h3>
+            <p class="project-story__text">
+              Parcours dessiné à la main, zoning, wireframes puis maquette validée par le client.
+              Les formulaires d’inscription ont été codés en premier : ils portent l’essentiel des
+              données, ce qui a permis au back d’avancer en parallèle.
+            </p>
+          </div>
+        </article>
+        <article class="project-story__block" data-reveal>
+          <div class="project-story__copy">
+            <span class="project-story__index" aria-hidden="true">III</span>
+            <h3 class="project-story__title">Une interface par rôle</h3>
+            <p class="project-story__text">
+              Connexion, accueil selon le rôle, suivi des inscriptions en temps réel, accès rapide
+              aux fiches adhérents et statistiques lisibles.
+            </p>
+          </div>
+          <div class="project-story__visual project-story__visual--phone">
+            <div class="graded-image">
+              <img
+                class="graded-image__img"
+                src="/src/assets/projects/village-jeunes/shots/village-jeunes-connexion-mobile-fourni.webp"
+                alt="Écran de connexion de l’application sur téléphone, sans donnée"
+                width="273"
+                height="600"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
+        </article>
+        <article class="project-story__block project-story__block--no-visual" data-reveal>
+          <div class="project-story__copy">
+            <span class="project-story__index" aria-hidden="true">IV</span>
+            <h3 class="project-story__title">Documenter pour passer le relais</h3>
+            <p class="project-story__text">
+              En alternance, je n’étais pas toujours là : j’ai documenté le front et le back
+              (Documentation.js, en-tête dans chaque fichier) pour que l’équipe puisse reprendre le
+              code sans moi.
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <section class="project-takeaway" aria-labelledby="village-jeunes-takeaway-title" data-reveal>
+        <span class="project-section__eyebrow" id="village-jeunes-takeaway-title"
+          >Ce que j’en retiens</span
         >
-          <h2 class="project-detail__reflective-title" id="reflective-village-title">
-            Fiche réflexion (évaluateurs)
-          </h2>
-          <p class="project-detail__reflective-text">
-            Accès évaluateur et lien bidirectionnel — Phase B.
-          </p>
-        </aside>
-      </div>
+        <p class="project-takeaway__text">
+          Le versioning et la documentation se décident au premier jour, pas quand le projet
+          grossit. Et la suite est déjà pensée : une V2 en PWA, avec notifications pour les
+          adhérents.
+        </p>
+      </section>
+
       <nav class="project-nav" aria-label="Navigation entre projets">
         <a
           class="project-nav__link project-nav__link--prev"
@@ -201,8 +292,8 @@
       />
       <div class="site-footer__inner">
         <p class="site-footer__tagline">Hâte de collaborer avec vous sur des projets exigeants.</p>
-        <nav aria-labelledby="footer-nav-title-village">
-          <h2 class="site-footer__heading" id="footer-nav-title-village">Plan du site</h2>
+        <nav aria-labelledby="footer-nav-title-village-jeunes">
+          <h2 class="site-footer__heading" id="footer-nav-title-village-jeunes">Plan du site</h2>
           <ul class="site-footer__nav">
             <li><a class="site-footer__link" href="/pages/index.html">Accueil</a></li>
             <li><a class="site-footer__link" href="/pages/projects.html">Mes projets</a></li>
@@ -225,7 +316,9 @@
                 >vigourouxleandredesign@gmail.com</a
               >
             </li>
-            <li><a class="site-footer__link" href="tel:+687705203">+687 70 52 03</a></li>
+            <li>
+              <a class="site-footer__link" href="tel:+687705203">+687 70 52 03</a>
+            </li>
           </ul>
         </div>
       </div>
