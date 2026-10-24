@@ -10,6 +10,8 @@ const routes = [
   '/pages/projects/lab-horizon.html',
   '/pages/projects/magicallab.html',
   '/pages/contact.html',
+  '/pages/jury/index.html',
+  '/pages/jury/developpement-front.html',
   '/pages/cv.html',
 ];
 

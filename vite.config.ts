@@ -31,6 +31,25 @@ function projectDetailPageInputs(): Record<string, string> {
 }
 
 /**
+ * Registers each HTML file under pages/jury/ (protected area) as a Rollup input.
+ */
+function juryPageInputs(): Record<string, string> {
+  const juryDir = resolve(projectRoot, 'pages/jury');
+  if (!existsSync(juryDir)) {
+    return {};
+  }
+
+  return Object.fromEntries(
+    readdirSync(juryDir)
+      .filter((name) => name.endsWith('.html'))
+      .map((name) => {
+        const stem = name.replace(/\.html$/, '');
+        return [`jury-${stem}`, resolve(juryDir, name)] as const;
+      }),
+  );
+}
+
+/**
  * Redirects the site root to the home page for `vite` and `vite preview`,
  * mirroring `public/_redirects` (Netlify-only, not read by these servers).
  */
@@ -79,6 +98,7 @@ export default defineConfig({
         cv: resolve(projectRoot, 'pages/cv.html'),
         contact: resolve(projectRoot, 'pages/contact.html'),
         ...projectDetailPageInputs(),
+        ...juryPageInputs(),
       },
     },
   },

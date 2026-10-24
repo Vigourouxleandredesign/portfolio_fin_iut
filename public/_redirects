@@ -14,3 +14,8 @@
 /projects/back-springboot  /pages/projects/back-springboot.html  200
 /projects/pacific-dataviz  /pages/projects/pacific-dataviz.html  200
 /projects/borne-2bealive   /pages/projects/borne-2bealive.html   200
+/jury                              /pages/jury/index.html                          200
+/jury/developpement-front          /pages/jury/developpement-front.html            200
+/jury/qualite-securite-performance /pages/jury/qualite-securite-performance.html   200
+/jury/client-gestion-projet        /pages/jury/client-gestion-projet.html          200
+/jury/strategie-analyse            /pages/jury/strategie-analyse.html              200
