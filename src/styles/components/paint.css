@@ -1,0 +1,60 @@
+/**
+ * @file Paint — gouache pigment gestures (decor)
+ * @description `.paint` textures (webp, relief included) and `.paint-mask` recolored silhouettes.
+ *   Never `mix-blend-mode` (gouache is opaque). Reduced / hidden under 48rem (docs/DA.md §6).
+ */
+
+.paint {
+  position: absolute;
+  display: block;
+  max-width: none;
+  height: auto;
+  pointer-events: none;
+}
+
+.paint--sm {
+  width: 8rem;
+}
+
+.paint--md {
+  width: 16rem;
+}
+
+.paint--lg {
+  width: 28rem;
+}
+
+.paint--phtalo {
+  filter: drop-shadow(
+    0 0 14px color-mix(in srgb, var(--color-pigment-phtalo-glint) 28%, transparent)
+  );
+}
+
+.paint-mask {
+  --paint-color: var(--color-pigment-copper);
+
+  position: absolute;
+  display: block;
+  pointer-events: none;
+  background: var(--paint-color);
+  mask: var(--paint-mask) center / contain no-repeat;
+  -webkit-mask: var(--paint-mask) center / contain no-repeat;
+}
+
+@media (max-width: 47.99rem) {
+  .paint {
+    opacity: 0.8;
+  }
+
+  .paint--md {
+    width: 10rem;
+  }
+
+  .paint--lg {
+    width: 14rem;
+  }
+
+  .paint-mask {
+    display: none;
+  }
+}

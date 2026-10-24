@@ -1,0 +1,48 @@
+/**
+ * @file Graded image — « Odyssée » color grade for project visuals
+ * @description `.graded-image` wraps an `<img class="graded-image__img">`: desaturated, amber veil top-left,
+ *   vignette, petrol-blue floor. Hover lifts brightness by 0.15 (docs/DA.md §5).
+ */
+
+.graded-image {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-abyss);
+}
+
+.graded-image__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.68) contrast(1.2) saturate(0.58) sepia(0.12);
+  transition: filter var(--duration-normal) var(--ease-out);
+}
+
+.graded-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      150deg,
+      color-mix(in srgb, var(--color-light-fire) 22%, transparent) 0%,
+      transparent 42%
+    ),
+    radial-gradient(
+      ellipse at 50% 50%,
+      transparent 45%,
+      color-mix(in srgb, var(--color-abyss) 75%, transparent) 100%
+    ),
+    linear-gradient(
+      180deg,
+      transparent 55%,
+      color-mix(in srgb, var(--color-pigment-phtalo-deep) 35%, transparent) 100%
+    );
+}
+
+.graded-image:hover .graded-image__img,
+.graded-image:focus-within .graded-image__img {
+  filter: brightness(0.82) contrast(1.2) saturate(0.6) sepia(0.12);
+}

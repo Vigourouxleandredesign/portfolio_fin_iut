@@ -1,0 +1,62 @@
+/**
+ * @file Section title — « collision » (Updock gesture over Ubuntu Bold) + ghost word
+ * @description `.section-title` (typographic play A) and `.ghost-word` (play B, docs/DA.md §4).
+ */
+
+.section-title {
+  position: relative;
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(var(--text-4xl), 6vw, var(--text-6xl));
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text);
+}
+
+.section-title__main {
+  position: relative;
+  z-index: 1;
+}
+
+.section-title__gesture {
+  display: inline-block;
+  margin-left: -0.35em;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  font-weight: 400;
+  line-height: 0.8;
+  letter-spacing: 0;
+  opacity: 0.85;
+  transform: rotate(-5deg);
+  background: linear-gradient(
+    120deg,
+    var(--color-pigment-copper-light),
+    var(--color-pigment-copper)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.ghost-word {
+  display: none;
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (min-width: 48rem) {
+  .ghost-word {
+    position: absolute;
+    z-index: 0;
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 14rem;
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--color-border);
+  }
+}
