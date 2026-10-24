@@ -87,7 +87,7 @@ Captures desktop optionnelles : `ng serve` puis décommenter la cible dans le sc
 | `croquis.webp` | 1400×787 | Process (croquis) |
 | `rendu-1..4.webp` | 1200×612 | Rendus 3D |
 | `mockup-borne.webp` | 1600×900 | Visuel principal |
-| `borne.glb` | 815 Ko | Showcase 3D (`[data-glb-showcase]`, comme MagicalLab) |
+| `public/documents/elements/borne.glb` | 815 Ko | Showcase 3D (`[data-glb-showcase]`, comme MagicalLab) |
 
 **⚠ Lien mort :** l’iframe de `borne-2bealive.html` pointe sur `visualcom.nc/precommande-borne-2b-alive/` (404). Remplacer par `mockup-borne.webp` + le GLB.
 

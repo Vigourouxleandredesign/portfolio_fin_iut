@@ -22,7 +22,15 @@ const PROJECT_SLUGS = [
  * Pages already migrated to the DA v3 template (cartel + page-hero).
  * Each project lot (L3b/c/d) adds its slugs here when it migrates its pages.
  */
-const MIGRATED_SLUGS: readonly string[] = ['lab-horizon', 'micromonde', 'village-jeunes'];
+const MIGRATED_SLUGS: readonly string[] = [
+  'lab-horizon',
+  'micromonde',
+  'village-jeunes',
+  'hyperloop',
+  'back-springboot',
+  'pacific-dataviz',
+  'borne-2bealive',
+];
 
 /** Pages migrated onto the legacy stage layout (project-stage) with DA v3 cartel, beam and graded images. */
 const STAGE_MIGRATED_SLUGS: readonly string[] = ['visualcom', 'magicallab'];
@@ -68,7 +76,8 @@ describe('project pages — DA v3 template', () => {
     expect(html).toContain('class="cartel cartel--');
     expect(html).toContain('class="page-hero project-hero"');
     expect(html).toContain('class="light-beam"');
-    expect(html).toContain('graded-image__img');
+    // text-only pages (no capture yet) carry a pigment stain instead of a graded image
+    expect(html).toMatch(/graded-image__img|paint-mask/);
     expect(html).toMatch(/<meta\s+property="og:image"/);
   });
 });
