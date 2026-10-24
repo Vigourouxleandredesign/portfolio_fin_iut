@@ -1,0 +1,77 @@
+/**
+ * @file 404 page — « Salle introuvable »
+ * @description One scene: night background, fire light beam, one copper splat, gold logo.
+ *   Colors via var(--color-*) only.
+ */
+
+.not-found {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  min-height: calc(100svh - var(--header-height));
+  place-items: center;
+  overflow: clip;
+  padding: var(--space-16) var(--space-4);
+  background-color: var(--color-bg);
+}
+
+.not-found__inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: var(--space-4);
+  justify-items: center;
+  text-align: center;
+}
+
+.not-found__logo {
+  width: 6rem;
+  height: 6rem;
+}
+
+.not-found__code {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+}
+
+.not-found__title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(var(--text-4xl), 9vw, var(--text-hero));
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text);
+}
+
+.not-found__text {
+  margin: 0;
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+}
+
+.not-found__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  justify-content: center;
+  margin: var(--space-4) 0 0;
+}
+
+.not-found__paint {
+  right: 4%;
+  bottom: 4%;
+  z-index: 0;
+  width: clamp(12rem, 28vw, 26rem);
+  opacity: 0.9;
+}
+
+@media (max-width: 47.99rem) {
+  .not-found__paint {
+    display: none;
+  }
+}

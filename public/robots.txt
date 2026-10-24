@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /jury
 Disallow: /pages/jury
+Sitemap: https://REMPLACER-PAR-LE-DOMAINE/sitemap.xml

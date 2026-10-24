@@ -29,6 +29,7 @@
   height: 7px;
   border-radius: 50%;
   background-color: var(--color-ember);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--color-light-fire) 55%, transparent);
 }
 
 .timeline__date {
@@ -36,7 +37,7 @@
   margin-bottom: var(--space-2);
   font-family: var(--font-mono);
   font-size: var(--text-xs);
-  letter-spacing: var(--tracking-wide);
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-ember);
 }
@@ -45,6 +46,7 @@
   margin: 0 0 var(--space-1);
   font-family: var(--font-heading);
   font-size: var(--text-lg);
+  font-weight: 700;
   color: var(--color-text);
 }
 
@@ -58,5 +60,5 @@
   margin: 0;
   max-width: 60ch;
   color: var(--color-text-muted);
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
 }
