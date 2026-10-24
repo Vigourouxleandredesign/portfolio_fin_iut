@@ -7,6 +7,7 @@ import { expect, test } from '@playwright/test';
 const routes = [
   '/pages/index.html',
   '/pages/projects.html',
+  '/pages/projects/lab-horizon.html',
   '/pages/projects/magicallab.html',
   '/pages/contact.html',
   '/pages/cv.html',

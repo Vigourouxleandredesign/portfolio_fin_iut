@@ -15,6 +15,7 @@ const PUBLIC_PAGES = [
 ];
 
 const PROJECT_SLUGS = [
+  'lab-horizon',
   'visualcom',
   'village-jeunes',
   'magicallab',

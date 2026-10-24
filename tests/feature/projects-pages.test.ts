@@ -36,6 +36,33 @@ describe('C5 — Visualcom stage + dual-device mockup', () => {
 describe('C2 — projects listing card links', () => {
   const html = readFileSync(resolve(process.cwd(), 'pages/projects.html'), 'utf8');
 
+  it('lists the 9 projects in catalogue order I → IX, Lab Horizon first', () => {
+    const hrefs = [...html.matchAll(/class="project-card__link" href="([^"]+)"/g)].map((m) => m[1]);
+    expect(hrefs).toEqual([
+      '/pages/projects/lab-horizon.html',
+      '/pages/projects/magicallab.html',
+      '/pages/projects/micromonde.html',
+      '/pages/projects/village-jeunes.html',
+      '/pages/projects/visualcom.html',
+      '/pages/projects/hyperloop.html',
+      '/pages/projects/back-springboot.html',
+      '/pages/projects/pacific-dataviz.html',
+      '/pages/projects/borne-2bealive.html',
+    ]);
+  });
+
+  it('numbers cards with Mono cartel metadata and graded covers', () => {
+    for (const numeral of ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX']) {
+      expect(html).toMatch(new RegExp('project-card__meta">N° ' + numeral + ' · 20'));
+    }
+    expect(html).toContain('project-card--lab-horizon');
+    expect(html.match(/project-card__visual graded-image/g)).toHaveLength(9);
+  });
+
+  it('links Lab Horizon card to its case study', () => {
+    expect(html).toContain('href="/pages/projects/lab-horizon.html"');
+  });
+
   it('links MagicalLab card to its case study', () => {
     expect(html).toContain('href="/pages/projects/magicallab.html"');
   });

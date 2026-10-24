@@ -1,24 +1,49 @@
 /**
- * @file Project card — portfolio item teaser
- * @description `.project-card` block. Full-card stretch link + visible CTA.
- *   Visual falls back to a glazed charcoal placeholder until covers exist.
+ * @file Project card — portfolio « œuvre » teaser (DA v3)
+ * @description `.project-card` block: graded cover (`.graded-image`), Mono meta line, pigment rule on
+ *   the body. Modifiers `--lab-horizon --magicallab --micromonde --village-jeunes --visualcom --secondary`
+ *   set `--project-pigment`. Hover / focus: lifts 10 px, 1 px rule + halo at the pigment, brush stroke
+ *   revealed at the bottom of the image. Full-card stretch link + visible CTA.
  */
 
 .project-card {
+  --project-pigment: var(--color-project-secondary);
+
   position: relative;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  border: 1px solid color-mix(in srgb, var(--color-marble) 28%, var(--color-border));
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   background-color: var(--color-surface);
-  box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--color-marble-ink) 18%, transparent),
-    0 18px 40px color-mix(in srgb, var(--color-bg) 55%, transparent);
+  box-shadow: 0 18px 40px color-mix(in srgb, var(--color-abyss) 55%, transparent);
   transition:
-    border-color var(--duration-normal) var(--ease-out),
     transform var(--duration-normal) var(--ease-out),
     box-shadow var(--duration-normal) var(--ease-out);
+}
+
+.project-card--lab-horizon {
+  --project-pigment: var(--color-project-lab-horizon);
+}
+
+.project-card--magicallab {
+  --project-pigment: var(--color-project-magicallab);
+}
+
+.project-card--micromonde {
+  --project-pigment: var(--color-project-micromonde);
+}
+
+.project-card--village-jeunes {
+  --project-pigment: var(--color-project-village-jeunes);
+}
+
+.project-card--visualcom {
+  --project-pigment: var(--color-project-visualcom);
+}
+
+.project-card--secondary {
+  --project-pigment: var(--color-project-secondary);
 }
 
 .project-card:has(.project-card__link) {
@@ -27,11 +52,10 @@
 
 .project-card:hover,
 .project-card:focus-within {
-  border-color: color-mix(in srgb, var(--color-ember) 55%, var(--color-border));
-  transform: translateY(-6px);
+  transform: translateY(-10px);
   box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--color-ember) 35%, transparent),
-    0 28px 56px color-mix(in srgb, var(--color-bg) 65%, transparent);
+    0 0 0 1px var(--project-pigment),
+    0 24px 56px color-mix(in srgb, var(--project-pigment) 35%, transparent);
 }
 
 .project-card__visual {
@@ -39,48 +63,6 @@
   aspect-ratio: 16 / 10;
   display: grid;
   place-items: center;
-  overflow: hidden;
-  background-image:
-    radial-gradient(
-      110% 90% at 18% 0%,
-      color-mix(in srgb, var(--color-ember) 28%, transparent),
-      transparent 55%
-    ),
-    linear-gradient(
-      165deg,
-      var(--color-surface-elevated),
-      var(--color-bg) 70%,
-      color-mix(in srgb, var(--color-atelier) 80%, var(--color-bg))
-    );
-}
-
-/* Water / glass reflection wash over the placeholder */
-.project-card__glaze {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background:
-    linear-gradient(
-      118deg,
-      color-mix(in srgb, var(--color-marble) 22%, transparent) 0%,
-      transparent 42%,
-      color-mix(in srgb, var(--color-ember) 12%, transparent) 58%,
-      transparent 78%
-    ),
-    linear-gradient(
-      to bottom,
-      transparent 55%,
-      color-mix(in srgb, var(--color-atelier) 35%, transparent) 100%
-    );
-  mix-blend-mode: soft-light;
-  opacity: 0.9;
-  transition: opacity var(--duration-normal) var(--ease-out);
-}
-
-.project-card:hover .project-card__glaze,
-.project-card:focus-within .project-card__glaze {
-  opacity: 1;
 }
 
 .project-card__image {
@@ -89,6 +71,11 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.project-card:hover .project-card__image,
+.project-card:focus-within .project-card__image {
+  filter: brightness(0.82) contrast(1.2) saturate(0.6) sepia(0.12);
 }
 
 .project-card__initial {
@@ -106,7 +93,32 @@
 
 .project-card:hover .project-card__initial,
 .project-card:focus-within .project-card__initial {
-  color: color-mix(in srgb, var(--color-ember) 35%, var(--color-text));
+  color: color-mix(in srgb, var(--project-pigment) 45%, var(--color-text));
+}
+
+/* Brush stroke at the project pigment — revealed left to right on hover / focus */
+.project-card__stroke {
+  --paint-color: var(--project-pigment);
+  --paint-mask: url('../../assets/decor/paint/silhouettes/swipe-copper.svg');
+
+  right: 12%;
+  bottom: var(--space-3);
+  left: 12%;
+  z-index: 1;
+  height: 2.75rem;
+  mask-size: 100% 100%;
+  -webkit-mask-size: 100% 100%;
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  transition:
+    clip-path var(--duration-slow) var(--ease-out),
+    opacity var(--duration-normal) var(--ease-out);
+}
+
+.project-card:hover .project-card__stroke,
+.project-card:focus-within .project-card__stroke {
+  opacity: 0.9;
+  clip-path: inset(0);
 }
 
 .project-card__body {
@@ -114,16 +126,15 @@
   flex-direction: column;
   gap: var(--space-3);
   padding: var(--space-6);
+  border-left: 2px solid var(--project-pigment);
   flex: 1;
 }
 
 .project-card__meta {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
+  margin: 0;
   font-family: var(--font-mono);
   font-size: var(--text-xs);
-  letter-spacing: var(--tracking-wide);
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-text-muted);
 }
@@ -132,6 +143,7 @@
   margin: 0;
   font-family: var(--font-heading);
   font-size: var(--text-xl);
+  font-weight: 700;
   line-height: 1.2;
   color: var(--color-text);
 }
@@ -155,6 +167,7 @@
   padding: var(--space-1) var(--space-3);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
   font-size: var(--text-xs);
   color: var(--color-text-muted);
 }
@@ -168,7 +181,7 @@
   padding-top: var(--space-2);
   font-family: var(--font-mono);
   font-size: var(--text-xs);
-  letter-spacing: var(--tracking-wide);
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-ember);
   transition: color var(--duration-fast) var(--ease-out);
@@ -198,20 +211,18 @@
 }
 
 .project-card__link:focus-visible {
-  outline: 2px solid var(--color-ember);
+  outline: 2px solid var(--color-light-fire);
   outline-offset: -2px;
 }
 
-/* Home featured weight */
-.project-card--featured .project-card__visual {
-  aspect-ratio: 4 / 3;
-}
+@media (prefers-reduced-motion: reduce) {
+  .project-card,
+  .project-card__stroke {
+    transition: none;
+  }
 
-.project-card--featured .project-card__title {
-  font-size: clamp(var(--text-xl), 2.2vw, var(--text-2xl));
-}
-
-.project-card--featured .project-card__body {
-  padding: var(--space-8);
-  gap: var(--space-4);
+  .project-card:hover,
+  .project-card:focus-within {
+    transform: none;
+  }
 }

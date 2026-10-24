@@ -1,7 +1,35 @@
 /**
  * @file Project detail — case study layout
- * @description `.project-detail` blocks: hero, marble mockups (iframe or static shots),
- *   clickable demo preview links, snapshot, gallery, lore, narrative.
+ * @description DA v3 project-page template (docs/content/projects/_TEMPLATE.md) + legacy case-study blocks.
+ *
+ * TEMPLATE BLOCKS — pages/projects/<slug>.html use these as-is (never edit this file from a project lot).
+ *
+ *   <main class="project-page project-page--<pigment>">      pigment: lab-horizon | magicallab | micromonde |
+ *                                                            village-jeunes | visualcom | secondary
+ *                                                            (sets `--project-pigment`)
+ *   1 Hero    section.page-hero.project-hero                 (page-hero.css) + `.light-beam` as first child
+ *               .project-hero__paint        <img class="paint …"> texture, bottom-right (add `paint--phtalo` for phtalo)
+ *               .project-hero__stain        silhouette recolored at the project pigment; + one of
+ *                                           --splat | --swipe | --drip | --bloom (alternative to __paint)
+ *               .page-hero__inner > .page-hero__body (.breadcrumb, dl.cartel.cartel--<pigment>,
+ *                 h1.page-hero__title, p.page-hero__lead, .page-hero__actions > a.button)
+ *               .page-hero__media.graded-image > img.graded-image__img   (hero visual, no lazy)
+ *   2 Brief   section.project-brief > .project-brief__list > li.project-brief__item
+ *               (.project-brief__label mono, .project-brief__text) — 3 items max
+ *   3 Story   section.project-story > article.project-story__block (alternates image/text automatically)
+ *               .project-story__copy (index + title + text) · .project-story__index (I, II…)
+ *               .project-story__title (h2) · .project-story__text (p)
+ *               .project-story__visual.graded-image · .project-story__caption · modifier --no-visual
+ *   4 Gallery section.project-gallery > .project-gallery__grid > figure.project-gallery__item
+ *               (.graded-image + figcaption.project-gallery__caption) · modifier __item--wide
+ *               .project-gallery__frame: fixed-ratio crop for *-full captures (scrolls on hover)
+ *               .project-gallery__frame--mobile for 9 / 19.5 phone captures
+ *   5 Takeaway section.project-takeaway > p.project-takeaway__text   (omit if no text)
+ *   6 Nav     nav.project-nav (aria-label) > a.project-nav__link--prev | --all | --next
+ *               > span.project-nav__label + span.project-nav__name
+ *
+ * Section heading helpers: `.project-section__eyebrow` (mono label) + `.project-section__title` (h2).
+ * Legacy blocks below (`.project-stage`, `.project-detail__*`) stay valid for Visualcom and MagicalLab.
  */
 
 .breadcrumb {
@@ -798,5 +826,419 @@
   .project-detail__layout--split .project-detail__narrative,
   .project-detail__layout--split .project-detail__reflective {
     grid-column: 1 / -1;
+  }
+}
+
+/* ================================================================
+   DA v3 template (see the block list at the top of this file)
+   ================================================================ */
+
+.project-page {
+  --project-pigment: var(--color-project-secondary);
+
+  position: relative;
+  z-index: 1;
+}
+
+.project-page--lab-horizon {
+  --project-pigment: var(--color-project-lab-horizon);
+}
+
+.project-page--magicallab {
+  --project-pigment: var(--color-project-magicallab);
+}
+
+.project-page--micromonde {
+  --project-pigment: var(--color-project-micromonde);
+}
+
+.project-page--village-jeunes {
+  --project-pigment: var(--color-project-village-jeunes);
+}
+
+.project-page--visualcom {
+  --project-pigment: var(--color-project-visualcom);
+}
+
+.project-page--secondary {
+  --project-pigment: var(--color-project-secondary);
+}
+
+/* —— 1 · Hero —— */
+
+.project-hero .breadcrumb {
+  margin-bottom: var(--space-6);
+}
+
+.project-hero .page-hero__media {
+  min-height: 0;
+  aspect-ratio: 16 / 10;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--project-pigment) 40%, transparent);
+}
+
+.project-hero .cartel {
+  --cartel-pigment: var(--project-pigment);
+}
+
+.project-hero__paint {
+  right: 2%;
+  bottom: 0;
+  z-index: 0;
+  width: clamp(12rem, 22vw, 20rem);
+  opacity: 0.9;
+}
+
+.project-hero__stain {
+  --paint-color: var(--project-pigment);
+
+  right: 2%;
+  bottom: 0;
+  z-index: 0;
+  width: clamp(12rem, 22vw, 20rem);
+  aspect-ratio: 1;
+}
+
+.project-hero__stain--splat {
+  --paint-mask: url('../../assets/decor/paint/silhouettes/splat-copper.svg');
+}
+
+.project-hero__stain--swipe {
+  --paint-mask: url('../../assets/decor/paint/silhouettes/swipe-copper.svg');
+
+  aspect-ratio: 2.7;
+}
+
+.project-hero__stain--drip {
+  --paint-mask: url('../../assets/decor/paint/silhouettes/drip-gold.svg');
+}
+
+.project-hero__stain--bloom {
+  --paint-mask: url('../../assets/decor/paint/silhouettes/bloom-trio.svg');
+}
+
+@media (max-width: 47.99rem) {
+  .project-hero__paint,
+  .project-hero__stain {
+    display: none;
+  }
+}
+
+/* —— Section heading helpers —— */
+
+.project-section__eyebrow {
+  display: block;
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+}
+
+.project-section__title {
+  margin: 0 0 var(--space-6);
+  font-family: var(--font-heading);
+  font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text);
+}
+
+/* —— 2 · Brief —— */
+
+.project-brief,
+.project-story,
+.project-gallery,
+.project-takeaway,
+.project-nav {
+  position: relative;
+  width: min(100%, var(--layout-max));
+  margin-inline: auto;
+  padding: var(--space-12) var(--space-4);
+}
+
+.project-brief__list {
+  display: grid;
+  gap: var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-brief__item {
+  padding: var(--space-6);
+  border: 1px solid var(--color-border);
+  border-left: 2px solid var(--project-pigment);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+}
+
+.project-brief__label {
+  display: block;
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+}
+
+.project-brief__text {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-base);
+  line-height: 1.6;
+}
+
+@media (min-width: 48rem) {
+  .project-brief__list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* —— 3 · Story —— */
+
+.project-story__block {
+  display: grid;
+  gap: var(--space-6);
+  align-items: center;
+  padding-block: var(--space-10);
+  border-top: 1px solid var(--color-border);
+}
+
+.project-story__block:first-of-type {
+  border-top: 0;
+}
+
+.project-story__index {
+  display: block;
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-heading);
+  font-size: var(--text-5xl);
+  font-weight: 300;
+  line-height: 1;
+  color: color-mix(in srgb, var(--project-pigment) 70%, var(--color-text-muted));
+}
+
+.project-story__title {
+  margin: 0 0 var(--space-4);
+  font-family: var(--font-heading);
+  font-size: clamp(var(--text-xl), 3vw, var(--text-3xl));
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--color-text);
+}
+
+.project-story__text {
+  margin: 0;
+  max-width: 52ch;
+  color: var(--color-text-muted);
+  font-size: var(--text-base);
+  line-height: 1.7;
+}
+
+.project-story__visual {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.project-story__visual .graded-image__img {
+  height: auto;
+}
+
+.project-story__caption {
+  margin: var(--space-3) 0 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+@media (min-width: 48rem) {
+  .project-story__block {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-12);
+  }
+
+  .project-story__block:nth-of-type(even) .project-story__copy {
+    order: 2;
+  }
+
+  .project-story__block--no-visual {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Story visual variants: __visual--phone (narrow portrait capture), __visual--grid (thumbnail grid) */
+.project-story__visual--phone {
+  max-width: 14rem;
+  margin-inline: auto;
+}
+
+.project-story__visual--grid {
+  border: 0;
+}
+
+.project-story__visual--grid .project-gallery__grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 8.5rem), 1fr));
+  gap: var(--space-3);
+}
+
+/* —— 4 · Gallery —— */
+
+.project-gallery__grid {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-gallery__item {
+  position: relative;
+  margin: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  transition:
+    border-color var(--duration-normal) var(--ease-out),
+    box-shadow var(--duration-normal) var(--ease-out);
+}
+
+.project-gallery__item:hover,
+.project-gallery__item:focus-within {
+  border-color: var(--project-pigment);
+  box-shadow: 0 0 24px color-mix(in srgb, var(--project-pigment) 28%, transparent);
+}
+
+.project-gallery__item--wide {
+  grid-column: 1 / -1;
+}
+
+.project-gallery__item .graded-image__img {
+  height: auto;
+}
+
+.project-gallery__caption {
+  margin: var(--space-3) 0 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.project-gallery__frame {
+  aspect-ratio: 16 / 10;
+}
+
+.project-gallery__frame--mobile {
+  aspect-ratio: 9 / 19.5;
+  max-width: 18rem;
+  margin-inline: auto;
+}
+
+.project-gallery__item .project-gallery__frame .graded-image__img {
+  height: 100%;
+  object-position: top;
+  transition:
+    object-position var(--duration-slow) var(--ease-out),
+    filter var(--duration-normal) var(--ease-out);
+}
+
+.project-gallery__frame:hover .graded-image__img {
+  object-position: bottom;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-gallery__item .project-gallery__frame .graded-image__img {
+    transition: none;
+  }
+
+  .project-gallery__frame:hover .graded-image__img {
+    object-position: top;
+  }
+}
+
+/* —— 5 · Takeaway —— */
+
+.project-takeaway__text {
+  margin: 0;
+  max-width: 60ch;
+  padding-left: var(--space-6);
+  border-left: 2px solid var(--project-pigment);
+  font-size: var(--text-xl);
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+/* —— 6 · Project navigation —— */
+
+.project-nav {
+  display: grid;
+  gap: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+.project-nav__link {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-4) var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  text-decoration: none;
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out);
+}
+
+.project-nav__link:hover {
+  border-color: var(--color-ember);
+  background-color: var(--color-surface);
+}
+
+.project-nav__link:focus-visible {
+  outline: 2px solid var(--color-light-fire);
+  outline-offset: 3px;
+}
+
+.project-nav__link--next {
+  text-align: right;
+}
+
+.project-nav__link--all {
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+}
+
+.project-nav__label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.project-nav__name {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: 700;
+}
+
+@media (min-width: 48rem) {
+  .project-nav {
+    grid-template-columns: 1fr auto 1fr;
+    align-items: stretch;
   }
 }
