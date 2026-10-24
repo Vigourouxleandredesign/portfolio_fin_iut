@@ -4,13 +4,23 @@
  */
 
 .site-footer {
+  position: relative;
+  overflow: hidden;
   padding: var(--space-16) var(--space-4) var(--space-8);
   border-top: 1px solid var(--color-border);
-  background-color: var(--color-surface);
+  background-color: var(--color-abyss);
   color: var(--color-text-muted);
 }
 
+.site-footer__paint {
+  right: var(--space-8);
+  bottom: var(--space-12);
+  width: 12rem;
+  opacity: 0.7;
+}
+
 .site-footer__inner {
+  position: relative;
   width: min(100%, var(--layout-max));
   margin-inline: auto;
   display: grid;
@@ -30,7 +40,7 @@
   margin: 0 0 var(--space-3);
   font-family: var(--font-mono);
   font-size: var(--text-xs);
-  letter-spacing: var(--tracking-wide);
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-ember);
 }
@@ -55,6 +65,7 @@
 }
 
 .site-footer__bottom {
+  position: relative;
   width: min(100%, var(--layout-max));
   margin: var(--space-12) auto 0;
   padding-top: var(--space-6);

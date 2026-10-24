@@ -1,0 +1,64 @@
+/**
+ * @file Light beam — single fire light source with drifting dust
+ * @description `.light-beam` (diagonal, blurred, top-left) and `.light-beam__dust` (dots inside the beam only).
+ *   Dust is disabled under `prefers-reduced-motion` (docs/DA.md §5).
+ */
+
+.light-beam {
+  position: absolute;
+  top: -20%;
+  left: 8%;
+  width: 28rem;
+  height: 140%;
+  overflow: hidden;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-light-fire) 30%, transparent),
+    transparent 80%
+  );
+  transform: rotate(-24deg);
+  filter: blur(32px);
+  mix-blend-mode: screen;
+}
+
+.light-beam__dust {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, var(--color-light-fire) 0 1px, transparent 2px),
+    radial-gradient(circle, var(--color-light-fire) 0 1.5px, transparent 2.5px),
+    radial-gradient(circle, var(--color-light-fire) 0 1px, transparent 2px);
+  background-size:
+    90px 130px,
+    140px 190px,
+    210px 240px;
+  background-position:
+    10px 20px,
+    60px 90px,
+    120px 40px;
+  opacity: 0.55;
+  animation: light-beam-drift 10s ease-in-out infinite alternate;
+}
+
+@keyframes light-beam-drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(14px, -28px, 0);
+  }
+}
+
+@media (max-width: 47.99rem) {
+  .light-beam {
+    width: 18rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .light-beam__dust {
+    display: none;
+  }
+}
