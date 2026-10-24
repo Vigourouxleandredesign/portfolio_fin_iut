@@ -65,7 +65,10 @@
       </nav>
     </header>
 
-    <main id="main" class="page-shell page-shell--flush project-stage-page">
+    <main
+      id="main"
+      class="page-shell page-shell--flush project-stage-page project-page project-page--magicallab"
+    >
       <div class="project-detail__grain" aria-hidden="true"></div>
 
       <section class="project-stage" aria-label="MagicalLab, entrée par le portail">
@@ -80,6 +83,7 @@
         </div>
         <div class="project-stage__veil" aria-hidden="true"></div>
         <div class="project-stage__splash" aria-hidden="true"></div>
+        <div class="light-beam" aria-hidden="true"><div class="light-beam__dust"></div></div>
 
         <div class="project-stage__inner">
           <nav class="breadcrumb breadcrumb--on-stage" aria-label="Fil d'Ariane">
@@ -95,15 +99,19 @@
 
           <div class="project-stage__compose">
             <header class="project-stage__copy">
-              <p class="project-detail__meta">
-                <span>Développement web</span><span>2025</span><span>Académique</span>
-              </p>
+              <dl class="cartel cartel--magicallab">
+                <dt class="visually-hidden">Fiche du projet</dt>
+                <dd class="cartel__meta">N° II · 2026 · Projet front — IUT</dd>
+                <dd class="cartel__stack">
+                  React 19 · React Three Fiber · drei · Rapier · postprocessing · Leva · Vite
+                </dd>
+              </dl>
               <h1
                 class="project-stage__title project-stage__title--artistic"
                 aria-label="MagicalLab"
               >
-                <span class="project-stage__title-display">Magical</span
-                ><span class="project-stage__title-body">Lab</span>
+                <span class="project-stage__title-body" aria-hidden="true">Magical</span
+                ><span class="project-stage__title-display" aria-hidden="true">Lab</span>
               </h1>
               <p class="project-stage__lead">
                 Un petit robot traverse une étrange lumière au fond de l’atelier où il était
@@ -203,10 +211,7 @@
               <canvas class="glb-showcase__canvas" data-glb-canvas></canvas>
               <p class="glb-showcase__fallback">Chargement du robot…</p>
             </div>
-            <p class="glb-showcase__credit">
-              Modèle téléchargé sur Sketchfab. Le fichier ne contient plus le nom du créateur, alors
-              le crédit exact reste à compléter.
-            </p>
+            <p class="glb-showcase__credit">Modèle 3D du robot : Komov, Sketchfab.</p>
           </div>
 
           <div class="project-detail__lore-copy">
@@ -279,8 +284,9 @@
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <div class="project-detail__figure-visual">
+                <div class="project-detail__figure-visual graded-image">
                   <img
+                    class="graded-image__img"
                     src="/src/assets/projects/magicallab/scene-lab-shelf.jpg"
                     alt="MagicalLab, bibliothèque et orrery"
                     width="960"
@@ -299,8 +305,9 @@
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <div class="project-detail__figure-visual">
+                <div class="project-detail__figure-visual graded-image">
                   <img
+                    class="graded-image__img"
                     src="/src/assets/projects/magicallab/scene-portal.jpg"
                     alt="MagicalLab, le portail"
                     width="960"
@@ -319,8 +326,9 @@
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <div class="project-detail__figure-visual">
+                <div class="project-detail__figure-visual graded-image">
                   <img
+                    class="graded-image__img"
                     src="/src/assets/projects/magicallab/scene-ritual.jpg"
                     alt="MagicalLab, interaction avec la touche F"
                     width="960"
@@ -331,6 +339,48 @@
                 </div>
               </a>
               <figcaption class="project-detail__figure-caption">Interaction · F</figcaption>
+            </figure>
+            <figure class="project-detail__figure">
+              <a
+                class="project-detail__demo-link"
+                href="https://magicallab.netlify.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="project-detail__figure-visual graded-image">
+                  <img
+                    class="graded-image__img"
+                    src="/src/assets/projects/magicallab/shots/magicallab-scene-desktop.webp"
+                    alt="MagicalLab, capture de la scène sur ordinateur"
+                    width="1440"
+                    height="900"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </a>
+              <figcaption class="project-detail__figure-caption">Vue ordinateur</figcaption>
+            </figure>
+            <figure class="project-detail__figure">
+              <a
+                class="project-detail__demo-link"
+                href="https://magicallab.netlify.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="project-detail__figure-visual graded-image">
+                  <img
+                    class="graded-image__img"
+                    src="/src/assets/projects/magicallab/shots/magicallab-scene-mobile.webp"
+                    alt="MagicalLab, capture de la scène sur téléphone"
+                    width="780"
+                    height="1688"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </a>
+              <figcaption class="project-detail__figure-caption">Vue téléphone</figcaption>
             </figure>
           </div>
         </section>

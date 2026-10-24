@@ -66,7 +66,10 @@
       </nav>
     </header>
 
-    <main id="main" class="page-shell page-shell--flush project-stage-page">
+    <main
+      id="main"
+      class="page-shell page-shell--flush project-stage-page project-page project-page--visualcom"
+    >
       <div class="project-detail__grain" aria-hidden="true"></div>
 
       <section class="project-stage" aria-label="Visualcom — aperçu du site">
@@ -81,6 +84,7 @@
         </div>
         <div class="project-stage__veil" aria-hidden="true"></div>
         <div class="project-stage__splash" aria-hidden="true"></div>
+        <div class="light-beam" aria-hidden="true"><div class="light-beam__dust"></div></div>
 
         <div class="project-stage__inner">
           <nav class="breadcrumb breadcrumb--on-stage" aria-label="Fil d'Ariane">
@@ -96,7 +100,13 @@
 
           <div class="project-stage__compose">
             <header class="project-stage__copy">
-              <p class="project-detail__meta"><span>Développement web</span><span>2025</span></p>
+              <dl class="cartel cartel--visualcom">
+                <dt class="visually-hidden">Fiche du projet</dt>
+                <dd class="cartel__meta">N° V · 2026 · Alternance Visualcom</dd>
+                <dd class="cartel__stack">
+                  WordPress · thème sur mesure · PHP · GitHub · Claude / MCP
+                </dd>
+              </dl>
               <h1 class="project-stage__title">Visualcom</h1>
               <p class="project-stage__lead">
                 Refonte WordPress sur mesure — thème custom, déploiement GitHub et réflexion Claude
@@ -182,6 +192,26 @@
           </p>
         </section>
 
+        <section class="project-detail__snapshot" aria-labelledby="visualcom-ai-title" data-reveal>
+          <span class="project-detail__snapshot-eyebrow">Le défi IA</span>
+          <h2 class="project-detail__snapshot-title" id="visualcom-ai-title">
+            Ouvrir WordPress à l’IA, sans ouvrir de brèche
+          </h2>
+          <p class="project-detail__pitch">
+            L’équipe voulait publier ses actualités depuis Claude. Les plugins IA testés exigeaient
+            des droits administrateur : je les ai écartés. À la place, chaque membre a son propre
+            compte, sa propre clé, un profil d’éditeur <strong>sans droit de suppression</strong>.
+            Le serveur reste la seule source de vérité ; un skill Claude, pensé comme une interface,
+            guide l’équipe vers les bonnes pratiques (SEO, accessibilité, images légères) avant même
+            d’envoyer une demande.
+          </p>
+          <span class="project-detail__snapshot-eyebrow">Ce que j’ai livré</span>
+          <ul class="project-detail__highlights">
+            <li>Centaine d’actualités existantes conservées, nouvelles pages métier.</li>
+            <li>Comptes nominatifs, clés d’application individuelles, droits limités.</li>
+          </ul>
+        </section>
+
         <section
           class="project-detail__gallery"
           aria-labelledby="visualcom-gallery-title"
@@ -201,8 +231,9 @@
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <div class="project-detail__figure-visual">
+                <div class="project-detail__figure-visual graded-image">
                   <img
+                    class="graded-image__img"
                     src="/src/assets/projects/visualcom/desktop.png"
                     alt="Visualcom — page d’accueil desktop"
                     width="1280"
@@ -221,8 +252,9 @@
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <div class="project-detail__figure-visual">
+                <div class="project-detail__figure-visual graded-image">
                   <img
+                    class="graded-image__img"
                     src="/src/assets/projects/visualcom/section-expertises.png"
                     alt="Visualcom — section quatre expertises"
                     width="1280"
@@ -241,8 +273,9 @@
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <div class="project-detail__figure-visual">
+                <div class="project-detail__figure-visual graded-image">
                   <img
+                    class="graded-image__img"
                     src="/src/assets/projects/visualcom/section-cap-pilote.png"
                     alt="Visualcom — section CAP Pilote"
                     width="1280"
@@ -253,6 +286,40 @@
                 </div>
               </a>
               <figcaption class="project-detail__figure-caption">CAP Pilote</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="project-gallery" aria-labelledby="visualcom-long-title" data-reveal>
+          <h2 class="project-section__title" id="visualcom-long-title">Pleine page</h2>
+          <div class="project-gallery__grid">
+            <figure class="project-gallery__item">
+              <div class="graded-image project-gallery__frame">
+                <img
+                  class="graded-image__img"
+                  src="/src/assets/projects/visualcom/shots/visualcom-home-desktop-full.webp"
+                  alt="Visualcom — page d’accueil desktop en pleine hauteur, du haut vers le bas au survol"
+                  width="1440"
+                  height="5400"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <figcaption class="project-gallery__caption">Desktop</figcaption>
+            </figure>
+            <figure class="project-gallery__item">
+              <div class="graded-image project-gallery__frame project-gallery__frame--mobile">
+                <img
+                  class="graded-image__img"
+                  src="/src/assets/projects/visualcom/shots/visualcom-home-mobile-full.webp"
+                  alt="Visualcom — page d’accueil mobile en pleine hauteur, du haut vers le bas au survol"
+                  width="780"
+                  height="10800"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <figcaption class="project-gallery__caption">Mobile</figcaption>
             </figure>
           </div>
         </section>

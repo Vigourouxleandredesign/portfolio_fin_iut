@@ -46,4 +46,19 @@ describe('C4 — MagicalLab stage', () => {
     expect(html).toContain('project-stage');
     expect(html).toContain('project-stage__compose');
   });
+
+  it('is dated 2026 with the copper cartel', () => {
+    expect(html).toContain('N° II · 2026 · Projet front — IUT');
+    expect(html).not.toContain('<span>2025</span>');
+  });
+
+  it('keeps an accessible h1 name of exactly « MagicalLab »', () => {
+    expect(html).toMatch(/<h1[^>]*aria-label="MagicalLab"/);
+  });
+
+  it('credits both 3D models', () => {
+    expect(html).toContain('Nick Broad');
+    expect(html).toContain('CC BY 4.0');
+    expect(html).toContain('Modèle 3D du robot : Komov, Sketchfab.');
+  });
 });

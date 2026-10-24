@@ -121,12 +121,20 @@ async function mountOne(
   const scene: Scene = new THREE.Scene();
   const camera: PerspectiveCamera = new THREE.PerspectiveCamera(32, 1, 0.01, 100);
 
-  const hemi = new THREE.HemisphereLight(0xf5efe6, 0x3a342c, 1.25);
+  const token = (name: string): InstanceType<typeof THREE.Color> => {
+    const value = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    return value ? new THREE.Color(value) : new THREE.Color();
+  };
+  const hemi = new THREE.HemisphereLight(
+    token('--color-light-beam'),
+    token('--color-surface-elevated'),
+    1.25,
+  );
   scene.add(hemi);
-  const key = new THREE.DirectionalLight(0xffe8d0, 1.6);
+  const key = new THREE.DirectionalLight(token('--color-light-fire'), 1.6);
   key.position.set(2.2, 2.4, 3.2);
   scene.add(key);
-  const fill = new THREE.DirectionalLight(0xc8d8ff, 0.55);
+  const fill = new THREE.DirectionalLight(token('--color-light-steel'), 0.55);
   fill.position.set(-2.4, 0.6, 1.2);
   scene.add(fill);
 
