@@ -1,9 +1,7 @@
 /**
  * @file Skills gallery — suspended marble plaques in a dark atelier
- * @description Moodboard empty room: marble-atelier-empty.jpg
- *   Desktop: 3×2 grid of plaques; black cloud veils top/bottom.
- *   Each plaque carries accidental paint/fusain traces (decor/marble-touches.png,
- *   white background removed via multiply blend), varied per plaque.
+ * @description Empty atelier plate (`.graded-image`, « Odyssée » grade) behind the plaques.
+ *   Desktop: 3×2 grid of plaques; black cloud veils top/bottom; one pigment smear in the margin.
  */
 
 .skills-gallery {
@@ -19,19 +17,39 @@
   z-index: 1;
   padding-block: var(--space-20);
   background-color: var(--color-atelier);
-  /* Dark veil over atelier photo — % = opacity of --color-atelier (lower = clearer image). */
-  background-image:
-    linear-gradient(
-      to bottom,
-      color-mix(in srgb, var(--color-atelier) 61%, transparent),
-      color-mix(in srgb, var(--color-atelier) 46%, transparent) 42%,
-      color-mix(in srgb, var(--color-atelier) 69%, transparent)
-    ),
-    var(--skills-gallery-bg);
-  background-size: cover;
-  /* Slightly lower crop so bottom skill captions sit on a darker zone */
-  background-position: center 32%;
-  background-repeat: no-repeat;
+}
+
+/* Atelier plate — graded image; veil keeps plaque captions on a dark zone */
+.skills-gallery__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.skills-gallery__bg .graded-image__img {
+  object-position: center 32%;
+}
+
+.skills-gallery__bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--color-atelier) 61%, transparent),
+    color-mix(in srgb, var(--color-atelier) 46%, transparent) 42%,
+    color-mix(in srgb, var(--color-atelier) 69%, transparent)
+  );
+}
+
+/* Smear in the left margin — behind the plaques, hidden under 48rem */
+.skills-gallery__paint {
+  top: 14%;
+  left: var(--space-4);
+  z-index: 0;
+  width: 9rem;
+  opacity: 0.85;
 }
 
 .skills-gallery__veil {
@@ -82,7 +100,7 @@
   margin: 0 0 var(--space-3);
   font-family: var(--font-mono);
   font-size: var(--text-xs);
-  letter-spacing: var(--tracking-wide);
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-ember);
 }
@@ -186,34 +204,6 @@
     inset 0 0 32px color-mix(in srgb, var(--color-marble-vein) 12%, transparent);
 }
 
-/* Accidental atelier traces — ochre paint flick + fusain smudge on the marble. */
-.marble-slab__plaque::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  background-image: url('../../assets/decor/marble-touches.png');
-  background-size: cover;
-  background-position: center;
-  mix-blend-mode: multiply;
-  opacity: 0.85;
-}
-
-/* Vary the traces so no two plaques look stamped from the same mold. */
-.marble-slab:nth-child(2n) .marble-slab__plaque::after {
-  transform: scaleX(-1);
-}
-
-.marble-slab:nth-child(3n) .marble-slab__plaque::after {
-  transform: rotate(180deg);
-  opacity: 0.65;
-}
-
-.marble-slab:nth-child(5) .marble-slab__plaque::after {
-  transform: scaleY(-1);
-}
-
 .marble-slab__title {
   position: relative;
   z-index: 1;
@@ -242,6 +232,12 @@
   max-width: 28ch;
   font-size: var(--text-sm);
   color: var(--color-text-muted);
+}
+
+@media (max-width: 47.99rem) {
+  .skills-gallery__paint {
+    display: none;
+  }
 }
 
 @media (min-width: 40rem) {

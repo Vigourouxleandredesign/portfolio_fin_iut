@@ -3,7 +3,7 @@
  * @module entries/home
  * @description Bootstraps styles, navigation, the 3D fractured bust hero
  *   (optional atmosphere plate), the featured project carousel, the
- *   page-wide cursor brush overlay and scroll reveals for pages/index.html.
+ *   page-wide gouache cursor brush overlay and scroll reveals for pages/index.html.
  * @see {@link ../../../docs/ARCHITECTURE.md}
  */
 
@@ -19,6 +19,7 @@ import '../../styles/components/graded-image.css';
 import '../../styles/components/cartel.css';
 import '../../styles/components/section-title.css';
 import '../../styles/components/paint.css';
+import '../../styles/components/light-beam.css';
 import '../../styles/components/section.css';
 import '../../styles/components/skill-card.css';
 import '../../styles/components/skills-gallery.css';
@@ -32,6 +33,7 @@ import bustDesigner from '../../assets/hero/bust-designer.jpg';
 import fondTestHero from '../../assets/hero/hero-atmosphere.jpg';
 import bustModel from '../../assets/hero/bust.glb';
 import marbleAtelierEmpty from '../../assets/moodboard/marble-atelier-empty.jpg';
+import labHorizonCover from '../../assets/projects/lab-horizon/hero-laboratoire.webp';
 import magicallabCover from '../../assets/projects/magicallab/scene-portal.jpg';
 import micromondeCover from '../../assets/projects/micromonde/cover.webp';
 import villageJeunesCover from '../../assets/projects/village-jeunes/cover.webp';
@@ -44,8 +46,9 @@ import { initRevealOnScroll } from '../components/reveal-on-scroll';
 import { initClientsMarquee } from '../components/clients-marquee';
 import { initProjectCarousel } from '../components/project-carousel';
 
-/** Featured carousel covers — MagicalLab / Micro-monde / Vill'âge Jeunes. */
+/** Featured carousel covers — Lab Horizon / MagicalLab / Micro-monde / Vill'âge Jeunes. */
 const CAROUSEL_COVERS: Record<string, string> = {
+  'lab-horizon': labHorizonCover,
   magicallab: magicallabCover,
   micromonde: micromondeCover,
   'village-jeunes': villageJeunesCover,
@@ -69,9 +72,9 @@ function bootstrap(): void {
     );
   }
 
-  const skillsGallery = document.querySelector<HTMLElement>('[data-skills-gallery]');
-  if (skillsGallery) {
-    skillsGallery.style.setProperty('--skills-gallery-bg', `url("${marbleAtelierEmpty}")`);
+  const skillsBackdrop = document.querySelector<HTMLImageElement>('[data-skills-bg]');
+  if (skillsBackdrop) {
+    skillsBackdrop.src = marbleAtelierEmpty;
   }
 
   const heroRoot = document.querySelector<HTMLElement>('[data-hero-3d]');

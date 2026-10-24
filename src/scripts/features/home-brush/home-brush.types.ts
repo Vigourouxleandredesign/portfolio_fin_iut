@@ -3,9 +3,20 @@
  * @module features/home-brush
  */
 
-/** Splash / chalk pigment colors, read once from `variables.css` at init. */
+/** An sRGB color, channels in `[0, 255]`. */
+export type Rgb = {
+  r: number;
+  g: number;
+  b: number;
+};
+
+/**
+ * Gouache pigments read once from `variables.css` at init.
+ * `stops` run copper → gold → phtalo along a stroke; `shadow` is the 1 px relief shadow.
+ */
 export type BrushPalette = {
-  accents: string[];
+  stops: Rgb[];
+  shadow: string;
 };
 
 /** A stroke sample in canvas-local CSS-pixel coordinates. */

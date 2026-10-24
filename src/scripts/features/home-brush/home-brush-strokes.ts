@@ -1,100 +1,138 @@
 /**
- * @file Home brush — continuous painterly stroke segments
+ * @file Home brush — continuous gouache stroke segments
  * @module features/home-brush/home-brush-strokes
- * @description Draws short, pressure-aware stroke segments along the cursor
- *   path — several chalk-colored bristles with slight width jitter so the
- *   trail reads as a continuous human brushstroke on a canvas, not a PNG stamp.
+ * @description Draws solid, opaque round-capped segments along the cursor path.
+ *   Width follows pressure (slow = wide) and tapers in at the start / out at the
+ *   end of a gesture; color slides copper → gold → phtalo with the distance
+ *   travelled (docs/DA.md §6). No blending, a 1 px relief shadow.
  * @see {@link ../../../../docs/ARCHITECTURE.md}
  */
 
-import type { BrushPoint } from './home-brush.types';
+import type { BrushPalette, BrushPoint, Rgb } from './home-brush.types';
 
-const BRISTLE_COUNT = 5;
-/** Base half-width of the stroke at full pressure (CSS px) */
-const BASE_HALF_WIDTH = 22;
-/** Extra half-width contributed by pressure */
-const PRESSURE_HALF_WIDTH = 28;
+/** Half-width of the stroke at zero pressure (CSS px) */
+const MIN_HALF_WIDTH = 5;
+/** Extra half-width contributed by full pressure */
+const PRESSURE_HALF_WIDTH = 15;
+/** Distance (px) over which the stroke grows from a point to full width */
+const TAPER_IN_LENGTH = 70;
+/** Distance (px) over which the colors run from the first to the last stop */
+const GRADIENT_LENGTH = 900;
+/** Length (px) and step count of the tail that closes a gesture */
+const TAPER_OUT_LENGTH = 46;
+const TAPER_OUT_STEPS = 8;
 
 /**
- * Paints one continuous segment from `from` to `to` as a bundle of soft
- * chalk bristles. Width follows pressure (+ small human jitter); pigments
- * are picked from the palette so a single stroke carries several colors.
+ * Parses a `#rgb` / `#rrggbb` CSS color. Anything else returns `null`
+ * so the brush paints nothing rather than guessing a color.
+ */
+export function parseHexColor(value: string): Rgb | null {
+  const match = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.exec(value.trim());
+  if (!match) {
+    return null;
+  }
+  const hex = match[1].length === 3 ? [...match[1]].map((char) => char + char).join('') : match[1];
+  return {
+    r: parseInt(hex.slice(0, 2), 16),
+    g: parseInt(hex.slice(2, 4), 16),
+    b: parseInt(hex.slice(4, 6), 16),
+  };
+}
+
+/**
+ * Color at `progress` (`0..1`) along a gradient of evenly spaced stops,
+ * returned as a canvas-ready `rgb()` string. `stops` must not be empty.
+ */
+export function sampleGradient(stops: readonly Rgb[], progress: number): string {
+  const clamped = Math.min(1, Math.max(0, progress));
+  const scaled = clamped * (stops.length - 1);
+  const index = Math.min(stops.length - 2, Math.floor(scaled));
+  const from = stops[Math.max(0, index)];
+  const to = stops[Math.min(stops.length - 1, index + 1)];
+  const t = stops.length === 1 ? 0 : scaled - Math.max(0, index);
+  const mix = (a: number, b: number): number => Math.round(a + (b - a) * t);
+  return `rgb(${mix(from.r, to.r)}, ${mix(from.g, to.g)}, ${mix(from.b, to.b)})`;
+}
+
+function strokeLine(
+  ctx: CanvasRenderingContext2D,
+  from: { x: number; y: number },
+  to: { x: number; y: number },
+  halfWidth: number,
+  color: string,
+  shadow: string,
+): void {
+  ctx.save();
+  ctx.globalAlpha = 1;
+  ctx.globalCompositeOperation = 'source-over';
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  ctx.shadowColor = shadow;
+  ctx.shadowBlur = 1;
+  ctx.shadowOffsetY = 1;
+  ctx.strokeStyle = color;
+  ctx.lineWidth = Math.max(1, halfWidth * 2);
+  ctx.beginPath();
+  ctx.moveTo(from.x, from.y);
+  ctx.lineTo(to.x, to.y);
+  ctx.stroke();
+  ctx.restore();
+}
+
+/**
+ * Paints one solid segment from `from` to `to`. `travelled` is the distance
+ * (px) already covered by the gesture at `from`: it drives the taper-in and
+ * the color. Draws nothing when the palette is empty.
  */
 export function drawStrokeSegment(
   ctx: CanvasRenderingContext2D,
   from: BrushPoint,
   to: BrushPoint,
-  palette: readonly string[],
+  palette: BrushPalette,
+  travelled: number,
 ): void {
-  if (palette.length === 0) {
+  if (palette.stops.length === 0) {
     return;
   }
-
-  const dx = to.x - from.x;
-  const dy = to.y - from.y;
-  const length = Math.hypot(dx, dy);
+  const length = Math.hypot(to.x - from.x, to.y - from.y);
   if (length < 0.5) {
     return;
   }
 
-  const angle = Math.atan2(dy, dx);
-  const avgPressure = (from.pressure + to.pressure) * 0.5;
-  const humanJitter = 0.85 + Math.random() * 0.35;
-  const halfWidth = (BASE_HALF_WIDTH + avgPressure * PRESSURE_HALF_WIDTH) * humanJitter;
+  const pressure = (from.pressure + to.pressure) * 0.5;
+  const taperIn = Math.min(1, 0.18 + (travelled + length * 0.5) / TAPER_IN_LENGTH);
+  const halfWidth = (MIN_HALF_WIDTH + pressure * PRESSURE_HALF_WIDTH) * taperIn;
+  const color = sampleGradient(palette.stops, (travelled + length * 0.5) / GRADIENT_LENGTH);
 
-  // Dab spacing — continuous ribbon, but loose enough for scattered ovals.
-  const step = Math.max(3.2, halfWidth * 0.38);
-  const steps = Math.max(1, Math.ceil(length / step));
+  strokeLine(ctx, from, to, halfWidth, color, palette.shadow);
+}
 
-  ctx.save();
-  ctx.globalCompositeOperation = 'source-over';
-
-  for (let bristle = 0; bristle < BRISTLE_COUNT; bristle += 1) {
-    const lateralNorm = (bristle - (BRISTLE_COUNT - 1) / 2) / Math.max(BRISTLE_COUNT - 1, 1);
-    // Spread bristles farther apart, with per-bristle random offset.
-    const lateralBase =
-      lateralNorm * halfWidth * (0.95 + Math.random() * 0.7) +
-      (Math.random() - 0.5) * halfWidth * 0.55;
-    const bristleHalf =
-      halfWidth * (0.2 + Math.random() * 0.32) * (1 - Math.abs(lateralNorm) * 0.25);
-    const color = palette[Math.floor(Math.random() * palette.length)];
-    const alpha = 0.2 + avgPressure * 0.38 + Math.random() * 0.12;
-
-    ctx.fillStyle = color;
-
-    for (let i = 0; i <= steps; i += 1) {
-      const t = i / steps;
-      const pressure = from.pressure + (to.pressure - from.pressure) * t;
-      const taper = 0.75 + pressure * 0.35;
-      // Scatter each oval off the path so colors don't pile into one line.
-      const wobble = (Math.random() - 0.5) * halfWidth * 0.55;
-      const alongJitter = (Math.random() - 0.5) * step * 0.9;
-      const px =
-        from.x + dx * t + Math.cos(angle) * alongJitter - Math.sin(angle) * (lateralBase + wobble);
-      const py =
-        from.y + dy * t + Math.sin(angle) * alongJitter + Math.cos(angle) * (lateralBase + wobble);
-      const radiusX = Math.max(1.4, bristleHalf * taper * (1.15 + Math.random() * 0.55));
-      const radiusY = Math.max(0.9, radiusX * (0.3 + Math.random() * 0.28));
-
-      ctx.globalAlpha = Math.min(0.7, alpha * (0.85 + Math.random() * 0.3));
-      ctx.beginPath();
-      ctx.ellipse(px, py, radiusX, radiusY, angle + (Math.random() - 0.5) * 0.5, 0, Math.PI * 2);
-      ctx.fill();
-    }
+/**
+ * Closes a gesture: a short run of segments narrowing to a point, continuing
+ * in the last direction of travel (`angle`, radians).
+ */
+export function drawStrokeTail(
+  ctx: CanvasRenderingContext2D,
+  end: BrushPoint,
+  angle: number,
+  palette: BrushPalette,
+  travelled: number,
+): void {
+  if (palette.stops.length === 0) {
+    return;
   }
+  const stepLength = TAPER_OUT_LENGTH / TAPER_OUT_STEPS;
+  const startHalf = MIN_HALF_WIDTH + end.pressure * PRESSURE_HALF_WIDTH;
+  const color = sampleGradient(palette.stops, travelled / GRADIENT_LENGTH);
 
-  // Occasional chalk speck near the stroke for a dry-brush fleck.
-  if (Math.random() < 0.14 * avgPressure) {
-    const speckT = Math.random();
-    const speckX = from.x + dx * speckT - Math.sin(angle) * halfWidth * (0.7 + Math.random());
-    const speckY = from.y + dy * speckT + Math.cos(angle) * halfWidth * (0.7 + Math.random());
-    const speckR = 1 + Math.random() * 3.5;
-    ctx.globalAlpha = 0.35 + Math.random() * 0.3;
-    ctx.fillStyle = palette[Math.floor(Math.random() * palette.length)];
-    ctx.beginPath();
-    ctx.arc(speckX, speckY, speckR, 0, Math.PI * 2);
-    ctx.fill();
+  let from = { x: end.x, y: end.y };
+  for (let i = 1; i <= TAPER_OUT_STEPS; i += 1) {
+    const to = {
+      x: end.x + Math.cos(angle) * stepLength * i,
+      y: end.y + Math.sin(angle) * stepLength * i,
+    };
+    const halfWidth = startHalf * (1 - i / (TAPER_OUT_STEPS + 1));
+    strokeLine(ctx, from, to, halfWidth, color, palette.shadow);
+    from = to;
   }
-
-  ctx.restore();
 }

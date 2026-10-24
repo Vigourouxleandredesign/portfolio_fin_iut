@@ -1,8 +1,8 @@
 <!--
   @file Home page
   @description Creative Developer landing — 3D bust hero (+ optional atmosphere
-    plate), featured project cover carousel, collaborations, univers teaser,
-    skills gallery, contact CTA.
+    plate, light beam, impasto gesture), featured project cover carousel,
+    collaborations, univers teaser, skills gallery, contact CTA. DA v3.
   @route /
 -->
 <!doctype html>
@@ -77,9 +77,9 @@
         The transparent bust stage stays above the brush (see tokens.css sandwich).
       -->
       <div class="hero-3d-shell">
-        <div class="hero-3d-backdrop" aria-hidden="true">
+        <div class="hero-3d-backdrop graded-image" aria-hidden="true">
           <img
-            class="hero-3d__atmosphere"
+            class="hero-3d__atmosphere graded-image__img"
             data-hero-3d-atmosphere
             src=""
             alt=""
@@ -88,6 +88,15 @@
             decoding="async"
           />
           <div class="hero-3d__atmosphere-veil"></div>
+          <div class="light-beam"><div class="light-beam__dust"></div></div>
+          <img
+            class="paint hero-3d__paint"
+            src="/src/assets/decor/paint/impasto-cluster.webp"
+            alt=""
+            width="1100"
+            height="1068"
+            decoding="async"
+          />
         </div>
         <section class="hero-3d" data-hero-3d aria-label="Présentation">
           <p class="hero-3d__hint">
@@ -110,6 +119,9 @@
               <span class="hero-3d__word hero-3d__word--creative">Creative</span>
               <span class="hero-3d__word hero-3d__word--developer">Developer</span>
             </h1>
+            <p class="hero-3d__subtitle">
+              Léandre Vigouroux — développeur web &amp; webdesigner, Nouméa
+            </p>
           </div>
           <div class="hero-3d__actions">
             <a class="button button--primary" href="#projets">Voir mes projets</a>
@@ -123,14 +135,13 @@
         id="projets"
         aria-labelledby="featured-title"
       >
-        <div class="home-decor home-decor--column" aria-hidden="true"></div>
-        <div class="home-decor home-decor--splash-featured" aria-hidden="true"></div>
+        <span class="ghost-word home-featured__ghost" aria-hidden="true">SALLE I</span>
         <div class="container">
           <div class="section__header home-featured__header" data-reveal>
             <span class="section__eyebrow">Sélection</span>
-            <h2 class="section__title" id="featured-title">
-              Projets
-              <em class="section__title-accent">récents</em>
+            <h2 class="section-title" id="featured-title">
+              <span class="section-title__main">Projets</span>
+              <span class="section-title__gesture">récents</span>
             </h2>
             <p class="section__lead">
               La preuve du travail — ouvre une fiche pour le contexte, les choix et le résultat.
@@ -161,12 +172,35 @@
                   <div class="project-carousel__slides">
                     <article class="project-carousel__slide" data-carousel-slide data-current>
                       <div class="project-carousel__slide-inner">
+                        <a class="project-carousel__link" href="/pages/projects/lab-horizon.html"
+                          >Lab Horizon — Voir le projet</a
+                        >
+                        <div class="project-carousel__media graded-image">
+                          <img
+                            class="project-carousel__image graded-image__img"
+                            data-carousel-image="lab-horizon"
+                            src=""
+                            alt=""
+                            width="720"
+                            height="1080"
+                            decoding="async"
+                          />
+                          <span class="project-carousel__initial" aria-hidden="true">L</span>
+                          <span class="project-carousel__tech" aria-hidden="true">
+                            <span class="project-carousel__tech-label">React</span>
+                          </span>
+                        </div>
+                      </div>
+                    </article>
+
+                    <article class="project-carousel__slide" data-carousel-slide data-next>
+                      <div class="project-carousel__slide-inner">
                         <a class="project-carousel__link" href="/pages/projects/magicallab.html"
                           >MagicalLab — Voir le projet</a
                         >
-                        <div class="project-carousel__media">
+                        <div class="project-carousel__media graded-image">
                           <img
-                            class="project-carousel__image"
+                            class="project-carousel__image graded-image__img"
                             data-carousel-image="magicallab"
                             src=""
                             alt=""
@@ -182,14 +216,14 @@
                       </div>
                     </article>
 
-                    <article class="project-carousel__slide" data-carousel-slide data-next>
+                    <article class="project-carousel__slide" data-carousel-slide>
                       <div class="project-carousel__slide-inner">
                         <a class="project-carousel__link" href="/pages/projects/micromonde.html"
                           >Micro-monde — Voir le projet</a
                         >
-                        <div class="project-carousel__media">
+                        <div class="project-carousel__media graded-image">
                           <img
-                            class="project-carousel__image"
+                            class="project-carousel__image graded-image__img"
                             data-carousel-image="micromonde"
                             src=""
                             alt=""
@@ -220,11 +254,11 @@
                     <article class="project-carousel__slide" data-carousel-slide data-previous>
                       <div class="project-carousel__slide-inner">
                         <a class="project-carousel__link" href="/pages/projects/village-jeunes.html"
-                          >Vill'âge Jeunes (DDEC) — Voir le projet</a
+                          >Vill’âge Jeunes (DDEC) — Voir le projet</a
                         >
-                        <div class="project-carousel__media">
+                        <div class="project-carousel__media graded-image">
                           <img
-                            class="project-carousel__image"
+                            class="project-carousel__image graded-image__img"
                             data-carousel-image="village-jeunes"
                             src=""
                             alt=""
@@ -244,9 +278,22 @@
                   <div class="project-carousel__infos">
                     <div class="project-carousel__info" data-carousel-info data-current>
                       <div class="project-carousel__info-inner">
-                        <div class="project-carousel__copy">
+                        <div class="project-carousel__copy cartel cartel--lab-horizon">
                           <p class="project-carousel__eyebrow">
-                            <span>Développement web · 2026</span>
+                            <span>N° I · 2026 · SAE 501</span>
+                          </p>
+                          <h3 class="project-carousel__title"><span>Lab Horizon</span></h3>
+                          <p class="project-carousel__summary">
+                            <span>La recherche calédonienne rendue lisible.</span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="project-carousel__info" data-carousel-info data-next>
+                      <div class="project-carousel__info-inner">
+                        <div class="project-carousel__copy cartel cartel--magicallab">
+                          <p class="project-carousel__eyebrow">
+                            <span>N° II · 2026 · Projet IUT</span>
                           </p>
                           <h3 class="project-carousel__title"><span>MagicalLab</span></h3>
                           <p class="project-carousel__summary">
@@ -255,28 +302,28 @@
                         </div>
                       </div>
                     </div>
-                    <div class="project-carousel__info" data-carousel-info data-next>
+                    <div class="project-carousel__info" data-carousel-info>
                       <div class="project-carousel__info-inner">
-                        <div class="project-carousel__copy">
+                        <div class="project-carousel__copy cartel cartel--micromonde">
                           <p class="project-carousel__eyebrow">
-                            <span>Réalité augmentée · 2026</span>
+                            <span>N° III · 2026 · Nuit de la Science</span>
                           </p>
                           <h3 class="project-carousel__title"><span>Micro-monde</span></h3>
                           <p class="project-carousel__summary">
-                            <span>Fresques et modèles 3D pour un parcours AR.</span>
+                            <span>Des fresques qui s’animent en réalité augmentée.</span>
                           </p>
                         </div>
                       </div>
                     </div>
                     <div class="project-carousel__info" data-carousel-info data-previous>
                       <div class="project-carousel__info-inner">
-                        <div class="project-carousel__copy">
+                        <div class="project-carousel__copy cartel cartel--village-jeunes">
                           <p class="project-carousel__eyebrow">
-                            <span>Développement web · 2026</span>
+                            <span>N° IV · 2026 · Alternance</span>
                           </p>
-                          <h3 class="project-carousel__title"><span>Vill'âge Jeunes</span></h3>
+                          <h3 class="project-carousel__title"><span>Vill’âge Jeunes</span></h3>
                           <p class="project-carousel__summary">
-                            <span>Application web en Vanilla JavaScript.</span>
+                            <span>500 inscriptions dès le premier mois.</span>
                           </p>
                         </div>
                       </div>
@@ -308,7 +355,6 @@
       </section>
 
       <section class="clients-marquee" aria-labelledby="clients-title" data-reveal>
-        <div class="home-decor home-decor--stroke-clients" aria-hidden="true"></div>
         <div class="container">
           <header class="clients-marquee__header">
             <span class="clients-marquee__eyebrow">Collaborations</span>
@@ -474,9 +520,16 @@
         id="univers"
         aria-labelledby="univers-title"
       >
-        <div class="home-decor home-decor--stroke-univers" aria-hidden="true"></div>
-        <div class="home-decor home-decor--bust" aria-hidden="true"></div>
-        <div class="home-decor home-decor--splash-univers" aria-hidden="true"></div>
+        <img
+          class="paint paint--md home-univers__paint"
+          src="/src/assets/decor/paint/swipe-gold.webp"
+          alt=""
+          aria-hidden="true"
+          width="1400"
+          height="511"
+          loading="lazy"
+          decoding="async"
+        />
         <div class="container">
           <div class="section__header" data-reveal>
             <span class="section__eyebrow">Mon univers</span>
@@ -485,9 +538,9 @@
               <em class="section__title-accent">exigence</em>
             </h2>
             <p class="section__lead">
-              Infographiste webdesigner et développeur — Bac+2 / Bac+3. Creative developer par
-              conviction : le front par intérêt, des bases back (Spring Boot, Symfony) pour
-              dialoguer avec toute la chaîne.
+              Infographiste webdesigner diplômé et développeur en licence professionnelle
+              Applications web. Creative developer par conviction : le front par intérêt, la 3D par
+              passion, des bases back (Spring Boot, Symfony) pour dialoguer avec toute la chaîne.
             </p>
           </div>
 
@@ -525,7 +578,7 @@
         </div>
       </section>
 
-      <!-- Skills: suspended marble plaques in a dark atelier (moodboard marble-presentation). -->
+      <!-- Skills: suspended marble plaques over a graded atelier plate. -->
       <section
         class="skills-gallery"
         id="competences"
@@ -535,6 +588,28 @@
         <div class="skills-gallery__veil skills-gallery__veil--top" aria-hidden="true"></div>
 
         <div class="skills-gallery__stage">
+          <div class="skills-gallery__bg graded-image" aria-hidden="true">
+            <img
+              class="graded-image__img"
+              data-skills-bg
+              src=""
+              alt=""
+              width="1920"
+              height="1080"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <img
+            class="paint paint--lg skills-gallery__paint"
+            src="/src/assets/decor/paint/smear-vertical-trio.webp"
+            alt=""
+            aria-hidden="true"
+            width="467"
+            height="1330"
+            loading="lazy"
+            decoding="async"
+          />
           <div class="skills-gallery__inner">
             <header class="skills-gallery__header" data-reveal>
               <span class="skills-gallery__eyebrow">Compétences</span>
@@ -640,13 +715,24 @@
       </section>
 
       <section class="section section--surface section--flush" aria-labelledby="cta-title">
-        <div class="home-decor home-decor--laurel" aria-hidden="true"></div>
-        <div class="home-decor home-decor--splash-cta" aria-hidden="true"></div>
         <div class="container container--narrow">
           <div class="section__header" data-reveal>
             <span class="section__eyebrow">Travaillons ensemble</span>
             <h2 class="section__title" id="cta-title">
-              Un <em class="section__title-accent">projet</em> en tête ?
+              Un
+              <span class="home-cta__word"
+                ><em class="section__title-accent">projet</em>
+                <img
+                  class="paint home-cta__paint"
+                  src="/src/assets/decor/paint/underline-copper.webp"
+                  alt=""
+                  aria-hidden="true"
+                  width="900"
+                  height="153"
+                  loading="lazy"
+                  decoding="async"
+              /></span>
+              en tête ?
             </h2>
             <p class="section__lead">
               Design, développement front, 3D ou les trois à la fois — parlons-en.
