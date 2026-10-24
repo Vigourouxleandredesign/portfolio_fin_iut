@@ -97,6 +97,7 @@ export default defineConfig({
         projects: resolve(projectRoot, 'pages/projects.html'),
         cv: resolve(projectRoot, 'pages/cv.html'),
         contact: resolve(projectRoot, 'pages/contact.html'),
+        notFound: resolve(projectRoot, 'pages/404.html'),
         ...projectDetailPageInputs(),
         ...juryPageInputs(),
       },

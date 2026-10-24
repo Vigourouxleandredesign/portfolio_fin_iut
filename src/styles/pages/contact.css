@@ -1,7 +1,11 @@
 /**
  * @file Contact page — page-specific overrides
- * @description Only rules that apply exclusively to the contact route.
+ * @description Only rules that apply exclusively to the contact route: single-column hero, equal-height cards.
  */
+
+.contact-hero .page-hero__inner {
+  grid-template-columns: minmax(0, 1fr);
+}
 
 .page-shell .contact-card {
   height: 100%;

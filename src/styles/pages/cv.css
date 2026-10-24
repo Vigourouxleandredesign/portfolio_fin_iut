@@ -1,8 +1,33 @@
 /**
  * @file CV page — page-specific overrides
- * @description Only rules that apply exclusively to the CV route.
+ * @description Only rules that apply exclusively to the CV route: single-column hero, gold swipe gesture,
+ *   distinction link.
  */
 
-.cv-download-wrapper {
-  margin: 0 0 var(--space-8);
+.cv-hero .page-hero__inner {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.cv-hero__paint {
+  right: 4%;
+  bottom: 0;
+  z-index: 0;
+  width: clamp(14rem, 26vw, 24rem);
+  opacity: 0.85;
+}
+
+.cv-distinction {
+  margin: 0;
+  font-size: var(--text-lg);
+}
+
+.cv-distinction a {
+  color: var(--color-pigment-gold-light);
+  text-underline-offset: 0.2em;
+}
+
+@media (max-width: 47.99rem) {
+  .cv-hero__paint {
+    display: none;
+  }
 }

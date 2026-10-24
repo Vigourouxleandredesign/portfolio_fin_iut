@@ -1,6 +1,5 @@
 <!--
   @file CV page
-  @description Parcours, outils and downloadable PDF. Place the file at public/documents/cv.pdf.
   @route /cv.html
 -->
 <!doctype html>
@@ -8,16 +7,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mon CV — Léandre</title>
+    <title>Mon CV — Léandre Vigouroux</title>
     <meta
       name="description"
-      content="Parcours Bac+2 infographie webdesign, Bac+3 développement web — creative developer."
+      content="Développeur web et webdesigner en alternance chez Visualcom, en licence professionnelle Applications web à l’IUT de Nouvelle-Calédonie. Je mêle design, 3D et développement front pour concevoir des expériences sur mesure — avec une exigence technique assumée."
     />
-    <meta property="og:title" content="Mon CV — Léandre" />
+    <link rel="canonical" href="https://REMPLACER-PAR-LE-DOMAINE/cv" />
+    <meta property="og:title" content="Mon CV — Léandre Vigouroux" />
     <meta
       property="og:description"
-      content="Parcours, compétences et outils — creative developer."
+      content="Développeur web et webdesigner en alternance chez Visualcom, en licence professionnelle Applications web à l’IUT de Nouvelle-Calédonie. Je mêle design, 3D et développement front pour concevoir des expériences sur mesure — avec une exigence technique assumée."
     />
+    <meta property="og:image" content="https://REMPLACER-PAR-LE-DOMAINE/og-cover.jpg" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="fr_FR" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -25,7 +26,6 @@
   </head>
   <body>
     <a class="skip-link" href="#main">Aller au contenu</a>
-
     <header class="site-header">
       <nav class="site-header__nav" aria-label="Navigation principale">
         <a class="site-header__logo" href="/pages/index.html" aria-label="Léandre — Accueil">
@@ -56,95 +56,169 @@
           <li>
             <a class="site-header__link" href="/pages/projects.html">Mes projets</a>
           </li>
-          <li>
-            <a class="site-header__link" href="/pages/cv.html" aria-current="page">Mon CV</a>
-          </li>
-          <li>
-            <a class="site-header__link" href="/pages/contact.html">Contact</a>
-          </li>
+          <li><a class="site-header__link" href="/pages/cv.html">Mon CV</a></li>
+          <li><a class="site-header__link" href="/pages/contact.html">Contact</a></li>
         </ul>
       </nav>
     </header>
 
-    <main id="main" class="page-shell">
-      <h1 class="page-shell__title">Mon CV</h1>
-      <p class="page-shell__lead">
-        Infographiste webdesigner et développeur de formation — creative developer par conviction,
-        orienté front. Le détail complet est dans le PDF ; l’essentiel est ci-dessous.
-      </p>
-
-      <p class="cv-download-wrapper">
-        <a class="button button--primary" href="/documents/cv.pdf" download>
-          Télécharger le CV (PDF)
-        </a>
-      </p>
-
-      <!-- Parcours : compléter avec les dates et intitulés définitifs. -->
-      <section class="section" aria-labelledby="parcours-title">
-        <span class="section__eyebrow">Parcours</span>
-        <h2 class="section__title" id="parcours-title">Expérience &amp; formation</h2>
-
-        <ol class="timeline">
-          <li class="timeline__item" data-reveal>
-            <span class="timeline__date">Bac+3</span>
-            <h3 class="timeline__title">Développement web</h3>
-            <p class="timeline__org">Formation développeur</p>
-            <p class="timeline__description">
-              Développement web full-stack en formation : orientation front par intérêt, avec des
-              bases back notamment Spring Boot et Symfony.
+    <main id="main">
+      <section class="page-hero cv-hero" aria-labelledby="cv-title">
+        <div class="light-beam" aria-hidden="true"><div class="light-beam__dust"></div></div>
+        <img
+          class="paint cv-hero__paint"
+          src="/src/assets/decor/paint/swipe-gold.webp"
+          alt=""
+          aria-hidden="true"
+          width="1400"
+          height="511"
+          loading="lazy"
+          decoding="async"
+        />
+        <div class="page-hero__inner">
+          <div class="page-hero__body">
+            <dl class="cartel">
+              <dt class="visually-hidden">Fiche</dt>
+              <dd class="cartel__meta">Curriculum vitæ · mis à jour octobre 2026</dd>
+            </dl>
+            <h1 class="page-hero__title" id="cv-title">Mon CV</h1>
+            <p class="page-hero__lead">
+              Développeur web et webdesigner en alternance chez Visualcom, en licence
+              professionnelle Applications web à l’IUT de Nouvelle-Calédonie. Je mêle design, 3D et
+              développement front pour concevoir des expériences sur mesure — avec une exigence
+              technique assumée.
             </p>
-          </li>
-
-          <li class="timeline__item" data-reveal>
-            <span class="timeline__date">Bac+2</span>
-            <h3 class="timeline__title">Infographie &amp; webdesign</h3>
-            <p class="timeline__org">Formation infographiste webdesigner</p>
-            <p class="timeline__description">
-              Design graphique, webdesign, 3D et animation. Acquisition des outils professionnels et
-              d’une approche globale du design.
-            </p>
-          </li>
-
-          <li class="timeline__item" data-reveal>
-            <span class="timeline__date">Alternance</span>
-            <h3 class="timeline__title">Infographiste webdesigner</h3>
-            <p class="timeline__org">VisualCom</p>
-            <p class="timeline__description">
-              Conception de supports de communication, design d’interfaces web et contenus visuels
-              au service de l’identité de l’entreprise.
-            </p>
-          </li>
-        </ol>
-      </section>
-
-      <section class="section" aria-labelledby="tools-title">
-        <span class="section__eyebrow">Outils</span>
-        <h2 class="section__title" id="tools-title">Ce avec quoi je travaille</h2>
-
-        <div class="grid grid--3">
-          <article class="skill-card" data-reveal>
-            <span class="skill-card__index">Design</span>
-            <h3 class="skill-card__title">Création graphique</h3>
-            <p class="skill-card__description">Photoshop, Illustrator, InDesign, Figma.</p>
-          </article>
-          <article class="skill-card" data-reveal>
-            <span class="skill-card__index">3D</span>
-            <h3 class="skill-card__title">Modélisation &amp; rendu</h3>
-            <p class="skill-card__description">Blender, exports glTF/GLB, intégration Three.js.</p>
-          </article>
-          <article class="skill-card" data-reveal>
-            <span class="skill-card__index">Front</span>
-            <h3 class="skill-card__title">Développement</h3>
-            <p class="skill-card__description">
-              HTML, CSS, TypeScript, Vite, Git — et bases back Spring Boot / Symfony.
-            </p>
-          </article>
+            <div class="page-hero__actions">
+              <a class="button button--primary" href="/documents/cv.pdf" download
+                >Télécharger le CV (PDF)</a
+              >
+              <a class="button" href="/jury"
+                >Espace jury (fiches réflexives)<span class="visually-hidden">
+                  (accès protégé par mot de passe)</span
+                ></a
+              >
+            </div>
+          </div>
         </div>
       </section>
 
-      <div class="section__actions">
-        <a class="button button--primary" href="/pages/contact.html">Me contacter</a>
-        <a class="button button--ghost" href="/pages/projects.html">Voir mes projets</a>
+      <div class="page-shell">
+        <section class="section section--flush" aria-labelledby="exp-title">
+          <span class="section__eyebrow">Parcours</span>
+          <h2 class="section__title" id="exp-title">Expériences</h2>
+          <ol class="timeline">
+            <li class="timeline__item" data-reveal>
+              <span class="timeline__date">Janv. 2026 — aujourd’hui</span>
+              <h3 class="timeline__title">Développeur web / webdesigner (alternance)</h3>
+              <p class="timeline__org">Visualcom · Nouméa</p>
+              <p class="timeline__description">
+                Projets web de bout en bout, du cadrage au déploiement, à la formation et au support
+                client. Maquettes UX/UI et développement front de sites et d’applications métier,
+                documentés. Workflow de publication sécurisé via LLM, avec tests de non-régression
+                et contrôles de sécurité.
+              </p>
+            </li>
+            <li class="timeline__item" data-reveal>
+              <span class="timeline__date">Sept. 2024 — déc. 2025</span>
+              <h3 class="timeline__title">Infographiste webdesigner (alternance)</h3>
+              <p class="timeline__org">Visualcom · Nouméa</p>
+              <p class="timeline__description">
+                Refonte du site de l’entreprise ; contenus digitaux fixes, interactifs ou animés
+                pour écrans tactiles ; design de bout en bout d’une borne à ticket (cahier des
+                charges, UX/UI, croquis, 3D, fichiers de fabrication).
+              </p>
+            </li>
+            <li class="timeline__item" data-reveal>
+              <span class="timeline__date">Sept. 2023 — févr. 2024</span>
+              <h3 class="timeline__title">Commercial — hôte d’accueil</h3>
+              <p class="timeline__org">Form + · Nouméa</p>
+              <p class="timeline__description">
+                Analyse du besoin et conseil, stratégie commerciale, fidélisation.
+              </p>
+            </li>
+            <li class="timeline__item" data-reveal>
+              <span class="timeline__date">2021 — 2022</span>
+              <h3 class="timeline__title">Conseiller commercial</h3>
+              <p class="timeline__org">Canal+ Calédonie · Nouméa</p>
+              <p class="timeline__description">
+                Gestion de boutique, conseil technique et après-vente.
+              </p>
+            </li>
+          </ol>
+        </section>
+
+        <section class="section" aria-labelledby="edu-title">
+          <span class="section__eyebrow">Parcours</span>
+          <h2 class="section__title" id="edu-title">Formation</h2>
+          <ol class="timeline">
+            <li class="timeline__item" data-reveal>
+              <span class="timeline__date">2026 (en cours)</span>
+              <h3 class="timeline__title">
+                Licence professionnelle Métiers de l’informatique : applications web (MIAW)
+              </h3>
+              <p class="timeline__org">IUT de Nouvelle-Calédonie</p>
+            </li>
+            <li class="timeline__item" data-reveal>
+              <span class="timeline__date">2025</span>
+              <h3 class="timeline__title">Diplôme professionnel d’infographiste webdesigner</h3>
+              <p class="timeline__org">L’École du Design</p>
+            </li>
+            <li class="timeline__item" data-reveal>
+              <span class="timeline__date">2022</span>
+              <h3 class="timeline__title">
+                CQPT — Certificat de qualification professionnelle des télécommunications
+              </h3>
+              <p class="timeline__org">CPNE</p>
+            </li>
+            <li class="timeline__item" data-reveal>
+              <span class="timeline__date">2017</span>
+              <h3 class="timeline__title">Baccalauréat S, mention Bien</h3>
+              <p class="timeline__org">Lycée Blaise Pascal, Nouméa</p>
+            </li>
+          </ol>
+        </section>
+
+        <section class="section" aria-labelledby="skills-title">
+          <span class="section__eyebrow">Outils</span>
+          <h2 class="section__title" id="skills-title">Compétences</h2>
+          <div class="grid grid--3">
+            <article class="skill-card" data-reveal>
+              <span class="skill-card__index">01</span>
+              <h3 class="skill-card__title">Développement</h3>
+              <p class="skill-card__description">
+                JavaScript, TypeScript · React, Vue.js, Angular · bases PHP / Symfony et Java /
+                Spring Boot
+              </p>
+            </article>
+            <article class="skill-card" data-reveal>
+              <span class="skill-card__index">02</span>
+              <h3 class="skill-card__title">Design &amp; création</h3>
+              <p class="skill-card__description">
+                Photoshop, Illustrator, InDesign, After Effects, Premiere Pro · UX/UI, maquettes
+              </p>
+            </article>
+            <article class="skill-card" data-reveal>
+              <span class="skill-card__index">03</span>
+              <h3 class="skill-card__title">3D &amp; AR</h3>
+              <p class="skill-card__description">
+                Blender, SketchUp · intégration Three.js · réalité augmentée 8th Wall
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="distinction-title">
+          <span class="section__eyebrow">Distinction</span>
+          <h2 class="section__title" id="distinction-title">Reconnaissance</h2>
+          <p class="cv-distinction">
+            <a href="/projects/pacific-dataviz">Finaliste du Pacific Dataviz Challenge 2025</a>
+          </p>
+        </section>
+
+        <div class="section__actions">
+          <a class="button button--primary" href="/pages/contact.html">Me contacter</a>
+          <a class="button button--ghost" href="/pages/projects.html">Voir mes projets</a>
+        </div>
       </div>
     </main>
 
@@ -161,9 +235,8 @@
       />
       <div class="site-footer__inner">
         <p class="site-footer__tagline">Hâte de collaborer avec vous sur des projets exigeants.</p>
-
-        <nav aria-labelledby="footer-nav-title">
-          <h2 class="site-footer__heading" id="footer-nav-title">Plan du site</h2>
+        <nav aria-labelledby="footer-nav-title-cv">
+          <h2 class="site-footer__heading" id="footer-nav-title-cv">Plan du site</h2>
           <ul class="site-footer__nav">
             <li><a class="site-footer__link" href="/pages/index.html">Accueil</a></li>
             <li><a class="site-footer__link" href="/pages/projects.html">Mes projets</a></li>
@@ -178,14 +251,13 @@
             </li>
           </ul>
         </nav>
-
         <div>
           <h2 class="site-footer__heading">Contact direct</h2>
           <ul class="site-footer__nav">
             <li>
-              <a class="site-footer__link" href="mailto:vigourouxleandredesign@gmail.com">
-                vigourouxleandredesign@gmail.com
-              </a>
+              <a class="site-footer__link" href="mailto:vigourouxleandredesign@gmail.com"
+                >vigourouxleandredesign@gmail.com</a
+              >
             </li>
             <li>
               <a class="site-footer__link" href="tel:+687705203">+687 70 52 03</a>
@@ -193,12 +265,10 @@
           </ul>
         </div>
       </div>
-
       <div class="site-footer__bottom">
         <p class="site-footer__copy">&copy; <span data-year></span> Léandre — Creative developer</p>
       </div>
     </footer>
-
     <script type="module" src="/src/scripts/entries/cv.ts"></script>
   </body>
 </html>

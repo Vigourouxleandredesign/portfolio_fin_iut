@@ -8,16 +8,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact — Léandre</title>
+    <title>Contact — Léandre Vigouroux</title>
     <meta
       name="description"
-      content="Contacter Léandre — creative developer, infographiste webdesigner et développeur web."
+      content="Une question, un projet, une collaboration — écrivez-moi. Je réponds sous 48 heures."
     />
-    <meta property="og:title" content="Contact — Léandre" />
+    <link rel="canonical" href="https://REMPLACER-PAR-LE-DOMAINE/contact" />
+    <meta property="og:title" content="Contact — Léandre Vigouroux" />
     <meta
       property="og:description"
-      content="Une question, un projet, une collaboration — écrivez-moi."
+      content="Une question, un projet, une collaboration — écrivez-moi. Je réponds sous 48 heures."
     />
+    <meta property="og:image" content="https://REMPLACER-PAR-LE-DOMAINE/og-cover.jpg" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="fr_FR" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -66,95 +68,110 @@
       </nav>
     </header>
 
-    <main id="main" class="page-shell">
-      <h1 class="page-shell__title">Contact</h1>
-      <p class="page-shell__lead">
-        Une question, un projet, une collaboration — écrivez-moi. Je réponds sous 48 heures.
-      </p>
-
-      <div class="grid grid--3">
-        <div class="contact-card">
-          <span class="contact-card__label">Email</span>
-          <p class="contact-card__value">
-            <a href="mailto:vigourouxleandredesign@gmail.com"> vigourouxleandredesign@gmail.com </a>
-          </p>
-        </div>
-        <div class="contact-card">
-          <span class="contact-card__label">Téléphone</span>
-          <p class="contact-card__value">
-            <a href="tel:+687705203">+687 70 52 03</a>
-          </p>
-        </div>
-        <div class="contact-card">
-          <span class="contact-card__label">Localisation</span>
-          <p class="contact-card__value">Nouméa, Nouvelle-Calédonie</p>
-        </div>
-      </div>
-
-      <section class="section" aria-labelledby="form-title">
-        <span class="section__eyebrow">Formulaire</span>
-        <h2 class="section__title" id="form-title">Parlez-moi de votre projet</h2>
-
-        <!-- Netlify Forms: handled by the host, no API key in the bundle. -->
-        <form
-          class="contact-form"
-          name="contact"
-          method="POST"
-          data-netlify="true"
-          netlify-honeypot="bot-field"
-        >
-          <input type="hidden" name="form-name" value="contact" />
-
-          <p class="contact-form__honeypot">
-            <label>
-              Ne remplissez pas ce champ
-              <input name="bot-field" tabindex="-1" autocomplete="off" />
-            </label>
-          </p>
-
-          <div class="contact-form__field">
-            <label class="contact-form__label" for="contact-name">Nom</label>
-            <input
-              class="contact-form__input"
-              id="contact-name"
-              name="name"
-              type="text"
-              autocomplete="name"
-              required
-            />
-          </div>
-
-          <div class="contact-form__field">
-            <label class="contact-form__label" for="contact-email">Email</label>
-            <input
-              class="contact-form__input"
-              id="contact-email"
-              name="email"
-              type="email"
-              autocomplete="email"
-              required
-            />
-          </div>
-
-          <div class="contact-form__field">
-            <label class="contact-form__label" for="contact-message">Message</label>
-            <textarea
-              class="contact-form__textarea"
-              id="contact-message"
-              name="message"
-              rows="6"
-              required
-            ></textarea>
-          </div>
-
-          <div class="contact-form__actions">
-            <button class="button button--primary" type="submit">Envoyer</button>
-            <p class="contact-form__note">
-              Vos informations servent uniquement à répondre à votre message.
+    <main id="main">
+      <section class="page-hero contact-hero" aria-labelledby="contact-title">
+        <div class="light-beam" aria-hidden="true"><div class="light-beam__dust"></div></div>
+        <div class="page-hero__inner">
+          <div class="page-hero__body">
+            <dl class="cartel">
+              <dt class="visually-hidden">Fiche</dt>
+              <dd class="cartel__meta">Nouméa · Nouvelle-Calédonie</dd>
+            </dl>
+            <h1 class="page-hero__title" id="contact-title">Contact</h1>
+            <p class="page-hero__lead">
+              Une question, un projet, une collaboration — écrivez-moi. Je réponds sous 48 heures.
             </p>
           </div>
-        </form>
+        </div>
       </section>
+
+      <div class="page-shell">
+        <div class="grid grid--3">
+          <div class="contact-card">
+            <span class="contact-card__label">Email</span>
+            <p class="contact-card__value">
+              <a href="mailto:vigourouxleandredesign@gmail.com">
+                vigourouxleandredesign@gmail.com
+              </a>
+            </p>
+          </div>
+          <div class="contact-card">
+            <span class="contact-card__label">Téléphone</span>
+            <p class="contact-card__value">
+              <a href="tel:+687705203">+687 70 52 03</a>
+            </p>
+          </div>
+          <div class="contact-card">
+            <span class="contact-card__label">Localisation</span>
+            <p class="contact-card__value">Nouméa, Nouvelle-Calédonie</p>
+          </div>
+        </div>
+
+        <section class="section" aria-labelledby="form-title">
+          <span class="section__eyebrow">Formulaire</span>
+          <h2 class="section__title" id="form-title">Parlez-moi de votre projet</h2>
+
+          <!-- Netlify Forms: handled by the host, no API key in the bundle. -->
+          <form
+            class="contact-form"
+            name="contact"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+          >
+            <input type="hidden" name="form-name" value="contact" />
+
+            <p class="contact-form__honeypot">
+              <label>
+                Ne remplissez pas ce champ
+                <input name="bot-field" tabindex="-1" autocomplete="off" />
+              </label>
+            </p>
+
+            <div class="contact-form__field">
+              <label class="contact-form__label" for="contact-name">Nom</label>
+              <input
+                class="contact-form__input"
+                id="contact-name"
+                name="name"
+                type="text"
+                autocomplete="name"
+                required
+              />
+            </div>
+
+            <div class="contact-form__field">
+              <label class="contact-form__label" for="contact-email">Email</label>
+              <input
+                class="contact-form__input"
+                id="contact-email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                required
+              />
+            </div>
+
+            <div class="contact-form__field">
+              <label class="contact-form__label" for="contact-message">Message</label>
+              <textarea
+                class="contact-form__textarea"
+                id="contact-message"
+                name="message"
+                rows="6"
+                required
+              ></textarea>
+            </div>
+
+            <div class="contact-form__actions">
+              <button class="button button--primary" type="submit">Envoyer</button>
+              <p class="contact-form__note">
+                Vos informations servent uniquement à répondre à votre message.
+              </p>
+            </div>
+          </form>
+        </section>
+      </div>
     </main>
 
     <footer class="site-footer">
