@@ -1,7 +1,7 @@
 /**
  * @file Clients marquee — collaboration logos banner
- * @description Infinite logo strip: grayscale (marble) by default;
- *   grow + full color on hover (legacy portfolio behavior).
+ * @description Infinite logo strip: light grayscale (marble) by default;
+ *   grow + full color on hover (DA v3).
  *   Colors via var(--color-*) only. Respects prefers-reduced-motion.
  */
 
@@ -22,7 +22,7 @@
   margin: 0 0 var(--space-3);
   font-family: var(--font-mono);
   font-size: var(--text-xs);
-  letter-spacing: var(--tracking-wide);
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-ember);
 }
@@ -93,14 +93,17 @@
   width: auto;
   height: auto;
   object-fit: contain;
-  filter: grayscale(100%) brightness(0.8);
+  opacity: 0.7;
+  filter: grayscale(1) brightness(1.4);
   transition:
+    opacity var(--duration-normal) var(--ease-out),
     filter var(--duration-normal) var(--ease-out),
     transform var(--duration-normal) var(--ease-out);
 }
 
 .clients-marquee__item:hover .clients-marquee__logo {
-  filter: grayscale(0%) brightness(1);
+  opacity: 1;
+  filter: grayscale(0) brightness(1);
   transform: scale(1.08);
 }
 

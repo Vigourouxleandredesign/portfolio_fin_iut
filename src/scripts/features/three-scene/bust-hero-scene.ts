@@ -17,9 +17,9 @@ import type { BustHeroOptions } from './bust-hero.types';
  * Reads a brand color from `variables.css` (single source of truth) so the
  * WebGL lighting stays in sync with the rest of the page's palette.
  */
-export function getCssColor(variableName: string, fallbackHex: string): THREE.Color {
+export function getCssColor(variableName: string): THREE.Color {
   const value = getComputedStyle(document.documentElement).getPropertyValue(variableName).trim();
-  return new THREE.Color(value || fallbackHex);
+  return value ? new THREE.Color(value) : new THREE.Color();
 }
 
 /**
@@ -63,24 +63,26 @@ export function frameCameraOnRadius(camera: THREE.PerspectiveCamera, radius: num
 }
 
 /**
- * Three-point lighting rig (key / fill / rim + hemisphere) matching the
- * marble + fusain art direction — colors sourced from `variables.css`.
+ * Three-point lighting rig (key / fill / rim + hemisphere) for the « Odyssée »
+ * grade: fire key light, steel rim light, soft marble fill — colors sourced
+ * from `variables.css` (docs/DA.md §5).
  */
 export function createLights(): THREE.Light[] {
-  const marble = getCssColor('--color-marble', '#ebe8e2');
-  const ember = getCssColor('--color-ember', '#b8956c');
-  const bg = getCssColor('--color-bg', '#0a0a0a');
+  const marble = getCssColor('--color-marble');
+  const fire = getCssColor('--color-light-fire');
+  const steel = getCssColor('--color-light-steel');
+  const bg = getCssColor('--color-bg');
 
-  const hemisphere = new THREE.HemisphereLight(marble, bg, 1.1);
+  const hemisphere = new THREE.HemisphereLight(marble, bg, 0.9);
 
-  const key = new THREE.DirectionalLight(ember, 2.4);
-  key.position.set(2.4, 3, 2.6);
+  const key = new THREE.DirectionalLight(fire, 2.6);
+  key.position.set(-2.4, 3, 2.6);
 
-  const fill = new THREE.DirectionalLight(marble, 0.6);
-  fill.position.set(-3, 1, 1.5);
+  const fill = new THREE.DirectionalLight(marble, 0.5);
+  fill.position.set(3, 1, 1.5);
 
-  const rim = new THREE.DirectionalLight(0xffffff, 0.8);
-  rim.position.set(0, 2, -3);
+  const rim = new THREE.DirectionalLight(steel, 1.4);
+  rim.position.set(2.5, 2, -3);
 
   return [hemisphere, key, fill, rim];
 }

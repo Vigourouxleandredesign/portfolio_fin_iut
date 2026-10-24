@@ -1,17 +1,18 @@
 /**
- * @file Home brush — continuous painterly chalk stroke
+ * @file Home brush — continuous gouache stroke
  * @module features/home-brush/home-brush
- * @description Draws a continuous multi-bristle chalk stroke while the left
- *   mouse button is held (or primary pointer is down). Width reacts to
- *   simulated hand pressure (slower → thicker) with slight human jitter.
- *   Text selection is suppressed for the duration of a paint drag. Canvas
- *   uses `mix-blend-mode: screen`. Sits above sections, below the 3D hero.
- *   No-ops under `prefers-reduced-motion`.
+ * @description Draws a solid, opaque stroke while the left mouse button is
+ *   held (or primary pointer is down). Width reacts to pointer speed
+ *   (slower → thicker) and tapers at both ends; color slides copper → gold →
+ *   phtalo along the gesture. Text selection is suppressed for the duration
+ *   of a paint drag. Canvas blends normally. Sits above sections, below the
+ *   3D hero. No-ops under `prefers-reduced-motion` or when the pigment tokens
+ *   are missing.
  * @see {@link ../../../../docs/ARCHITECTURE.md}
  */
 
-import { drawStrokeSegment } from './home-brush-strokes';
-import type { BrushPalette, BrushPoint } from './home-brush.types';
+import { drawStrokeSegment, drawStrokeTail, parseHexColor } from './home-brush-strokes';
+import type { BrushPalette, BrushPoint, Rgb } from './home-brush.types';
 
 /** Minimum travel (CSS px) before a new segment is committed */
 const SEGMENT_SPACING = 4;
@@ -25,15 +26,28 @@ const PRIMARY_BUTTON = 1;
 const MAX_DEVICE_PIXEL_RATIO = 2;
 const RESIZE_DEBOUNCE_MS = 150;
 
-function readCssColor(variableName: string, fallbackHex: string): string {
-  const value = getComputedStyle(document.documentElement).getPropertyValue(variableName).trim();
-  return value || fallbackHex;
+function readCssValue(variableName: string): string {
+  return getComputedStyle(document.documentElement).getPropertyValue(variableName).trim();
+}
+
+/** Reads the gouache pigments from `variables.css`; `null` if any token is missing. */
+function readPalette(): BrushPalette | null {
+  const stops: Rgb[] = [];
+  for (const token of ['--color-splash-crimson', '--color-splash-gold', '--color-splash-cobalt']) {
+    const color = parseHexColor(readCssValue(token));
+    if (!color) {
+      return null;
+    }
+    stops.push(color);
+  }
+  const shadow = readCssValue('--color-abyss');
+  return shadow ? { stops, shadow } : null;
 }
 
 function speedToPressure(speedPxPerMs: number): number {
   const t = (speedPxPerMs - SLOW_SPEED) / (FAST_SPEED - SLOW_SPEED);
   const clamped = Math.min(1, Math.max(0, t));
-  // Invert: slow movement = high pressure (wider chalk mark).
+  // Invert: slow movement = high pressure (wider mark).
   return 1 - clamped;
 }
 
@@ -58,22 +72,20 @@ export function initHomeBrush(root: HTMLElement): () => void {
     return () => undefined;
   }
 
-  const palette: BrushPalette = {
-    accents: [
-      readCssColor('--color-ember', '#b8956c'),
-      readCssColor('--color-splash-crimson', '#d4685a'),
-      readCssColor('--color-splash-cobalt', '#5a9bc4'),
-      readCssColor('--color-splash-gold', '#e0b85a'),
-      readCssColor('--color-splash-violet', '#9a78b4'),
-      readCssColor('--color-splash-teal', '#5ab894'),
-    ],
-  };
+  const palette = readPalette();
+  if (!palette) {
+    return () => undefined;
+  }
 
   let rootRect = root.getBoundingClientRect();
   let lastPoint: BrushPoint | null = null;
   let lastTimestamp = 0;
   let smoothedPressure = 0.55;
   let isPainting = false;
+  /** Distance (px) covered by the current gesture */
+  let travelled = 0;
+  /** Direction (radians) of the last committed segment */
+  let lastAngle = 0;
 
   const resizeCanvas = (): void => {
     const dpr = Math.min(window.devicePixelRatio || 1, MAX_DEVICE_PIXEL_RATIO);
@@ -115,7 +127,11 @@ export function initHomeBrush(root: HTMLElement): () => void {
   };
 
   const stopPainting = (): void => {
+    if (isPainting && lastPoint && travelled > 0) {
+      drawStrokeTail(ctx, lastPoint, lastAngle, palette, travelled);
+    }
     isPainting = false;
+    travelled = 0;
     lastPoint = null;
     document.documentElement.classList.remove('is-home-brush-painting');
   };
@@ -125,6 +141,7 @@ export function initHomeBrush(root: HTMLElement): () => void {
       return;
     }
     isPainting = true;
+    travelled = 0;
     document.documentElement.classList.add('is-home-brush-painting');
     window.getSelection()?.removeAllRanges();
     rootRect = root.getBoundingClientRect();
@@ -189,10 +206,12 @@ export function initHomeBrush(root: HTMLElement): () => void {
         y: lastPoint.y + dy * t,
         pressure: lastPoint.pressure + (nextPoint.pressure - lastPoint.pressure) * t,
       };
-      drawStrokeSegment(ctx, segmentFrom, segmentTo, palette.accents);
+      drawStrokeSegment(ctx, segmentFrom, segmentTo, palette, travelled);
+      travelled += Math.hypot(segmentTo.x - segmentFrom.x, segmentTo.y - segmentFrom.y);
       segmentFrom = segmentTo;
     }
 
+    lastAngle = Math.atan2(dy, dx);
     lastPoint = nextPoint;
     lastTimestamp = now;
   };

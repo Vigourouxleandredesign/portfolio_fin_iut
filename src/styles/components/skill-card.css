@@ -1,34 +1,22 @@
 /**
  * @file Skill card — capability block
- * @description `.skill-card` used on home teaser and projects page.
+ * @description `.skill-card` used on home teaser and projects page. Cartel style: pigment rule on
+ *   the left, Ubuntu Mono index (docs/DA.md §4 play D).
  */
 
 .skill-card {
   position: relative;
   padding: var(--space-6);
   border: 1px solid var(--color-border);
+  border-left: 2px solid var(--color-ember);
   border-radius: var(--radius-md);
   background-color: var(--color-surface);
   transition: border-color var(--duration-normal) var(--ease-out);
 }
 
-.skill-card::before {
-  content: '';
-  position: absolute;
-  inset-block: var(--space-6);
-  inset-inline-start: 0;
-  width: 2px;
-  background-color: var(--color-ember);
-  opacity: 0;
-  transition: opacity var(--duration-normal) var(--ease-out);
-}
-
 .skill-card:hover {
   border-color: color-mix(in srgb, var(--color-ember) 50%, var(--color-border));
-}
-
-.skill-card:hover::before {
-  opacity: 1;
+  border-left-color: var(--color-light-fire);
 }
 
 .skill-card__index {
@@ -36,7 +24,7 @@
   margin-bottom: var(--space-3);
   font-family: var(--font-mono);
   font-size: var(--text-xs);
-  letter-spacing: var(--tracking-wide);
+  letter-spacing: 0.18em;
   color: var(--color-ember);
 }
 
