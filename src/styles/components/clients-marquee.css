@@ -42,8 +42,8 @@
   mask-image: linear-gradient(
     to right,
     transparent,
-    #000 8%,
-    #000 92%,
+    var(--color-mask-opaque) 8%,
+    var(--color-mask-opaque) 92%,
     transparent
   );
 }

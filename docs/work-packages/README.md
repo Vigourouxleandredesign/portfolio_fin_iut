@@ -38,11 +38,11 @@ L6 (captures) ───────────────┘  (alimente L3a/L3
 ## Protocole commun (s’applique à **tous** les lots)
 
 1. **Avant de coder** : lire `AGENTS.md`, `docs/SECURITY.md`, `docs/DA.md`, la skill `docs/skills/portfolio-da/SKILL.md` (ou `/portfolio-da`), puis le WP et les briefs qu’il cite.
-2. **Branche** : `git switch main && git pull --ff-only 2>/dev/null; git switch -c wp/<id>` (ex. `wp/L1-socle`). Un commit par étape logique, message `feat(<id>): …` / `fix(<id>): …` / `test(<id>): …`.
+2. **Branche** : `git switch main && git pull --ff-only 2>/dev/null; git switch -c wp/<id>` (ex. `wp/L1-socle`). **Un commit quand le lot est terminé** (au minimum ; davantage si le WP découpe en étapes), message `feat(<id>): …` / `fix(<id>): …` / `test(<id>): …`. Le hook pre-commit lance `npm run ci` (≈ 70 s) : appeler `git commit` et `git merge` avec un timeout de 10 min (`timeout: 600000`).
 3. **Périmètre** : ne modifier **que** les fichiers listés dans le WP. Besoin d’un autre fichier ? S’arrêter et l’écrire dans le rapport (« Hors périmètre demandé »).
 4. **Interdits permanents** : couleurs hors `variables.css` ; `style=""` / `<style>` / `<script>` inline ; nouvelle dépendance non listée ; texte inventé (utiliser les briefs mot pour mot, `[À CONFIRMER]` → commentaire `<!-- TODO -->` et rien d’affiché) ; secrets ; supprimer ou affaiblir un test pour le faire passer.
 5. **Tests** : tout comportement nouveau = au moins un test (Vitest dans `tests/feature` ou `tests/unit`). Un test qui fige une ancienne décision se met à jour **dans le même commit**, avec la raison dans le message.
-6. **Gate** : `npm run gate` vert obligatoire ; `npm run test:e2e` si une page publique change. Rouge → corriger ; 2 tentatives max, puis s’arrêter et rapporter.
+6. **Gate (automatique)** : chaque commit et chaque fusion passent par le hook pre-commit = `npm run ci` (format, ESLint, Stylelint, typecheck, secrets, Vitest, build, E2E), le même pipeline que la CI GitHub. Avant de commiter : `npm run fix` puis `npm run ci`. Commit refusé → lire l’erreur, corriger, `git add`, recommiter (jamais `--amend` ; `--no-verify`, `-n`, `HUSKY=0` sont bloqués). Indexer **tous** les fichiers modifiés : le hook refuse les modifications non indexées. 2 tentatives max, puis s’arrêter et rapporter.
 7. **Contrôle visuel** : `npm run dev`, capture 1440 px et 390 px des pages touchées (Playwright ou navigateur), comparées à la planche DA (`https://claude.ai/artifact/EHwa84DzhKMHbwXA9VuPUJ`, boards 05 et 06) et à la checklist `docs/DA.md` §9.
 8. **Fusion** : si tout est vert, `git switch main && git merge --no-ff wp/<id>`. Conflit → **ne pas résoudre à l’aveugle** : s’arrêter et rapporter. Pas de `git push` (sauf L7).
 

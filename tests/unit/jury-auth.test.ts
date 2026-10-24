@@ -5,7 +5,11 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 // Plain ESM build script (no type declarations needed: tests are not type-checked by tsc)
-import { buildJuryHeaders, JURY_PATHS, validateCredential } from '../../scripts/inject-jury-auth.mjs';
+import {
+  buildJuryHeaders,
+  JURY_PATHS,
+  validateCredential,
+} from '../../scripts/inject-jury-auth.mjs';
 
 describe('jury auth — credential validation', () => {
   it('rejects a missing, malformed or short credential', () => {

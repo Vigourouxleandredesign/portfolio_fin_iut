@@ -44,7 +44,8 @@ export function validateCredential(credential) {
  */
 export function buildJuryHeaders(credential) {
   return JURY_PATHS.map(
-    (path) => `\n${path}\n  Basic-Auth: ${credential}\n  X-Robots-Tag: noindex, nofollow\n  Cache-Control: private, no-store\n`,
+    (path) =>
+      `\n${path}\n  Basic-Auth: ${credential}\n  X-Robots-Tag: noindex, nofollow\n  Cache-Control: private, no-store\n`,
   ).join('');
 }
 
@@ -70,7 +71,8 @@ function main() {
 }
 
 const isCli =
-  Boolean(process.argv[1]) && realpathSync(resolve(process.argv[1])) === realpathSync(fileURLToPath(import.meta.url));
+  Boolean(process.argv[1]) &&
+  realpathSync(resolve(process.argv[1])) === realpathSync(fileURLToPath(import.meta.url));
 if (isCli) {
   main();
 }

@@ -1,0 +1,2 @@
+# A merge produces a new tree that was never tested: run the same gate before recording it.
+sh .husky/pre-commit

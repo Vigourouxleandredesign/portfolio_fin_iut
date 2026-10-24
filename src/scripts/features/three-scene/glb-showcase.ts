@@ -48,12 +48,8 @@ export interface GlbShowcaseHandle {
  * Loads Three once, then mounts viewers in parallel. Failed loads surface an error
  * label instead of spinning forever on the fallback.
  */
-export async function initGlbShowcases(
-  root: ParentNode = document,
-): Promise<GlbShowcaseHandle[]> {
-  const nodes = Array.from(
-    root.querySelectorAll<HTMLElement>('[data-glb-showcase]'),
-  );
+export async function initGlbShowcases(root: ParentNode = document): Promise<GlbShowcaseHandle[]> {
+  const nodes = Array.from(root.querySelectorAll<HTMLElement>('[data-glb-showcase]'));
   if (nodes.length === 0) return [];
 
   const THREE = await import('three');

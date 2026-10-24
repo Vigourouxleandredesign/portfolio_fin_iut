@@ -5,10 +5,7 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
-const html = readFileSync(
-  resolve(process.cwd(), 'pages/projects/magicallab.html'),
-  'utf8',
-);
+const html = readFileSync(resolve(process.cwd(), 'pages/projects/magicallab.html'), 'utf8');
 
 describe('C4 — MagicalLab stage', () => {
   it('links the live demo in a new tab', () => {

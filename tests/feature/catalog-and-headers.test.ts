@@ -77,7 +77,9 @@ describe('C9 — no private area in the public build (SECURITY §0)', () => {
     const pkg = JSON.parse(readFileSync(resolve(root, 'package.json'), 'utf8')) as {
       dependencies?: Record<string, string>;
     };
-    expect(Object.keys(pkg.dependencies ?? {}).some((name) => name.includes('supabase'))).toBe(false);
+    expect(Object.keys(pkg.dependencies ?? {}).some((name) => name.includes('supabase'))).toBe(
+      false,
+    );
   });
 
   it('routes every case study listed in the catalogue', () => {

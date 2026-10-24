@@ -12,18 +12,19 @@ export default defineConfig({
   fullyParallel: true,
   workers: process.env.CI ? 1 : 2,
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 1 : 0,
+  retries: 0,
   reporter: process.env.CI ? 'github' : 'list',
   use: {
     baseURL,
-    trace: 'on-first-retry',
+    trace: 'retain-on-failure',
   },
   webServer: process.env.PLAYWRIGHT_BASE_URL
     ? undefined
     : {
         command: 'npm run build && npx vite preview --host 127.0.0.1 --port 4173',
         url: baseURL,
-        reuseExistingServer: !process.env.CI,
+        // Never test a stale server already listening on 4173: same result locally and in CI.
+        reuseExistingServer: false,
         timeout: 180_000,
       },
   projects: [

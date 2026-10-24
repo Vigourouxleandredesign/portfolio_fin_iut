@@ -1,0 +1,17 @@
+# Local CI gate — same pipeline as .github/workflows/ci.yml (`npm run ci`).
+# A commit only goes through when every check is green. Never bypass it (--no-verify, HUSKY=0).
+
+# What is tested must be exactly what is committed.
+if ! git diff --quiet; then
+  echo "pre-commit: tracked files have unstaged changes. Stage them (git add) or stash them:" >&2
+  git diff --name-only >&2
+  exit 1
+fi
+untracked=$(git ls-files --others --exclude-standard -- src pages tests scripts ':(glob)*.ts' ':(glob)*.js' ':(glob)*.mjs' ':(glob)*.json')
+if [ -n "$untracked" ]; then
+  echo "pre-commit: untracked source files would be tested but not committed. Add or remove them:" >&2
+  echo "$untracked" >&2
+  exit 1
+fi
+
+npm run ci

@@ -28,7 +28,13 @@ async function loadChromium() {
 const LIVE_TARGETS = [
   { slug: 'visualcom', name: 'home', url: 'https://visualcom.nc/', fullPage: true },
   { slug: 'village-jeunes', name: 'accueil', url: 'https://villagejeunes.nc/' },
-  { slug: 'pacific-dataviz', name: 'home', url: 'https://leandredatavizchallenge.figma.site/', wait: 6000, fullPage: true },
+  {
+    slug: 'pacific-dataviz',
+    name: 'home',
+    url: 'https://leandredatavizchallenge.figma.site/',
+    wait: 6000,
+    fullPage: true,
+  },
 ];
 
 /**
@@ -38,7 +44,13 @@ const LIVE_TARGETS = [
  */
 const GPU_TARGETS = [
   { slug: 'magicallab', name: 'scene', url: 'https://magicallab.netlify.app/', wait: 9000 },
-  { slug: 'micromonde', name: 'parcours', url: 'https://micromonde-ar.netlify.app/', wait: 5000, devices: ['mobile'] },
+  {
+    slug: 'micromonde',
+    name: 'parcours',
+    url: 'https://micromonde-ar.netlify.app/',
+    wait: 5000,
+    devices: ['mobile'],
+  },
 ];
 
 /** Cookie banners: refuse before shooting (no consent given on the user's behalf). */
@@ -73,13 +85,20 @@ async function main() {
 
   const chromium = await loadChromium();
   const headed = process.argv.includes('--headed');
-  const browser = await chromium.launch({ headless: !headed, args: ['--ignore-gpu-blocklist', '--enable-webgl'] });
+  const browser = await chromium.launch({
+    headless: !headed,
+    args: ['--ignore-gpu-blocklist', '--enable-webgl'],
+  });
 
   for (const target of targets) {
     const outDir = resolve(process.cwd(), 'src/assets/projects', target.slug, 'shots');
     mkdirSync(outDir, { recursive: true });
     for (const device of target.devices ?? ['desktop', 'mobile']) {
-      const context = await browser.newContext({ viewport: VIEWPORTS[device], ...VIEWPORTS[device], locale: 'fr-FR' });
+      const context = await browser.newContext({
+        viewport: VIEWPORTS[device],
+        ...VIEWPORTS[device],
+        locale: 'fr-FR',
+      });
       const page = await context.newPage();
       try {
         await page.goto(target.url, { waitUntil: 'networkidle', timeout: 45_000 });
@@ -102,7 +121,12 @@ async function main() {
           path: resolve(outDir, `${base}-full.jpg`),
           type: 'jpeg',
           quality: 78,
-          clip: { x: 0, y: 0, width: VIEWPORTS[device].width, height: Math.min(height, MAX_FULL_PAGE_HEIGHT) },
+          clip: {
+            x: 0,
+            y: 0,
+            width: VIEWPORTS[device].width,
+            height: Math.min(height, MAX_FULL_PAGE_HEIGHT),
+          },
           fullPage: true,
         });
       }

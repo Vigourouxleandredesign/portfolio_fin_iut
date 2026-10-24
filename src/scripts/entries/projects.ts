@@ -28,10 +28,7 @@ import { initRevealOnScroll } from '../components/reveal-on-scroll';
 import { initProjectFilter } from '../components/project-filter';
 
 function bootstrap(): void {
-  document.body.style.setProperty(
-    '--projects-page-bg',
-    `url("${projectsBackdrop}")`,
-  );
+  document.body.style.setProperty('--projects-page-bg', `url("${projectsBackdrop}")`);
 
   initSiteLogo();
   initSiteNav();

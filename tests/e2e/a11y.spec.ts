@@ -17,9 +17,7 @@ for (const route of routes) {
     // Match prefers-reduced-motion so reveal-on-scroll does not use opacity: 0 during axe.
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto(route);
-    const results = await new AxeBuilder({ page })
-      .withTags(['wcag2a', 'wcag2aa'])
-      .analyze();
+    const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']).analyze();
 
     const blocking = results.violations.filter((v) =>
       ['critical', 'serious'].includes(v.impact ?? ''),

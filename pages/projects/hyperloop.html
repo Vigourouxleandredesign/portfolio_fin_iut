@@ -4,7 +4,7 @@
     project assets (UI live screenshots TBD).
   @route /pages/projects/hyperloop.html
 -->
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
@@ -19,16 +19,35 @@
     <header class="site-header">
       <nav class="site-header__nav" aria-label="Navigation principale">
         <a class="site-header__logo" href="/pages/index.html" aria-label="Léandre — Accueil">
-          <img class="site-header__logo-image" data-site-logo src="/logo-leandre.svg" alt="" width="91" height="91" decoding="async" />
+          <img
+            class="site-header__logo-image"
+            data-site-logo
+            src="/logo-leandre.svg"
+            alt=""
+            width="91"
+            height="91"
+            decoding="async"
+          />
         </a>
-        <button class="site-header__toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="main-nav" hidden>
+        <button
+          class="site-header__toggle"
+          type="button"
+          data-nav-toggle
+          aria-expanded="false"
+          aria-controls="main-nav"
+          hidden
+        >
           <span class="visually-hidden">Ouvrir le menu</span>
           <span class="site-header__toggle-bar" aria-hidden="true"></span>
           <span class="site-header__toggle-bar" aria-hidden="true"></span>
           <span class="site-header__toggle-bar" aria-hidden="true"></span>
         </button>
         <ul class="site-header__list" id="main-nav" data-nav-list>
-          <li><a class="site-header__link" href="/pages/projects.html" aria-current="page">Mes projets</a></li>
+          <li>
+            <a class="site-header__link" href="/pages/projects.html" aria-current="page"
+              >Mes projets</a
+            >
+          </li>
           <li><a class="site-header__link" href="/pages/cv.html">Mon CV</a></li>
           <li><a class="site-header__link" href="/pages/contact.html">Contact</a></li>
         </ul>
@@ -39,8 +58,12 @@
       <div class="project-detail__grain" aria-hidden="true"></div>
       <nav class="breadcrumb" aria-label="Fil d'Ariane">
         <ol class="breadcrumb__list">
-          <li class="breadcrumb__item"><a class="breadcrumb__link" href="/pages/projects.html">Mes projets</a></li>
-          <li class="breadcrumb__item"><span class="breadcrumb__current" aria-current="page">HyperLoop</span></li>
+          <li class="breadcrumb__item">
+            <a class="breadcrumb__link" href="/pages/projects.html">Mes projets</a>
+          </li>
+          <li class="breadcrumb__item">
+            <span class="breadcrumb__current" aria-current="page">HyperLoop</span>
+          </li>
         </ol>
       </nav>
 
@@ -75,17 +98,29 @@
             <p class="project-detail__hero-caption">Front · Angular · i18n</p>
           </div>
         </section>
-        <section class="project-detail__snapshot" aria-labelledby="hyperloop-snapshot-title" data-reveal>
+        <section
+          class="project-detail__snapshot"
+          aria-labelledby="hyperloop-snapshot-title"
+          data-reveal
+        >
           <span class="project-detail__snapshot-eyebrow">En bref</span>
-          <h2 class="project-detail__snapshot-title" id="hyperloop-snapshot-title">Survol du projet</h2>
-          <p class="project-detail__pitch">Application Angular — architecture composants et parcours utilisateur.</p>
+          <h2 class="project-detail__snapshot-title" id="hyperloop-snapshot-title">
+            Survol du projet
+          </h2>
+          <p class="project-detail__pitch">
+            Application Angular — architecture composants et parcours utilisateur.
+          </p>
           <ul class="project-detail__highlights">
             <li>Stack TypeScript / Angular</li>
             <li>Fiche longue — DOCX à venir</li>
           </ul>
           <p class="project-detail__teaser">Démarche détaillée dans la version longue…</p>
         </section>
-        <section class="project-detail__gallery" aria-labelledby="hyperloop-gallery-title" data-reveal>
+        <section
+          class="project-detail__gallery"
+          aria-labelledby="hyperloop-gallery-title"
+          data-reveal
+        >
           <div class="project-detail__gallery-header">
             <h2 class="project-detail__gallery-title" id="hyperloop-gallery-title">Visuels</h2>
             <p class="project-detail__gallery-lead">
@@ -146,9 +181,19 @@
             </div>
           </details>
         </section>
-        <aside class="project-detail__reflective" data-project-slug="hyperloop" data-project-reflective aria-labelledby="reflective-hyperloop-title" data-reveal>
-          <h2 class="project-detail__reflective-title" id="reflective-hyperloop-title">Fiche réflexion (évaluateurs)</h2>
-          <p class="project-detail__reflective-text">Accès évaluateur et lien bidirectionnel — Phase B.</p>
+        <aside
+          class="project-detail__reflective"
+          data-project-slug="hyperloop"
+          data-project-reflective
+          aria-labelledby="reflective-hyperloop-title"
+          data-reveal
+        >
+          <h2 class="project-detail__reflective-title" id="reflective-hyperloop-title">
+            Fiche réflexion (évaluateurs)
+          </h2>
+          <p class="project-detail__reflective-text">
+            Accès évaluateur et lien bidirectionnel — Phase B.
+          </p>
         </aside>
       </div>
     </main>
@@ -168,7 +213,11 @@
         <div>
           <h2 class="site-footer__heading">Contact direct</h2>
           <ul class="site-footer__nav">
-            <li><a class="site-footer__link" href="mailto:vigourouxleandredesign@gmail.com">vigourouxleandredesign@gmail.com</a></li>
+            <li>
+              <a class="site-footer__link" href="mailto:vigourouxleandredesign@gmail.com"
+                >vigourouxleandredesign@gmail.com</a
+              >
+            </li>
             <li><a class="site-footer__link" href="tel:+687705203">+687 70 52 03</a></li>
           </ul>
         </div>
