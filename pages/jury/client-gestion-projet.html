@@ -1,0 +1,260 @@
+<!--
+  @file Jury — competence III
+  @description Protected area (Netlify Basic-Auth, docs/SECURITY.md §0). Text lives in HTML only.
+  @route /jury/client-gestion-projet
+  @see docs/content/jury-content.md
+-->
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Échange client &amp; gestion de projet — Espace jury — Léandre Vigouroux</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/logo-leandre.svg" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Aller au contenu</a>
+    <header class="site-header">
+      <nav class="site-header__nav" aria-label="Navigation principale">
+        <a class="site-header__logo" href="/pages/index.html" aria-label="Léandre — Accueil">
+          <img
+            class="site-header__logo-image"
+            data-site-logo
+            src="/logo-leandre.svg"
+            alt=""
+            width="91"
+            height="91"
+            decoding="async"
+          />
+        </a>
+        <button
+          class="site-header__toggle"
+          type="button"
+          data-nav-toggle
+          aria-expanded="false"
+          aria-controls="main-nav"
+          hidden
+        >
+          <span class="visually-hidden">Ouvrir le menu</span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+        </button>
+        <ul class="site-header__list" id="main-nav" data-nav-list>
+          <li>
+            <a class="site-header__link" href="/pages/projects.html">Mes projets</a>
+          </li>
+          <li><a class="site-header__link" href="/pages/cv.html">Mon CV</a></li>
+          <li><a class="site-header__link" href="/pages/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main" class="jury-page">
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <ol class="breadcrumb__list">
+          <li class="breadcrumb__item"><a class="breadcrumb__link" href="/jury">Espace jury</a></li>
+          <li class="breadcrumb__item">
+            <span class="breadcrumb__current" aria-current="page"
+              >Échange client &amp; gestion de projet</span
+            >
+          </li>
+        </ol>
+      </nav>
+
+      <header class="jury-header">
+        <dl class="cartel">
+          <dt class="visually-hidden">Fiche</dt>
+          <dd class="cartel__meta">N° III · Compétence</dd>
+        </dl>
+        <h1 class="jury-title">Échange client &amp; gestion de projet</h1>
+        <h2 class="jury-label">Compétences du référentiel couvertes</h2>
+        <ul class="jury-refs">
+          <li>Assistance et conseil auprès des utilisateurs</li>
+          <li>Connaître les méthodes de gestion de projet informatique</li>
+          <li>
+            Travailler en équipe et en réseau ainsi qu’en autonomie et responsabilité au service
+            d’un projet
+          </li>
+          <li>
+            Utiliser les outils numériques de référence pour collaborer en interne et en externe
+          </li>
+          <li>Communiquer par oral et par écrit, de façon claire et non ambiguë</li>
+        </ul>
+      </header>
+
+      <section class="jury-section" aria-labelledby="arg-client-gestion-projet">
+        <h2 class="jury-label" id="arg-client-gestion-projet">Argumentaire</h2>
+        <p class="jury-argument">
+          Je pars du terrain : réunions client, visite sur place, questions précises sur les tâches
+          réelles. En équipe, je cadre la base puis je passe le relais proprement, documentation à
+          l’appui. Après la livraison, j’accompagne : formation à WordPress, comptes et droits
+          configurés pour chacun.
+        </p>
+      </section>
+
+      <section class="jury-section" aria-label="Projets-preuves">
+        <article class="jury-project" id="village-jeunes">
+          <h2 class="jury-project__title">Vill’âge Jeunes</h2>
+          <h3 class="jury-project__label">Preuves</h3>
+          <ul class="jury-proofs">
+            <li>cahier des charges établi avec le client puis validé sur place</li>
+            <li>réunion technique interne (pistes, difficultés, sécurité)</li>
+            <li>équipe chef de projet + développeur full stack + moi (maquette, UX/UI, front)</li>
+            <li>présentation des maquettes et échanges réguliers avec le client</li>
+          </ul>
+          <blockquote class="jury-quote">
+            <p>
+              « Ayant déjà fait de la création de parcours utilisateur, j’ai posé certaines
+              questions précises qui m’avaient manqué sur des projets précédents, afin d’assurer la
+              pertinence du parcours utilisateur. »
+            </p>
+            <footer>— <cite>Fiche de réflexion Vill’âge Jeunes</cite></footer>
+          </blockquote>
+          <p class="jury-actions">
+            <a
+              class="button button--primary"
+              href="/jury/fiches/village-jeunes/mission-reflection.pdf"
+              target="_blank"
+              rel="noopener"
+              >Fiche de réflexion (PDF, 2 pages)<span class="visually-hidden">
+                — Vill’âge Jeunes, nouvel onglet</span
+              ></a
+            >
+            <a
+              class="button"
+              href="/jury/fiches/village-jeunes/project-sheet.pdf"
+              target="_blank"
+              rel="noopener"
+              >Fiche projet (PDF, 2 pages)<span class="visually-hidden">
+                — Vill’âge Jeunes, nouvel onglet</span
+              ></a
+            >
+            <a class="button button--ghost" href="/projects/village-jeunes"
+              >Voir le projet sur le portfolio<span class="visually-hidden">
+                — Vill’âge Jeunes</span
+              ></a
+            >
+          </p>
+        </article>
+
+        <article class="jury-project" id="visualcom">
+          <h2 class="jury-project__title">Visualcom</h2>
+          <h3 class="jury-project__label">Preuves</h3>
+          <ul class="jury-proofs">
+            <li>réunion de cadrage avec toute l’équipe à partir d’exemples de sites du secteur</li>
+            <li>répartition décidée avec le gérant et le développeur full-stack</li>
+            <li>comptes de l’équipe créés et droits configurés</li>
+            <li>
+              tâche du connecteur confiée au collègue équipé de Claude Desktop pour lever un blocage
+              matériel
+            </li>
+          </ul>
+          <blockquote class="jury-quote">
+            <p>
+              « Pour la partie connecteur IA, une discussion en équipe entre le gérant, le
+              développeur full-stack et moi a permis de définir le mode de fonctionnement, les
+              prérequis minimums à mettre en place ainsi que la répartition de la charge. »
+            </p>
+            <footer>— <cite>Fiche de réflexion Visualcom</cite></footer>
+          </blockquote>
+          <p class="jury-actions">
+            <a
+              class="button button--primary"
+              href="/jury/fiches/visualcom/mission-reflection.pdf"
+              target="_blank"
+              rel="noopener"
+              >Fiche de réflexion (PDF, 3 pages)<span class="visually-hidden">
+                — Visualcom, nouvel onglet</span
+              ></a
+            >
+            <a
+              class="button"
+              href="/jury/fiches/visualcom/project-sheet.pdf"
+              target="_blank"
+              rel="noopener"
+              >Fiche projet (PDF, 3 pages)<span class="visually-hidden">
+                — Visualcom, nouvel onglet</span
+              ></a
+            >
+            <a class="button button--ghost" href="/projects/visualcom"
+              >Voir le projet sur le portfolio<span class="visually-hidden"> — Visualcom</span></a
+            >
+          </p>
+        </article>
+
+        <article class="jury-project" id="quintessence">
+          <h2 class="jury-project__title">Quintessence (WordPress) — preuve citée, sans fiche</h2>
+          <h3 class="jury-project__label">Preuves</h3>
+          <ul class="jury-proofs">
+            <li>formation et accompagnement du client à la prise en main de WordPress</li>
+          </ul>
+        </article>
+      </section>
+
+      <nav class="jury-pager" aria-label="Navigation entre compétences">
+        <a
+          class="jury-pager__link jury-pager__link--prev"
+          href="/jury/qualite-securite-performance"
+          rel="prev"
+          >← Qualité, sécurité &amp; performance</a
+        >
+        <a class="jury-pager__link jury-pager__link--all" href="/jury">Retour au tableau</a>
+        <a class="jury-pager__link jury-pager__link--next" href="/jury/strategie-analyse" rel="next"
+          >Stratégie, analyse &amp; réflexion →</a
+        >
+      </nav>
+    </main>
+
+    <footer class="site-footer">
+      <img
+        class="paint site-footer__paint"
+        src="/src/assets/decor/paint/underline-copper.webp"
+        alt=""
+        aria-hidden="true"
+        width="900"
+        height="153"
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="site-footer__inner">
+        <p class="site-footer__tagline">Hâte de collaborer avec vous sur des projets exigeants.</p>
+        <nav aria-labelledby="footer-nav-title-jury">
+          <h2 class="site-footer__heading" id="footer-nav-title-jury">Plan du site</h2>
+          <ul class="site-footer__nav">
+            <li><a class="site-footer__link" href="/pages/index.html">Accueil</a></li>
+            <li><a class="site-footer__link" href="/pages/projects.html">Mes projets</a></li>
+            <li><a class="site-footer__link" href="/pages/cv.html">Mon CV</a></li>
+            <li><a class="site-footer__link" href="/pages/contact.html">Contact</a></li>
+            <li>
+              <a class="site-footer__link" href="/jury"
+                >Espace jury<span class="visually-hidden">
+                  (accès protégé par mot de passe)</span
+                ></a
+              >
+            </li>
+          </ul>
+        </nav>
+        <div>
+          <h2 class="site-footer__heading">Contact direct</h2>
+          <ul class="site-footer__nav">
+            <li>
+              <a class="site-footer__link" href="mailto:vigourouxleandredesign@gmail.com"
+                >vigourouxleandredesign@gmail.com</a
+              >
+            </li>
+            <li>
+              <a class="site-footer__link" href="tel:+687705203">+687 70 52 03</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <p class="site-footer__copy">&copy; <span data-year></span> Léandre — Creative developer</p>
+      </div>
+    </footer>
+    <script type="module" src="/src/scripts/entries/jury.ts"></script>
+  </body>
+</html>
