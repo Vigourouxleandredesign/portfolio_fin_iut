@@ -26,6 +26,19 @@ describe('C5 — Visualcom stage + dual-device mockup', () => {
     expect(html).toContain('desktop.png');
   });
 
+  it('adds the AI challenge block without exposing infrastructure details', () => {
+    expect(html).toContain('Ouvrir WordPress à l’IA, sans ouvrir de brèche');
+    expect(html).toContain('sans droit de suppression');
+    expect(html).not.toContain('refonte.visualcom.nc');
+    expect(html).toContain('N° V · 2026 · Alternance Visualcom');
+  });
+
+  it('offers the long-page captures in a cropped frame', () => {
+    expect(html).toContain('visualcom-home-desktop-full.webp');
+    expect(html).toContain('visualcom-home-mobile-full.webp');
+    expect(html).toContain('project-gallery__frame');
+  });
+
   it('links mockup / CTA to the live site in a new tab', () => {
     expect(html).toContain('https://visualcom.nc');
     expect(html).toContain('target="_blank"');

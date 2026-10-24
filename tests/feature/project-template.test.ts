@@ -24,6 +24,9 @@ const PROJECT_SLUGS = [
  */
 const MIGRATED_SLUGS: readonly string[] = ['lab-horizon', 'micromonde', 'village-jeunes'];
 
+/** Pages migrated onto the legacy stage layout (project-stage) with DA v3 cartel, beam and graded images. */
+const STAGE_MIGRATED_SLUGS: readonly string[] = ['visualcom', 'magicallab'];
+
 const read = (slug: string): string =>
   readFileSync(resolve(process.cwd(), `pages/projects/${slug}.html`), 'utf8');
 
@@ -67,6 +70,16 @@ describe('project pages — DA v3 template', () => {
     expect(html).toContain('class="light-beam"');
     expect(html).toContain('graded-image__img');
     expect(html).toMatch(/<meta\s+property="og:image"/);
+  });
+});
+
+describe('project pages — DA v3 on the stage layout', () => {
+  it.each(STAGE_MIGRATED_SLUGS)('%s has a cartel, a light beam and graded visuals', (slug) => {
+    const html = read(slug);
+    expect(html).toContain('class="cartel cartel--');
+    expect(html).toContain('class="light-beam"');
+    expect(html).toContain('graded-image__img');
+    expect(html).toContain('project-page--');
   });
 });
 
