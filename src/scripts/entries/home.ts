@@ -67,10 +67,7 @@ function bootstrap(): void {
 
   const skillsGallery = document.querySelector<HTMLElement>('[data-skills-gallery]');
   if (skillsGallery) {
-    skillsGallery.style.setProperty(
-      '--skills-gallery-bg',
-      `url("${marbleAtelierEmpty}")`,
-    );
+    skillsGallery.style.setProperty('--skills-gallery-bg', `url("${marbleAtelierEmpty}")`);
   }
 
   const heroRoot = document.querySelector<HTMLElement>('[data-hero-3d]');

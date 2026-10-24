@@ -8,13 +8,7 @@ import { join, relative } from 'node:path';
 
 const ROOT = process.cwd();
 const SCAN_DIRS = ['src', 'pages', 'public', 'scripts'];
-const SKIP_DIR_NAMES = new Set([
-  'node_modules',
-  'dist',
-  '.git',
-  'reference',
-  'Assets',
-]);
+const SKIP_DIR_NAMES = new Set(['node_modules', 'dist', '.git', 'reference', 'Assets']);
 
 /** Patterns that must never appear in committed front/source trees */
 const FORBIDDEN = [

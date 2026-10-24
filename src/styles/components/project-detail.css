@@ -611,11 +611,7 @@
   aspect-ratio: 4 / 3;
   display: grid;
   place-items: center;
-  background-image: linear-gradient(
-    160deg,
-    var(--color-surface-elevated),
-    var(--color-bg)
-  );
+  background-image: linear-gradient(160deg, var(--color-surface-elevated), var(--color-bg));
 }
 
 .project-detail__figure-visual img {
@@ -658,7 +654,9 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
+  position: relative;
   padding: var(--space-6) var(--space-6);
+  padding-right: var(--space-12);
   list-style: none;
   cursor: pointer;
   transition: background-color var(--duration-fast) var(--ease-out);
@@ -681,11 +679,6 @@
 
 .project-detail__details[open] .project-detail__details-summary::after {
   content: '−';
-}
-
-.project-detail__details-summary {
-  position: relative;
-  padding-right: var(--space-12);
 }
 
 .project-detail__details-summary:hover {

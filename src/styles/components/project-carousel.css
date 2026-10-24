@@ -139,13 +139,12 @@
   position: absolute;
   inset: 0;
   overflow: hidden;
-  background:
-    linear-gradient(
-      160deg,
-      color-mix(in srgb, var(--color-surface-elevated) 90%, var(--color-ember)) 0%,
-      var(--color-surface) 55%,
-      var(--color-atelier) 100%
-    );
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--color-surface-elevated) 90%, var(--color-ember)) 0%,
+    var(--color-surface) 55%,
+    var(--color-atelier) 100%
+  );
 }
 
 .project-carousel__image {

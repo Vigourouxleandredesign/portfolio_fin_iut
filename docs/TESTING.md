@@ -27,7 +27,12 @@ New feature / bugfix in the same PR **must** add or update ≥ 1 relevant test (
 | `npm run check:secrets` | A3 — no secrets patterns in tracked source |
 | `npm run test` | Vitest unit + feature (B, C, parts of A) |
 | `npm run build` | A2 — production build |
-| `npm run gate` | **Default after every change:** typecheck + secrets + vitest + build |
+| `npm run format` / `format:check` | Prettier write / check (`.prettierrc.json`, `.prettierignore`) |
+| `npm run lint` | ESLint (TS rules + no `innerHTML` / `outerHTML` / `insertAdjacentHTML` / `document.write` in `src/`) |
+| `npm run lint:css` | Stylelint (colors only in `src/styles/variables.css`) |
+| `npm run fix` | Prettier + ESLint + Stylelint auto-fix |
+| `npm run gate` | typecheck (src + tests/configs) + secrets + vitest + build |
+| `npm run ci` | **The pipeline:** format check + lint + lint:css + gate + E2E — run by the pre-commit hook and by GitHub Actions |
 | `npm run test:e2e` | Playwright against local preview (D0, D4, D5) |
 | `npm run test:e2e:prod` | Playwright against `PLAYWRIGHT_BASE_URL` (post-deploy) |
 | `npm run gate:full` | `gate` + local E2E |
@@ -77,10 +82,21 @@ scripts/
 
 ---
 
+## Automation (local CI = pre-commit hook)
+
+The gate no longer depends on anyone remembering to run it:
+
+| Layer | File | What it does |
+|-------|------|--------------|
+| Pre-commit hook | `.husky/pre-commit` (installed by `npm install` → `prepare: husky`) | Refuses unstaged edits / untracked source files (what is tested = what is committed), then runs `npm run ci`. Any red ⇒ commit refused. |
+| Pre-merge hook | `.husky/pre-merge-commit` | Same gate on the merged tree (`git merge --no-ff wp/<id>`). |
+| CI | `.github/workflows/ci.yml` | Same `npm run ci` on a clean Ubuntu runner (push to `main`, pull requests). Catches a bypassed hook or a file forgotten in a commit. |
+| Agent guard | `.claude/settings.json` → `scripts/guard-git-bypass.mjs` | Blocks `--no-verify`, `git commit -n`, `HUSKY=0`, `core.hooksPath` for Claude Code agents. |
+
+Determinism: exact tool versions (`package-lock.json`, `--save-exact`), Node from `.nvmrc`, LF line endings (`.gitattributes`), checks never modify files (`--check`), Playwright never reuses a running server and never retries (a flaky test fails instead of being hidden). Running `npm run ci` twice on the same tree gives the same result.
+
 ## AI / agent obligation
 
-Before closing a coding task that touched `pages/`, `src/`, `public/`, or config:
-
-1. Run `npm run gate`
-2. If HTML routes or public UX changed, also run `npm run test:e2e` when feasible
+1. Stage every changed file, run `npm run fix` then `npm run ci` before `git commit` (Bash timeout ≥ 600000 ms: the hook takes ≈ 70 s).
+2. Commit refused ⇒ read the failing step, fix the cause, stage, commit again. Never bypass the hook, never weaken a test to pass it.
 3. Report red tests; do not claim done while red

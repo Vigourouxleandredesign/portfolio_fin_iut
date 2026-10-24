@@ -5,7 +5,7 @@
   @route /pages/projects/magicallab.html
   @see docs/content/projects/magicallab.md
 -->
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
@@ -98,7 +98,10 @@
               <p class="project-detail__meta">
                 <span>Développement web</span><span>2025</span><span>Académique</span>
               </p>
-              <h1 class="project-stage__title project-stage__title--artistic" aria-label="MagicalLab">
+              <h1
+                class="project-stage__title project-stage__title--artistic"
+                aria-label="MagicalLab"
+              >
                 <span class="project-stage__title-display">Magical</span
                 ><span class="project-stage__title-body">Lab</span>
               </h1>
@@ -161,8 +164,7 @@
 
           <p class="project-stage__hint">
             Dans la démo, les flèches déplacent le personnage. Près d’un objet, la touche F
-            déclenche une histoire. La caméra le suit, pour une immersion simple mais déjà
-            complète.
+            déclenche une histoire. La caméra le suit, pour une immersion simple mais déjà complète.
           </p>
         </div>
       </section>
@@ -179,8 +181,8 @@
           </h2>
           <p class="project-detail__pitch">
             À la base, c’est un simple projet de front de l’IUT. L’objectif était de manipuler un
-            objet .glb avec React et Three Fiber. J’ai décidé de laisser cours à mon imagination,
-            et de pousser l’expérience plus loin.
+            objet .glb avec React et Three Fiber. J’ai décidé de laisser cours à mon imagination, et
+            de pousser l’expérience plus loin.
           </p>
           <ul class="project-detail__highlights">
             <li>React Three Fiber, Leva et post-prod pour l’ambiance</li>
@@ -189,11 +191,7 @@
           </ul>
         </section>
 
-        <section
-          class="project-detail__lore"
-          aria-labelledby="magicallab-lore-title"
-          data-reveal
-        >
+        <section class="project-detail__lore" aria-labelledby="magicallab-lore-title" data-reveal>
           <div class="project-detail__lore-visual">
             <div
               class="glb-showcase"
@@ -206,8 +204,8 @@
               <p class="glb-showcase__fallback">Chargement du robot…</p>
             </div>
             <p class="glb-showcase__credit">
-              Modèle téléchargé sur Sketchfab. Le fichier ne contient plus le nom du créateur,
-              alors le crédit exact reste à compléter.
+              Modèle téléchargé sur Sketchfab. Le fichier ne contient plus le nom du créateur, alors
+              le crédit exact reste à compléter.
             </p>
           </div>
 
@@ -218,9 +216,9 @@
               <span class="project-detail__lore-title-flourish">l’atelier</span>
             </h2>
             <p class="project-detail__lore-text">
-              C’est un petit robot entreposé au fond de l’atelier. En traversant une étrange
-              lumière apparue là, il atterrit dans un mystérieux laboratoire aux airs médiévaux,
-              habité par un étrange petit bonhomme qui parle seul.
+              C’est un petit robot entreposé au fond de l’atelier. En traversant une étrange lumière
+              apparue là, il atterrit dans un mystérieux laboratoire aux airs médiévaux, habité par
+              un étrange petit bonhomme qui parle seul.
             </p>
             <p class="project-detail__lore-text">
               Les quelques petites histoires que vous pourrez trouver, et votre imagination, vous
@@ -241,21 +239,21 @@
             <p>
               Ce projet est à la base un simple projet de front de l’IUT, dont l’objectif était de
               manipuler un objet .glb à travers React et Three Fiber. Mais j’ai décidé de laisser
-              cours à mon imagination, et de pousser l’expérience plus loin, avec une immersion
-              plus complète grâce à une caméra qui suit un personnage, des commandes pour le
-              déplacer, et aussi des histoires déclenchées en fonction de la position.
+              cours à mon imagination, et de pousser l’expérience plus loin, avec une immersion plus
+              complète grâce à une caméra qui suit un personnage, des commandes pour le déplacer, et
+              aussi des histoires déclenchées en fonction de la position.
             </p>
             <p>
-              J’ai essayé de rester simple, et d’optimiser le tout pour que le chargement des
-              assets ne soit pas trop lourd, et pour que l’univers reste agréable et cohérent.
-              J’ai utilisé Leva et la post-prod pour l’ambiance, et pour positionner les éléments
-              et la scène à ma guise.
+              J’ai essayé de rester simple, et d’optimiser le tout pour que le chargement des assets
+              ne soit pas trop lourd, et pour que l’univers reste agréable et cohérent. J’ai utilisé
+              Leva et la post-prod pour l’ambiance, et pour positionner les éléments et la scène à
+              ma guise.
             </p>
             <p>
               C’est un petit projet sans prétention. Il a quand même le mérite de montrer qu’avec
               peu de choses, on peut déjà raconter une histoire et installer une ambiance pour un
-              utilisateur. Ce côté artistique un peu fou se ressent aussi sur la page d’accueil,
-              et il fait partie de mon profil.
+              utilisateur. Ce côté artistique un peu fou se ressent aussi sur la page d’accueil, et
+              il fait partie de mon profil.
             </p>
           </div>
         </section>
@@ -266,7 +264,9 @@
           data-reveal
         >
           <div class="project-detail__gallery-header">
-            <h2 class="project-detail__gallery-title" id="magicallab-gallery-title">Dans la scène</h2>
+            <h2 class="project-detail__gallery-title" id="magicallab-gallery-title">
+              Dans la scène
+            </h2>
             <p class="project-detail__gallery-lead">
               Quelques angles du laboratoire. Chaque image ouvre aussi la démo.
             </p>
@@ -368,9 +368,7 @@
         </div>
       </div>
       <div class="site-footer__bottom">
-        <p class="site-footer__copy">
-          &copy; <span data-year></span> Léandre — Creative developer
-        </p>
+        <p class="site-footer__copy">&copy; <span data-year></span> Léandre — Creative developer</p>
       </div>
     </footer>
     <script type="module" src="/src/scripts/entries/project-detail.ts"></script>

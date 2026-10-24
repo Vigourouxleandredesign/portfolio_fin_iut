@@ -14,7 +14,10 @@ test.describe('D0 — public smoke', () => {
 
   test('projects listing → MagicalLab case study', async ({ page }) => {
     await page.goto('/pages/projects.html');
-    await page.getByRole('link', { name: /MagicalLab/i }).first().click();
+    await page
+      .getByRole('link', { name: /MagicalLab/i })
+      .first()
+      .click();
     await expect(page).toHaveURL(/magicallab\.html/);
     await expect(page.getByRole('heading', { name: 'MagicalLab' })).toBeVisible();
   });

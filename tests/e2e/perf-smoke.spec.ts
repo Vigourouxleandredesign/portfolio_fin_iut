@@ -13,9 +13,7 @@ test('D5 home has no pageerror and hero mounts or falls back', async ({ page }) 
   const hero = page.locator('[data-hero-3d], [data-hero-3d-canvas], .hero-3d');
   await expect(hero.first()).toBeVisible({ timeout: 15_000 });
 
-  const fatal = pageErrors.filter(
-    (msg) => !/ResizeObserver|Script error/i.test(msg),
-  );
+  const fatal = pageErrors.filter((msg) => !/ResizeObserver|Script error/i.test(msg));
   expect(fatal, fatal.join('\n')).toEqual([]);
 });
 

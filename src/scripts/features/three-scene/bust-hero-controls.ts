@@ -28,7 +28,12 @@ export function createBustHeroPanel(
     step: 0.05,
     label: 'radius',
   });
-  forceFieldFolder.addBinding(params, 'pushStrength', { min: 0, max: 10, step: 0.05, label: 'push' });
+  forceFieldFolder.addBinding(params, 'pushStrength', {
+    min: 0,
+    max: 10,
+    step: 0.05,
+    label: 'push',
+  });
   forceFieldFolder.addBinding(params, 'linearSpringStiffness', {
     min: 0,
     max: 60,
@@ -53,7 +58,12 @@ export function createBustHeroPanel(
     step: 0.1,
     label: 'damping (rot)',
   });
-  forceFieldFolder.addBinding(params, 'fragmentMass', { min: 0.05, max: 3, step: 0.05, label: 'mass' });
+  forceFieldFolder.addBinding(params, 'fragmentMass', {
+    min: 0.05,
+    max: 3,
+    step: 0.05,
+    label: 'mass',
+  });
 
   const orbitFolder = pane.addFolder({ title: 'Orbit (right-click drag)' });
   orbitFolder.addBinding(orbitParams, 'sensitivity', {

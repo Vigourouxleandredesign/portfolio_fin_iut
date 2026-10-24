@@ -67,7 +67,7 @@ export function initProjectCarousel(root: HTMLElement): () => void {
     for (const element of elements) {
       element.classList.add('is-teleporting');
     }
-    root.offsetHeight;
+    void root.offsetHeight;
   };
 
   const clearTeleport = (elements: HTMLElement[]): void => {

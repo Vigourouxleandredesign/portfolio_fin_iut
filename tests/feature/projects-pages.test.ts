@@ -6,10 +6,7 @@ import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 describe('C5 — Visualcom stage + dual-device mockup', () => {
-  const html = readFileSync(
-    resolve(process.cwd(), 'pages/projects/visualcom.html'),
-    'utf8',
-  );
+  const html = readFileSync(resolve(process.cwd(), 'pages/projects/visualcom.html'), 'utf8');
 
   it('uses full-bleed stage composition', () => {
     expect(html).toContain('project-stage');

@@ -15,17 +15,13 @@ const ALL_FILTER = 'all';
  */
 export function initProjectFilter(): () => void {
   const container = document.querySelector<HTMLElement>('[data-project-filter]');
-  const cards = Array.from(
-    document.querySelectorAll<HTMLElement>('[data-project-category]'),
-  );
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-project-category]'));
 
   if (!container || cards.length === 0) {
     return () => undefined;
   }
 
-  const availableCategories = new Set(
-    cards.map((card) => card.dataset.projectCategory ?? ''),
-  );
+  const availableCategories = new Set(cards.map((card) => card.dataset.projectCategory ?? ''));
 
   const entries = [
     { id: ALL_FILTER, label: 'Tout' },
@@ -38,10 +34,7 @@ export function initProjectFilter(): () => void {
     button.className = 'project-filter__button';
     button.dataset.filterValue = entry.id;
     button.textContent = entry.label;
-    button.setAttribute(
-      'aria-pressed',
-      String(entry.id === ALL_FILTER),
-    );
+    button.setAttribute('aria-pressed', String(entry.id === ALL_FILTER));
     return button;
   });
 
@@ -51,10 +44,7 @@ export function initProjectFilter(): () => void {
       card.hidden = !matches;
     });
     buttons.forEach((button) => {
-      button.setAttribute(
-        'aria-pressed',
-        String(button.dataset.filterValue === value),
-      );
+      button.setAttribute('aria-pressed', String(button.dataset.filterValue === value));
     });
   };
 

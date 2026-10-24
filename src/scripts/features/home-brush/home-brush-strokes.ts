@@ -70,15 +70,9 @@ export function drawStrokeSegment(
       const wobble = (Math.random() - 0.5) * halfWidth * 0.55;
       const alongJitter = (Math.random() - 0.5) * step * 0.9;
       const px =
-        from.x +
-        dx * t +
-        Math.cos(angle) * alongJitter -
-        Math.sin(angle) * (lateralBase + wobble);
+        from.x + dx * t + Math.cos(angle) * alongJitter - Math.sin(angle) * (lateralBase + wobble);
       const py =
-        from.y +
-        dy * t +
-        Math.sin(angle) * alongJitter +
-        Math.cos(angle) * (lateralBase + wobble);
+        from.y + dy * t + Math.sin(angle) * alongJitter + Math.cos(angle) * (lateralBase + wobble);
       const radiusX = Math.max(1.4, bristleHalf * taper * (1.15 + Math.random() * 0.55));
       const radiusY = Math.max(0.9, radiusX * (0.3 + Math.random() * 0.28));
 

@@ -9,12 +9,7 @@
  * Skill category identifier.
  */
 export type SkillCategory =
-  | 'interactive-devices'
-  | 'web-development'
-  | 'webdesign'
-  | 'product-design'
-  | '3d'
-  | 'motion';
+  'interactive-devices' | 'web-development' | 'webdesign' | 'product-design' | '3d' | 'motion';
 
 /**
  * A filterable skill category.

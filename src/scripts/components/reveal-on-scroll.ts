@@ -9,17 +9,13 @@
  * @returns Teardown function disconnecting the observer.
  */
 export function initRevealOnScroll(): () => void {
-  const targets = Array.from(
-    document.querySelectorAll<HTMLElement>('[data-reveal]'),
-  );
+  const targets = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'));
 
   if (targets.length === 0) {
     return () => undefined;
   }
 
-  const prefersReducedMotion = window.matchMedia(
-    '(prefers-reduced-motion: reduce)',
-  ).matches;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (prefersReducedMotion || !('IntersectionObserver' in window)) {
     targets.forEach((target) => target.classList.add('is-visible'));

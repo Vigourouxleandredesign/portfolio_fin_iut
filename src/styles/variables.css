@@ -78,4 +78,7 @@
   --color-splash-gold: var(--color-pigment-gold);
   --color-splash-violet: var(--color-pigment-copper-light);
   --color-splash-teal: var(--color-pigment-phtalo);
+
+  /* —— Technique (non visible) : opacité pleine pour mask-image (seul l'alpha compte) —— */
+  --color-mask-opaque: #000;
 }

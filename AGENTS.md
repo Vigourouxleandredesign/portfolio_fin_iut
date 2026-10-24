@@ -27,10 +27,11 @@ This repository is a portfolio (Vite + Vanilla TypeScript + CSS, MPA): **one sta
 
 After modifying `pages/`, `src/`, `public/`, scripts, or config:
 
-1. Run **`npm run gate`** (typecheck + secrets + Vitest + production build).
-2. If you changed public routes / UX / HTML, also run **`npm run test:e2e`** when feasible (`gate:full`).
-3. **Do not** mark the task done or start another topic while tests are red.
-4. New behaviour ⇒ add/update ≥ 1 relevant test in the same change (see `docs/TESTING.md`).
+1. The gate is **automated**: every `git commit` (and `git merge`) runs **`npm run ci`** through the Husky pre-commit hook — Prettier check, ESLint, Stylelint, typecheck (src + tests), secrets, Vitest, build, Playwright E2E. Any red ⇒ the commit is refused. GitHub Actions runs the same `npm run ci` (`.github/workflows/ci.yml`).
+2. Before committing: `npm run fix` (auto-format / auto-fix), then `npm run ci`. Stage **every** changed file: the hook refuses unstaged edits and untracked source files.
+3. **Never bypass** the hook (`--no-verify`, `-n`, `HUSKY=0`, `core.hooksPath`) — blocked for agents by `.claude/settings.json`. Red ⇒ fix the cause, stage, commit again (no `--amend`).
+4. **Do not** mark the task done or start another topic while tests are red.
+5. New behaviour ⇒ add/update ≥ 1 relevant test in the same change (see `docs/TESTING.md`).
 
 Do **not** invent tests for unimplemented features; activate D1/D2/D3 suites when those phases start.
 

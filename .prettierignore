@@ -1,0 +1,20 @@
+# Generated / installed
+dist/
+node_modules/
+package-lock.json
+coverage/
+test-results/
+playwright-report/
+blob-report/
+
+# Authored documents (project manager briefs) — never reformatted by tooling
+*.md
+docs/
+.claude/
+.cursor/
+
+# Binary-ish or vendor assets
+public/draco/
+public/jury/
+public/documents/
+src/assets/

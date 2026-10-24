@@ -167,7 +167,10 @@ export function initHomeBrush(root: HTMLElement): () => void {
 
     const dt = Math.max(1, now - lastTimestamp);
     const instantPressure = speedToPressure(distance / dt);
-    const noisyPressure = Math.min(1, Math.max(0.12, instantPressure + (Math.random() - 0.5) * 0.18));
+    const noisyPressure = Math.min(
+      1,
+      Math.max(0.12, instantPressure + (Math.random() - 0.5) * 0.18),
+    );
     smoothedPressure =
       smoothedPressure * (1 - PRESSURE_SMOOTHING) + noisyPressure * PRESSURE_SMOOTHING;
 
