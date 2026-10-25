@@ -89,7 +89,7 @@ function bootstrap(): void {
 
   const heroRoot = document.querySelector<HTMLElement>('[data-hero-3d]');
   if (heroRoot) {
-    // The 3D bust (≈ 8 MB GLB + physics) starts once the page is painted and idle, so it never
+    // The 3D bust (≈ 1.2 MB GLB + physics) starts once the page is painted and idle, so it never
     // competes with the first paint / LCP (the static fallback image is shown meanwhile).
     runWhenIdle(() => {
       void import('../features/three-scene/bust-hero').then(({ initBustHero }) =>

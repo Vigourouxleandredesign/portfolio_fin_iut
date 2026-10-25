@@ -64,3 +64,21 @@ describe('CSP — three.js texture decoding', () => {
     expect(csp).not.toMatch(/connect-src[^;]*(https?:|\*)/);
   });
 });
+
+describe('hero bust — weight budget', () => {
+  it('keeps bust.glb under 2 MB (Draco geometry + WebP textures, 1024 px max)', () => {
+    const size = statSync(resolve(root, 'src/assets/hero/bust.glb')).size;
+    expect(size).toBeLessThan(2 * 1024 * 1024);
+  });
+
+  it('declares Draco and WebP as required extensions (loader ships both decoders)', () => {
+    const buffer = readFileSync(resolve(root, 'src/assets/hero/bust.glb'));
+    const jsonLength = buffer.readUInt32LE(12);
+    const json = JSON.parse(buffer.subarray(20, 20 + jsonLength).toString('utf8')) as {
+      extensionsRequired?: string[];
+    };
+    expect(json.extensionsRequired).toEqual(
+      expect.arrayContaining(['KHR_draco_mesh_compression', 'EXT_texture_webp']),
+    );
+  });
+});
