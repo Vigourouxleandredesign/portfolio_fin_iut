@@ -49,6 +49,7 @@ Voir le tableau de [`work-packages/README.md`](work-packages/README.md). Jalons 
 | 25/10 | Inspection : 3 bloquants/majeurs (Visualcom hero + texte « Phase B », sous-titre accueil mobile, cohérence catalogue) → L5b |
 | 25/10 | **Incident sécurité** (préprod Netlify) : la règle `Basic-Auth` de `_headers` est ignorée sur l'offre gratuite de Netlify (réservée Pro/Enterprise) → `/jury` et les PDF répondaient 200. Correctif L7s : Edge Function d'authentification (offre gratuite), test E2E de non-régression sur la prod. Erreur de conception du chef de projet. |
 | 25/10 | Mise en production avancée au **mercredi 28/10** (2 jours de marge) ; sous-domaine Netlify (pas de nom de domaine) ; téléphone conservé dans le pied de page ; robot Komov : provenance citée, sans lien ; **audit des dépendances obligatoire et bloquant** dans la CI (pre-commit + GitHub Actions quotidien + Dependabot) → L5c ; textes « Ce que j’en retiens » rédigés par Léandre projet par projet la semaine du 26/10 |
+| 25/10 | **Red team de la préprod** : contournements du verrou jury (`//jury`, `/JURY/…` servaient pages et PDF) → Edge Function sur `/*` avec chemin normalisé, 39 tests E2E prod ; domaine de production posé (`https://vigourouxleandre.netlify.app`) dans canonical, partage (og:image absolues, `public/og/`), sitemap, robots ; buste 7,9 → 1,2 Mo ; **voile d’ouverture** (écran d’entrée DA) + 3D lancée après chargement. Pour changer de domaine : `grep -rli "vigourouxleandre.netlify.app" pages public` puis remplacer. |
 
 ## Questions ouvertes (bloquent un texte, pas un lot)
 

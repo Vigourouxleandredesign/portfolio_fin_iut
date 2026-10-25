@@ -131,7 +131,8 @@ describe('Lab Horizon page', () => {
   });
 
   it('publishes no demo URL, no credential and no unconfirmed claim', () => {
-    expect(html).not.toMatch(/netlify\.app/);
+    // The site's own domain is allowed (canonical, share preview): only third-party demos are not.
+    expect(html.replaceAll('https://vigourouxleandre.netlify.app', '')).not.toMatch(/netlify\.app/);
     expect(html).not.toMatch(/labhorizon\.nc/);
     expect(html).not.toContain('[À CONFIRMER]');
     expect(html).not.toContain('class="project-takeaway');

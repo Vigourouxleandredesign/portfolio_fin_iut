@@ -82,3 +82,32 @@ describe('hero bust — weight budget', () => {
     );
   });
 });
+
+describe('home — opening veil', () => {
+  const html = read('pages/index.html');
+  const css = read('src/styles/components/intro-veil.css');
+
+  it('ships the veil as decorative markup before the page content', () => {
+    expect(html).toMatch(/<div class="intro-veil" data-intro-veil aria-hidden="true">/);
+    expect(html.indexOf('data-intro-veil')).toBeLessThan(html.indexOf('class="skip-link"'));
+  });
+
+  it('loads the gate as a same-origin script (CSP script-src self) and no inline script', () => {
+    expect(html).toContain('<script src="/intro-gate.js"></script>');
+    expect(html).not.toMatch(/<script(?![^>]*\bsrc=)[^>]*>\s*\S/);
+    expect(read('public/intro-gate.js')).toContain('intro-skip');
+  });
+
+  it('never traps the page: CSS failsafe, reduced-motion off, no-skip class', () => {
+    expect(css).toMatch(/animation:\s*intro-veil-failsafe/);
+    expect(css).toMatch(
+      /@media \(prefers-reduced-motion: reduce\)\s*\{\s*\.intro-veil\s*\{\s*display: none/,
+    );
+    expect(css).toContain('.intro-skip .intro-veil');
+  });
+
+  it('is imported by the home entry only', () => {
+    expect(read('src/scripts/entries/home.ts')).toContain('components/intro-veil.css');
+    expect(read('src/scripts/entries/home.ts')).toContain('initIntroVeil');
+  });
+});
