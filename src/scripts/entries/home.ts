@@ -29,10 +29,7 @@ import '../../styles/components/clients-marquee.css';
 import '../../styles/components/hero-3d.css';
 import '../../styles/pages/home.css';
 
-import bustDesigner from '../../assets/hero/bust-designer.jpg';
-import fondTestHero from '../../assets/hero/hero-atmosphere.jpg';
 import bustModel from '../../assets/hero/bust.glb';
-import marbleAtelierEmpty from '../../assets/moodboard/marble-atelier-empty.jpg';
 import labHorizonCover from '../../assets/projects/lab-horizon/hero-laboratoire.webp';
 import magicallabCover from '../../assets/projects/magicallab/scene-portal.jpg';
 import micromondeCover from '../../assets/projects/micromonde/cover.webp';
@@ -58,6 +55,24 @@ const CAROUSEL_TECH_ICONS: Record<string, string> = {
   blender: blenderMark,
 };
 
+/**
+ * Runs `task` after the `load` event, when the browser is idle (≤ 2.5 s later at the latest).
+ */
+function runWhenIdle(task: () => void): void {
+  const schedule = (): void => {
+    if (typeof window.requestIdleCallback === 'function') {
+      window.requestIdleCallback(task, { timeout: 2500 });
+    } else {
+      window.setTimeout(task, 1200);
+    }
+  };
+  if (document.readyState === 'complete') {
+    schedule();
+  } else {
+    window.addEventListener('load', schedule, { once: true });
+  }
+}
+
 function bootstrap(): void {
   initSiteLogo();
   initSiteNav();
@@ -72,29 +87,18 @@ function bootstrap(): void {
     );
   }
 
-  const skillsBackdrop = document.querySelector<HTMLImageElement>('[data-skills-bg]');
-  if (skillsBackdrop) {
-    skillsBackdrop.src = marbleAtelierEmpty;
-  }
-
   const heroRoot = document.querySelector<HTMLElement>('[data-hero-3d]');
-  const fallbackImage = heroRoot?.querySelector<HTMLImageElement>('[data-hero-3d-fallback]');
-  if (fallbackImage) {
-    fallbackImage.src = bustDesigner;
-  }
-
-  const atmosphereImage = document.querySelector<HTMLImageElement>('[data-hero-3d-atmosphere]');
-  if (atmosphereImage) {
-    atmosphereImage.src = fondTestHero;
-  }
-
   if (heroRoot) {
-    void import('../features/three-scene/bust-hero').then(({ initBustHero }) =>
-      initBustHero(heroRoot, {
-        modelUrl: bustModel,
-        dracoDecoderPath: '/draco/gltf/',
-      }),
-    );
+    // The 3D bust (≈ 8 MB GLB + physics) starts once the page is painted and idle, so it never
+    // competes with the first paint / LCP (the static fallback image is shown meanwhile).
+    runWhenIdle(() => {
+      void import('../features/three-scene/bust-hero').then(({ initBustHero }) =>
+        initBustHero(heroRoot, {
+          modelUrl: bustModel,
+          dracoDecoderPath: '/draco/gltf/',
+        }),
+      );
+    });
   }
 
   const carousel = document.querySelector<HTMLElement>('[data-project-carousel]');

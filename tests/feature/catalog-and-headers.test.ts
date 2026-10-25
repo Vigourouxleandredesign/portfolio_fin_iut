@@ -62,7 +62,8 @@ describe('C8 — security headers source', () => {
 
   it('keeps a locked-down CSP (no third-party data origins, no plugins, no framing)', () => {
     expect(headers).not.toMatch(/supabase/i);
-    expect(headers).toMatch(/connect-src 'self';/);
+    // `blob:` lets three.js GLTFLoader decode embedded GLB textures (no network origin is added)
+    expect(headers).toMatch(/connect-src 'self' blob:;/);
     expect(headers).toContain("object-src 'none'");
     expect(headers).toContain("frame-ancestors 'none'");
     expect(headers).toMatch(/style-src 'self';/);

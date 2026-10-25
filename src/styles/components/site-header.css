@@ -67,9 +67,12 @@
   background-color: var(--color-text);
 }
 
-/* No-JS fallback: the list stays in flow on a second header row. */
+/*
+ * Mobile: the list is closed until the toggle opens it. Starting closed (not « open until JS runs »)
+ * avoids a 140 px layout shift on every page load; without JS the footer « Plan du site » carries the links.
+ */
 .site-header__list {
-  display: flex;
+  display: none;
   flex-basis: 100%;
   flex-direction: column;
   gap: var(--space-2);
@@ -78,12 +81,9 @@
   list-style: none;
 }
 
-.site-header__list[data-nav-open='false'] {
-  display: none;
-}
-
 .site-header__list[data-nav-open='true'] {
   position: absolute;
+  display: flex;
   top: 100%;
   inset-inline: 0;
   padding: var(--space-4);

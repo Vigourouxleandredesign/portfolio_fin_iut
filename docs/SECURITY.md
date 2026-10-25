@@ -81,7 +81,7 @@ Current policy (tested by `tests/feature/catalog-and-headers.test.ts`, C8/C9):
 - `Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()`.
 - `Strict-Transport-Security` (1 year, preload) + CSP `upgrade-insecure-requests`.
 - `Cross-Origin-Opener-Policy: same-origin`.
-- **CSP:** `default-src 'self'`; `connect-src 'self'`; `img-src 'self' data: blob:`; `font-src 'self' data:`; `object-src 'none'`; `base-uri 'self'`; `form-action 'self'`.
+- **CSP:** `default-src 'self'`; `connect-src 'self' blob:` (`blob:` only so three.js can decode textures embedded in the GLB models; no third-party origin); `img-src 'self' data: blob:`; `font-src 'self' data:`; `object-src 'none'`; `base-uri 'self'`; `form-action 'self'`.
 - `/assets/*` — immutable long cache (Vite hashes file names).
 
 **Three.js / Rapier / Draco (2026-08-07):** `script-src 'self' 'wasm-unsafe-eval'` (WASM only — does **not** allow JS `eval`) and `worker-src 'self' blob:` (Draco’s blob worker). Self-hosted only.
