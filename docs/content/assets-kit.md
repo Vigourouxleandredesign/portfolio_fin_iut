@@ -18,9 +18,12 @@ Les `*-full` font jusqu’à 5400 px (desktop) / 10 800 px (mobile @2x) de haut 
 | `unc-recherche.webp` | 1600×1067 | Contexte (UNC, recherche) |
 | `domaines/{biologie,chimie,geoscience,histoire,informatique,mathematiques,physique}.webp` | 600×337 | Grille « 7 domaines » |
 | `logo-lab-horizon.svg` | — | Cartel / en-tête |
-| `shots/lab-horizon-domaine-mobile.webp` | 277×599 | Écran mobile (fourni) |
+| `shots/lab-horizon-domaine-mobile.webp` | 277×599 | Écran mobile (fourni) — galerie |
+| `shots/lab-horizon-accueil-desktop.webp` | 1440×900 | Bloc II « Un produit, pas une maquette » |
+| `shots/lab-horizon-recherche-desktop.webp` | 1440×900 | Galerie (large) |
+| `shots/lab-horizon-accueil-mobile.webp` | 780×1688 | Galerie (mobile) |
 
-**Manque :** captures desktop/mobile de l’app → lancer `docker compose up -d` dans *Projet SAE 501*, puis `npm run shots -- lab-horizon` (cibles `localhost:8080/` et `/recherche`). Ne jamais montrer d’écran avec identifiants.
+**Captures (2026-10-25)** — pour les refaire : lancer `docker compose up -d` dans *Projet SAE 501*, puis `npm run shots -- lab-horizon` (cibles `localhost:8080/` et `/recherche`). Ne jamais montrer d’écran avec identifiants.
 
 ### MagicalLab — `magicallab/` · pigment **cuivre**
 
@@ -137,6 +140,7 @@ Toujours en `<img src="…" alt="" aria-hidden="true">` décoratif ou `backgroun
 
 - [x] CV PDF → `public/documents/cv.pdf` (v2 du 2026-10-21)
 - [ ] Captures GPU : `npm run shots -- magicallab --headed` et `npm run shots -- micromonde --headed`
-- [ ] Captures locales : Lab Horizon (Docker) et Spring Boot
+- [x] Captures locales : Lab Horizon (Docker) — 2026-10-25
+- [ ] Captures locales : Spring Boot
 - [x] Rôle Micro-monde + crédit Kuby Kolor (voir section Micro-monde)
 - [ ] URL publique Lab Horizon s’il y en a une (sinon : captures seulement)
