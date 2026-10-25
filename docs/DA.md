@@ -137,7 +137,7 @@ Chaque geste existe aussi en **silhouette vectorielle** : `src/assets/decor/pain
 - Phtalo : ajouter le reflet néon discret `filter: drop-shadow(0 0 14px color-mix(in srgb, var(--color-pigment-phtalo-glint) 28%, transparent))`.
 - Silhouette recolorée : `background: var(--color-pigment-…); mask: url(…/silhouettes/x.svg) center / contain no-repeat;`.
 - Régénérer / ajouter un geste : `npm run decor:paint` (`scripts/generate-paint-decor.py` — Python 3 + numpy, opencv-python, scikit-image, pillow).
-- Hérité DA v2, **à retirer lors de la migration de l’accueil** : `src/assets/decor/*-sketch.png`, `stroke-chalk.png`, `splash-ember.png`, `marble-touches.png`.
+- Hérité DA v2, **à retirer lors de la migration de l’accueil** : `src/assets/decor/*-sketch.png`, `stroke-chalk.png`, `marble-touches.png`.
 
 **Où :** sur le marbre et les bustes, en marge, sous un mot Updock, au survol d’une carte, et via le pinceau du curseur.
 **Jamais :** sous un paragraphe, en fond de page, en rouge, texture trouée/craie sèche, plus de 2 pigments par zone.

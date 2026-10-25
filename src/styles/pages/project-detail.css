@@ -60,21 +60,6 @@
     );
 }
 
-.project-stage__splash {
-  position: absolute;
-  right: -4%;
-  bottom: 8%;
-  z-index: 1;
-  width: min(28vw, 14rem);
-  aspect-ratio: 1;
-  pointer-events: none;
-  opacity: 0.4;
-  background-image: url('../../assets/decor/splash-ember.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  mix-blend-mode: screen;
-}
-
 .project-stage__inner {
   position: relative;
   z-index: 2;
@@ -200,14 +185,14 @@
       color-mix(in srgb, var(--color-ember) 15%, transparent),
       transparent 60%
     ),
-    url('../../assets/clients/logo-visualcom.png');
+    url('../../assets/clients/logo-visualcom.webp');
   background-size: cover, min(55%, 18rem);
   background-repeat: no-repeat;
   background-position: center, center;
 }
 
 .project-detail__figure-visual--visualcom-logo {
-  background-image: url('../../assets/clients/logo-visualcom.png');
+  background-image: url('../../assets/clients/logo-visualcom.webp');
   background-size: min(70%, 10rem);
   background-repeat: no-repeat;
   background-position: center;
