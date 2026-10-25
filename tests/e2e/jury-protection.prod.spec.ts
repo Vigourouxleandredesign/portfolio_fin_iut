@@ -17,19 +17,34 @@ const PROTECTED = [
   '/pages/jury/developpement-front.html',
   '/jury/fiches/visualcom/mission-reflection.pdf',
   '/jury/fiches/village-jeunes/project-sheet.pdf',
+  // bypass attempts (red team 2026-10-25): repeated slashes, other letter case, encodings
+  '//jury',
+  '///jury/',
+  '//jury/developpement-front',
+  '//pages/jury/index.html',
+  '//jury/fiches/visualcom/mission-reflection.pdf',
+  '/JURY/fiches/visualcom/mission-reflection.pdf',
+  '/Jury/fiches/village-jeunes/project-sheet.pdf',
+  '/JURY',
+  '/%6aury',
+  '/%4aury/fiches/visualcom/mission-reflection.pdf',
 ];
 const PUBLIC = ['/', '/projects', '/cv'];
+
+// Absolute URLs: a relative `//jury` would be parsed as the host `jury`.
+const BASE = (process.env.PLAYWRIGHT_BASE_URL ?? '').replace(/\/+$/, '');
+const url = (path: string): string => `${BASE}${path}`;
 
 test.describe('jury protection (prod)', () => {
   for (const path of PROTECTED) {
     test(`${path} → 401 without credentials`, async ({ request }) => {
-      const response = await request.get(path, { maxRedirects: 0 });
+      const response = await request.get(url(path), { maxRedirects: 0 });
       expect(response.status()).toBe(401);
       expect(response.headers()['www-authenticate']).toContain('Basic');
     });
 
     test(`${path} → 401 with wrong credentials`, async ({ request }) => {
-      const response = await request.get(path, {
+      const response = await request.get(url(path), {
         maxRedirects: 0,
         headers: { Authorization: `Basic ${Buffer.from('nobody:wrong').toString('base64')}` },
       });
@@ -39,7 +54,7 @@ test.describe('jury protection (prod)', () => {
 
   for (const path of PUBLIC) {
     test(`${path} → 200 (public)`, async ({ request }) => {
-      expect((await request.get(path)).status()).toBe(200);
+      expect((await request.get(url(path))).status()).toBe(200);
     });
   }
 });
