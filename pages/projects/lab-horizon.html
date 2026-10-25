@@ -296,14 +296,13 @@
               importées depuis HAL, l’archive ouverte nationale.
             </p>
           </div>
-          <!-- TODO L6: replace with shots/lab-horizon-accueil-desktop.jpg + -mobile.jpg once captured. -->
-          <div class="project-story__visual project-story__visual--phone graded-image">
+          <div class="project-story__visual graded-image">
             <img
               class="graded-image__img"
-              src="/src/assets/projects/lab-horizon/shots/lab-horizon-domaine-mobile.webp"
-              alt="Lab Horizon sur mobile : page d’un domaine de recherche"
-              width="277"
-              height="599"
+              src="/src/assets/projects/lab-horizon/shots/lab-horizon-accueil-desktop.webp"
+              alt="Lab Horizon sur ordinateur : page d’accueil « La recherche en Nouvelle-Calédonie, accessible par tous et pour tous »"
+              width="1440"
+              height="900"
               loading="lazy"
               decoding="async"
             />
@@ -349,7 +348,50 @@
       <section class="project-gallery" aria-labelledby="lab-horizon-gallery-title" data-reveal>
         <span class="project-section__eyebrow">Ambiance</span>
         <h2 class="visually-hidden" id="lab-horizon-gallery-title">Ambiance du projet</h2>
-        <!-- TODO L6: add app screenshots (accueil, recherche) from `npm run shots -- lab-horizon`. -->
+        <div class="project-gallery__grid">
+          <figure class="project-gallery__item project-gallery__item--wide">
+            <div class="graded-image project-gallery__frame">
+              <img
+                class="graded-image__img"
+                src="/src/assets/projects/lab-horizon/shots/lab-horizon-recherche-desktop.webp"
+                alt="Lab Horizon : recherche de publications avec filtres par domaine, année et tri"
+                width="1440"
+                height="900"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <figcaption class="project-gallery__caption">Recherche — desktop</figcaption>
+          </figure>
+          <figure class="project-gallery__item">
+            <div class="graded-image project-gallery__frame project-gallery__frame--mobile">
+              <img
+                class="graded-image__img"
+                src="/src/assets/projects/lab-horizon/shots/lab-horizon-accueil-mobile.webp"
+                alt="Lab Horizon sur mobile : page d’accueil et barre de navigation du bas"
+                width="780"
+                height="1688"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <figcaption class="project-gallery__caption">Accueil — mobile</figcaption>
+          </figure>
+          <figure class="project-gallery__item">
+            <div class="graded-image project-gallery__frame project-gallery__frame--mobile">
+              <img
+                class="graded-image__img"
+                src="/src/assets/projects/lab-horizon/shots/lab-horizon-domaine-mobile.webp"
+                alt="Lab Horizon sur mobile : page d’un domaine de recherche"
+                width="277"
+                height="599"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <figcaption class="project-gallery__caption">Domaine — mobile</figcaption>
+          </figure>
+        </div>
         <figure class="project-gallery__item project-gallery__item--wide">
           <div class="graded-image">
             <img
