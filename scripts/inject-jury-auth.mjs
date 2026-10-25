@@ -7,6 +7,9 @@
  *   - On Netlify (`CONTEXT` set) a missing/weak credential FAILS the build, so the
  *     jury pages can never be published unprotected.
  *   - Locally (no `CONTEXT`) it only warns.
+ *   NOTE: Netlify applies `Basic-Auth` in `_headers` on Pro/Enterprise only; on the free plan it is
+ *   silently ignored. The real lock is the Edge Function `netlify/edge-functions/jury-auth.ts`;
+ *   these rules stay as defence in depth (and for `X-Robots-Tag` / `Cache-Control`).
  *   Usage: `npm run build && node scripts/inject-jury-auth.mjs` (see netlify.toml)
  * @see {@link ../docs/SECURITY.md} §0, §7
  */
