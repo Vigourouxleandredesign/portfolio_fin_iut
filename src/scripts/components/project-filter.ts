@@ -21,7 +21,11 @@ export function initProjectFilter(): () => void {
     return () => undefined;
   }
 
-  const availableCategories = new Set(cards.map((card) => card.dataset.projectCategory ?? ''));
+  /** A card can belong to several categories: `data-project-category="web-development 3d"`. */
+  const categoriesOf = (card: HTMLElement): string[] =>
+    (card.dataset.projectCategory ?? '').split(/\s+/).filter(Boolean);
+
+  const availableCategories = new Set(cards.flatMap(categoriesOf));
 
   const entries = [
     { id: ALL_FILTER, label: 'Tout' },
@@ -40,7 +44,7 @@ export function initProjectFilter(): () => void {
 
   const apply = (value: string): void => {
     cards.forEach((card) => {
-      const matches = value === ALL_FILTER || card.dataset.projectCategory === value;
+      const matches = value === ALL_FILTER || categoriesOf(card).includes(value);
       card.hidden = !matches;
     });
     buttons.forEach((button) => {

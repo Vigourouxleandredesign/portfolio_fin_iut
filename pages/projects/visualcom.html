@@ -2,7 +2,7 @@
   @file Project — Visualcom
   @description Case study with full-bleed stage hero (atmosphere + dual marble
     mockup). Click mockup opens https://visualcom.nc (new tab). Academic narrative
-    retained in details. Reflective sheet link for evaluators (Phase B).
+    retained in details.
   @route /pages/projects/visualcom.html
 -->
 <!doctype html>
@@ -10,13 +10,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Refonte site Visualcom — Léandre</title>
+    <title>Visualcom — Léandre Vigouroux</title>
     <link rel="canonical" href="https://REMPLACER-PAR-LE-DOMAINE/projects/visualcom" />
     <meta
       name="description"
       content="Refonte WordPress, thème custom, déploiement GitHub et connexion Claude — projet Visualcom."
     />
-    <meta property="og:title" content="Refonte site Visualcom — Léandre" />
+    <meta property="og:title" content="Visualcom — Léandre Vigouroux" />
     <meta
       property="og:description"
       content="Modernisation du CMS WordPress de Visualcom à l’ère de l’IA, avec thème sur mesure et outillage de déploiement."
@@ -77,7 +77,8 @@
       <section class="project-stage" aria-label="Visualcom — aperçu du site">
         <div class="project-stage__atmosphere" aria-hidden="true">
           <img
-            src="/src/assets/projects/visualcom/desktop.png"
+            class="graded-image__img"
+            src="/src/assets/hero/hero-atmosphere.jpg"
             alt=""
             width="1920"
             height="1080"
@@ -355,8 +356,8 @@
               <p>
                 L’équipe souhaitait moderniser entièrement le site de l’entreprise et pouvoir tous
                 participer à son évolution. Ils souhaitaient également pouvoir le faire à l’aide de
-                l’interface de Claude Desktop (l’abonnement Claude de l’entreprise). J’aurais donc 1
-                semaine pour mettre en place le nouveau site Visualcom sur lequel je pourrais
+                l’interface de Claude Desktop (l’abonnement Claude de l’entreprise). J’avais donc
+                une semaine pour mettre en place le nouveau site Visualcom sur lequel je pouvais
                 travailler en dev (serveur dupliqué sur lequel on a redirigé le domaine par la
                 suite).
               </p>
@@ -434,24 +435,6 @@
             </div>
           </details>
         </section>
-
-        <aside
-          class="project-detail__reflective"
-          data-project-slug="visualcom"
-          data-project-reflective
-          aria-labelledby="reflective-visualcom-title"
-          data-reveal
-        >
-          <h2 class="project-detail__reflective-title" id="reflective-visualcom-title">
-            Fiche réflexion (évaluateurs)
-          </h2>
-          <p class="project-detail__reflective-text">
-            La version publique ci-dessus est la même base que la fiche académique. L’accès
-            authentifié évaluateur et le lien bidirectionnel projet ↔ fiche arriveront avec l’espace
-            privé (Phase B).
-          </p>
-        </aside>
-
         <p class="project-stage__back">
           <a class="button button--ghost" href="/pages/projects.html">Retour à la liste</a>
         </p>
@@ -474,7 +457,7 @@
           rel="next"
         >
           <span class="project-nav__label">Projet suivant</span>
-          <span class="project-nav__name">HyperLoop</span>
+          <span class="project-nav__name">HyperLoop NC</span>
         </a>
       </nav>
     </main>
