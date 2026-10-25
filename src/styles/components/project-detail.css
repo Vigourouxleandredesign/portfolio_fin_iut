@@ -258,20 +258,6 @@
   user-select: none;
 }
 
-.project-detail__hero-splash {
-  position: absolute;
-  right: -5%;
-  bottom: -15%;
-  width: min(40%, 14rem);
-  aspect-ratio: 1;
-  pointer-events: none;
-  opacity: 0.45;
-  background-image: url('../../assets/decor/splash-ember.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  mix-blend-mode: screen;
-}
-
 .project-detail__hero-caption {
   margin: 0;
   padding: var(--space-3) var(--space-4);

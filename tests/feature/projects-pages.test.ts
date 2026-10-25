@@ -36,7 +36,7 @@ describe('C5 — Visualcom stage + dual-device mockup', () => {
   it('shows desktop gallery shots (homogeneous format)', () => {
     expect(html).toContain('section-expertises.png');
     expect(html).toContain('section-cap-pilote.png');
-    expect(html).toContain('desktop.png');
+    expect(html).toContain('desktop.webp');
   });
 
   it('adds the AI challenge block without exposing infrastructure details', () => {
@@ -56,7 +56,7 @@ describe('C5 — Visualcom stage + dual-device mockup', () => {
     expect(html).not.toMatch(/Phase B|évaluateur|data-project-reflective/);
     const atmosphere = /project-stage__atmosphere[\s\S]*?<\/div>/.exec(html)?.[0] ?? '';
     expect(atmosphere).toContain('hero-atmosphere.jpg');
-    expect(atmosphere).not.toContain('desktop.png');
+    expect(atmosphere).not.toContain('desktop.webp');
   });
 
   it('applies the spelling corrections of the long version', () => {

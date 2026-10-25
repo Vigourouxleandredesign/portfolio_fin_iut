@@ -8,7 +8,7 @@ import logoEnercal from '../../assets/clients/logo-enercal.png';
 import logoClaro from '../../assets/clients/logo-claro.jpg';
 import logoCsb from '../../assets/clients/logo-csb.jpg';
 import logoHyperU from '../../assets/clients/logo-hyper-u.gif';
-import logoVisualcom from '../../assets/clients/logo-visualcom.png';
+import logoVisualcom from '../../assets/clients/logo-visualcom.webp';
 import logoQuintessence from '../../assets/clients/logo-quintessence.jpg';
 
 const CLIENT_LOGOS: Record<string, string> = {
