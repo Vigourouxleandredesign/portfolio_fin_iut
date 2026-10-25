@@ -32,11 +32,12 @@ New feature / bugfix in the same PR **must** add or update ≥ 1 relevant test (
 | `npm run lint:css` | Stylelint (colors only in `src/styles/variables.css`) |
 | `npm run fix` | Prettier + ESLint + Stylelint auto-fix |
 | `npm run gate` | typecheck (src + tests/configs) + secrets + vitest + build |
-| `npm run ci` | **The pipeline:** format check + lint + lint:css + gate + E2E — run by the pre-commit hook and by GitHub Actions |
+| `npm run ci` | **The pipeline:** dependency audit + format check + lint + lint:css + gate + E2E — run by the pre-commit hook and by GitHub Actions (push, PR and a daily schedule) |
 | `npm run test:e2e` | Playwright against local preview (D0, D4, D5) |
 | `npm run test:e2e:prod` | Playwright against `PLAYWRIGHT_BASE_URL` (post-deploy) |
 | `npm run gate:full` | `gate` + local E2E |
-| `npm audit --omit=dev` | A5 — optional but kept available |
+| `npm run audit:ci` | A5 — **mandatory, blocking**: `npm audit --audit-level=high` (dev dependencies included) + `npm audit signatures`; first step of `npm run ci` and of the daily GitHub Actions run |
+| `npm run audit:prod` | `npm audit --omit=dev` — production-only view, for reports |
 
 ---
 

@@ -16,7 +16,7 @@ Projet académique → place au côté artistique et à l’expression du style.
 ## Ce qui est déjà en place (garder)
 
 - Hero : fond `scene-portal.jpg`, titre Magical / Lab, portail 3D (`public/documents/elements/magic_portal.glb`, `[data-glb-showcase]`) comme accès à la démo — **pas** de mockup Mac (test C).
-- Robot 3D (`robot.glb`) dans le corps ; crédit Sketchfab du portail : Nick Broad, *Magic Portal*, CC BY 4.0. Robot : **Komov (Sketchfab)** → afficher `Modèle 3D du robot : Komov, Sketchfab.` (licence à vérifier par Léandre sur la page du modèle ; si elle impose un lien, l’ajouter en L8).
+- Robot 3D (`robot.glb`) dans le corps ; crédit Sketchfab du portail : Nick Broad, *Magic Portal*, CC BY 4.0. Robot : **Komov (Sketchfab)** → afficher `Modèle 3D du robot : Komov, Sketchfab.` (décision de Léandre, 25/10 : citer la provenance, **sans lien**).
 - Récit « un petit robot traverse une lumière… », commandes clavier (flèches, F), tests `magicallab-page.test.ts`.
 
 ## Migration DA v3
