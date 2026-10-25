@@ -42,6 +42,13 @@ Les cartes du catalogue et la navigation « projet précédent / suivant » util
 - MagicalLab (2 occurrences) : « laisser cours à mon imagination » → « laisser libre cours à mon imagination ».
 - Borne : légendes « Rendu 1 … Rendu 4 » → légendes descriptives d’après l’image (ex. « Borne en situation, point de vente », « Vue de face », …) — décrire ce qui est visible, ne rien inventer ; mêmes textes dans les `alt`.
 
+## 5 bis. Poids des pages — relevé dans le build Netlify du 25/10
+
+- `splash-ember.png` (720 ko) est encore dans le build alors que le brief d'accueil demandait de supprimer les décors DA v2 (`.home-decor--*`). Trouver la référence restante (`grep -rn "splash-ember" src pages`), la supprimer, puis supprimer le fichier s'il n'est plus utilisé.
+- `logo-visualcom.png` (492 ko) : le remplacer par `logo-visualcom-blanc.svg` s'il convient, sinon le redimensionner à sa taille d'affichage ×2 et le convertir en WebP.
+- `desktop.png` (449 ko) disparaît avec le point 1.2 si plus aucune page ne l'utilise.
+- Ne pas toucher à `bust.glb` (7,9 Mo) ni à Rapier : ils sont mesurés en L8 (Lighthouse mobile) avant toute décision.
+
 ## 5. Tests
 
 - Mettre à jour les tests feature qui figent les anciens titres (`projects-pages`, `home-featured-carousel`, `secondary-pages`, `project-template`) **en renforçant** : titres exacts du tableau §3, absence de « Phase B » et « évaluateur » dans `visualcom.html`, absence de « (DDEC) » dans le carrousel.

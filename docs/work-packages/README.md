@@ -77,6 +77,7 @@ TODO       : [À CONFIRMER] rencontrés, hors périmètre demandé, doutes
 | L5 | `WP-L5-cv-contact-404-seo.md` | CV, contact, 404, SEO |
 | L5b | `WP-L5b-finitions.md` | Finitions après inspection du 25/10 |
 | L5c | `WP-L5c-audit-dependances.md` | Audit des dépendances obligatoire dans la CI/CD |
+| **L7s** | `WP-L7s-protection-jury.md` | **URGENT** — protection réelle de `/jury` par Edge Function |
 | L6 | `WP-L6-captures.md` | Captures restantes |
 | L7 | `WP-L7-deploiement.md` | Déploiement Netlify |
 | L8 | `WP-L8-recette.md` | Recette finale |

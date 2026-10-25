@@ -26,7 +26,7 @@ Voir le tableau de [`work-packages/README.md`](work-packages/README.md). Jalons 
 | Date | Jalon |
 |---|---|
 | 24/10 | ✅ L1 → L5 fusionnés, `main` poussé sur GitHub (CI GitHub Actions active) |
-| 25/10 | ✅ Inspection chef de projet → lots **L5b** (finitions) et **L5c** (audit des dépendances) · L5c exécuté |
+| 25/10 | ✅ Inspection chef de projet → lots **L5b** (finitions) et **L5c** (audit des dépendances) · L5c à lancer dès aujourd’hui |
 | 26/10 | L5b (Sonnet) ∥ L6 captures (Haiku + Léandre) · soir : L7 préprod Netlify |
 | 27/10 | L8 recette + correctifs — **gel des fonctionnalités** |
 | **28/10** | **Mise en production** |
@@ -47,13 +47,13 @@ Voir le tableau de [`work-packages/README.md`](work-packages/README.md). Jalons 
 | 22/10 | L0 fusionné dans `main` (nettoyage, WebP, skill DA, gestes de peinture versionnés, H1 MagicalLab accessible) |
 | 24/10 | Historique git nettoyé (sauvegarde `backup-git-avant-nettoyage-historique-2026-10-24.bundle` hors dépôt) ; outillage CI ajouté (Prettier, ESLint, Stylelint, Husky, GitHub Actions) ; L1 → L5 livrés |
 | 25/10 | Inspection : 3 bloquants/majeurs (Visualcom hero + texte « Phase B », sous-titre accueil mobile, cohérence catalogue) → L5b |
+| 25/10 | **Incident sécurité** (préprod Netlify) : la règle `Basic-Auth` de `_headers` est ignorée sur l'offre gratuite de Netlify (réservée Pro/Enterprise) → `/jury` et les PDF répondaient 200. Correctif L7s : Edge Function d'authentification (offre gratuite), test E2E de non-régression sur la prod. Erreur de conception du chef de projet. |
 | 25/10 | Mise en production avancée au **mercredi 28/10** (2 jours de marge) ; sous-domaine Netlify (pas de nom de domaine) ; téléphone conservé dans le pied de page ; robot Komov : provenance citée, sans lien ; **audit des dépendances obligatoire et bloquant** dans la CI (pre-commit + GitHub Actions quotidien + Dependabot) → L5c ; textes « Ce que j’en retiens » rédigés par Léandre projet par projet la semaine du 26/10 |
 
 ## Questions ouvertes (bloquent un texte, pas un lot)
 
 | # | Question | Impact |
 |---|---|---|
-| Q1b | Lab Horizon : « ce que j’en retiens » (facultatif — sans réponse, le bloc n’est pas affiché) | Page Lab Horizon |
 | Q7 | « Ce que j’en retiens », projet par projet (semaine du 26/10) : valider ceux de Micro-monde et Vill’âge Jeunes (rédigés d’après tes fiches) ; fournir ceux de Lab Horizon, HyperLoop, Spring Boot, Borne (facultatifs : bloc masqué sans texte) | Pages projet — non bloquant pour la mise en prod |
 
 Q1 à Q5 réglées le 22/10 ; Q6, Q8, Q9 réglées le 25/10 (voir journal).
@@ -65,5 +65,5 @@ Q1 à Q5 réglées le 22/10 ; Q6, Q8, Q9 réglées le 25/10 (voir journal).
 | Lot en retard | Couper les points mineurs de L5b en premier ; 29–30/10 en tampon après la mise en prod |
 | Faille publiée sur une dépendance | Audit bloquant (pre-commit + CI quotidienne) + Dependabot ; correction dans un commit `fix(deps)` |
 | Exécutant qui invente du texte ou casse un test | Briefs mot pour mot, tests garde-fous (C10–C13, jury), rapport obligatoire, recette indépendante L8 |
-| Fuite des fiches | Repo privé, Basic-Auth sur 3 chemins, build qui échoue sans mot de passe, test « texte jury hors bundle » |
+| Fuite des fiches | Repo privé, **Edge Function** d'authentification sur `/jury*` et `/pages/jury*` (L7s), build qui échoue sans mot de passe, test E2E 401 sur la prod, test « texte jury hors bundle » |
 | Captures impossibles (Docker, MySQL, téléphone) | Images de repli prévues dans les briefs |
