@@ -70,6 +70,33 @@ describe('project pages — shared requirements', () => {
   });
 });
 
+const NAV_NAMES: Record<string, string> = {
+  'lab-horizon': 'Lab Horizon',
+  magicallab: 'MagicalLab',
+  micromonde: 'Micro-monde',
+  'village-jeunes': 'Vill’âge Jeunes',
+  visualcom: 'Visualcom',
+  hyperloop: 'HyperLoop NC',
+  'back-springboot': 'Bibliothèque Spring Boot',
+  'pacific-dataviz': 'Pacific Dataviz Challenge',
+  'borne-2bealive': 'Borne tactile 2BeAlive',
+};
+
+describe('project pages — consistent naming', () => {
+  it.each(PROJECT_SLUGS)('%s title carries the shared suffix', (slug) => {
+    expect(read(slug)).toMatch(/<title>[^<]+ — Léandre Vigouroux<\/title>/);
+  });
+
+  it.each(PROJECT_SLUGS)('%s navigation names match the catalogue', (slug) => {
+    const nav = /<nav class="project-nav"[\s\S]*?<\/nav>/.exec(read(slug))?.[0] ?? '';
+    const index = PROJECT_SLUGS.indexOf(slug);
+    const previous = PROJECT_SLUGS[(index + PROJECT_SLUGS.length - 1) % PROJECT_SLUGS.length];
+    const next = PROJECT_SLUGS[(index + 1) % PROJECT_SLUGS.length];
+    expect(nav).toContain(`project-nav__name">${NAV_NAMES[previous]}<`);
+    expect(nav).toContain(`project-nav__name">${NAV_NAMES[next]}<`);
+  });
+});
+
 describe('project pages — DA v3 template', () => {
   it.each(MIGRATED_SLUGS)('%s uses the cartel, page-hero and graded images', (slug) => {
     const html = read(slug);

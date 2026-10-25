@@ -42,6 +42,13 @@ describe('Home featured carousel', () => {
     expect(html).toContain('>JS</span>');
   });
 
+  it('uses the catalogue titles (no « (DDEC) » suffix)', () => {
+    expect(html).not.toContain('(DDEC)');
+    expect(html).toContain('Vill’âge Jeunes — Voir le projet');
+    const titles = [...html.matchAll(/project-carousel__title"><span>([^<]+)</g)].map((m) => m[1]);
+    expect(titles).toEqual(['Lab Horizon', 'MagicalLab', 'Micro-monde', 'Vill’âge Jeunes']);
+  });
+
   it('no longer ships DA v2 decor on the home page', () => {
     expect(html).not.toContain('home-decor');
   });

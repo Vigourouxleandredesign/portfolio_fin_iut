@@ -234,14 +234,27 @@
 }
 
 @media (max-width: 47.99rem) {
+  /* Stacked CTAs take ≈ 9 rem at the bottom: keep title + subtitle above them, over the bust base. */
+  .hero-3d-shell,
+  .hero-3d {
+    min-height: max(calc(100svh - var(--header-height)), 40rem);
+  }
+
   .hero-3d__word--developer {
-    bottom: 26%;
+    bottom: calc(var(--space-6) + 12.25rem);
   }
 
   .hero-3d__subtitle {
     right: 8%;
-    bottom: calc(26% - 3.5rem);
+    bottom: calc(var(--space-6) + 9.25rem);
+    left: 8%;
+    max-width: none;
     font-size: var(--text-sm);
+    color: var(--color-text);
+    text-shadow:
+      0 0 10px var(--color-abyss),
+      0 0 22px var(--color-abyss),
+      0 2px 18px var(--color-abyss);
   }
 
   .hero-3d__paint {

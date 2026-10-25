@@ -96,4 +96,9 @@ describe('Borne 2BeAlive page', () => {
     expect(html).toContain('data-glb-src="/documents/elements/borne.glb"');
     expect(existsSync(resolve(root, 'public/documents/elements/borne.glb'))).toBe(true);
   });
+
+  it('describes the renders instead of numbering them', () => {
+    expect(html).not.toMatch(/Rendu [1-4]/);
+    expect(html).toContain('Plan coté, vue de profil');
+  });
 });

@@ -61,4 +61,10 @@ describe('C4 — MagicalLab stage', () => {
     expect(html).toContain('CC BY 4.0');
     expect(html).toContain('Modèle 3D du robot : Komov, Sketchfab.');
   });
+
+  it('uses the correct French idiom « laisser libre cours »', () => {
+    const flat = html.replace(/\s+/g, ' ');
+    expect(flat).not.toMatch(/laisser cours/);
+    expect(flat.match(/laisser libre cours/g)).toHaveLength(2);
+  });
 });
