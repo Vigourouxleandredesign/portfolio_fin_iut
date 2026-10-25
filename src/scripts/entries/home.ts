@@ -27,6 +27,7 @@ import '../../styles/components/project-card.css';
 import '../../styles/components/project-carousel.css';
 import '../../styles/components/clients-marquee.css';
 import '../../styles/components/hero-3d.css';
+import '../../styles/components/intro-veil.css';
 import '../../styles/pages/home.css';
 
 import bustModel from '../../assets/hero/bust.glb';
@@ -36,6 +37,7 @@ import micromondeCover from '../../assets/projects/micromonde/cover.webp';
 import villageJeunesCover from '../../assets/projects/village-jeunes/cover.webp';
 import blenderMark from '../../assets/tech/blender-mark.svg';
 
+import { initIntroVeil } from '../features/intro-veil/intro-veil';
 import { initSiteFooter } from '../components/site-footer';
 import { initSiteLogo } from '../components/site-logo';
 import { initSiteNav } from '../components/site-nav';
@@ -73,6 +75,14 @@ function runWhenIdle(task: () => void): void {
   }
 }
 
+/**
+ * `true` when the visitor asked the browser to save data: keep the static hero, skip the 3D download.
+ */
+function prefersSavedData(): boolean {
+  const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+  return connection?.saveData === true;
+}
+
 function bootstrap(): void {
   initSiteLogo();
   initSiteNav();
@@ -88,17 +98,29 @@ function bootstrap(): void {
   }
 
   const heroRoot = document.querySelector<HTMLElement>('[data-hero-3d]');
-  if (heroRoot) {
-    // The 3D bust (≈ 1.2 MB GLB + physics) starts once the page is painted and idle, so it never
+  let heroReady: Promise<unknown> = Promise.resolve();
+  if (heroRoot && !prefersSavedData()) {
+    // The 3D bust (≈ 1.2 MB GLB + physics) starts once the page is loaded and idle, so it never
     // competes with the first paint / LCP (the static fallback image is shown meanwhile).
-    runWhenIdle(() => {
-      void import('../features/three-scene/bust-hero').then(({ initBustHero }) =>
-        initBustHero(heroRoot, {
-          modelUrl: bustModel,
-          dracoDecoderPath: '/draco/gltf/',
-        }),
-      );
+    // The opening veil waits for it (capped) so the bust never visibly pops in.
+    heroReady = new Promise<void>((resolve) => {
+      runWhenIdle(() => {
+        void import('../features/three-scene/bust-hero')
+          .then(({ initBustHero }) =>
+            initBustHero(heroRoot, {
+              modelUrl: bustModel,
+              dracoDecoderPath: '/draco/gltf/',
+            }),
+          )
+          .catch(() => undefined)
+          .then(() => resolve());
+      });
     });
+  }
+
+  const veil = document.querySelector<HTMLElement>('[data-intro-veil]');
+  if (veil) {
+    void initIntroVeil(veil, { heroReady });
   }
 
   const carousel = document.querySelector<HTMLElement>('[data-project-carousel]');

@@ -1,0 +1,169 @@
+/**
+ * @file Intro veil — opening screen of the home page
+ * @description DA « Sanctuaire nocturne » : la salle est dans le noir, le faisceau de feu s'allume,
+ *   le monogramme LV se trace à l'or patiné. Le voile se lève quand le héros est prêt
+ *   (`features/intro-veil`). Jamais affiché avec `prefers-reduced-motion` ni deux fois dans la
+ *   même session (`/intro-gate.js` pose `intro-skip`). Secours 100 % CSS : disparaît seul après ~5 s.
+ */
+
+.intro-veil {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-intro-veil);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      55% 45% at 50% 44%,
+      color-mix(in srgb, var(--color-light-fire) 12%, var(--color-bg)),
+      var(--color-bg) 72%
+    ),
+    var(--color-bg);
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 700ms var(--ease-out),
+    visibility 0s linear 700ms;
+  /* No-script / script-failure safety net: the veil can never trap the page. */
+  animation: intro-veil-failsafe 700ms var(--ease-out) 5s forwards;
+}
+
+.intro-veil.is-leaving {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.intro-skip .intro-veil,
+.intro-veil[hidden] {
+  display: none;
+}
+
+.intro-veil .light-beam {
+  opacity: 0;
+  animation: intro-veil-beam 1100ms var(--ease-out) 150ms forwards;
+}
+
+.intro-veil__inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+  transition:
+    transform 700ms var(--ease-out),
+    opacity 500ms var(--ease-out);
+}
+
+.intro-veil.is-leaving .intro-veil__inner {
+  opacity: 0;
+  transform: scale(1.07);
+}
+
+.intro-veil__mark {
+  width: clamp(4.5rem, 16vw, 6.5rem);
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 0 18px color-mix(in srgb, var(--color-light-fire) 35%, transparent));
+}
+
+.intro-veil__frame {
+  fill: none;
+  stroke: var(--color-pigment-gold);
+  stroke-width: 0.6;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: intro-veil-draw 1000ms var(--ease-out) forwards;
+}
+
+.intro-veil__frame--inner {
+  animation-delay: 180ms;
+}
+
+.intro-veil__glyph {
+  fill: var(--color-pigment-gold);
+  opacity: 0;
+  transform: translateY(3px);
+  animation: intro-veil-glyph 700ms var(--ease-out) 600ms forwards;
+}
+
+.intro-veil__caption {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-pigment-copper-light);
+  opacity: 0;
+  animation: intro-veil-fade 700ms var(--ease-out) 900ms forwards;
+}
+
+.intro-veil__ember {
+  position: relative;
+  display: block;
+  width: 7rem;
+  height: 1px;
+  overflow: hidden;
+  background-color: color-mix(in srgb, var(--color-pigment-gold) 22%, transparent);
+  opacity: 0;
+  animation: intro-veil-fade 700ms var(--ease-out) 1000ms forwards;
+}
+
+.intro-veil__ember-spark {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  width: 40%;
+  background: linear-gradient(90deg, transparent, var(--color-pigment-gold-light), transparent);
+  animation: intro-veil-spark 1500ms ease-in-out 1000ms infinite;
+}
+
+@keyframes intro-veil-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes intro-veil-glyph {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes intro-veil-fade {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes intro-veil-beam {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes intro-veil-spark {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(250%);
+  }
+}
+
+@keyframes intro-veil-failsafe {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-veil {
+    display: none;
+  }
+}

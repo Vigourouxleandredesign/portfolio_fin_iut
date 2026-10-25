@@ -36,7 +36,8 @@ describe('HyperLoop NC', () => {
       expect(html).toContain(file);
     }
     expect(html).toContain('Tous les visuels sont générés par IA');
-    expect(html).not.toMatch(/\.jpg"/);
+    // Page images are WebP; only the og:image share preview (public/og/*.jpg) is a JPEG.
+    expect(html.replace(/<meta[^>]*og:image[^>]*>/g, '')).not.toMatch(/\.jpg"/);
   });
 
   it('lists the six languages without presenting a real client project', () => {
