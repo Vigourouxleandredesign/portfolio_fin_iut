@@ -2,11 +2,14 @@
  * @file Netlify Edge Function — Basic-Auth on the jury area
  * @description `Basic-Auth` in `_headers` is ignored on Netlify's free plan (Pro/Enterprise only), so
  *   the lock lives here: it runs before the CDN cache, on every request to a jury path.
+ *   The function is mounted on `/*` and decides itself with a *normalised* path (`lib/jury-path.ts`):
+ *   exact-match routes were bypassable with `//jury` and `/JURY/…` (red team, 2026-10-25).
  *   The credential comes only from the env var `JURY_BASIC_AUTH` (scope: Builds + Functions).
- *   Missing variable → 503 (fail closed, never serve the jury area in clear).
+ *   Missing variable → 503 on jury paths only (fail closed, never serve the jury area in clear).
  * @see {@link ../../docs/SECURITY.md} §0, §7
  */
 import { isAuthorized } from './lib/basic-auth.ts';
+import { isJuryPath } from './lib/jury-path.ts';
 
 declare const Netlify: { env: { get(name: string): string | undefined } };
 
@@ -15,7 +18,9 @@ const NO_STORE = { 'Cache-Control': 'no-store' };
 export default async function juryAuth(
   request: Request,
   context: { next(): Promise<Response> },
-): Promise<Response> {
+): Promise<Response | undefined> {
+  if (!isJuryPath(new URL(request.url).pathname)) return undefined;
+
   const expected = Netlify.env.get('JURY_BASIC_AUTH');
   if (!expected) {
     return new Response('Espace jury indisponible : configuration manquante.', {
@@ -40,4 +45,5 @@ export default async function juryAuth(
   return new Response(response.body, { status: response.status, headers });
 }
 
-export const config = { path: ['/jury', '/jury/*', '/pages/jury', '/pages/jury/*'] };
+// `/assets/*` (hashed public bundles) is skipped for speed; it never holds jury content.
+export const config = { path: '/*', excludedPath: ['/assets/*'] };
