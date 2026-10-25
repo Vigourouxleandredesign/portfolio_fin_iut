@@ -17,14 +17,14 @@ Supabase is **out** and its code was **deleted** on 2026-10-21. Do not recreate 
 | Zone | URL | Protection | Contents |
 |------|-----|------------|----------|
 | **Public portfolio** | `/`, `/projects/*`, `/cv`, `/contact` | None (open) | Home, case studies, CV, contact. |
-| **Jury area** | `/jury`, `/jury/*`, `/pages/jury/*` | **Basic-Auth** (Netlify, server-side) | One page per competence (`pages/jury/*.html`) + PDFs (`public/jury/fiches/<slug>/*.pdf`). Spec: `docs/content/teacher-site.md`. |
+| **Jury area** | `/jury`, `/jury/*`, `/pages/jury/*` | **Basic-Auth** (Netlify **Edge Function**, server-side) | One page per competence (`pages/jury/*.html`) + PDFs (`public/jury/fiches/<slug>/*.pdf`). Spec: `docs/content/teacher-site.md`. |
 
 How the lock works:
 
-1. Netlify env var **`JURY_BASIC_AUTH`** = `jury:<password ≥ 16 chars>` (Site configuration › Environment variables, scope *Builds*). Never in Git.
-2. `netlify.toml` runs `npm run build && node scripts/inject-jury-auth.mjs`: the script appends `Basic-Auth` + `noindex` + `no-store` rules for the 3 jury paths to **`dist/_headers`** (build output only).
-3. On Netlify, a missing or weak credential **fails the build** — the jury area can never ship unprotected. Locally it only warns.
-4. Basic-Auth via `_headers` is available on **all** Netlify plans.
+1. Netlify env var **`JURY_BASIC_AUTH`** = `jury:<password ≥ 16 chars>` (Site configuration › Environment variables, **scopes: All scopes** — at least *Builds* + *Functions*, otherwise the Edge Function cannot read it and answers 503). Never in Git.
+2. **The lock is the Edge Function `netlify/edge-functions/jury-auth.ts`** (logic in `lib/basic-auth.ts`, unit-tested). It runs before the CDN cache on `/jury`, `/jury/*`, `/pages/jury`, `/pages/jury/*`: no credential or a wrong one → **401**; variable missing → **503** (fail closed); correct → page served with `Cache-Control: private, no-store` and `X-Robots-Tag: noindex, nofollow`.
+3. `netlify.toml` runs `npm run build && node scripts/inject-jury-auth.mjs`: the script also appends `Basic-Auth` + `noindex` + `no-store` rules to **`dist/_headers`** as defence in depth, and on Netlify a missing or weak credential **fails the build**. Locally it only warns.
+4. **Why an Edge Function:** `Basic-Auth` in `_headers` is applied by Netlify on **Pro/Enterprise plans only**; on the free plan it is silently ignored (incident 2026-10-25: `/jury` and the PDFs answered 200). Never rely on it alone.
 
 Rules:
 
@@ -43,8 +43,8 @@ Rules:
 |------|--------|
 | **No secret in the front** | Anything `VITE_*` is compiled into the public bundle. The only secret is `JURY_BASIC_AUTH` (no `VITE_` prefix → never bundled; read only by `scripts/inject-jury-auth.mjs` at build time). |
 | **Never commit `.env`** | `.gitignore` covers `.env`, `.env.*` (except `.env.example`, names only). |
-| **Guard** | `npm run check:secrets` (part of `npm run gate`) scans sources + `netlify.toml` for keys/tokens and for any committed `Basic-Auth: user:pass` / `JURY_BASIC_AUTH=` value. `tests/unit/jury-auth.test.ts` checks the lock. |
-| **Netlify** | `netlify.toml` (build + jury lock). `JURY_BASIC_AUTH` set in the dashboard, scope *Builds*. |
+| **Guard** | `npm run check:secrets` (part of `npm run gate`) scans sources + `netlify.toml` for keys/tokens and for any committed `Basic-Auth: user:pass` / `JURY_BASIC_AUTH=` value. `tests/unit/jury-auth.test.ts` checks the build rules, `tests/unit/edge-jury-auth.test.ts` the Edge Function logic. |
+| **Netlify** | `netlify.toml` (build + jury lock). `netlify/edge-functions/jury-auth.ts` (the lock). `JURY_BASIC_AUTH` set in the dashboard, all scopes. |
 
 ---
 
@@ -120,11 +120,12 @@ Major upgrades are made only when `npm run ci` stays green without code changes;
 ## 7. Jury area (password-protected)
 
 - Pages `pages/jury/*.html` (built to `/pages/jury/`, pretty routes `/jury`, `/jury/<competence>` in `public/_redirects`); PDFs in `public/jury/fiches/<slug>/`.
-- Lock = §0 (Basic-Auth injected at build). All three path families are protected: `/jury`, `/jury/*`, `/pages/jury/*`.
+- Lock = §0 (Edge Function). All path families are protected: `/jury`, `/jury/*`, `/pages/jury`, `/pages/jury/*`.
 - Extra headers on those paths: `X-Robots-Tag: noindex, nofollow`, `Cache-Control: private, no-store`. `robots.txt` adds `Disallow: /jury`.
 - Jury pages load only shared CSS/JS (no jury text in bundles) and no third-party resource.
 - Long unique password, shared with the jury out of band (e-mail) — never in Git, HTML, issues or chat logs.
 - Verify after each deploy (private window): `/jury` → 401 prompt; `/jury/fiches/visualcom/mission-reflection.pdf` → 401 without credentials; `/pages/jury/index.html` → 401.
+- Automated check on the deployed site (no real password used): `PLAYWRIGHT_BASE_URL=https://<site>.netlify.app npx playwright test tests/e2e/jury-protection.prod.spec.ts` — the 8 jury paths answer 401 with no and with wrong credentials; `/`, `/projects`, `/cv` answer 200.
 
 ---
 
