@@ -14,7 +14,7 @@
 2. Netlify › *Add new site* › *Import from GitHub* › le dépôt. Build lu depuis `netlify.toml` (ne rien saisir à la main).
 3. *Site configuration › Environment variables* › `JURY_BASIC_AUTH` = `jury:<mot de passe d’au moins 16 caractères, sans espace>` — portée **Builds**. Générer le mot de passe avec un gestionnaire ; ne l’écrire nulle part ailleurs.
 4. Relancer le déploiement. Un échec « JURY_BASIC_AUTH is not set » = la variable manque (c’est voulu).
-5. Nom du site / domaine : noter l’URL finale ; remplacer `https://REMPLACER-PAR-LE-DOMAINE` (sitemap, robots, canonical, og) — commit `chore(L7): set production domain`.
+5. Nom du site : **sous-domaine Netlify** (`<nom>.netlify.app`, décision du 25/10 — pas de nom de domaine) ; *Site configuration › Change site name* pour un nom lisible (ex. `leandre-vigouroux`) ; noter l’URL finale ; remplacer le placeholder **sans tenir compte de la casse** — il existe en `https://REMPLACER-PAR-LE-DOMAINE` (og, robots, sitemap) **et** en `https://remplacer-par-le-domaine` (canonical) : `grep -rli "remplacer-par-le-domaine" pages public` doit ne plus rien renvoyer. Rendre aussi **absolus** les `og:image` des pages projet (`/src/assets/...` → construits par Vite en `/assets/...` : préfixer le domaine dans le HTML source, ou générer la balise au build) — vérifier dans `dist/` qu’aucun `og:image` ne commence par `/`. Commit `chore(L7): set production domain`.
 
 ## Vérifications (Haiku, après déploiement)
 

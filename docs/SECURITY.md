@@ -102,7 +102,17 @@ Netlify Forms (`data-netlify="true"`) with a honeypot field (`bot-field`, tested
 |------|--------|
 | **Minimal dependencies** | Runtime: `three`, `@dimforge/rapier3d-compat`, `@fontsource/*`, `tweakpane` (debug, lazy). Any new runtime dependency must be justified in the PR. |
 | **Lockfile committed** | `package-lock.json` — install with `npm ci` on Netlify/CI. |
-| **Audit** | `npm run audit:prod` before each deploy; fix `high`/`critical`. |
+| **Audit (mandatory, blocking)** | `npm run audit:ci` = `npm audit --audit-level=high && npm audit signatures`, **dev dependencies included**. It is the first step of `npm run ci`: pre-commit hook, every GitHub Actions run and a **daily** scheduled run (05:00 Nouméa). A `high`/`critical` advisory turns the pipeline red; there is no bypass (`--no-verify`, `HUSKY=0`). |
+| **Dependabot** | `.github/dependabot.yml`: weekly npm + GitHub Actions PRs (patch/minor grouped) and security updates; each PR runs the same CI. `three` stays pinned. |
+
+### Fixing a red audit (in this order, in a separate `fix(deps): …` commit)
+
+1. `npm audit fix` — **never** `--force`.
+2. Direct dependency still vulnerable: `npm install <package>@<fixed version>`, one package at a time, `npm run ci` green between each.
+3. Transitive dependency still vulnerable: add an `overrides` entry in `package.json` forcing the fixed version, then `npm run ci`.
+4. No fixed version exists: do **not** work around it. Record here (package, advisory GHSA/CVE, severity, dev or prod, present or not in `dist/`) and let the project lead decide.
+
+Major upgrades are made only when `npm run ci` stays green without code changes; otherwise they are listed in the report.
 | **Pinned 3D stack** | `three` pinned (`0.185.1`) — upgrade deliberately, re-test the hero. |
 
 ---

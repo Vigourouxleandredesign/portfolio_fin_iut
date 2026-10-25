@@ -17,4 +17,4 @@
 
 ## Livrable
 
-Rapport de recette (artefact) : anomalies classées bloquant / majeur / mineur, chacune avec lot responsable et correctif proposé ; correctifs passés à un exécutant le 29/10 ; re-test des bloquants avant la mise en production du 30/10.
+Rapport de recette (artefact) : anomalies classées bloquant / majeur / mineur, chacune avec lot responsable et correctif proposé ; recette le mardi 27/10, correctifs passés à un exécutant le jour même ; re-test des bloquants avant la mise en production du **mercredi 28/10**. Ajout à la grille : `npm audit --audit-level=high` à 0 et dernier run GitHub Actions vert (y compris le run quotidien).

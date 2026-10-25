@@ -1,0 +1,23 @@
+# Dependabot: weekly update PRs (patch + minor grouped), plus security updates when an advisory is published.
+# Every PR runs the same CI as a push (audit, lint, typecheck, tests, build, E2E).
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      minor-and-patch:
+        update-types: [minor, patch]
+    ignore:
+      # three is pinned on purpose: upgrade deliberately and re-test the hero (docs/SECURITY.md §6).
+      - dependency-name: three
+        update-types: [version-update:semver-minor, version-update:semver-major]
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      actions:
+        patterns: ['*']
