@@ -153,7 +153,7 @@ describe('3D bust — mouse only', () => {
 
   it('hides the click hint where the 3D is not mounted', () => {
     expect(read('src/styles/components/hero-3d.css')).toMatch(
-      /@media \(hover: none\), \(pointer: coarse\), \(prefers-reduced-motion: reduce\)\s*\{\s*\.hero-3d__hint\s*\{\s*display: none/,
+      /@media \(max-width: 47\.99rem\), \(hover: none\), \(pointer: coarse\), \(prefers-reduced-motion: reduce\)\s*\{\s*\.hero-3d__hint\s*\{\s*display: none/,
     );
   });
 });

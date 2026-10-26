@@ -62,7 +62,9 @@ describe('project pages — shared requirements', () => {
     expect(nav, 'project-nav block').not.toBe('');
     expect(nav).toContain(`href="/projects/${previous}"`);
     expect(nav).toContain(`href="/projects/${next}"`);
-    expect(nav).toContain('href="/projects"');
+    // « Tous les projets » left the block: the way back is the breadcrumb (L14).
+    expect(nav).not.toContain('href="/projects"');
+    expect(html).toMatch(/breadcrumb__link" href="\/projects"/);
   });
 
   it.each(PROJECT_SLUGS)('%s never links to the protected jury sheets', (slug) => {
