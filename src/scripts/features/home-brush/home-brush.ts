@@ -6,11 +6,13 @@
  *   (slower → thicker) and tapers at both ends; color slides copper → gold →
  *   phtalo along the gesture. Text selection is suppressed for the duration
  *   of a paint drag. Canvas blends normally. Sits above sections, below the
- *   3D hero. No-ops under `prefers-reduced-motion` or when the pigment tokens
- *   are missing.
+ *   3D hero. A mouse-only feature: on touch (finger, stylus) the canvas is removed and
+ *   no listener is attached, so scrolling is never intercepted. No-ops under
+ *   `prefers-reduced-motion` or when the pigment tokens are missing.
  * @see {@link ../../../../docs/ARCHITECTURE.md}
  */
 
+import { hasFinePointer } from '../three-scene/bust-capability';
 import { drawStrokeSegment, drawStrokeTail, parseHexColor } from './home-brush-strokes';
 import type { BrushPalette, BrushPoint, Rgb } from './home-brush.types';
 
@@ -57,6 +59,13 @@ function speedToPressure(speedPxPerMs: number): number {
  * @returns Teardown function (removes listeners, disconnects the observer)
  */
 export function initHomeBrush(root: HTMLElement): () => void {
+  if (!hasFinePointer()) {
+    // Phones and tablets: no brush, no canvas, no listener (a non-passive `pointermove` on `window`
+    // blocks or stutters finger scrolling on real devices).
+    root.querySelector('[data-home-brush]')?.remove();
+    return () => undefined;
+  }
+
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (prefersReducedMotion) {
     return () => undefined;
@@ -137,7 +146,8 @@ export function initHomeBrush(root: HTMLElement): () => void {
   };
 
   const onPointerDown = (event: PointerEvent): void => {
-    if (event.button !== 0) {
+    // Defence in depth: finger and stylus never paint, and are never `preventDefault`-ed.
+    if (event.pointerType !== 'mouse' || event.button !== 0) {
       return;
     }
     isPainting = true;
@@ -154,6 +164,9 @@ export function initHomeBrush(root: HTMLElement): () => void {
   };
 
   const onPointerMove = (event: PointerEvent): void => {
+    if (event.pointerType !== 'mouse') {
+      return;
+    }
     // Only paint while the primary button stays held.
     if (!isPainting || (event.buttons & PRIMARY_BUTTON) === 0) {
       if (isPainting) {

@@ -17,10 +17,15 @@ function matches(win: Window, query: string): boolean {
   return typeof win.matchMedia === 'function' && win.matchMedia(query).matches;
 }
 
+/** `true` on a mouse / trackpad (hover + fine pointer): the only devices that get the brush and the 3D bust. */
+export function hasFinePointer(win: Window = window): boolean {
+  return matches(win, '(hover: hover) and (pointer: fine)');
+}
+
 /** `true` when the interactive 3D bust may be mounted on this device. */
 export function canMountBust(win: Window = window): boolean {
   if (matches(win, '(prefers-reduced-motion: reduce)')) return false;
-  if (!matches(win, '(hover: hover) and (pointer: fine)')) return false;
+  if (!hasFinePointer(win)) return false;
   if (connectionOf(win)?.saveData === true) return false;
   return true;
 }

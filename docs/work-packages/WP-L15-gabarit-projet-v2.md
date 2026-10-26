@@ -1,6 +1,6 @@
 # L15 : gabarit de page projet v2 (hiérarchie, fil rouge)
 
-**Statut : en attente de validation de Léandre** sur le canvas « Gabarit page projet v2 » (artboards **Page projet v2** et **Composants**). Ne pas lancer avant son accord.
+**Statut : gabarit validé par Léandre le 26/10** (canvas « Gabarit page projet v2 », artboards **Page projet v2** et **Composants**). À lancer après L14 ; Lab Horizon et Micro-monde ne sont traités qu'une fois leurs textes prêts.
 **Exécutant :** Claude Code **Sonnet** · **Durée :** 1 journée · **Dépend de :** L14 · **Branche :** `wp/L15-gabarit-v2`
 
 ## Constat (Léandre, 26/10)
@@ -25,7 +25,7 @@ Règles : un seul bouton principal par écran ; ce qui se clique porte une flèc
 3. Micro-monde : avec les textes de `docs/content/projects/micromonde-v2.md`, une fois les questions de la section 3 tranchées.
 4. Pages secondaires (MagicalLab, HyperLoop, Spring Boot, Pacific Dataviz, Borne) : même ordre de sections, sans « L'essentiel » si aucun fait chiffré n'existe.
 
-## Prompt à coller (seulement après validation)
+## Prompt à coller
 
 ```
 Tu es exécutant du lot L15 (gabarit de page projet v2) du portfolio de Léandre. Applique le protocole commun de docs/work-packages/README.md. Lis la skill portfolio-da, docs/work-packages/WP-L15-gabarit-projet-v2.md, puis ouvre le canvas de référence que Léandre te donne (artboards « Page projet v2 » et « Composants »). Applique le gabarit dans l'ordre de la section « Ordre d'application », un commit par page. N'invente aucun fait ni aucun texte, et respecte les « Règles d'écriture » de AGENTS.md (pas de tiret long, « et » au lieu de « & », pas d'antithèse ni de slogan du type « X sans Y » ou « X, pas Y », pas d'adjectif emphatique, pas de « je » inventé ; titres de chapitre factuels et concrets ; writing-guards vert) : liste dans ton rapport chaque nouveau titre ou fait pour validation. Termine par le rapport au format du README.
