@@ -2,8 +2,8 @@
  * @file Vite configuration — multi-page app (MPA)
  * @description Builds each HTML file under pages/ as a separate route.
  *   `root` stays at the project root so `dist/pages/*.html` matches
- *   `public/_redirects` on Netlify; the plugin below reproduces that
- *   "/" → "/pages/index.html" redirect for local dev and preview.
+ *   `public/_redirects` on Netlify; the plugin below serves the same canonical URLs
+ *   (`/`, `/projects/<slug>`, `/jury/<page>`…) for local dev and preview.
  */
 import { existsSync, readdirSync } from 'node:fs';
 import { resolve } from 'node:path';
@@ -49,32 +49,52 @@ function juryPageInputs(): Record<string, string> {
   );
 }
 
+/** Canonical URL → source page (mirrors the `200` rewrites of `public/_redirects`). */
+const CLEAN_URL_PAGES: Readonly<Record<string, string>> = {
+  '/': '/pages/index.html',
+  '/projects': '/pages/projects.html',
+  '/cv': '/pages/cv.html',
+  '/contact': '/pages/contact.html',
+  '/jury': '/pages/jury/index.html',
+};
+
 /**
- * Redirects the site root to the home page for `vite` and `vite preview`,
- * mirroring `public/_redirects` (Netlify-only, not read by these servers).
+ * Maps a canonical URL (`/`, `/projects`, `/projects/<slug>`, `/jury/<page>`…) to its source page,
+ * or `null` when the URL is not a page route (assets, unknown paths, `/pages/*` itself).
  */
-function redirectRootToHome(): Plugin {
-  const redirect = (
-    req: { url?: string },
-    res: { statusCode: number; setHeader: (name: string, value: string) => void; end: () => void },
-    next: () => void,
-  ): void => {
-    if (req.url === '/') {
-      res.statusCode = 302;
-      res.setHeader('Location', '/pages/index.html');
-      res.end();
-      return;
-    }
+export function resolveCleanUrl(pathname: string): string | null {
+  const path = pathname.replace(/\/+$/, '') || '/';
+  const direct = CLEAN_URL_PAGES[path];
+  if (direct) return direct;
+  const nested = /^\/(projects|jury)\/([a-z0-9-]+)$/.exec(path);
+  if (!nested) return null;
+  const page = `/pages/${nested[1]}/${nested[2]}.html`;
+  return existsSync(resolve(projectRoot, page.slice(1))) ? page : null;
+}
+
+/**
+ * Serves canonical URLs for `vite` and `vite preview`, mirroring `public/_redirects`
+ * (Netlify-only, not read by these servers). The rewrite is internal: the address bar keeps the
+ * clean URL, exactly like the production `200` rewrites.
+ */
+function serveCleanUrls(): Plugin {
+  const rewrite = (req: { url?: string }, _res: unknown, next: () => void): void => {
+    const url = req.url ?? '';
+    const queryStart = url.indexOf('?');
+    const pathname = queryStart === -1 ? url : url.slice(0, queryStart);
+    const search = queryStart === -1 ? '' : url.slice(queryStart);
+    const page = resolveCleanUrl(pathname);
+    if (page) req.url = `${page}${search}`;
     next();
   };
 
   return {
-    name: 'redirect-root-to-home',
+    name: 'serve-clean-urls',
     configureServer(server) {
-      server.middlewares.use(redirect);
+      server.middlewares.use(rewrite);
     },
     configurePreviewServer(server) {
-      server.middlewares.use(redirect);
+      server.middlewares.use(rewrite);
     },
   };
 }
@@ -82,7 +102,7 @@ function redirectRootToHome(): Plugin {
 export default defineConfig({
   root: projectRoot,
   publicDir: resolve(projectRoot, 'public'),
-  plugins: [redirectRootToHome()],
+  plugins: [serveCleanUrls()],
   // .glb (bust hero + project models) isn't a built-in Vite asset type.
   assetsInclude: ['**/*.glb'],
   server: {

@@ -19,7 +19,7 @@ describe('Home featured carousel', () => {
     const hrefs = [...html.matchAll(/class="project-carousel__link" href="([^"]+)"/g)].map(
       (match) => match[1],
     );
-    expect(hrefs).toEqual(SLIDES.map((slide) => `/pages/projects/${slide.slug}.html`));
+    expect(hrefs).toEqual(SLIDES.map((slide) => `/projects/${slide.slug}`));
   });
 
   it('keeps Visualcom and Pacific Dataviz out of the carousel', () => {
