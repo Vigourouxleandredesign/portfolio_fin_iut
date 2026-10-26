@@ -198,3 +198,18 @@
   background-position: center;
   mix-blend-mode: screen;
 }
+
+/* Micro-monde « En situation » : paire avant / après empilée sous 48 rem */
+.project-gallery__grid--pair {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.project-gallery__item--spaced {
+  margin-top: var(--space-6);
+}
+
+@media (min-width: 48rem) {
+  .project-gallery__grid--pair {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

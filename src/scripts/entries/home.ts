@@ -38,6 +38,7 @@ import villageJeunesCover from '../../assets/projects/village-jeunes/cover.webp'
 import blenderMark from '../../assets/tech/blender-mark.svg';
 
 import { initIntroVeil } from '../features/intro-veil/intro-veil';
+import { canMountBust } from '../features/three-scene/bust-capability';
 import { initSiteFooter } from '../components/site-footer';
 import { initSiteLogo } from '../components/site-logo';
 import { initSiteNav } from '../components/site-nav';
@@ -75,14 +76,6 @@ function runWhenIdle(task: () => void): void {
   }
 }
 
-/**
- * `true` when the visitor asked the browser to save data: keep the static hero, skip the 3D download.
- */
-function prefersSavedData(): boolean {
-  const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
-  return connection?.saveData === true;
-}
-
 function bootstrap(): void {
   initSiteLogo();
   initSiteNav();
@@ -99,9 +92,10 @@ function bootstrap(): void {
 
   const heroRoot = document.querySelector<HTMLElement>('[data-hero-3d]');
   let heroReady: Promise<unknown> = Promise.resolve();
-  if (heroRoot && !prefersSavedData()) {
-    // The 3D bust (≈ 1.2 MB GLB + physics) starts once the page is loaded and idle, so it never
-    // competes with the first paint / LCP (the static fallback image is shown meanwhile).
+  if (heroRoot && canMountBust()) {
+    // Mouse devices only (touch / reduced motion / save-data keep the static hero image, nothing of the
+    // 3D is downloaded). The bust (≈ 1.2 MB GLB + physics) starts once the page is loaded and idle, so
+    // it never competes with the first paint / LCP (the static fallback image is shown meanwhile).
     // The opening veil waits for it (capped) so the bust never visibly pops in.
     heroReady = new Promise<void>((resolve) => {
       runWhenIdle(() => {

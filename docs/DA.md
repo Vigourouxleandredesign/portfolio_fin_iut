@@ -61,6 +61,8 @@ Un temple antique abandonné, la nuit. Un seul faisceau de lumière (lueur de fe
 
 **Interdits :** rose/fuchsia néon, bleu électrique, violet, **rouge sang** (le cramoisi est supprimé), aplats de pigment derrière du texte, plus de 2 pigments dans une même zone, couleurs hors `variables.css`.
 
+**Exception validée (Léandre, 26/10) :** l’image du buste `src/assets/hero/bust-designer.jpg` conserve son éclaboussure d’origine (œuvre de Léandre) ; c’est le visuel définitif du héros sur appareil tactile. Ne pas la modifier ni la « corriger ».
+
 ### Pigment attitré par projet
 
 | Projet | Token | Couleur |

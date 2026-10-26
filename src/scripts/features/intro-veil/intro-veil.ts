@@ -8,12 +8,16 @@
  *   for the 3D). Shown once per browser session; `/intro-gate.js` skips it up front.
  * @see {@link ../../../styles/components/intro-veil.css}
  */
+import { isConstrainedDevice } from '../three-scene/bust-capability';
 
 /** The monogram needs ~0.9 s to draw: lifting earlier would look like a glitch. */
 export const MIN_VISIBLE_MS = 900;
 
 /** Hard cap since navigation start: past this the page shows as-is (3D pops in later). */
 export const MAX_WAIT_MS = 3200;
+
+/** Same cap on touch devices / slow connections: they never wait for the 3D (docs/REDTEAM P1-2). */
+export const MAX_WAIT_CONSTRAINED_MS = 1500;
 
 /** Matches the CSS transition of `.intro-veil` (700 ms) with a little margin. */
 const LEAVE_MS = 800;
@@ -25,6 +29,8 @@ export interface IntroVeilOptions {
   heroReady?: Promise<unknown>;
   /** Milliseconds since navigation start; injectable for tests. */
   now?: () => number;
+  /** Overrides the touch / slow-connection detection (tests). */
+  constrained?: boolean;
 }
 
 function imageReady(image: HTMLImageElement): Promise<void> {
@@ -82,7 +88,10 @@ export async function initIntroVeil(
     options.heroReady ?? Promise.resolve(),
   ]);
 
-  await Promise.race([ready, delay(MAX_WAIT_MS - now())]);
+  const constrained = options.constrained ?? isConstrainedDevice();
+  const cap = constrained ? MAX_WAIT_CONSTRAINED_MS : MAX_WAIT_MS;
+
+  await Promise.race([ready, delay(cap - now())]);
   await delay(MIN_VISIBLE_MS - now());
 
   veil.classList.add('is-leaving');

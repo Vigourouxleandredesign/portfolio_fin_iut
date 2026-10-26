@@ -40,14 +40,15 @@ Création des assets 3D, animation, intégration dans 8th Wall pour qu’ils se 
 
 ## Visuels (`src/assets/projects/micromonde/`)
 
-> **22/10 :** captures téléphone du parcours AR **reportées** — intégrer la page avec les visuels existants ci-dessous ; laisser un `<!-- TODO L6 captures AR -->` à l’emplacement prévu, sans image vide ni texte « à venir » visible.
+> **26/10 :** captures AR intégrées (`shots/`, préparées : interface du navigateur rognée, WebP). Fichiers : `micromonde-ar-hibiscus.webp` (récit III), `micromonde-ar-tortue-avant.webp` + `micromonde-ar-tortue-apres.webp` (bloc « En situation », avant / après), `micromonde-ar-loriquet.webp` + `micromonde-ar-loriquet-mobile.webp` (même bloc, `<picture>` responsive) ; `micromonde-ar-tortue-mobile.webp` en réserve (non importé).
 
 | Emplacement | Fichier |
 |---|---|
 | Hero | `cover.png` → **convertir en `cover.webp`** (lot L0) |
 | Récit 1 | `fresques-propositions-kuby-kolor.webp` (légende : « Propositions de fresques — Kuby Kolor ») |
 | Récit 2 | `modele-tortue.webp`, `modele-loriquet.webp` |
-| Récit 3 | capture téléphone du parcours AR → `shots/micromonde-parcours-ar-mobile.jpg` (**à fournir par Léandre**, photo d’écran sur place) ; en attendant : `shots/micromonde-parcours-mobile.jpg` (QR 8th Wall) utilisé **uniquement** comme vignette « Essayer sur mobile » |
+| Récit 3 | `shots/micromonde-ar-hibiscus.webp` (légende : « Les boutons ronds, ancrés sur la fresque, ouvrent les panneaux ») |
+| En situation | paire `micromonde-ar-tortue-avant.webp` / `-apres.webp` + `micromonde-ar-loriquet(-mobile).webp` |
 | Démo | bloc « Essayer sur votre téléphone » : QR (capture existante recadrée sur le QR) + lien texte vers la démo |
 
 ## DA spécifique

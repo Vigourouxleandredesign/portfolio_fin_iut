@@ -139,3 +139,28 @@ describe('Lab Horizon page', () => {
     expect(html).toContain('<!-- TODO');
   });
 });
+
+describe('Micro-monde page — AR captures (L9)', () => {
+  const html = readFileSync(resolve(process.cwd(), 'pages/projects/micromonde.html'), 'utf8');
+
+  it.each([
+    'micromonde-ar-hibiscus.webp',
+    'micromonde-ar-tortue-avant.webp',
+    'micromonde-ar-tortue-apres.webp',
+    'micromonde-ar-loriquet.webp',
+    'micromonde-ar-loriquet-mobile.webp',
+  ])('uses %s', (file) => {
+    expect(html).toContain(`shots/${file}`);
+  });
+
+  it('keeps the spare capture out of the page and leaves no TODO L6', () => {
+    expect(html).not.toContain('micromonde-ar-tortue-mobile');
+    expect(html).not.toContain('TODO L6');
+  });
+
+  it('serves the lorikeet as a responsive <picture> (portrait under 48 rem)', () => {
+    expect(html).toMatch(
+      /<picture>\s*<source[^>]*media="\(max-width: 48rem\)"[^>]*micromonde-ar-loriquet-mobile\.webp/,
+    );
+  });
+});

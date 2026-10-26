@@ -37,9 +37,13 @@ Existant : `cover.jpg`, `cover-featured.jpg`, `scene-*.jpg` + GLB `public/docume
 | `modele-tortue.webp` | 706×440 | Galerie « modèles 3D » |
 | `modele-loriquet.webp` | 1200×654 | Galerie « modèles 3D » |
 | `fresques-propositions-kuby-kolor.webp` | 1000×1431 | Contexte fresques — **créditer l’artiste Kuby Kolor** |
+| `shots/micromonde-ar-hibiscus.webp` | 1600×1000 | Récit III |
+| `shots/micromonde-ar-tortue-avant.webp`, `-apres.webp` | 1600×1200 | « En situation » (avant / après) |
+| `shots/micromonde-ar-loriquet.webp`, `-loriquet-mobile.webp` | 1600×1000, 900×1200 | « En situation » (`<picture>`) |
+| `shots/micromonde-ar-tortue-mobile.webp` | 900×1200 | Réserve (non utilisé) |
 
 Existant : `cover.png` (1,3 Mo → à convertir en WebP lors de l’intégration).  
-**Manque :** capture du parcours AR **prise sur téléphone** (sur desktop le site n’affiche que le QR « Scan to continue » d’8th Wall — utilisable seulement comme vignette « Essayer sur mobile »).
+Captures AR : ✅ fournies et intégrées le 2026-10-26.
 
 **Rôle de Léandre (confirmé 2026-10-21) :** création des assets 3D, animation, intégration dans 8th Wall (calage sur les fresques, AR) ; direction artistique de l’expérience (typo, couleurs, ton, iconographie) ; conception de l’interface. Les **fresques** sont de l’artiste **Kuby Kolor** — à créditer sur la page.
 
@@ -139,7 +143,8 @@ Toujours en `<img src="…" alt="" aria-hidden="true">` décoratif ou `backgroun
 ## À fournir par Léandre
 
 - [x] CV PDF → `public/documents/cv.pdf` (v2 du 2026-10-21)
-- [ ] Captures GPU : `npm run shots -- magicallab --headed` et `npm run shots -- micromonde --headed`
+- [ ] Captures GPU : `npm run shots -- magicallab --headed`
+- [x] Captures AR Micro-monde (fournies 2026-10-26)
 - [x] Captures locales : Lab Horizon (Docker) — 2026-10-25
 - [ ] Captures locales : Spring Boot
 - [x] Rôle Micro-monde + crédit Kuby Kolor (voir section Micro-monde)

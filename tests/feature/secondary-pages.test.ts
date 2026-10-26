@@ -79,7 +79,9 @@ describe('Pacific Dataviz page', () => {
     expect(html).toContain('https://leandredatavizchallenge.figma.site/');
     expect(html).toContain('Ouvrir la réalisation');
     const headers = readFileSync(resolve(root, 'public/_headers'), 'utf8');
-    expect(headers).toContain('https://*.figma.site');
+    // Only the exact Figma site is framed — no wildcard on third-party subdomains (REDTEAM P2-7).
+    expect(headers).toMatch(/frame-src [^;]*https:\/\/leandredatavizchallenge\.figma\.site(?:;| )/);
+    expect(headers).not.toContain('*.figma.site');
   });
 });
 

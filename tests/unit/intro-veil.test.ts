@@ -4,6 +4,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   initIntroVeil,
+  MAX_WAIT_CONSTRAINED_MS,
   MAX_WAIT_MS,
   MIN_VISIBLE_MS,
 } from '../../src/scripts/features/intro-veil/intro-veil';
@@ -62,6 +63,19 @@ describe('intro veil', () => {
     expect(veil.classList.contains('is-leaving')).toBe(false);
     await vi.advanceTimersByTimeAsync(100);
     expect(veil.classList.contains('is-leaving')).toBe(true);
+  });
+
+  it('caps at 1.5 s on touch / slow devices instead of waiting for the 3D', async () => {
+    void initIntroVeil(veil, {
+      now,
+      constrained: true,
+      heroReady: new Promise(() => undefined),
+    });
+    await vi.advanceTimersByTimeAsync(MAX_WAIT_CONSTRAINED_MS - 50);
+    expect(veil.classList.contains('is-leaving')).toBe(false);
+    await vi.advanceTimersByTimeAsync(100);
+    expect(veil.classList.contains('is-leaving')).toBe(true);
+    expect(MAX_WAIT_CONSTRAINED_MS).toBeLessThan(MAX_WAIT_MS);
   });
 
   it('remembers the intro was seen in this session', async () => {

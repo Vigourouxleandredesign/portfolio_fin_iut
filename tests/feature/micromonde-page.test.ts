@@ -29,10 +29,10 @@ describe('Micro-monde page', () => {
     expect(html).not.toMatch(/<iframe/i);
   });
 
-  it('follows the brief and keeps the pending AR captures as a TODO', () => {
+  it('follows the brief and shows the AR captures (no pending TODO left)', () => {
     expect(html).toContain('N° III · 2026 · Nuit de la Science — UNC');
     expect(html).toContain('Blender · 8th Wall · Three.js · Vite · TypeScript');
-    expect(html).toContain('<!-- TODO L6 captures AR');
+    expect(html).not.toContain('TODO L6');
     expect(html).not.toContain('[À CONFIRMER]');
     expect(html).not.toMatch(/bient[ôo]t|à venir/i);
   });

@@ -233,7 +233,7 @@
             </ul>
           </div>
         </article>
-        <article class="project-story__block project-story__block--no-visual" data-reveal>
+        <article class="project-story__block" data-reveal>
           <div class="project-story__copy">
             <span class="project-story__index" aria-hidden="true">III</span>
             <h3 class="project-story__title">Une interface à hauteur de mur</h3>
@@ -243,7 +243,22 @@
               fresques sur le campus.
             </p>
           </div>
-          <!-- TODO L6 captures AR : photo d’écran du parcours sur téléphone (shots/micromonde-parcours-ar-mobile.jpg) -->
+          <div class="project-story__visual">
+            <div class="graded-image">
+              <img
+                class="graded-image__img"
+                src="/src/assets/projects/micromonde/shots/micromonde-ar-hibiscus.webp"
+                alt="Hibiscus 3D rouge affiché en réalité augmentée devant une fresque de fleurs, avec quatre boutons ronds posés sur l’image"
+                width="1600"
+                height="1000"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <p class="project-story__caption">
+              Les boutons ronds, ancrés sur la fresque, ouvrent les panneaux
+            </p>
+          </div>
         </article>
         <article class="project-story__block project-story__block--no-visual" data-reveal>
           <div class="project-story__copy">
@@ -255,6 +270,71 @@
             </p>
           </div>
         </article>
+      </section>
+
+      <section class="project-gallery" aria-labelledby="micromonde-situ-title" data-reveal>
+        <span class="project-section__eyebrow">En situation</span>
+        <h2 class="project-section__title" id="micromonde-situ-title">
+          Sur le campus, face aux fresques
+        </h2>
+        <div class="project-gallery__grid project-gallery__grid--pair">
+          <figure class="project-gallery__item">
+            <div class="graded-image">
+              <img
+                class="graded-image__img"
+                src="/src/assets/projects/micromonde/shots/micromonde-ar-tortue-avant.webp"
+                alt="Fresque de la tortue marine, un téléphone tenu à la main affiche l’application avant la détection de l’image"
+                width="1600"
+                height="1200"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <figcaption class="project-gallery__caption">
+              Avant : la fresque vue par le téléphone
+            </figcaption>
+          </figure>
+          <figure class="project-gallery__item">
+            <div class="graded-image">
+              <img
+                class="graded-image__img"
+                src="/src/assets/projects/micromonde/shots/micromonde-ar-tortue-apres.webp"
+                alt="Même point de vue : une tortue 3D vert sombre nage devant la fresque, entourée des boutons de l’interface"
+                width="1600"
+                height="1200"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <figcaption class="project-gallery__caption">
+              Après : la fresque est reconnue, la tortue apparaît
+            </figcaption>
+          </figure>
+        </div>
+        <figure class="project-gallery__item project-gallery__item--spaced">
+          <div class="graded-image">
+            <picture>
+              <source
+                media="(max-width: 48rem)"
+                srcset="/src/assets/projects/micromonde/shots/micromonde-ar-loriquet-mobile.webp"
+                width="900"
+                height="1200"
+              />
+              <img
+                class="graded-image__img"
+                src="/src/assets/projects/micromonde/shots/micromonde-ar-loriquet.webp"
+                alt="Loriquet 3D ailes déployées devant la fresque du Patio, téléphone tenu en main au premier plan"
+                width="1600"
+                height="1000"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+          </div>
+          <figcaption class="project-gallery__caption">
+            Le loriquet prend son envol devant la fresque du Patio
+          </figcaption>
+        </figure>
       </section>
 
       <section
