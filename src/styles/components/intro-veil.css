@@ -94,17 +94,6 @@
   animation: intro-veil-glyph 700ms var(--ease-out) 600ms forwards;
 }
 
-.intro-veil__caption {
-  margin: 0;
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: var(--color-pigment-copper-light);
-  opacity: 0;
-  animation: intro-veil-fade 700ms var(--ease-out) 900ms forwards;
-}
-
 .intro-veil__ember {
   position: relative;
   display: block;

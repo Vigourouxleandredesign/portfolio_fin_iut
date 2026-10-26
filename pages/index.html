@@ -45,14 +45,15 @@
   </head>
   <body>
     <!--
-      Opening veil (DA « Sanctuaire nocturne » : le faisceau s'allume, le monogramme se trace).
+      Opening veil (DA « Sanctuaire nocturne » : le faisceau s'allume, le monogramme se trace). Purely visual,
+      announced to screen readers as « Chargement de la page ».
       Lifts when fonts + hero images + 3D bust are ready (capped), once per session; never shown with
       reduced motion. Pure CSS fallback hides it after ~5 s even if the script never runs.
     -->
-    <div class="intro-veil" data-intro-veil aria-hidden="true">
-      <div class="light-beam"><div class="light-beam__dust"></div></div>
+    <div class="intro-veil" data-intro-veil role="status">
+      <div class="light-beam" aria-hidden="true"><div class="light-beam__dust"></div></div>
       <div class="intro-veil__inner">
-        <svg class="intro-veil__mark" viewBox="0 0 91.8 91.8" focusable="false">
+        <svg class="intro-veil__mark" viewBox="0 0 91.8 91.8" focusable="false" aria-hidden="true">
           <rect
             class="intro-veil__frame intro-veil__frame--outer"
             pathLength="1"
@@ -81,8 +82,10 @@
             />
           </g>
         </svg>
-        <p class="intro-veil__caption">Le sanctuaire s’éveille</p>
-        <span class="intro-veil__ember"><span class="intro-veil__ember-spark"></span></span>
+        <p class="visually-hidden">Chargement de la page</p>
+        <span class="intro-veil__ember" aria-hidden="true"
+          ><span class="intro-veil__ember-spark"></span
+        ></span>
       </div>
     </div>
 
