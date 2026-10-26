@@ -43,7 +43,8 @@ describe('C5 — Visualcom stage + dual-device mockup', () => {
     expect(html).toContain('Ouvrir WordPress à l’IA, sans ouvrir de brèche');
     expect(html).toContain('sans droit de suppression');
     expect(html).not.toContain('refonte.visualcom.nc');
-    expect(html).toContain('N° V · 2026 · Alternance Visualcom');
+    expect(html).toContain('<span class="cartel__number">N° V</span>');
+    expect(html).toContain('Alternance chez Visualcom, en 2026');
   });
 
   it('offers the long-page captures in a cropped frame', () => {
@@ -74,7 +75,9 @@ describe('C5 — Visualcom stage + dual-device mockup', () => {
 });
 
 describe('C2 — projects listing card links', () => {
-  const html = readFileSync(resolve(process.cwd(), 'pages/projects.html'), 'utf8');
+  const html = readFileSync(resolve(process.cwd(), 'pages/projects.html'), 'utf8')
+    .replace(/\s+/g, ' ')
+    .replace(/ >/g, '>');
 
   it('lists the 9 projects in catalogue order I → IX, Lab Horizon first', () => {
     const hrefs = [...html.matchAll(/class="project-card__link" href="([^"]+)"/g)].map((m) => m[1]);
@@ -93,7 +96,9 @@ describe('C2 — projects listing card links', () => {
 
   it('numbers cards with Mono cartel metadata and graded covers', () => {
     for (const numeral of ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX']) {
-      expect(html).toMatch(new RegExp('project-card__meta">N° ' + numeral + ' · 20'));
+      expect(html).toMatch(
+        new RegExp('project-card__meta"> ?<span class="cartel__number">N° ' + numeral + '</span>'),
+      );
     }
     expect(html).toContain('project-card--lab-horizon');
     expect(html.match(/project-card__visual graded-image/g)).toHaveLength(9);

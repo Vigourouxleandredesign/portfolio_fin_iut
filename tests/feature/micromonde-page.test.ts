@@ -30,8 +30,13 @@ describe('Micro-monde page', () => {
   });
 
   it('follows the brief and shows the AR captures (no pending TODO left)', () => {
-    expect(html).toContain('N° III · 2026 · Nuit de la Science, UNC');
-    expect(html).toContain('Blender · 8th Wall · Three.js · Vite · TypeScript');
+    expect(html).toContain('<span class="cartel__number">N° III</span>');
+    expect(html).toContain('Projet d’équipe à l’Université de la Nouvelle-Calédonie, en 2026');
+    // The technologies moved from the hero line to the « Outils » row (L14).
+    const tools = /project-tools__list[\s\S]*?<\/ul>/.exec(html)?.[0] ?? '';
+    for (const tool of ['Blender', '8th Wall', 'Three.js', 'Vite', 'TypeScript']) {
+      expect(tools, tool).toContain(`tech-logo__label">${tool}<`);
+    }
     expect(html).not.toContain('TODO L6');
     expect(html).not.toContain('[À CONFIRMER]');
     expect(html).not.toMatch(/bient[ôo]t|à venir/i);

@@ -62,7 +62,9 @@ describe('project pages — shared requirements', () => {
     expect(nav, 'project-nav block').not.toBe('');
     expect(nav).toContain(`href="/projects/${previous}"`);
     expect(nav).toContain(`href="/projects/${next}"`);
-    expect(nav).toContain('href="/projects"');
+    // « Tous les projets » left the block: the way back is the breadcrumb (L14).
+    expect(nav).not.toContain('href="/projects"');
+    expect(html).toMatch(/breadcrumb__link" href="\/projects"/);
   });
 
   it.each(PROJECT_SLUGS)('%s never links to the protected jury sheets', (slug) => {
@@ -123,8 +125,12 @@ describe('Lab Horizon page', () => {
   const html = read('lab-horizon');
 
   it('follows the brief: cartel, brief, 4 story blocks, 7 domains', () => {
-    expect(html).toContain('N° I · 2026 · SAE 501');
-    expect(html).toContain('React 19 · TypeScript · Laravel 12 · MySQL · Docker');
+    expect(html).toContain('<span class="cartel__number">N° I</span>');
+    expect(html).toContain('SAE 501, projet d’équipe à l’IUT de Nouvelle-Calédonie, en 2026');
+    const tools = /project-tools__list[\s\S]*?<\/ul>/.exec(html)?.[0] ?? '';
+    for (const tool of ['React 19', 'TypeScript', 'Laravel 12', 'MySQL', 'Docker']) {
+      expect(tools, tool).toContain(`tech-logo__label">${tool}<`);
+    }
     expect(html.match(/class="project-brief__item"/g)).toHaveLength(3);
     expect(html.match(/<article class="project-story__block/g)).toHaveLength(4);
     expect(html.match(/domaines\/[a-z]+\.webp/g)).toHaveLength(7);

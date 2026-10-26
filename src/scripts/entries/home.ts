@@ -34,7 +34,7 @@ import '../../styles/pages/home.css';
 import bustModel from '../../assets/hero/bust.glb';
 
 import { initIntroVeil } from '../features/intro-veil/intro-veil';
-import { canMountBust } from '../features/three-scene/bust-capability';
+import { canMountBust, hasFinePointer } from '../features/three-scene/bust-capability';
 import { initSiteFooter } from '../components/site-footer';
 import { initSiteLogo } from '../components/site-logo';
 import { initSiteNav } from '../components/site-nav';
@@ -66,10 +66,13 @@ function bootstrap(): void {
   initRevealOnScroll();
 
   const main = document.querySelector<HTMLElement>('main');
-  if (main) {
+  if (main && hasFinePointer()) {
     void import('../features/home-brush/home-brush').then(({ initHomeBrush }) =>
       initHomeBrush(main),
     );
+  } else {
+    // Touch: no brush at all (it would intercept finger scrolling); drop the canvas too.
+    document.querySelector('[data-home-brush]')?.remove();
   }
 
   const heroRoot = document.querySelector<HTMLElement>('[data-hero-3d]');

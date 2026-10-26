@@ -341,8 +341,8 @@
   }
 }
 
-/* The click hints only make sense with the 3D bust, which mounts on a mouse only (bust-capability.ts) */
-@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+/* The click hints only make sense with the 3D bust, which mounts on a mouse only (bust-capability.ts); on a narrow window they would sit on « Creative » */
+@media (max-width: 47.99rem), (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
   .hero-3d__hint {
     display: none;
   }

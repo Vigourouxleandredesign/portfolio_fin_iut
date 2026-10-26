@@ -48,7 +48,8 @@ describe('C4 — MagicalLab stage', () => {
   });
 
   it('is dated 2026 with the copper cartel', () => {
-    expect(html).toContain('N° II · 2026 · Projet front, IUT');
+    expect(html).toContain('<span class="cartel__number">N° II</span>');
+    expect(html).toContain('Projet de cours à l’IUT, en 2026');
     expect(html).not.toContain('<span>2025</span>');
   });
 

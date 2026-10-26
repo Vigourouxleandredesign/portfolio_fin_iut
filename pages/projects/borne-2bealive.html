@@ -104,8 +104,10 @@
             </nav>
             <dl class="cartel cartel--secondary">
               <dt class="visually-hidden">Fiche du projet</dt>
-              <dd class="cartel__meta">N° IX · 2025 · Mission Visualcom</dd>
-              <dd class="cartel__stack">Croquis · Blender · modélisation produit · motion</dd>
+              <dd class="cartel__meta">
+                <span class="cartel__number">N° IX</span>
+                <span class="cartel__context">Mission chez Visualcom, en 2025</span>
+              </dd>
             </dl>
 
             <h1 class="page-hero__title" id="borne-2bealive-title">Borne tactile 2BeAlive</h1>
@@ -292,6 +294,36 @@
         </ul>
       </section>
 
+      <section class="project-tools" aria-labelledby="borne-2bealive-tools-title" data-reveal>
+        <h2 class="project-tools__title" id="borne-2bealive-tools-title">Outils</h2>
+        <p class="project-tools__lead">
+          Les technologies et les outils qui ont servi à construire ce projet.
+        </p>
+        <ul class="project-tools__list">
+          <li>
+            <span class="tech-logo tech-logo--text"
+              ><span class="tech-logo__label">Croquis</span></span
+            >
+          </li>
+          <li>
+            <span class="tech-logo tech-logo--blender tech-logo--labelled"
+              ><span class="tech-logo__icon" aria-hidden="true"></span
+              ><span class="tech-logo__label">Blender</span></span
+            >
+          </li>
+          <li>
+            <span class="tech-logo tech-logo--text"
+              ><span class="tech-logo__label">modélisation produit</span></span
+            >
+          </li>
+          <li>
+            <span class="tech-logo tech-logo--text"
+              ><span class="tech-logo__label">motion</span></span
+            >
+          </li>
+        </ul>
+      </section>
+
       <!-- TODO: « Ce que j’en retiens » — texte de Léandre attendu ; .project-takeaway non affiché sans texte. -->
 
       <nav class="project-nav" aria-label="Navigation entre projets">
@@ -300,17 +332,34 @@
           href="/projects/pacific-dataviz"
           rel="prev"
         >
-          <span class="project-nav__label">Projet précédent</span>
+          <span class="project-nav__label">Précédent</span>
           <span class="project-nav__name">Pacific Dataviz Challenge</span>
+          <img
+            class="project-nav__arrow"
+            src="/src/assets/decor/paint/arrows/arrow-long-copper-left.webp"
+            alt=""
+            width="480"
+            height="225"
+            loading="lazy"
+            decoding="async"
+          />
         </a>
-        <a class="project-nav__link project-nav__link--all" href="/projects">Tous les projets</a>
         <a
           class="project-nav__link project-nav__link--next"
           href="/projects/lab-horizon"
           rel="next"
         >
-          <span class="project-nav__label">Projet suivant</span>
+          <span class="project-nav__label">Suivant</span>
           <span class="project-nav__name">Lab Horizon</span>
+          <img
+            class="project-nav__arrow"
+            src="/src/assets/decor/paint/arrows/arrow-long-copper-right.webp"
+            alt=""
+            width="480"
+            height="225"
+            loading="lazy"
+            decoding="async"
+          />
         </a>
       </nav>
     </main>

@@ -115,9 +115,9 @@
             <header class="project-stage__copy">
               <dl class="cartel cartel--magicallab">
                 <dt class="visually-hidden">Fiche du projet</dt>
-                <dd class="cartel__meta">N° II · 2026 · Projet front, IUT</dd>
-                <dd class="cartel__stack">
-                  React 19 · React Three Fiber · drei · Rapier · postprocessing · Leva · Vite
+                <dd class="cartel__meta">
+                  <span class="cartel__number">N° II</span>
+                  <span class="cartel__context">Projet de cours à l’IUT, en 2026</span>
                 </dd>
               </dl>
               <h1
@@ -398,19 +398,81 @@
           <a class="button button--ghost" href="/projects">Retour à la liste</a>
         </p>
       </div>
+      <section class="project-tools" aria-labelledby="magicallab-tools-title" data-reveal>
+        <h2 class="project-tools__title" id="magicallab-tools-title">Outils</h2>
+        <p class="project-tools__lead">
+          Les technologies et les outils qui ont servi à construire ce projet.
+        </p>
+        <ul class="project-tools__list">
+          <li>
+            <span class="tech-logo tech-logo--react tech-logo--dark tech-logo--labelled"
+              ><span class="tech-logo__icon" aria-hidden="true"></span
+              ><span class="tech-logo__label">React 19</span></span
+            >
+          </li>
+          <li>
+            <span class="tech-logo tech-logo--text"
+              ><span class="tech-logo__label">React Three Fiber</span></span
+            >
+          </li>
+          <li>
+            <span class="tech-logo tech-logo--text"
+              ><span class="tech-logo__label">drei</span></span
+            >
+          </li>
+          <li>
+            <span class="tech-logo tech-logo--text"
+              ><span class="tech-logo__label">Rapier</span></span
+            >
+          </li>
+          <li>
+            <span class="tech-logo tech-logo--text"
+              ><span class="tech-logo__label">postprocessing</span></span
+            >
+          </li>
+          <li>
+            <span class="tech-logo tech-logo--text"
+              ><span class="tech-logo__label">Leva</span></span
+            >
+          </li>
+          <li>
+            <span class="tech-logo tech-logo--text"
+              ><span class="tech-logo__label">Vite</span></span
+            >
+          </li>
+        </ul>
+      </section>
+
       <nav class="project-nav" aria-label="Navigation entre projets">
         <a
           class="project-nav__link project-nav__link--prev"
           href="/projects/lab-horizon"
           rel="prev"
         >
-          <span class="project-nav__label">Projet précédent</span>
+          <span class="project-nav__label">Précédent</span>
           <span class="project-nav__name">Lab Horizon</span>
+          <img
+            class="project-nav__arrow"
+            src="/src/assets/decor/paint/arrows/arrow-long-copper-left.webp"
+            alt=""
+            width="480"
+            height="225"
+            loading="lazy"
+            decoding="async"
+          />
         </a>
-        <a class="project-nav__link project-nav__link--all" href="/projects">Tous les projets</a>
         <a class="project-nav__link project-nav__link--next" href="/projects/micromonde" rel="next">
-          <span class="project-nav__label">Projet suivant</span>
+          <span class="project-nav__label">Suivant</span>
           <span class="project-nav__name">Micro-monde</span>
+          <img
+            class="project-nav__arrow"
+            src="/src/assets/decor/paint/arrows/arrow-long-copper-right.webp"
+            alt=""
+            width="480"
+            height="225"
+            loading="lazy"
+            decoding="async"
+          />
         </a>
       </nav>
     </main>

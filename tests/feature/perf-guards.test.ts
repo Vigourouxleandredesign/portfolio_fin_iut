@@ -144,14 +144,16 @@ describe('3D bust — mouse only', () => {
   it('home mounts the bust only through the capability gate', () => {
     const entry = read('src/scripts/entries/home.ts');
     expect(entry).toContain(
-      "import { canMountBust } from '../features/three-scene/bust-capability'",
+      "import { canMountBust, hasFinePointer } from '../features/three-scene/bust-capability'",
     );
     expect(entry).toMatch(/if \(heroRoot && canMountBust\(\)\)/);
+    // The brush is mouse-only as well: nothing of it is loaded on touch (L14 part A).
+    expect(entry).toMatch(/if \(main && hasFinePointer\(\)\)/);
   });
 
   it('hides the click hint where the 3D is not mounted', () => {
     expect(read('src/styles/components/hero-3d.css')).toMatch(
-      /@media \(hover: none\), \(pointer: coarse\), \(prefers-reduced-motion: reduce\)\s*\{\s*\.hero-3d__hint\s*\{\s*display: none/,
+      /@media \(max-width: 47\.99rem\), \(hover: none\), \(pointer: coarse\), \(prefers-reduced-motion: reduce\)\s*\{\s*\.hero-3d__hint\s*\{\s*display: none/,
     );
   });
 });

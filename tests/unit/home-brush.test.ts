@@ -36,11 +36,13 @@ function fakeContext(): CanvasRenderingContext2D & { strokes: string[] } {
   return ctx as unknown as CanvasRenderingContext2D & { strokes: string[] };
 }
 
-function mockMatchMedia(reducedMotion: boolean): void {
+function mockMatchMedia(reducedMotion: boolean, finePointer = true): void {
   vi.spyOn(window, 'matchMedia').mockImplementation(
     (query: string) =>
       ({
-        matches: reducedMotion && query.includes('prefers-reduced-motion'),
+        matches:
+          (reducedMotion && query.includes('prefers-reduced-motion')) ||
+          (finePointer && query.includes('(hover: hover) and (pointer: fine)')),
         media: query,
         addEventListener: vi.fn(),
         removeEventListener: vi.fn(),
@@ -72,6 +74,60 @@ describe('home-brush', () => {
     const teardown = initHomeBrush(document.querySelector('main')!);
     expect(addListener).not.toHaveBeenCalledWith('pointerdown', expect.anything());
     expect(() => teardown()).not.toThrow();
+  });
+});
+
+describe('home-brush on touch (L14 part A)', () => {
+  const PIGMENTS = ['--color-splash-crimson', '--color-splash-gold', '--color-splash-cobalt'];
+
+  function mountWithPigments(): HTMLElement {
+    document.body.innerHTML = `<main><canvas data-home-brush></canvas></main>`;
+    for (const token of PIGMENTS) document.documentElement.style.setProperty(token, '#c8743f');
+    document.documentElement.style.setProperty('--color-abyss', '#060608');
+    const canvas = document.querySelector<HTMLCanvasElement>('canvas')!;
+    vi.spyOn(canvas, 'getContext').mockReturnValue({
+      setTransform: vi.fn(),
+      drawImage: vi.fn(),
+    } as unknown as CanvasRenderingContext2D);
+    return document.querySelector('main')!;
+  }
+
+  it('creates no canvas and attaches no listener on a coarse pointer', () => {
+    const root = mountWithPigments();
+    mockMatchMedia(false, false);
+    const addListener = vi.spyOn(window, 'addEventListener');
+    const teardown = initHomeBrush(root);
+    expect(document.querySelector('[data-home-brush]')).toBeNull();
+    expect(addListener).not.toHaveBeenCalledWith(
+      'pointermove',
+      expect.anything(),
+      expect.anything(),
+    );
+    expect(addListener).not.toHaveBeenCalledWith('pointerdown', expect.anything());
+    expect(() => teardown()).not.toThrow();
+  });
+
+  it('on a mouse device listens, but never prevents the default of finger or stylus events', () => {
+    const root = mountWithPigments();
+    mockMatchMedia(false, true);
+    const teardown = initHomeBrush(root);
+
+    const dispatch = (type: string, pointerType: string, buttons: number): Event => {
+      const event = new Event(type, { bubbles: true, cancelable: true });
+      Object.assign(event, { pointerType, button: 0, buttons, clientX: 5, clientY: 5 });
+      window.dispatchEvent(event);
+      return event;
+    };
+
+    dispatch('pointerdown', 'touch', 1);
+    expect(dispatch('pointermove', 'touch', 1).defaultPrevented).toBe(false);
+    dispatch('pointerdown', 'pen', 1);
+    expect(dispatch('pointermove', 'pen', 1).defaultPrevented).toBe(false);
+    expect(document.documentElement.classList.contains('is-home-brush-painting')).toBe(false);
+
+    dispatch('pointerdown', 'mouse', 1);
+    expect(document.documentElement.classList.contains('is-home-brush-painting')).toBe(true);
+    teardown();
   });
 });
 

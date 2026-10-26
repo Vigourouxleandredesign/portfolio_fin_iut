@@ -59,7 +59,44 @@
   color: var(--color-text);
 }
 
+/*
+ * Gouache arrows (what is clicked carries an arrow, what is looked at does not):
+ * the main button gets the long arrow (darkened to read on copper), the secondary link the short one.
+ */
+.button--primary::after,
+.button--ghost::after {
+  content: '';
+  flex: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.button--primary::after {
+  width: 2.5rem;
+  height: 1.1rem;
+  background-image: url('../../assets/decor/paint/arrows/arrow-long-copper-right.webp');
+  filter: brightness(0.25);
+}
+
+.button--ghost::after {
+  width: 1.1rem;
+  height: 1.1rem;
+  background-image: url('../../assets/decor/paint/arrows/arrow-short-copper-right.webp');
+}
+
+.button--primary:hover::after,
+.button--ghost:hover::after {
+  transform: translateX(4px);
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .button--primary:hover::after,
+  .button--ghost:hover::after {
+    transform: none;
+  }
+
   .button {
     transition: none;
   }

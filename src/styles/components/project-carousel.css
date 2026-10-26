@@ -245,7 +245,7 @@
   margin: 0;
 }
 
-.project-carousel__eyebrow span,
+.project-carousel__eyebrow > span,
 .project-carousel__title span,
 .project-carousel__summary span {
   display: block;
@@ -258,7 +258,7 @@
   transition-delay: 0ms;
 }
 
-.project-carousel__info[data-current] .project-carousel__eyebrow span,
+.project-carousel__info[data-current] .project-carousel__eyebrow > span,
 .project-carousel__info[data-current] .project-carousel__title span,
 .project-carousel__info[data-current] .project-carousel__summary span {
   opacity: 1;
@@ -267,12 +267,17 @@
 }
 
 .project-carousel__eyebrow {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
   font-weight: 400;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
   color: var(--color-text-muted);
+}
+
+.project-carousel__eyebrow > span {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  column-gap: 0.875rem;
 }
 
 .project-carousel__title {
@@ -377,7 +382,7 @@
 @media (prefers-reduced-motion: reduce) {
   .project-carousel__slide,
   .project-carousel__image,
-  .project-carousel__eyebrow span,
+  .project-carousel__eyebrow > span,
   .project-carousel__title span,
   .project-carousel__summary span {
     transition-duration: 1ms;

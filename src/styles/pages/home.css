@@ -72,6 +72,7 @@ html.is-home-brush-painting * {
   /* Gouache is opaque: normal blending, never `screen` (docs/DA.md §6). */
   mix-blend-mode: normal;
   opacity: 1;
+  touch-action: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {

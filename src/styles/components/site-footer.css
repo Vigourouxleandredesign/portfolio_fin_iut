@@ -19,6 +19,13 @@
   opacity: 0.7;
 }
 
+/* The stroke would sit on the copyright line once the footer stacks: decorative, desktop only. */
+@media (max-width: 47.99rem) {
+  .site-footer .site-footer__paint {
+    display: none;
+  }
+}
+
 .site-footer__inner {
   position: relative;
   width: min(100%, var(--layout-max));

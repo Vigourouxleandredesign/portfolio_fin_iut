@@ -1,18 +1,16 @@
 /**
- * @file Cartel — museum label (Ubuntu Mono, pigment rule on the left)
- * @description `.cartel` + project modifiers set `--cartel-pigment`. Markup: `<dl>` with title / meta / stack.
+ * @file Cartel — museum label reduced to one line (number + context sentence)
+ * @description `.cartel` + project modifiers set `--cartel-pigment`. Markup: `<dl>` with a single `.cartel__meta`
+ *   holding `.cartel__number` and `.cartel__context`. No vertical rule (rules are for showcases), no stack line:
+ *   the technologies live in the « Outils » row at the end of each project page (L14).
  */
 
 .cartel {
   --cartel-pigment: var(--color-ember);
 
   margin: 0;
-  padding-left: var(--space-4);
-  border-left: 2px solid var(--cartel-pigment);
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
   font-size: var(--text-sm);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
   color: var(--color-text-muted);
 }
 
@@ -22,17 +20,31 @@
   font-size: var(--text-2xl);
   font-weight: 700;
   letter-spacing: var(--tracking-tight);
-  text-transform: none;
   color: var(--color-text);
 }
 
-.cartel__meta,
-.cartel__stack {
-  margin: var(--space-1) 0 0;
+/* One line, two parts: the number (Ubuntu Mono, gold) then the context as a plain sentence. */
+.cartel__meta {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  column-gap: 0.875rem;
+  margin: 0;
 }
 
-.cartel__stack {
-  letter-spacing: 0.08em;
+.cartel__number {
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+  color: var(--color-pigment-gold);
+  white-space: nowrap;
+}
+
+.cartel__context {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: normal;
   text-transform: none;
   color: var(--color-text-muted);
 }
