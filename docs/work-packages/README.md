@@ -68,5 +68,8 @@ Les lots L0 à L10, L7s et la red team sont terminés et fusionnés ; leurs fich
 
 | Id | Fichier | Titre |
 |---|---|---|
-| L12 | `WP-L12-textes-logos-domaines.md` | Textes sans tics d'IA, logos officiels des technos, section domaines cliquable |
+| L12 | `WP-L12-textes-logos-domaines.md` | Textes sans tics d'IA, logos officiels des technos, section domaines cliquable (fait, 26/10) |
+| L13 | `WP-L13-retouches.md` | Visuel arbre Lab Horizon, dernières coquilles |
+| L14 | `WP-L14-mobile-cartels-navigation.md` | Pinceau désactivé sur mobile, cartels sur une ligne, navigation et boutons gouache, texte CI/CD Lab Horizon |
+| L15 | `WP-L15-gabarit-projet-v2.md` | Gabarit de page projet v2 (hiérarchie, fil rouge) : **en attente de validation** |
 | L11 | `WP-L11-mise-en-production.md` | Mise en production (mer. 28/10), verrouillage du déploiement, remise au jury |
