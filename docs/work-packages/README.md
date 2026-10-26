@@ -7,7 +7,7 @@ Chaque lot (`WP-*.md`) contient : objectif, dépendances, périmètre de fichier
 
 ## Planning (heure de Nouméa)
 
-> **Mise à jour 25/10 :** L0 → L5 livrés. Reste, dans l'ordre : **L5c** audit des dépendances ([WP-L5c](WP-L5c-audit-dependances.md), dim. 25) → **L5b** finitions ([WP-L5b](WP-L5b-finitions.md)) ∥ **L6** captures (lun. 26, L6 fusionné après L5b) → **L7** préprod Netlify (lun. 26 soir) → **L8** recette + correctifs (mar. 27) → **production mer. 28**. Jeu. 29 / ven. 30 : marge d'urgence et textes « Ce que j'en retiens » (mises à jour à chaud, chaque push sur `main` redéploie). Le tableau ci-dessous est le plan initial.
+> **Mise à jour 26/10 :** L0 → L8, L7s et la red team sont faits. Reste : **L9** (lun. 26) → **L10** (mar. 27, gel du contenu) → **L11 production mer. 28** → marge jeu. 29 / ven. 30. Le tableau ci-dessous est le plan initial.
 
 | Jour | Lots | Exécutant conseillé | Parallèle ? |
 |---|---|---|---|
@@ -46,7 +46,7 @@ L6 (captures) ───────────────┘  (alimente L3a/L3
 5. **Tests** : tout comportement nouveau = au moins un test (Vitest dans `tests/feature` ou `tests/unit`). Un test qui fige une ancienne décision se met à jour **dans le même commit**, avec la raison dans le message.
 6. **Gate (automatique)** : chaque commit et chaque fusion passent par le hook pre-commit = `npm run ci` (**audit des dépendances — bloquant**, format, ESLint, Stylelint, typecheck, secrets, Vitest, build, E2E), le même pipeline que la CI GitHub. Avant de commiter : `npm run fix` puis `npm run ci`. Commit refusé → lire l’erreur, corriger, `git add`, recommiter (jamais `--amend` ; `--no-verify`, `-n`, `HUSKY=0` sont bloqués). Indexer **tous** les fichiers modifiés : le hook refuse les modifications non indexées. 2 tentatives max, puis s’arrêter et rapporter. **Audit rouge** (faille haute ou critique) → appliquer la procédure de `docs/SECURITY.md` › Dépendances (`npm audit fix` sans `--force`, mise à jour ciblée, `overrides`), dans un commit séparé `fix(deps): …` ; sans correctif disponible, s’arrêter et rapporter. Toute nouvelle dépendance ou mise à jour passe par `npm audit` avant commit.
 7. **Contrôle visuel** : `npm run dev`, capture 1440 px et 390 px des pages touchées (Playwright ou navigateur), comparées à la planche DA (`https://claude.ai/artifact/EHwa84DzhKMHbwXA9VuPUJ`, boards 05 et 06) et à la checklist `docs/DA.md` §9.
-8. **Fusion** : si tout est vert, `git switch main && git merge --no-ff wp/<id>`. Conflit → **ne pas résoudre à l’aveugle** : s’arrêter et rapporter. Pas de `git push` (sauf L5c et L7).
+8. **Fusion** : si tout est vert, `git switch main && git merge --no-ff wp/<id>`. Conflit → **ne pas résoudre à l’aveugle** : s’arrêter et rapporter. Pas de `git push` (sauf L5c, L7, L7s, L9 et L10).
 
 ## Format du rapport (à coller à Claude chef de projet)
 
@@ -78,6 +78,9 @@ TODO       : [À CONFIRMER] rencontrés, hors périmètre demandé, doutes
 | L5b | `WP-L5b-finitions.md` | Finitions après inspection du 25/10 |
 | L5c | `WP-L5c-audit-dependances.md` | Audit des dépendances obligatoire dans la CI/CD |
 | **L7s** | `WP-L7s-protection-jury.md` | **URGENT** — protection réelle de `/jury` par Edge Function |
+| L9 | `WP-L9-micromonde-ar-et-red-team.md` | Captures AR Micro-monde, pas de 3D au tactile, correctifs rapides red team |
+| L10 | `WP-L10-pre-production.md` | Préparation de la mise en prod : déploiement conditionné aux contrôles, URL canoniques, accueil sans JS, MagicalLab léger, typographie |
+| L11 | `WP-L11-mise-en-production.md` | Mise en production, verrouillage du déploiement, remise au jury |
 | L6 | `WP-L6-captures.md` | Captures restantes |
 | L7 | `WP-L7-deploiement.md` | Déploiement Netlify |
 | L8 | `WP-L8-recette.md` | Recette finale |
