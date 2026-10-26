@@ -66,7 +66,8 @@ describe('Pacific Dataviz page', () => {
   it('says « finaliste », never « primée », and is dated 2025', () => {
     expect(html).toContain('finaliste');
     expect(html).not.toMatch(/prim[ée]e?s?\b/i);
-    expect(html).toContain('N° VIII · 2025');
+    expect(html).toContain('<span class="cartel__number">N° VIII</span>');
+    expect(html).toContain('Finaliste du Pacific Dataviz Challenge, en 2025');
     expect(html).not.toContain('2024');
   });
 

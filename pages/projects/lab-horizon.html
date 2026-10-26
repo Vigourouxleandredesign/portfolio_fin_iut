@@ -109,8 +109,12 @@
             </nav>
             <dl class="cartel cartel--lab-horizon">
               <dt class="visually-hidden">Fiche du projet</dt>
-              <dd class="cartel__meta">N° I · 2026 · SAE 501, IUT de Nouvelle-Calédonie</dd>
-              <dd class="cartel__stack">React 19 · TypeScript · Laravel 12 · MySQL · Docker</dd>
+              <dd class="cartel__meta">
+                <span class="cartel__number">N° I</span>
+                <span class="cartel__context"
+                  >SAE 501, projet d’équipe à l’IUT de Nouvelle-Calédonie, en 2026</span
+                >
+              </dd>
             </dl>
             <h1 class="page-hero__title" id="lab-horizon-title">Lab Horizon</h1>
             <p class="page-hero__lead">
@@ -406,6 +410,43 @@
             />
           </div>
         </figure>
+      </section>
+
+      <section class="project-tools" aria-labelledby="lab-horizon-tools-title" data-reveal>
+        <h2 class="project-tools__title" id="lab-horizon-tools-title">Outils</h2>
+        <p class="project-tools__lead">
+          Les technologies et les outils qui ont servi à construire ce projet.
+        </p>
+        <ul class="project-tools__list">
+          <li>
+            <span class="tech-logo tech-logo--react tech-logo--dark tech-logo--labelled"
+              ><span class="tech-logo__icon" aria-hidden="true"></span
+              ><span class="tech-logo__label">React 19</span></span
+            >
+          </li>
+          <li>
+            <span class="tech-logo tech-logo--text"
+              ><span class="tech-logo__label">TypeScript</span></span
+            >
+          </li>
+          <li>
+            <span class="tech-logo tech-logo--laravel tech-logo--labelled"
+              ><span class="tech-logo__icon" aria-hidden="true"></span
+              ><span class="tech-logo__label">Laravel 12</span></span
+            >
+          </li>
+          <li>
+            <span class="tech-logo tech-logo--text"
+              ><span class="tech-logo__label">MySQL</span></span
+            >
+          </li>
+          <li>
+            <span class="tech-logo tech-logo--docker tech-logo--labelled"
+              ><span class="tech-logo__icon" aria-hidden="true"></span
+              ><span class="tech-logo__label">Docker</span></span
+            >
+          </li>
+        </ul>
       </section>
 
       <!-- TODO: « Ce que j’en retiens » — phrase de Léandre attendue ; ne pas afficher .project-takeaway sans texte. -->

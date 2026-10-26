@@ -5,13 +5,27 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
-const html = readFileSync(resolve(process.cwd(), 'pages/index.html'), 'utf8');
+const html = readFileSync(resolve(process.cwd(), 'pages/index.html'), 'utf8')
+  .replace(/\s+/g, ' ')
+  .replace(/ >/g, '>');
 
 const SLIDES = [
-  { slug: 'lab-horizon', numeral: 'N° I', meta: '2026 · SAE 501' },
-  { slug: 'magicallab', numeral: 'N° II', meta: '2026 · Projet IUT' },
-  { slug: 'micromonde', numeral: 'N° III', meta: '2026 · Nuit de la Science' },
-  { slug: 'village-jeunes', numeral: 'N° IV', meta: '2026 · Alternance' },
+  {
+    slug: 'lab-horizon',
+    numeral: 'N° I',
+    meta: 'SAE 501, projet d’équipe à l’IUT de Nouvelle-Calédonie, en 2026',
+  },
+  { slug: 'magicallab', numeral: 'N° II', meta: 'Projet de cours à l’IUT, en 2026' },
+  {
+    slug: 'micromonde',
+    numeral: 'N° III',
+    meta: 'Projet d’équipe à l’Université de la Nouvelle-Calédonie, en 2026',
+  },
+  {
+    slug: 'village-jeunes',
+    numeral: 'N° IV',
+    meta: 'Alternance chez Visualcom, pour le client Vill’âge Jeunes, en 2026',
+  },
 ] as const;
 
 describe('Home featured carousel', () => {
@@ -31,7 +45,8 @@ describe('Home featured carousel', () => {
     for (const { slug, numeral, meta } of SLIDES) {
       expect(html, slug).toContain(`data-carousel-image="${slug}"`);
       expect(html, slug).toContain(`cartel cartel--${slug}`);
-      expect(html, slug).toContain(`${numeral} · ${meta}`);
+      expect(html, slug).toContain(`<span class="cartel__number">${numeral}</span>`);
+      expect(html, slug).toContain(`<span class="cartel__context">${meta}</span>`);
     }
     expect(html.match(/class="project-carousel__image graded-image__img"/g)).toHaveLength(4);
   });

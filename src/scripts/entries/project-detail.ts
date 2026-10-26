@@ -23,6 +23,7 @@ import '../../styles/components/page-hero.css';
 import '../../styles/components/section.css';
 import '../../styles/components/project-detail.css';
 import '../../styles/components/glb-showcase.css';
+import '../../styles/components/tech-logo.css';
 import '../../styles/pages/project-detail.css';
 
 import { initSiteFooter } from '../components/site-footer';
