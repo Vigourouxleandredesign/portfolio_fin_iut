@@ -59,7 +59,7 @@ describe('C4 — MagicalLab stage', () => {
   it('credits both 3D models', () => {
     expect(html).toContain('Nick Broad');
     expect(html).toContain('CC BY 4.0');
-    expect(html).toContain('Modèle 3D du robot : Komov, Sketchfab.');
+    expect(html).toContain('Modèle 3D du robot&#8239;: Komov, Sketchfab.');
   });
 
   it('uses the correct French idiom « laisser libre cours »', () => {

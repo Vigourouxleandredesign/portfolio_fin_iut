@@ -23,6 +23,7 @@
     "shots": "node scripts/capture-project-shots.mjs",
     "decor:paint": "python scripts/generate-paint-decor.py",
     "format": "prettier --write .",
+    "typography": "node scripts/fix-french-typography.mjs",
     "format:check": "prettier --check .",
     "lint": "eslint . --max-warnings=0",
     "lint:css": "stylelint \"src/**/*.css\"",
