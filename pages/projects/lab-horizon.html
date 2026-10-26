@@ -152,9 +152,10 @@
             <span class="project-brief__label">Ce que j’ai fait</span>
             <p class="project-brief__text">
               Développement front, UI/UX (maquettes, parcours utilisateur), architecture et
-              documentation&#8239;; mise en place des outils anti-régression pour le développement
-              assisté par IA et d’un processus de vérification sécurité avant la mise en production,
-              inspiré de la CI/CD.
+              documentation, et mise en place d’une chaîne CI/CD&#8239;: des hooks pre-commit et
+              pre-merge sur la branche main (production) imposent des tests automatisés,
+              reproductibles et impossibles à contourner, contrairement à des tests lancés par une
+              IA.
             </p>
           </li>
           <li class="project-brief__item">
@@ -314,9 +315,10 @@
             <h3 class="project-story__title">Penser à l’équipe suivante</h3>
             <p class="project-story__text">
               Le projet est remis avec un dossier de passation (lancer, maintenir, faire évoluer).
-              Avant chaque livraison, une commande <code>npm run gate</code> vérifie types, secrets,
-              couleurs, tests et build&#8239;: un garde-fou pensé comme une petite CI, qui empêche
-              aussi le code produit avec une IA de faire régresser le projet.
+              Chaque commit et chaque fusion sur main passent par des hooks pre-commit et pre-merge
+              qui lancent les tests&#8239;: types, secrets, couleurs, tests unitaires, build. Le
+              résultat est le même à chaque exécution et ne peut pas être contourné, contrairement à
+              des tests lancés par une IA.
             </p>
           </div>
           <div class="project-story__visual graded-image">
