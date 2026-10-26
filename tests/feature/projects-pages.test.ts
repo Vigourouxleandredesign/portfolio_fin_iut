@@ -79,15 +79,15 @@ describe('C2 — projects listing card links', () => {
   it('lists the 9 projects in catalogue order I → IX, Lab Horizon first', () => {
     const hrefs = [...html.matchAll(/class="project-card__link" href="([^"]+)"/g)].map((m) => m[1]);
     expect(hrefs).toEqual([
-      '/pages/projects/lab-horizon.html',
-      '/pages/projects/magicallab.html',
-      '/pages/projects/micromonde.html',
-      '/pages/projects/village-jeunes.html',
-      '/pages/projects/visualcom.html',
-      '/pages/projects/hyperloop.html',
-      '/pages/projects/back-springboot.html',
-      '/pages/projects/pacific-dataviz.html',
-      '/pages/projects/borne-2bealive.html',
+      '/projects/lab-horizon',
+      '/projects/magicallab',
+      '/projects/micromonde',
+      '/projects/village-jeunes',
+      '/projects/visualcom',
+      '/projects/hyperloop',
+      '/projects/back-springboot',
+      '/projects/pacific-dataviz',
+      '/projects/borne-2bealive',
     ]);
   });
 
@@ -131,18 +131,18 @@ describe('C2 — projects listing card links', () => {
   });
 
   it('links Lab Horizon card to its case study', () => {
-    expect(html).toContain('href="/pages/projects/lab-horizon.html"');
+    expect(html).toContain('href="/projects/lab-horizon"');
   });
 
   it('links MagicalLab card to its case study', () => {
-    expect(html).toContain('href="/pages/projects/magicallab.html"');
+    expect(html).toContain('href="/projects/magicallab"');
   });
 
   it('links Micro-monde card to its case study', () => {
-    expect(html).toContain('href="/pages/projects/micromonde.html"');
+    expect(html).toContain('href="/projects/micromonde"');
   });
 
   it('links Visualcom card to its case study', () => {
-    expect(html).toContain('href="/pages/projects/visualcom.html"');
+    expect(html).toContain('href="/projects/visualcom"');
   });
 });

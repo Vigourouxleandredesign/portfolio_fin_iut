@@ -31,11 +31,6 @@ import '../../styles/components/intro-veil.css';
 import '../../styles/pages/home.css';
 
 import bustModel from '../../assets/hero/bust.glb';
-import labHorizonCover from '../../assets/projects/lab-horizon/hero-laboratoire.webp';
-import magicallabCover from '../../assets/projects/magicallab/scene-portal.jpg';
-import micromondeCover from '../../assets/projects/micromonde/cover.webp';
-import villageJeunesCover from '../../assets/projects/village-jeunes/cover.webp';
-import blenderMark from '../../assets/tech/blender-mark.svg';
 
 import { initIntroVeil } from '../features/intro-veil/intro-veil';
 import { canMountBust } from '../features/three-scene/bust-capability';
@@ -43,20 +38,7 @@ import { initSiteFooter } from '../components/site-footer';
 import { initSiteLogo } from '../components/site-logo';
 import { initSiteNav } from '../components/site-nav';
 import { initRevealOnScroll } from '../components/reveal-on-scroll';
-import { initClientsMarquee } from '../components/clients-marquee';
 import { initProjectCarousel } from '../components/project-carousel';
-
-/** Featured carousel covers — Lab Horizon / MagicalLab / Micro-monde / Vill'âge Jeunes. */
-const CAROUSEL_COVERS: Record<string, string> = {
-  'lab-horizon': labHorizonCover,
-  magicallab: magicallabCover,
-  micromonde: micromondeCover,
-  'village-jeunes': villageJeunesCover,
-};
-
-const CAROUSEL_TECH_ICONS: Record<string, string> = {
-  blender: blenderMark,
-};
 
 /**
  * Runs `task` after the `load` event, when the browser is idle (≤ 2.5 s later at the latest).
@@ -80,7 +62,6 @@ function bootstrap(): void {
   initSiteLogo();
   initSiteNav();
   initSiteFooter();
-  initClientsMarquee();
   initRevealOnScroll();
 
   const main = document.querySelector<HTMLElement>('main');
@@ -119,37 +100,8 @@ function bootstrap(): void {
 
   const carousel = document.querySelector<HTMLElement>('[data-project-carousel]');
   if (carousel) {
-    hydrateCarouselCovers(carousel);
-    hydrateCarouselTechIcons(carousel);
     initProjectCarousel(carousel);
   }
-}
-
-/**
- * Assigns Vite-resolved cover URLs onto carousel slide images.
- */
-function hydrateCarouselCovers(carousel: HTMLElement): void {
-  carousel.querySelectorAll<HTMLImageElement>('[data-carousel-image]').forEach((image) => {
-    const key = image.dataset.carouselImage;
-    const url = key ? CAROUSEL_COVERS[key] : undefined;
-    if (url) {
-      image.src = url;
-      image.alt = '';
-    }
-  });
-}
-
-/**
- * Assigns Vite-resolved tech mark URLs (e.g. Blender) onto badge icons.
- */
-function hydrateCarouselTechIcons(carousel: HTMLElement): void {
-  carousel.querySelectorAll<HTMLImageElement>('[data-carousel-tech-icon]').forEach((image) => {
-    const key = image.dataset.carouselTechIcon;
-    const url = key ? CAROUSEL_TECH_ICONS[key] : undefined;
-    if (url) {
-      image.src = url;
-    }
-  });
 }
 
 bootstrap();

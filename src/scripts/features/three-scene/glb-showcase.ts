@@ -3,6 +3,7 @@
  * @module features/three-scene/glb-showcase
  * @description Lazy Three.js viewer on `[data-glb-showcase]`. MagicalLab assets use
  *   Draco + WebP — DRACOLoader required. Auto-rotates unless `prefers-reduced-motion`.
+ *   Loads only near the viewport (desktop) or on demand (touch): see {@link initGlbShowcases}.
  * @see {@link ../../../../docs/ARCHITECTURE.md}
  */
 
@@ -43,15 +44,17 @@ export interface GlbShowcaseHandle {
   dispose: () => void;
 }
 
-/**
- * Mounts all `[data-glb-showcase]` roots found under `root` (default: document).
- * Loads Three once, then mounts viewers in parallel. Failed loads surface an error
- * label instead of spinning forever on the fallback.
- */
-export async function initGlbShowcases(root: ParentNode = document): Promise<GlbShowcaseHandle[]> {
-  const nodes = Array.from(root.querySelectorAll<HTMLElement>('[data-glb-showcase]'));
-  if (nodes.length === 0) return [];
+type Libs = {
+  THREE: typeof import('three');
+  gltfLoader: Awaited<ReturnType<typeof createGltfLoader>>['gltfLoader'];
+  dracoLoader: { dispose: () => void };
+};
 
+async function createGltfLoader(): Promise<{
+  THREE: typeof import('three');
+  gltfLoader: InstanceType<typeof import('three/addons/loaders/GLTFLoader.js').GLTFLoader>;
+  dracoLoader: InstanceType<typeof import('three/addons/loaders/DRACOLoader.js').DRACOLoader>;
+}> {
   const THREE = await import('three');
   const { GLTFLoader } = await import('three/addons/loaders/GLTFLoader.js');
   const { DRACOLoader } = await import('three/addons/loaders/DRACOLoader.js');
@@ -61,29 +64,119 @@ export async function initGlbShowcases(root: ParentNode = document): Promise<Glb
 
   const gltfLoader = new GLTFLoader();
   gltfLoader.setDRACOLoader(dracoLoader);
+  return { THREE, gltfLoader, dracoLoader };
+}
 
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+/** Distance (px) before the viewport at which a viewer starts loading. */
+const LOAD_MARGIN = '200px';
 
-  const settled = await Promise.all(
-    nodes.map(async (el) => {
-      const src = el.dataset.glbSrc?.trim();
-      const canvas = el.querySelector<HTMLCanvasElement>('[data-glb-canvas]');
-      if (!src || !canvas) return null;
-      return mountOne(el, canvas, src, reduceMotion, THREE, gltfLoader);
-    }),
-  );
+/** Touch devices (phones, tablets): nothing 3D is downloaded unless the visitor asks for it. */
+function isTouchDevice(): boolean {
+  return window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+}
 
-  const handles = settled.filter((h): h is GlbShowcaseHandle => h !== null);
+/** Runs `task` once the page is loaded and the browser idle, so the 3D never competes with the first paint. */
+function afterLoadAndIdle(task: () => void): void {
+  const schedule = (): void => {
+    if (typeof window.requestIdleCallback === 'function') {
+      window.requestIdleCallback(task, { timeout: 2500 });
+    } else {
+      window.setTimeout(task, 1200);
+    }
+  };
+  if (document.readyState === 'complete') {
+    schedule();
+  } else {
+    window.addEventListener('load', schedule, { once: true });
+  }
+}
 
-  return [
-    ...handles,
-    {
-      dispose: () => {
-        for (const h of handles) h.dispose();
-        dracoLoader.dispose();
-      },
+/**
+ * Touch devices: replaces the loading message by a « Afficher le modèle 3D » button. Inside a link
+ * (the MagicalLab portal) a button would be an interactive element nested in a link, so the message
+ * just says where the model can be seen.
+ */
+function offerOnDemand(el: HTMLElement, start: () => Promise<void>): void {
+  const fallback = el.querySelector<HTMLElement>('.glb-showcase__fallback');
+  if (!fallback) return;
+  if (el.closest('a')) {
+    fallback.textContent = 'Modèle 3D visible sur ordinateur';
+    return;
+  }
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = 'button button--ghost glb-showcase__start';
+  button.textContent = 'Afficher le modèle 3D';
+  fallback.textContent = '';
+  fallback.append(button);
+  button.addEventListener(
+    'click',
+    () => {
+      button.disabled = true;
+      fallback.textContent = 'Chargement du modèle…';
+      void start();
     },
-  ];
+    { once: true },
+  );
+}
+
+/**
+ * Mounts the `[data-glb-showcase]` viewers found under `root` (default: document), **lazily**:
+ * - desktop: each viewer loads when it comes within 200 px of the viewport, after the page load
+ *   and an idle moment (the MagicalLab robot, far below the fold, never loads unless scrolled to);
+ * - touch devices: nothing is downloaded until the visitor presses « Afficher le modèle 3D ».
+ * Failed loads surface an error label instead of spinning forever on the fallback.
+ */
+export function initGlbShowcases(root: ParentNode = document): GlbShowcaseHandle {
+  const nodes = Array.from(root.querySelectorAll<HTMLElement>('[data-glb-showcase]'));
+  const mounted: GlbShowcaseHandle[] = [];
+  let libs: Promise<Libs> | null = null;
+  let observer: IntersectionObserver | null = null;
+  let disposed = false;
+
+  const loadLibs = (): Promise<Libs> => {
+    libs ??= createGltfLoader();
+    return libs;
+  };
+
+  const mount = async (el: HTMLElement): Promise<void> => {
+    const src = el.dataset.glbSrc?.trim();
+    const canvas = el.querySelector<HTMLCanvasElement>('[data-glb-canvas]');
+    if (!src || !canvas || disposed) return;
+    const { THREE, gltfLoader } = await loadLibs();
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const handle = await mountOne(el, canvas, src, reduceMotion, THREE, gltfLoader);
+    if (!handle) return;
+    if (disposed) handle.dispose();
+    else mounted.push(handle);
+  };
+
+  if (isTouchDevice()) {
+    for (const el of nodes) offerOnDemand(el, () => mount(el));
+  } else if (typeof IntersectionObserver === 'function') {
+    observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          observer?.unobserve(entry.target);
+          afterLoadAndIdle(() => void mount(entry.target as HTMLElement));
+        }
+      },
+      { rootMargin: LOAD_MARGIN },
+    );
+    for (const el of nodes) observer.observe(el);
+  } else {
+    for (const el of nodes) afterLoadAndIdle(() => void mount(el));
+  }
+
+  return {
+    dispose: () => {
+      disposed = true;
+      observer?.disconnect();
+      for (const handle of mounted) handle.dispose();
+      void libs?.then(({ dracoLoader }) => dracoLoader.dispose());
+    },
+  };
 }
 
 function setFallbackMessage(el: HTMLElement, message: string): void {

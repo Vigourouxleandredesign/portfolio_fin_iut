@@ -25,11 +25,11 @@ describe('jury auth — credential validation', () => {
 });
 
 describe('jury auth — headers block', () => {
-  const block: string = buildJuryHeaders('jury:Correct-Horse-Battery-42');
+  const block: string = buildJuryHeaders();
 
-  it('protects every path that can serve jury content', () => {
+  it('covers every path that can serve jury content', () => {
     for (const path of JURY_PATHS as string[]) {
-      expect(block).toContain(`\n${path}\n  Basic-Auth: jury:Correct-Horse-Battery-42`);
+      expect(block).toContain(`\n${path}\n  X-Robots-Tag: noindex, nofollow`);
     }
     expect(JURY_PATHS).toEqual(expect.arrayContaining(['/jury/*', '/pages/jury/*']));
   });
@@ -37,6 +37,12 @@ describe('jury auth — headers block', () => {
   it('keeps jury pages out of search engines and caches', () => {
     expect(block).toContain('X-Robots-Tag: noindex, nofollow');
     expect(block).toContain('Cache-Control: private, no-store');
+  });
+
+  it('never writes a credential into the build output', () => {
+    expect(block).not.toMatch(/Basic-Auth/i);
+    expect(block).not.toMatch(/password|JURY_BASIC_AUTH/i);
+    expect(buildJuryHeaders.length).toBe(0);
   });
 });
 
@@ -47,5 +53,24 @@ describe('jury auth — no credential in Git', () => {
     expect(headers).not.toMatch(/Basic-Auth/i);
     expect(toml).not.toMatch(/JURY_BASIC_AUTH\s*=\s*"[^"<]+:/);
     expect(toml).toContain('inject-jury-auth.mjs');
+  });
+});
+
+describe('netlify build — deploy gate (L10)', () => {
+  const toml = readFileSync(resolve(process.cwd(), 'netlify.toml'), 'utf8');
+  const command = /command = "([^"]+)"/.exec(toml)?.[1] ?? '';
+
+  it('runs the audit and the gate before the jury lock, in that order', () => {
+    const audit = command.indexOf('npm run audit:ci');
+    const gate = command.indexOf('npm run gate');
+    const lock = command.indexOf('node scripts/inject-jury-auth.mjs');
+    expect(audit).toBeGreaterThanOrEqual(0);
+    expect(gate).toBeGreaterThan(audit);
+    expect(lock).toBeGreaterThan(gate);
+    expect(command).toContain('&&');
+  });
+
+  it('keeps Husky off on the build machine', () => {
+    expect(toml).toMatch(/HUSKY = "0"/);
   });
 });

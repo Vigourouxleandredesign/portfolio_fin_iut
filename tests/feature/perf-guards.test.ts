@@ -153,3 +153,18 @@ describe('3D bust — mouse only', () => {
     );
   });
 });
+
+describe('MagicalLab 3D models — budget and lazy loading', () => {
+  it('keeps the GLB files lean (already Draco + WebP 1024 px)', () => {
+    const size = (file: string): number =>
+      statSync(resolve(root, 'public/documents/elements', file)).size;
+    expect(size('robot.glb')).toBeLessThan(1.25 * 1024 * 1024);
+    expect(size('magic_portal.glb')).toBeLessThan(650 * 1024);
+  });
+
+  it('the entry does not import three.js itself and the showcase is initialised synchronously', () => {
+    const entry = read('src/scripts/entries/project-detail.ts');
+    expect(entry).not.toMatch(/from 'three'/);
+    expect(entry).toContain('initGlbShowcases();');
+  });
+});

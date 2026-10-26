@@ -10,7 +10,7 @@ const html = readFileSync(resolve(root, 'pages/projects/micromonde.html'), 'utf8
 
 describe('Micro-monde page', () => {
   it('credits the fresco artist Kuby Kolor', () => {
-    expect(html).toContain('Fresques : Kuby Kolor.');
+    expect(html).toContain('Fresques&#8239;: Kuby Kolor.');
     expect(html).toContain('Propositions de fresques — Kuby Kolor');
   });
 

@@ -60,9 +60,9 @@ describe('project pages — shared requirements', () => {
     const next = PROJECT_SLUGS[(index + 1) % PROJECT_SLUGS.length];
     const nav = /<nav class="project-nav"[\s\S]*?<\/nav>/.exec(html)?.[0] ?? '';
     expect(nav, 'project-nav block').not.toBe('');
-    expect(nav).toContain(`href="/pages/projects/${previous}.html"`);
-    expect(nav).toContain(`href="/pages/projects/${next}.html"`);
-    expect(nav).toContain('href="/pages/projects.html"');
+    expect(nav).toContain(`href="/projects/${previous}"`);
+    expect(nav).toContain(`href="/projects/${next}"`);
+    expect(nav).toContain('href="/projects"');
   });
 
   it.each(PROJECT_SLUGS)('%s never links to the protected jury sheets', (slug) => {

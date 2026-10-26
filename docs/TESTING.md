@@ -101,3 +101,5 @@ Determinism: exact tool versions (`package-lock.json`, `--save-exact`), Node fro
 1. Stage every changed file, run `npm run fix` then `npm run ci` before `git commit` (Bash timeout ≥ 600000 ms: the hook takes ≈ 70 s).
 2. Commit refused ⇒ read the failing step, fix the cause, stage, commit again. Never bypass the hook, never weaken a test to pass it.
 3. Report red tests; do not claim done while red
+
+**Deploy gate (L10):** Netlify runs `npm run audit:ci && npm run gate` before publishing (`netlify.toml`): the dependency audit, types, secrets scan, unit/feature tests and the build must all pass, otherwise nothing is deployed. E2E stay in GitHub Actions and in `npm run test:e2e:prod` after a deploy.

@@ -1,22 +1,58 @@
+# Canonical URLs (L10): one address per page.
+# 1) Old `/pages/...` addresses and `.html` variants → 301 to the canonical URL. Forced (`!`) because
+#    the files exist and would otherwise shadow the rule. The jury paths are NOT redirected: the edge
+#    function must see them and answer 401.
+/pages/index.html            /                      301!
+/pages/                      /                      301!
+/pages/projects.html         /projects              301!
+/pages/projects              /projects              301!
+/projects.html               /projects              301!
+/pages/cv.html               /cv                    301!
+/pages/cv                    /cv                    301!
+/cv.html                     /cv                    301!
+/pages/contact.html          /contact               301!
+/pages/contact               /contact               301!
+/contact.html                /contact               301!
+/pages/projects/visualcom.html        /projects/visualcom        301!
+/pages/projects/visualcom             /projects/visualcom        301!
+/pages/projects/village-jeunes.html   /projects/village-jeunes   301!
+/pages/projects/village-jeunes        /projects/village-jeunes   301!
+/pages/projects/lab-horizon.html      /projects/lab-horizon      301!
+/pages/projects/lab-horizon           /projects/lab-horizon      301!
+/pages/projects/magicallab.html       /projects/magicallab       301!
+/pages/projects/magicallab            /projects/magicallab       301!
+/pages/projects/micromonde.html       /projects/micromonde       301!
+/pages/projects/micromonde            /projects/micromonde       301!
+/pages/projects/hyperloop.html        /projects/hyperloop        301!
+/pages/projects/hyperloop             /projects/hyperloop        301!
+/pages/projects/back-springboot.html  /projects/back-springboot  301!
+/pages/projects/back-springboot       /projects/back-springboot  301!
+/pages/projects/pacific-dataviz.html  /projects/pacific-dataviz  301!
+/pages/projects/pacific-dataviz       /projects/pacific-dataviz  301!
+/pages/projects/borne-2bealive.html   /projects/borne-2bealive   301!
+/pages/projects/borne-2bealive        /projects/borne-2bealive   301!
+
+# 2) Canonical URL → source page (internal rewrite, the address bar keeps the clean URL).
 /                /pages/index.html       200
 /projects        /pages/projects.html    200
-/projects.html   /pages/projects.html    200
 /cv              /pages/cv.html          200
-/cv.html         /pages/cv.html          200
 /contact         /pages/contact.html     200
-/contact.html    /pages/contact.html     200
 /projects/visualcom        /pages/projects/visualcom.html        200
 /projects/village-jeunes   /pages/projects/village-jeunes.html   200
-/projects/lab-horizon    /pages/projects/lab-horizon.html      200
+/projects/lab-horizon      /pages/projects/lab-horizon.html      200
 /projects/magicallab       /pages/projects/magicallab.html       200
 /projects/micromonde       /pages/projects/micromonde.html       200
 /projects/hyperloop        /pages/projects/hyperloop.html        200
 /projects/back-springboot  /pages/projects/back-springboot.html  200
 /projects/pacific-dataviz  /pages/projects/pacific-dataviz.html  200
 /projects/borne-2bealive   /pages/projects/borne-2bealive.html   200
+
+# 3) Jury area (protected by the edge function)
 /jury                              /pages/jury/index.html                          200
 /jury/developpement-front          /pages/jury/developpement-front.html            200
 /jury/qualite-securite-performance /pages/jury/qualite-securite-performance.html   200
 /jury/client-gestion-projet        /pages/jury/client-gestion-projet.html          200
 /jury/strategie-analyse            /pages/jury/strategie-analyse.html              200
+
+# 4) Anything else
 /*    /pages/404.html    404

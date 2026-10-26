@@ -2,7 +2,9 @@
 # The jury credential is NOT here: create the env var JURY_BASIC_AUTH (value: user, colon, long password) in
 # Netlify › Site configuration › Environment variables (scope: Builds). See docs/SECURITY.md §0.
 [build]
-  command = "npm run build && node scripts/inject-jury-auth.mjs"
+  # Deploy only what passes the checks: a high/critical advisory or a red test FAILS the build, and the
+  # live site stays on the last healthy deploy. `gate` = types + secrets + tests + build.
+  command = "npm run audit:ci && npm run gate && node scripts/inject-jury-auth.mjs"
   publish = "dist"
 
 [build.environment]

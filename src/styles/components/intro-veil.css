@@ -2,15 +2,17 @@
  * @file Intro veil — opening screen of the home page
  * @description DA « Sanctuaire nocturne » : la salle est dans le noir, le faisceau de feu s'allume,
  *   le monogramme LV se trace à l'or patiné. Le voile se lève quand le héros est prêt
- *   (`features/intro-veil`). Jamais affiché avec `prefers-reduced-motion` ni deux fois dans la
- *   même session (`/intro-gate.js` pose `intro-skip`). Secours 100 % CSS : disparaît seul après ~5 s.
+ *   (`features/intro-veil`). Jamais affiché sans JavaScript (classe `js`), avec `prefers-reduced-motion`,
+ *   ni deux fois dans la même session (`/intro-gate.js` pose `js` / `intro-skip`). Secours 100 % CSS :
+ *   disparaît seul après ~5 s.
  */
 
 .intro-veil {
   position: fixed;
   inset: 0;
   z-index: var(--z-intro-veil);
-  display: grid;
+  /* Hidden unless scripts run (`js` class from /intro-gate.js): no JavaScript → the page just shows. */
+  display: none;
   place-items: center;
   overflow: hidden;
   background:
@@ -35,8 +37,12 @@
   pointer-events: none;
 }
 
-.intro-skip .intro-veil,
-.intro-veil[hidden] {
+.js .intro-veil {
+  display: grid;
+}
+
+.js.intro-skip .intro-veil,
+.js .intro-veil[hidden] {
   display: none;
 }
 
