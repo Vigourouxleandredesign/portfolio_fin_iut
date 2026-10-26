@@ -26,7 +26,7 @@ Voir le tableau de [`work-packages/README.md`](work-packages/README.md). Jalons 
 | 24/10 | ✅ L1 → L5 fusionnés, `main` poussé (CI GitHub Actions) |
 | 25/10 | ✅ L5c, L5b, L8 recette, L6 Lab Horizon, L7 préprod, L7s + red team (jury, domaine, poids) |
 | 26/10 | ✅ **L9** : captures AR Micro-monde, pas de 3D au tactile, correctifs rapides red team · ✅ **L10** (avancé au 26/10) : déploiement conditionné aux contrôles, URL canoniques, accueil sans JS, MagicalLab différé, typographie |
-| 27/10 | Recette finale sur la préprod à jour (Lighthouse, jury, partage) · **gel du contenu** |
+| 26-27/10 | **L12** : textes sans tics d’IA (relecture `docs/content/relecture-textes.md`), logos officiels des technos, section domaines cliquable, retouche mobile · puis **gel du contenu** |
 | **28/10** | **L11 — mise en production** : vérifications, test sur ton téléphone, verrouillage du déploiement Netlify |
 | 29–30/10 | Marge · textes « Ce que j’en retiens » · remise au jury du lien `/jury` et, séparément, du mot de passe |
 
@@ -51,6 +51,7 @@ Voir le tableau de [`work-packages/README.md`](work-packages/README.md). Jalons 
 | 26/10 | Captures AR Micro-monde fournies (14 photos, surtout paysage) : 6 retenues et préparées (UI Safari rognée, WebP) ; écartées : celles où le panneau affiche « PLACEHOLDER » |
 | 25/10 | **Red team de la préprod** : contournements du verrou jury (`//jury`, `/JURY/…` servaient pages et PDF) → Edge Function sur `/*` avec chemin normalisé, 39 tests E2E prod ; domaine de production posé (`https://vigourouxleandre.netlify.app`) dans canonical, partage (og:image absolues, `public/og/`), sitemap, robots ; buste 7,9 → 1,2 Mo ; **voile d’ouverture** (écran d’entrée DA) + 3D lancée après chargement. Pour changer de domaine : `grep -rli "vigourouxleandre.netlify.app" pages public` puis remplacer. |
 | 26/10 | **L9 + L10 exécutés** : AR Micro-monde intégrée ; pas de 3D au tactile ; une URL par page (301) ; accueil lisible sans JS ; MagicalLab chargé à la demande ; typographie française ; Netlify ne publie que ce qui passe `audit:ci` + `gate` ; le mot de passe jury n’est plus écrit dans `dist/_headers`. |
+| 26/10 | **Décisions Léandre** : logos officiels des technos (couleurs officielles) sur cartes, carrousel et domaines ; section « Ce que je sais faire » transformée en 5 raccourcis vers le catalogue filtré (Animation fusionnée dans Création 3D), bande vide supprimée ; **relecture de tous les textes générés ou corrigés par IA** (tirets longs, &, formules, majuscules), tableau avant/après validé par Léandre, garde-fou de test + règles d’écriture dans `AGENTS.md` ; « Ce que j’en retiens » de Micro-monde et Vill’âge Jeunes masqués jusqu’aux textes de Léandre ; fichiers des lots terminés supprimés |
 
 ## Questions ouvertes (bloquent un texte, pas un lot)
 

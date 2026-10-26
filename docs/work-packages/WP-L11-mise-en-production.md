@@ -1,6 +1,6 @@
 # L11 — Mise en production (mercredi 28/10) et remise au jury
 
-**Responsables :** **Léandre** (Netlify, envoi au jury) + Claude Code **Haiku** (vérifications) + Claude chef de projet (validation finale) · **Durée :** 1 h · **Dépend de :** L10 (au moins parties 1 à 3)
+**Responsables :** **Léandre** (Netlify, envoi au jury) + Claude Code **Haiku** (vérifications) + Claude chef de projet (validation finale) · **Durée :** 1 h · **Dépend de :** L12 fusionné et déployé
 
 ## 1. Vérifications (Haiku)
 
