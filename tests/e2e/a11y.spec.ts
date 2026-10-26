@@ -15,7 +15,10 @@ const routes = [
   '/pages/cv.html',
 ];
 
-for (const route of routes) {
+// Against a deployed site the jury area answers 401 (checked by jury-protection.prod.spec.ts).
+const deployed = Boolean(process.env.PLAYWRIGHT_BASE_URL);
+
+for (const route of routes.filter((r) => !(deployed && r.includes('/jury/')))) {
   test(`D4 axe — no critical/serious on ${route}`, async ({ page }) => {
     // Match prefers-reduced-motion so reveal-on-scroll does not use opacity: 0 during axe.
     await page.emulateMedia({ reducedMotion: 'reduce' });

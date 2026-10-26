@@ -282,3 +282,10 @@
     display: block !important;
   }
 }
+
+/* The click hints only make sense with the 3D bust, which mounts on a mouse only (bust-capability.ts) */
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .hero-3d__hint {
+    display: none;
+  }
+}

@@ -18,7 +18,8 @@ test.describe('D0 — public smoke', () => {
       .getByRole('link', { name: /MagicalLab/i })
       .first()
       .click();
-    await expect(page).toHaveURL(/magicallab\.html/);
+    // Local preview serves `.html`, Netlify serves pretty URLs.
+    await expect(page).toHaveURL(/magicallab(\.html)?\/?$/);
     await expect(page.getByRole('heading', { name: 'MagicalLab' })).toBeVisible();
   });
 

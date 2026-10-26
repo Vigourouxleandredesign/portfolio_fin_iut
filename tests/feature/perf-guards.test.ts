@@ -111,3 +111,45 @@ describe('home — opening veil', () => {
     expect(read('src/scripts/entries/home.ts')).toContain('initIntroVeil');
   });
 });
+
+describe('cache headers on non-hashed static files (REDTEAM P2-3)', () => {
+  const headers = read('public/_headers');
+
+  it('caches draco, share previews, favicon and logo for a bounded time', () => {
+    expect(headers).toMatch(/\/draco\/\*\s+Cache-Control: public, max-age=604800/);
+    expect(headers).toMatch(/\/og\/\*\s+Cache-Control: public, max-age=86400/);
+    expect(headers).toMatch(/\/og-cover\.jpg\s+Cache-Control: public, max-age=86400/);
+    expect(headers).toMatch(/\/favicon\.svg\s+Cache-Control: public, max-age=86400/);
+    expect(headers).toMatch(/\/logo-leandre\.svg\s+Cache-Control: public, max-age=86400/);
+  });
+
+  it('never sets a public cache on the jury area or on /documents', () => {
+    const blocks = headers.split(/\r?\n\r?\n/);
+    for (const block of blocks) {
+      const path = block.trim().split(/\r?\n/)[0] ?? '';
+      if (
+        path.startsWith('/jury') ||
+        path.startsWith('/pages/jury') ||
+        path.startsWith('/documents')
+      ) {
+        expect(block).not.toMatch(/Cache-Control: public/);
+      }
+    }
+  });
+});
+
+describe('3D bust — mouse only', () => {
+  it('home mounts the bust only through the capability gate', () => {
+    const entry = read('src/scripts/entries/home.ts');
+    expect(entry).toContain(
+      "import { canMountBust } from '../features/three-scene/bust-capability'",
+    );
+    expect(entry).toMatch(/if \(heroRoot && canMountBust\(\)\)/);
+  });
+
+  it('hides the click hint where the 3D is not mounted', () => {
+    expect(read('src/styles/components/hero-3d.css')).toMatch(
+      /@media \(hover: none\), \(pointer: coarse\), \(prefers-reduced-motion: reduce\)\s*\{\s*\.hero-3d__hint\s*\{\s*display: none/,
+    );
+  });
+});

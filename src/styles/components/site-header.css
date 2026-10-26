@@ -132,6 +132,10 @@
   }
 
   .site-header__link {
+    /* WCAG 2.2 · 2.5.8: target at least 24 px high */
+    display: inline-flex;
+    align-items: center;
+    min-block-size: 1.5rem;
     padding: 0;
   }
 
