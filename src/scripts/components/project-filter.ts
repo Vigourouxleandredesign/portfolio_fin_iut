@@ -2,12 +2,16 @@
  * @file Project filter
  * @module components/project-filter
  * @description Builds filter controls from the skills taxonomy and toggles static project cards.
- *   Cards stay in HTML (SEO); this only hides or shows them.
+ *   Cards stay in HTML (SEO); this only hides or shows them. The chosen domain is read from, and mirrored
+ *   to, the `?domaine=` query parameter (unknown value → « Tout »).
  */
 
 import { skills } from '../../data/skills';
 
 const ALL_FILTER = 'all';
+
+/** Query parameter shared with the home « domaines » plaques: `/projects?domaine=3d`. */
+const DOMAIN_PARAM = 'domaine';
 
 /**
  * Mounts the projects filter inside `[data-project-filter]`.
@@ -52,9 +56,19 @@ export function initProjectFilter(): () => void {
     });
   };
 
+  /** Mirrors the active filter in the address bar without adding a history entry. */
+  const syncUrl = (value: string): void => {
+    const url = new URL(window.location.href);
+    if (value === ALL_FILTER) url.searchParams.delete(DOMAIN_PARAM);
+    else url.searchParams.set(DOMAIN_PARAM, value);
+    window.history.replaceState(window.history.state, '', url);
+  };
+
   const onClick = (event: Event): void => {
     const target = event.currentTarget as HTMLButtonElement;
-    apply(target.dataset.filterValue ?? ALL_FILTER);
+    const value = target.dataset.filterValue ?? ALL_FILTER;
+    apply(value);
+    syncUrl(value);
   };
 
   buttons.forEach((button) => {
@@ -63,6 +77,9 @@ export function initProjectFilter(): () => void {
   });
 
   container.hidden = false;
+
+  const requested = new URLSearchParams(window.location.search).get(DOMAIN_PARAM) ?? ALL_FILTER;
+  apply(entries.some((entry) => entry.id === requested) ? requested : ALL_FILTER);
 
   return () => {
     buttons.forEach((button) => {

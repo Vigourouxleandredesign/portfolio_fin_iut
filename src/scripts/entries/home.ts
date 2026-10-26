@@ -24,6 +24,7 @@ import '../../styles/components/section.css';
 import '../../styles/components/skill-card.css';
 import '../../styles/components/skills-gallery.css';
 import '../../styles/components/project-card.css';
+import '../../styles/components/tech-logo.css';
 import '../../styles/components/project-carousel.css';
 import '../../styles/components/clients-marquee.css';
 import '../../styles/components/hero-3d.css';

@@ -48,7 +48,7 @@ describe('C4 — MagicalLab stage', () => {
   });
 
   it('is dated 2026 with the copper cartel', () => {
-    expect(html).toContain('N° II · 2026 · Projet front — IUT');
+    expect(html).toContain('N° II · 2026 · Projet front, IUT');
     expect(html).not.toContain('<span>2025</span>');
   });
 
@@ -65,6 +65,7 @@ describe('C4 — MagicalLab stage', () => {
   it('uses the correct French idiom « laisser libre cours »', () => {
     const flat = html.replace(/\s+/g, ' ');
     expect(flat).not.toMatch(/laisser cours/);
-    expect(flat.match(/laisser libre cours/g)).toHaveLength(2);
+    // The « En bref » duplicate of the long version was removed (relecture ML-02): one occurrence left.
+    expect(flat.match(/laisser libre cours/g)).toHaveLength(1);
   });
 });

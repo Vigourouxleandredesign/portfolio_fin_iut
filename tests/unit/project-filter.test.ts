@@ -60,3 +60,43 @@ describe('project-filter', () => {
     expect(buttons()[0].getAttribute('aria-pressed')).toBe('true');
   });
 });
+
+describe('project-filter — ?domaine= query parameter (L12)', () => {
+  const setSearch = (search: string): void => {
+    window.history.replaceState(null, '', `/projects${search}`);
+  };
+
+  it('opens on the requested domain', () => {
+    mount();
+    setSearch('?domaine=3d');
+    initProjectFilter();
+    const hidden = [...document.querySelectorAll<HTMLElement>('article')]
+      .filter((card) => card.hidden)
+      .map((card) => card.id);
+    expect(hidden).toEqual(['d', 'e']);
+    const pressed = buttons().filter((button) => button.getAttribute('aria-pressed') === 'true');
+    expect(pressed.map((button) => button.dataset.filterValue)).toEqual(['3d']);
+  });
+
+  it('falls back to « Tout » for an unknown value', () => {
+    mount();
+    setSearch('?domaine=nimportequoi');
+    initProjectFilter();
+    expect(document.querySelectorAll('article[hidden]')).toHaveLength(0);
+    expect(buttons()[0].getAttribute('aria-pressed')).toBe('true');
+  });
+
+  it('mirrors the chosen filter in the URL (replaceState) and clears it on « Tout »', () => {
+    mount();
+    setSearch('');
+    const before = window.history.length;
+    initProjectFilter();
+    buttons()
+      .find((button) => button.dataset.filterValue === 'webdesign')!
+      .click();
+    expect(window.location.search).toBe('?domaine=webdesign');
+    buttons()[0].click();
+    expect(window.location.search).toBe('');
+    expect(window.history.length).toBe(before);
+  });
+});

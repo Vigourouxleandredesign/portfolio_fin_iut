@@ -87,8 +87,10 @@ describe('home — opening veil', () => {
   const html = read('pages/index.html');
   const css = read('src/styles/components/intro-veil.css');
 
-  it('ships the veil as decorative markup before the page content', () => {
-    expect(html).toMatch(/<div class="intro-veil" data-intro-veil aria-hidden="true">/);
+  it('ships the veil before the page content, announced as « Chargement de la page »', () => {
+    expect(html).toMatch(/<div class="intro-veil" data-intro-veil role="status">/);
+    expect(html).toContain('<p class="visually-hidden">Chargement de la page</p>');
+    expect(html).not.toContain('sanctuaire');
     expect(html.indexOf('data-intro-veil')).toBeLessThan(html.indexOf('class="skip-link"'));
   });
 

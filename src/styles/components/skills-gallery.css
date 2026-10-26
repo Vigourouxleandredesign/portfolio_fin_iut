@@ -1,7 +1,7 @@
 /**
  * @file Skills gallery — suspended marble plaques in a dark atelier
  * @description Empty atelier plate (`.graded-image`, « Odyssée » grade) behind the plaques.
- *   Desktop: 3×2 grid of plaques; black cloud veils top/bottom; one pigment smear in the margin.
+ *   Desktop: 3 + 2 plaques centred (one per catalogue domain, each a link); black cloud veils top/bottom; one pigment smear in the margin.
  */
 
 .skills-gallery {
@@ -19,8 +19,12 @@
   background-color: var(--color-atelier);
 }
 
-/* Atelier plate — graded image; veil keeps plaque captions on a dark zone */
-.skills-gallery__bg {
+/*
+ * Atelier plate — graded image; veil keeps plaque captions on a dark zone.
+ * Doubled selector: `.graded-image` (position: relative) can be bundled after this file, and the plate
+ * must stay a backdrop that fills the section, never a full-screen band above the title.
+ */
+.skills-gallery .skills-gallery__bg {
   position: absolute;
   inset: 0;
   z-index: 0;
@@ -121,9 +125,10 @@
 }
 
 .skills-gallery__track {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-10);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-10) var(--space-6);
 }
 
 /* —— Suspended marble plaque —— */
@@ -132,8 +137,60 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex: 1 1 100%;
   text-align: center;
   min-width: 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Domain plaque = link to the filtered catalogue: lifts and gets a copper edge on hover / focus */
+.domain-plate {
+  transition: transform var(--duration-normal) var(--ease-out);
+}
+
+.domain-plate:hover,
+.domain-plate:focus-visible {
+  transform: translateY(calc(-1 * var(--space-2)));
+}
+
+.domain-plate:focus-visible {
+  outline: 2px solid var(--color-ember);
+  outline-offset: var(--space-3);
+}
+
+.domain-plate .marble-slab__plaque {
+  transition: box-shadow var(--duration-normal) var(--ease-out);
+}
+
+.domain-plate:hover .marble-slab__plaque,
+.domain-plate:focus-visible .marble-slab__plaque {
+  box-shadow:
+    0 0 0 2px var(--color-pigment-copper),
+    0 18px 40px color-mix(in srgb, var(--color-bg) 80%, transparent),
+    inset 0 0 32px color-mix(in srgb, var(--color-marble-vein) 12%, transparent);
+}
+
+.domain-plate__logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
+  margin: var(--space-3) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .domain-plate,
+  .domain-plate .marble-slab__plaque {
+    transition: none;
+  }
+
+  .domain-plate:hover,
+  .domain-plate:focus-visible {
+    transform: none;
+  }
 }
 
 .marble-slab__rig {
@@ -241,9 +298,8 @@
 }
 
 @media (min-width: 40rem) {
-  .skills-gallery__track {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-10) var(--space-6);
+  .marble-slab {
+    flex: 0 1 calc((100% - var(--space-6)) / 2);
   }
 }
 
@@ -253,8 +309,11 @@
   }
 
   .skills-gallery__track {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: var(--space-12) var(--space-6);
+  }
+
+  .marble-slab {
+    flex: 0 1 calc((100% - 2 * var(--space-6)) / 3);
   }
 
   .marble-slab__plaque {

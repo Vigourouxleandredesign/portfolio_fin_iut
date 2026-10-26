@@ -49,6 +49,21 @@
   --color-marble-vein: #9c968e;
   --color-marble-ink: #1a1816;
 
+  /*
+   * —— Logos de marques tierces (L12) ——
+   * Couleurs officielles (Simple Icons 16.36.0), utilisées uniquement par `.tech-logo` sur une pastille.
+   * Exception assumée à la palette DA : ce sont des logos de marque, reproduits tels quels (décision de Léandre, 26/10).
+   */
+  --color-brand-react: #61dafb;
+  --color-brand-laravel: #ff2d20;
+  --color-brand-docker: #2496ed;
+  --color-brand-threejs: #000000;
+  --color-brand-blender: #e87d0d;
+  --color-brand-javascript: #f7df1e;
+  --color-brand-wordpress: #21759b;
+  --color-brand-springboot: #6db33f;
+  --color-brand-figma: #f24e1e;
+
   /* —— Pigments gouache (décor, survols, mots Updock — jamais sous un paragraphe) —— */
   --color-pigment-copper: #c8743f;
   --color-pigment-copper-light: #f0b07a;

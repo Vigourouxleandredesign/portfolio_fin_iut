@@ -22,6 +22,7 @@ import '../../styles/components/light-beam.css';
 import '../../styles/components/page-hero.css';
 import '../../styles/components/section.css';
 import '../../styles/components/project-card.css';
+import '../../styles/components/tech-logo.css';
 import '../../styles/components/project-filter.css';
 import '../../styles/pages/projects.css';
 

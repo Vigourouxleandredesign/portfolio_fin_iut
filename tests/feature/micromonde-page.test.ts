@@ -11,7 +11,7 @@ const html = readFileSync(resolve(root, 'pages/projects/micromonde.html'), 'utf8
 describe('Micro-monde page', () => {
   it('credits the fresco artist Kuby Kolor', () => {
     expect(html).toContain('Fresques&#8239;: Kuby Kolor.');
-    expect(html).toContain('Propositions de fresques — Kuby Kolor');
+    expect(html).toContain('Propositions de fresques de Kuby Kolor');
   });
 
   it('opens the AR demo in a new tab, safely', () => {
@@ -30,7 +30,7 @@ describe('Micro-monde page', () => {
   });
 
   it('follows the brief and shows the AR captures (no pending TODO left)', () => {
-    expect(html).toContain('N° III · 2026 · Nuit de la Science — UNC');
+    expect(html).toContain('N° III · 2026 · Nuit de la Science, UNC');
     expect(html).toContain('Blender · 8th Wall · Three.js · Vite · TypeScript');
     expect(html).not.toContain('TODO L6');
     expect(html).not.toContain('[À CONFIRMER]');

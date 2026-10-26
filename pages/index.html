@@ -10,16 +10,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Léandre — Creative developer</title>
+    <title>Léandre Vigouroux, creative developer</title>
     <link rel="canonical" href="https://vigourouxleandre.netlify.app/" />
     <meta
       name="description"
-      content="Portfolio creative developer — infographiste webdesigner et développeur web. Front-end par intérêt, design et code."
+      content="Portfolio de Léandre Vigouroux, infographiste webdesigner et développeur web front-end à Nouméa : projets web, 3D et dispositifs interactifs."
     />
-    <meta property="og:title" content="Léandre — Creative developer" />
+    <meta property="og:title" content="Léandre Vigouroux, creative developer" />
     <meta
       property="og:description"
-      content="Creative developer par conviction — infographie, webdesign et développement web."
+      content="Portfolio de Léandre Vigouroux, infographiste webdesigner et développeur web front-end à Nouméa : projets web, 3D et dispositifs interactifs."
     />
     <meta property="og:image" content="https://vigourouxleandre.netlify.app/og-cover.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -45,14 +45,15 @@
   </head>
   <body>
     <!--
-      Opening veil (DA « Sanctuaire nocturne » : le faisceau s'allume, le monogramme se trace).
+      Opening veil (DA « Sanctuaire nocturne » : le faisceau s'allume, le monogramme se trace). Purely visual,
+      announced to screen readers as « Chargement de la page ».
       Lifts when fonts + hero images + 3D bust are ready (capped), once per session; never shown with
       reduced motion. Pure CSS fallback hides it after ~5 s even if the script never runs.
     -->
-    <div class="intro-veil" data-intro-veil aria-hidden="true">
-      <div class="light-beam"><div class="light-beam__dust"></div></div>
+    <div class="intro-veil" data-intro-veil role="status">
+      <div class="light-beam" aria-hidden="true"><div class="light-beam__dust"></div></div>
       <div class="intro-veil__inner">
-        <svg class="intro-veil__mark" viewBox="0 0 91.8 91.8" focusable="false">
+        <svg class="intro-veil__mark" viewBox="0 0 91.8 91.8" focusable="false" aria-hidden="true">
           <rect
             class="intro-veil__frame intro-veil__frame--outer"
             pathLength="1"
@@ -81,8 +82,10 @@
             />
           </g>
         </svg>
-        <p class="intro-veil__caption">Le sanctuaire s’éveille</p>
-        <span class="intro-veil__ember"><span class="intro-veil__ember-spark"></span></span>
+        <p class="visually-hidden">Chargement de la page</p>
+        <span class="intro-veil__ember" aria-hidden="true"
+          ><span class="intro-veil__ember-spark"></span
+        ></span>
       </div>
     </div>
 
@@ -90,7 +93,7 @@
 
     <header class="site-header">
       <nav class="site-header__nav" aria-label="Navigation principale">
-        <a class="site-header__logo" href="/" aria-label="Léandre — Accueil">
+        <a class="site-header__logo" href="/" aria-label="Accueil, Léandre Vigouroux">
           <img
             class="site-header__logo-image"
             data-site-logo
@@ -159,18 +162,16 @@
           />
         </div>
         <section class="hero-3d" data-hero-3d aria-label="Présentation">
-          <p class="hero-3d__hint">
-            Clic gauche&nbsp;: peindre — Clic droit&nbsp;: tourner le buste
-          </p>
+          <p class="hero-3d__hint">Clic gauche pour peindre, clic droit pour tourner le buste</p>
           <div class="hero-3d__stage">
             <!-- Shown until the 3D scene is ready (or if JS/WebGL is unavailable). -->
             <img
               class="hero-3d__fallback"
               data-hero-3d-fallback
               src="/src/assets/hero/bust-designer.jpg"
-              alt="Buste sculpté fracturé, Creative Developer"
-              width="1080"
-              height="1920"
+              alt="Buste sculpté fracturé, éclaboussé de peinture"
+              width="1024"
+              height="576"
               decoding="async"
               fetchpriority="high"
             />
@@ -180,7 +181,7 @@
               <span class="hero-3d__word hero-3d__word--developer">Developer</span>
             </h1>
             <p class="hero-3d__subtitle">
-              Léandre Vigouroux — développeur web &amp; webdesigner, Nouméa
+              Léandre Vigouroux, développeur web et webdesigner à Nouméa
             </p>
           </div>
           <div class="hero-3d__actions">
@@ -204,7 +205,8 @@
               <span class="section-title__gesture">récents</span>
             </h2>
             <p class="section__lead">
-              La preuve du travail — ouvre une fiche pour le contexte, les choix et le résultat.
+              Mes projets les plus récents. Chaque fiche présente le contexte, mes choix et le
+              résultat.
             </p>
           </div>
 
@@ -233,7 +235,7 @@
                     <article class="project-carousel__slide" data-carousel-slide data-current>
                       <div class="project-carousel__slide-inner">
                         <a class="project-carousel__link" href="/projects/lab-horizon"
-                          >Lab Horizon — Voir le projet</a
+                          >Voir le projet Lab Horizon</a
                         >
                         <div class="project-carousel__media graded-image">
                           <img
@@ -246,9 +248,13 @@
                             decoding="async"
                           />
                           <span class="project-carousel__initial" aria-hidden="true">L</span>
-                          <span class="project-carousel__tech" aria-hidden="true">
-                            <span class="project-carousel__tech-label">React</span>
-                          </span>
+                          <span class="project-carousel__tech"
+                            ><span
+                              class="tech-logo tech-logo--react tech-logo--dark tech-logo--labelled"
+                              ><span class="tech-logo__icon" aria-hidden="true"></span
+                              ><span class="tech-logo__label">React</span></span
+                            ></span
+                          >
                         </div>
                       </div>
                     </article>
@@ -256,7 +262,7 @@
                     <article class="project-carousel__slide" data-carousel-slide data-next>
                       <div class="project-carousel__slide-inner">
                         <a class="project-carousel__link" href="/projects/magicallab"
-                          >MagicalLab — Voir le projet</a
+                          >Voir le projet MagicalLab</a
                         >
                         <div class="project-carousel__media graded-image">
                           <img
@@ -269,9 +275,13 @@
                             decoding="async"
                           />
                           <span class="project-carousel__initial" aria-hidden="true">M</span>
-                          <span class="project-carousel__tech" aria-hidden="true">
-                            <span class="project-carousel__tech-label">React</span>
-                          </span>
+                          <span class="project-carousel__tech"
+                            ><span
+                              class="tech-logo tech-logo--react tech-logo--dark tech-logo--labelled"
+                              ><span class="tech-logo__icon" aria-hidden="true"></span
+                              ><span class="tech-logo__label">React</span></span
+                            ></span
+                          >
                         </div>
                       </div>
                     </article>
@@ -279,7 +289,7 @@
                     <article class="project-carousel__slide" data-carousel-slide>
                       <div class="project-carousel__slide-inner">
                         <a class="project-carousel__link" href="/projects/micromonde"
-                          >Micro-monde — Voir le projet</a
+                          >Voir le projet Micro-monde</a
                         >
                         <div class="project-carousel__media graded-image">
                           <img
@@ -292,21 +302,12 @@
                             decoding="async"
                           />
                           <span class="project-carousel__initial" aria-hidden="true">M</span>
-                          <span
-                            class="project-carousel__tech project-carousel__tech--icon"
-                            aria-hidden="true"
+                          <span class="project-carousel__tech"
+                            ><span class="tech-logo tech-logo--blender tech-logo--labelled"
+                              ><span class="tech-logo__icon" aria-hidden="true"></span
+                              ><span class="tech-logo__label">Blender</span></span
+                            ></span
                           >
-                            <img
-                              class="project-carousel__tech-icon"
-                              data-carousel-tech-icon="blender"
-                              src="/src/assets/tech/blender-mark.svg"
-                              alt=""
-                              width="28"
-                              height="28"
-                              decoding="async"
-                            />
-                            <span class="project-carousel__tech-label">Blender</span>
-                          </span>
                         </div>
                       </div>
                     </article>
@@ -314,7 +315,7 @@
                     <article class="project-carousel__slide" data-carousel-slide data-previous>
                       <div class="project-carousel__slide-inner">
                         <a class="project-carousel__link" href="/projects/village-jeunes"
-                          >Vill’âge Jeunes — Voir le projet</a
+                          >Voir le projet Vill’âge Jeunes</a
                         >
                         <div class="project-carousel__media graded-image">
                           <img
@@ -327,9 +328,13 @@
                             decoding="async"
                           />
                           <span class="project-carousel__initial" aria-hidden="true">V</span>
-                          <span class="project-carousel__tech" aria-hidden="true">
-                            <span class="project-carousel__tech-label">JS</span>
-                          </span>
+                          <span class="project-carousel__tech"
+                            ><span
+                              class="tech-logo tech-logo--javascript tech-logo--dark tech-logo--labelled"
+                              ><span class="tech-logo__icon" aria-hidden="true"></span
+                              ><span class="tech-logo__label">JavaScript</span></span
+                            ></span
+                          >
                         </div>
                       </div>
                     </article>
@@ -344,7 +349,7 @@
                           </p>
                           <h3 class="project-carousel__title"><span>Lab Horizon</span></h3>
                           <p class="project-carousel__summary">
-                            <span>La recherche calédonienne rendue lisible.</span>
+                            <span>La recherche calédonienne expliquée au grand public.</span>
                           </p>
                         </div>
                       </div>
@@ -357,7 +362,7 @@
                           </p>
                           <h3 class="project-carousel__title"><span>MagicalLab</span></h3>
                           <p class="project-carousel__summary">
-                            <span>Laboratoire 3D immersif en React Three Fiber.</span>
+                            <span>Un laboratoire en 3D à explorer, codé en React Three Fiber.</span>
                           </p>
                         </div>
                       </div>
@@ -417,7 +422,7 @@
           <header class="clients-marquee__header">
             <span class="clients-marquee__eyebrow">Collaborations</span>
             <h2 class="clients-marquee__title" id="clients-title">
-              Entreprises avec qui j’ai pu travailler
+              Entreprises avec lesquelles j’ai travaillé
             </h2>
           </header>
         </div>
@@ -477,7 +482,7 @@
                 class="clients-marquee__logo"
                 data-client-logo="visualcom"
                 src="/src/assets/clients/logo-visualcom.webp"
-                alt="VisualCom"
+                alt="Visualcom"
                 width="160"
                 height="80"
                 decoding="async"
@@ -592,14 +597,13 @@
           <div class="section__header" data-reveal>
             <span class="section__eyebrow">Mon univers</span>
             <h2 class="section__title" id="univers-title">
-              Deux métiers, une seule
-              <em class="section__title-accent">exigence</em>
+              Designer et <em class="section__title-accent">développeur</em>
             </h2>
             <p class="section__lead">
-              Infographiste webdesigner diplômé et développeur en licence professionnelle
-              Applications web. Creative developer par conviction&#8239;: le front par intérêt, la
-              3D par passion, des bases back (Spring Boot, Symfony) pour dialoguer avec toute la
-              chaîne.
+              Infographiste webdesigner diplômé, je prépare la licence professionnelle MIAW
+              (applications web) en alternance. Je développe surtout côté front, je crée en 3D, et
+              j’ai les bases du back (Spring Boot, Symfony) pour travailler avec toute l’équipe
+              technique.
             </p>
           </div>
 
@@ -608,39 +612,39 @@
               <span class="skill-card__index">01</span>
               <h3 class="skill-card__title">Concevoir</h3>
               <p class="skill-card__description">
-                Direction artistique, maquettes et design system. Une intention claire avant la
-                première ligne de code.
+                Direction artistique, maquettes et design system&#8239;: la direction visuelle est
+                posée avant d’écrire le code.
               </p>
             </article>
             <article class="skill-card" data-reveal>
               <span class="skill-card__index">02</span>
               <h3 class="skill-card__title">Développer</h3>
               <p class="skill-card__description">
-                Front-end exigeant — HTML sémantique, CSS structuré, TypeScript. Les bases du back
-                pour dialoguer avec toute la chaîne.
+                HTML sémantique, CSS structuré et TypeScript, avec les bases du back pour échanger
+                avec les développeurs serveur.
               </p>
             </article>
             <article class="skill-card" data-reveal>
               <span class="skill-card__index">03</span>
               <h3 class="skill-card__title">Animer</h3>
               <p class="skill-card__description">
-                Canvas, 3D temps réel et micro-interactions, utilisés pour servir le propos — jamais
-                pour alourdir la page.
+                Canvas, 3D temps réel et micro-interactions, quand ils aident à comprendre et sans
+                alourdir la page.
               </p>
             </article>
           </div>
 
           <div class="section__actions" data-reveal>
-            <a class="button button--primary" href="#competences"> Découvrir mes compétences </a>
+            <a class="button button--primary" href="#domaines"> Parcourir par domaine </a>
             <a class="button button--ghost" href="/cv">Mon CV</a>
           </div>
         </div>
       </section>
 
-      <!-- Skills: suspended marble plaques over a graded atelier plate. -->
+      <!-- Domains: five suspended marble plaques (one per catalogue category), each a link to the filtered catalogue. -->
       <section
         class="skills-gallery"
-        id="competences"
+        id="domaines"
         aria-labelledby="skills-title"
         data-skills-gallery
       >
@@ -677,95 +681,140 @@
                 <em class="section__title-accent">faire</em>
               </h2>
               <p class="skills-gallery__lead">
-                Six matières suspendues — du dispositif interactif au code.
+                Choisissez un domaine pour voir les projets qui s’y rattachent.
               </p>
             </header>
 
             <div class="skills-gallery__track">
-              <article class="marble-slab" data-reveal>
+              <a
+                class="marble-slab domain-plate"
+                href="/projects?domaine=interactive-devices"
+                data-reveal
+              >
                 <div class="marble-slab__rig" aria-hidden="true">
-                  <span class="marble-slab__cable"></span>
-                  <span class="marble-slab__clamp"></span>
+                  <span class="marble-slab__cable"></span><span class="marble-slab__clamp"></span>
                 </div>
                 <div class="marble-slab__plaque">
                   <h3 class="marble-slab__title">Dispositifs interactifs</h3>
                 </div>
-                <p class="marble-slab__meta">01 — Interactif</p>
+                <p class="marble-slab__meta">1 projet</p>
                 <p class="marble-slab__description">
-                  Bornes, interfaces embarquées et expériences tactiles — du concept au prototype.
+                  Bornes, interfaces tactiles et parcours en réalité augmentée.
                 </p>
-              </article>
-
-              <article class="marble-slab" data-reveal>
+                <ul class="domain-plate__logos" aria-label="Technologies">
+                  <li class="domain-plate__logo">
+                    <span class="tech-logo tech-logo--blender"
+                      ><span class="tech-logo__icon" aria-hidden="true"></span
+                      ><span class="tech-logo__label">Blender</span></span
+                    >
+                  </li>
+                </ul>
+              </a>
+              <a
+                class="marble-slab domain-plate"
+                href="/projects?domaine=web-development"
+                data-reveal
+              >
                 <div class="marble-slab__rig" aria-hidden="true">
-                  <span class="marble-slab__cable"></span>
-                  <span class="marble-slab__clamp"></span>
+                  <span class="marble-slab__cable"></span><span class="marble-slab__clamp"></span>
                 </div>
                 <div class="marble-slab__plaque">
                   <h3 class="marble-slab__title">Développement web</h3>
                 </div>
-                <p class="marble-slab__meta">02 — Code</p>
+                <p class="marble-slab__meta">6 projets</p>
                 <p class="marble-slab__description">
-                  Front-end exigeant, intégration soignée, bases back pour dialoguer avec toute la
-                  chaîne.
+                  Sites et applications web, surtout côté front, avec les bases du back.
                 </p>
-              </article>
-
-              <article class="marble-slab" data-reveal>
+                <ul class="domain-plate__logos" aria-label="Technologies">
+                  <li class="domain-plate__logo">
+                    <span class="tech-logo tech-logo--react tech-logo--dark"
+                      ><span class="tech-logo__icon" aria-hidden="true"></span
+                      ><span class="tech-logo__label">React</span></span
+                    >
+                  </li>
+                  <li class="domain-plate__logo">
+                    <span class="tech-logo tech-logo--image"
+                      ><img
+                        class="tech-logo__image"
+                        src="/src/assets/tech/angular.svg"
+                        alt=""
+                        width="18"
+                        height="19"
+                        loading="lazy"
+                        decoding="async"
+                      /><span class="tech-logo__label">Angular</span></span
+                    >
+                  </li>
+                  <li class="domain-plate__logo">
+                    <span class="tech-logo tech-logo--springboot"
+                      ><span class="tech-logo__icon" aria-hidden="true"></span
+                      ><span class="tech-logo__label">Spring Boot</span></span
+                    >
+                  </li>
+                </ul>
+              </a>
+              <a class="marble-slab domain-plate" href="/projects?domaine=webdesign" data-reveal>
                 <div class="marble-slab__rig" aria-hidden="true">
-                  <span class="marble-slab__cable"></span>
-                  <span class="marble-slab__clamp"></span>
+                  <span class="marble-slab__cable"></span><span class="marble-slab__clamp"></span>
                 </div>
                 <div class="marble-slab__plaque">
-                  <h3 class="marble-slab__title">Webdesign &amp; UI/UX</h3>
+                  <h3 class="marble-slab__title">Webdesign et UI/UX</h3>
                 </div>
-                <p class="marble-slab__meta">03 — Web</p>
+                <p class="marble-slab__meta">1 projet</p>
                 <p class="marble-slab__description">
-                  Interfaces sur mesure, design systems et parcours utilisateurs clairs.
+                  Maquettes, design systems et parcours utilisateur.
                 </p>
-              </article>
-
-              <article class="marble-slab" data-reveal>
+                <ul class="domain-plate__logos" aria-label="Technologies">
+                  <li class="domain-plate__logo">
+                    <span class="tech-logo tech-logo--figma"
+                      ><span class="tech-logo__icon" aria-hidden="true"></span
+                      ><span class="tech-logo__label">Figma</span></span
+                    >
+                  </li>
+                </ul>
+              </a>
+              <a
+                class="marble-slab domain-plate"
+                href="/projects?domaine=product-design"
+                data-reveal
+              >
                 <div class="marble-slab__rig" aria-hidden="true">
-                  <span class="marble-slab__cable"></span>
-                  <span class="marble-slab__clamp"></span>
+                  <span class="marble-slab__cable"></span><span class="marble-slab__clamp"></span>
                 </div>
                 <div class="marble-slab__plaque">
                   <h3 class="marble-slab__title">Design produit</h3>
                 </div>
-                <p class="marble-slab__meta">04 — Produit</p>
+                <p class="marble-slab__meta">1 projet</p>
                 <p class="marble-slab__description">
-                  Conception d’objets et de supports, du croquis au prototype 3D.
+                  Croquis, modélisation et fichiers de fabrication d’objets réels.
                 </p>
-              </article>
-
-              <article class="marble-slab" data-reveal>
+              </a>
+              <a class="marble-slab domain-plate" href="/projects?domaine=3d" data-reveal>
                 <div class="marble-slab__rig" aria-hidden="true">
-                  <span class="marble-slab__cable"></span>
-                  <span class="marble-slab__clamp"></span>
+                  <span class="marble-slab__cable"></span><span class="marble-slab__clamp"></span>
                 </div>
                 <div class="marble-slab__plaque">
                   <h3 class="marble-slab__title">Création 3D</h3>
                 </div>
-                <p class="marble-slab__meta">05 — 3D</p>
+                <p class="marble-slab__meta">3 projets</p>
                 <p class="marble-slab__description">
-                  Modélisation, rendu et intégration temps réel sur le web.
+                  Modélisation, animation et rendu, jusqu’à l’intégration en temps réel sur le web.
                 </p>
-              </article>
-
-              <article class="marble-slab" data-reveal>
-                <div class="marble-slab__rig" aria-hidden="true">
-                  <span class="marble-slab__cable"></span>
-                  <span class="marble-slab__clamp"></span>
-                </div>
-                <div class="marble-slab__plaque">
-                  <h3 class="marble-slab__title">Animation 2D/3D</h3>
-                </div>
-                <p class="marble-slab__meta">06 — Motion</p>
-                <p class="marble-slab__description">
-                  Habillages animés, transitions et micro-interactions.
-                </p>
-              </article>
+                <ul class="domain-plate__logos" aria-label="Technologies">
+                  <li class="domain-plate__logo">
+                    <span class="tech-logo tech-logo--threejs"
+                      ><span class="tech-logo__icon" aria-hidden="true"></span
+                      ><span class="tech-logo__label">Three.js</span></span
+                    >
+                  </li>
+                  <li class="domain-plate__logo">
+                    <span class="tech-logo tech-logo--blender"
+                      ><span class="tech-logo__icon" aria-hidden="true"></span
+                      ><span class="tech-logo__label">Blender</span></span
+                    >
+                  </li>
+                </ul>
+              </a>
             </div>
           </div>
         </div>
@@ -794,7 +843,7 @@
               en tête&#8239;?
             </h2>
             <p class="section__lead">
-              Design, développement front, 3D ou les trois à la fois — parlons-en.
+              Un site, une application ou un projet en 3D&#8239;? Écrivez-moi.
             </p>
           </div>
           <div data-reveal>
@@ -816,7 +865,7 @@
         decoding="async"
       />
       <div class="site-footer__inner">
-        <p class="site-footer__tagline">Hâte de collaborer avec vous sur des projets exigeants.</p>
+        <p class="site-footer__tagline">Ouvert aux échanges, aux missions et aux opportunités.</p>
 
         <nav aria-labelledby="footer-nav-title">
           <h2 class="site-footer__heading" id="footer-nav-title">Plan du site</h2>
@@ -851,7 +900,9 @@
       </div>
 
       <div class="site-footer__bottom">
-        <p class="site-footer__copy">&copy; <span data-year></span> Léandre — Creative developer</p>
+        <p class="site-footer__copy">
+          &copy; <span data-year></span> Léandre Vigouroux, creative developer
+        </p>
       </div>
     </footer>
 

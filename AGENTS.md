@@ -2,7 +2,7 @@
 
 **Read this file, `docs/ARCHITECTURE.md`, `docs/SECURITY.md`, `docs/TESTING.md` and — for anything visual — `docs/DA.md` before writing or modifying any project file.**
 
-This repository is a portfolio (Vite + Vanilla TypeScript + CSS, MPA): **one static Netlify site, no backend** (Supabase removed 2026-10-21). Everything is public except **`/jury`** (reflective sheets by competence), locked server-side by Netlify Basic-Auth injected at build from the env var `JURY_BASIC_AUTH` (`docs/SECURITY.md` §0). Rules below are **non-negotiable**. **Security and reliability come first.**
+This repository is a portfolio (Vite + Vanilla TypeScript + CSS, MPA): **one static Netlify site, no backend** (Supabase removed 2026-10-21). Everything is public except **`/jury`** (reflective sheets by competence), locked server-side by a Netlify Edge Function reading the env var `JURY_BASIC_AUTH` (`docs/SECURITY.md` §0). Rules below are **non-negotiable**. **Security and reliability come first.**
 
 **Current focus:** delivery **30 Oct 2026** — work is split into lots: **`docs/work-packages/README.md`** (common protocol, planning, one prompt per lot). Content sources: `docs/content/` (project briefs, `home.md`, `cv.md`, `jury-content.md`, `assets-kit.md`). Never invent copy: use the briefs verbatim.
 
@@ -43,7 +43,7 @@ Do **not** invent tests for unimplemented features; activate D1/D2/D3 suites whe
 - **Vanilla TypeScript** — no React/Vue/Svelte
 - **MPA** — one HTML file per route under `pages/`
 - **Netlify** — static hosting (public site)
-- **Jury area** — `/jury` on the same site, Netlify Basic-Auth injected by `scripts/inject-jury-auth.mjs` (`netlify.toml`). No app auth, no Supabase.
+- **Jury area** — `/jury` on the same site, locked by the Edge Function `netlify/edge-functions/jury-auth.ts` (path-normalising, fail-closed); `scripts/inject-jury-auth.mjs` only validates the credential at build. No app auth, no Supabase.
 - **No custom Node backend** unless explicitly requested
 
 ---
@@ -51,7 +51,7 @@ Do **not** invent tests for unimplemented features; activate D1/D2/D3 suites whe
 ## Security (summary — full rules in `docs/SECURITY.md`)
 
 - **Never** a secret, password or reflective PDF in Git, `public/` or the bundle (`VITE_*` vars are public).
-- **Never** a client-side password / hidden URL as a lock — `/jury` uses Netlify’s server-side Basic-Auth.
+- **Never** a client-side password / hidden URL as a lock — `/jury` uses the server-side Edge Function.
 - **Jury text only in `pages/jury/*.html`** — never in TS/JSON (bundles are public).
 - **No** `innerHTML` with dynamic content (XSS); no inline scripts/styles (CSP).
 - New iframe ⇒ explicit origin in `public/_headers` `frame-src` + test.
@@ -110,6 +110,30 @@ import '../../styles/base.css';
 import '../../styles/layout.css';
 // then components, then pages/*.css
 ```
+
+---
+
+## Règles d'écriture (texte français du site)
+
+Issues de la relecture du 26/10 (`docs/content/relecture-textes.md` §1). Elles s'appliquent à tout texte visible de `pages/**/*.html` (corps, `title`, `meta`, `alt`, `aria-label`, légendes) ; `tests/feature/writing-guards.test.ts` en vérifie une partie. Les citations des fiches réflexives (espace jury, `<blockquote>`) sont les mots de Léandre : ne pas les toucher.
+
+| Règle | Détail |
+|---|---|
+| **Zéro tiret long « — »** | Utiliser la virgule, les deux-points, la parenthèse ou deux phrases. Le trait d'union reste (« a-t-il », « front-end », « 2021-2022 »). Séparateur de cartel : « · ». Titres de page : « Titre \| Léandre Vigouroux ». |
+| **« et », jamais « & »** | Dans les phrases, titres et libellés (hors logos et noms propres). |
+| **Pas de formule slogan ni d'antithèse « X, pas Y »** | Une affirmation simple et concrète, appuyée par un fait (chiffre, techno, résultat). |
+| **« Du X au Y » : 2 au maximum sur tout le site** | Aujourd'hui : « Du croquis à l'usine » (borne) et « Du papier au code » (Vill'âge Jeunes). |
+| **Pas d'adjectif emphatique** | Éviter exigeant, immersif, enfin lisible, assumé, par conviction, brèche, dialoguer avec toute la chaîne. |
+| **Énumérations par trois** | Seulement quand la liste est réelle, pas comme effet de style. |
+| **Texte concret, pas de métaphore interne à la DA** | « Sanctuaire », « matières suspendues » n'ont aucun sens pour un visiteur. Le décor reste visuel. |
+| **Vouvoiement partout** | Pas de « ouvre », « entre », « clique ». |
+| **Pas d'anglicisme évitable** | ordinateur (pas desktop), en ligne (pas live), aperçu (pas mockup), équipe (pas staff), démarche (pas process), E-mail. Les termes techniques sans équivalent restent (front-end, back, CI/CD, UI/UX). |
+| **Pas de phrase qui décrit l'interface** | Le bouton suffit. |
+| **Minuscules** | Sauf noms propres et début de phrase. Licence : « licence professionnelle Métiers de l'informatique : applications web (MIAW) », abrégée « LP MIAW ». « UI/UX », jamais « UX/UI ». |
+| **Aucun texte à la première personne inventé pour Léandre** | « Ce que j'en retiens », citations, retours d'expérience : seulement ses mots. Sans texte de sa part, le bloc est masqué (`<!-- TODO : texte de Léandre -->`). |
+| **Typographie française** | Espace fine insécable avant `; : ! ?` et dans « guillemets » : `node scripts/fix-french-typography.mjs` (test garde-fou). |
+
+Les capitales des cartels, boutons et étiquettes sont du CSS (choix de DA), pas une faute.
 
 ---
 

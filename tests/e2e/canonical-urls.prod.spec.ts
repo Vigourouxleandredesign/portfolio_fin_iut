@@ -29,7 +29,14 @@ test.describe('canonical URLs (prod)', () => {
     });
   }
 
-  for (const path of ['/', '/projects', '/projects/visualcom', '/cv', '/contact']) {
+  for (const path of [
+    '/',
+    '/projects',
+    '/projects?domaine=3d',
+    '/projects/visualcom',
+    '/cv',
+    '/contact',
+  ]) {
     test(`${path} → 200 without redirect loop`, async ({ request }) => {
       const response = await request.get(`${BASE}${path}`, { maxRedirects: 0 });
       expect(response.status()).toBe(200);

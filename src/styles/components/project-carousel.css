@@ -184,35 +184,13 @@
   display: none;
 }
 
-/* Primary tech badge — front-end tone on the cover */
+/* Primary tech logo (official logo on a pastille, see tech-logo.css) — front-end tone on the cover */
 .project-carousel__tech {
   position: absolute;
   top: var(--space-3);
   right: var(--space-3);
   z-index: 2;
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-1) var(--space-3);
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
-  color: var(--color-text);
-  background: color-mix(in srgb, var(--color-bg) 72%, transparent);
-  backdrop-filter: blur(8px);
   pointer-events: none;
-}
-
-.project-carousel__tech-label {
-  line-height: 1.2;
-}
-
-.project-carousel__tech-icon {
-  display: block;
-  width: 1.1rem;
-  height: 1.1rem;
-  object-fit: contain;
 }
 
 .project-carousel__image[data-carousel-image='lab-horizon'] {
@@ -229,12 +207,6 @@
 
 .project-carousel__image[data-carousel-image='micromonde'] {
   object-position: center 35%;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .project-carousel__tech {
-    backdrop-filter: none;
-  }
 }
 
 .project-carousel__info {

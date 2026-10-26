@@ -42,7 +42,7 @@ describe('HyperLoop NC', () => {
 
   it('lists the six languages without presenting a real client project', () => {
     expect(html).toContain('Six langues');
-    expect(html).toContain('imaginaire mais crédible');
+    expect(html).toContain('réseau de trains fictif');
   });
 });
 

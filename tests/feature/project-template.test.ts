@@ -84,7 +84,7 @@ const NAV_NAMES: Record<string, string> = {
 
 describe('project pages — consistent naming', () => {
   it.each(PROJECT_SLUGS)('%s title carries the shared suffix', (slug) => {
-    expect(read(slug)).toMatch(/<title>[^<]+ — Léandre Vigouroux<\/title>/);
+    expect(read(slug)).toMatch(/<title>[^<]+ \| Léandre Vigouroux<\/title>/);
   });
 
   it.each(PROJECT_SLUGS)('%s navigation names match the catalogue', (slug) => {
@@ -163,4 +163,16 @@ describe('Micro-monde page — AR captures (L9)', () => {
       /<picture>\s*<source[^>]*media="\(max-width: 48rem\)"[^>]*micromonde-ar-loriquet-mobile\.webp/,
     );
   });
+});
+
+describe('« Ce que j’en retiens » written by the assistant stays hidden (relecture MM-03, VJ-04)', () => {
+  it.each(['micromonde', 'village-jeunes'])(
+    '%s shows no takeaway block, only the TODO comment',
+    (slug) => {
+      const html = read(slug);
+      expect(html).not.toContain('class="project-takeaway');
+      expect(html).not.toContain('Ce que j’en retiens</span');
+      expect(html).toContain('<!-- TODO : texte de Léandre -->');
+    },
+  );
 });
