@@ -25,11 +25,11 @@ describe('jury auth — credential validation', () => {
 });
 
 describe('jury auth — headers block', () => {
-  const block: string = buildJuryHeaders('jury:Correct-Horse-Battery-42');
+  const block: string = buildJuryHeaders();
 
-  it('protects every path that can serve jury content', () => {
+  it('covers every path that can serve jury content', () => {
     for (const path of JURY_PATHS as string[]) {
-      expect(block).toContain(`\n${path}\n  Basic-Auth: jury:Correct-Horse-Battery-42`);
+      expect(block).toContain(`\n${path}\n  X-Robots-Tag: noindex, nofollow`);
     }
     expect(JURY_PATHS).toEqual(expect.arrayContaining(['/jury/*', '/pages/jury/*']));
   });
@@ -37,6 +37,12 @@ describe('jury auth — headers block', () => {
   it('keeps jury pages out of search engines and caches', () => {
     expect(block).toContain('X-Robots-Tag: noindex, nofollow');
     expect(block).toContain('Cache-Control: private, no-store');
+  });
+
+  it('never writes a credential into the build output', () => {
+    expect(block).not.toMatch(/Basic-Auth/i);
+    expect(block).not.toMatch(/password|JURY_BASIC_AUTH/i);
+    expect(buildJuryHeaders.length).toBe(0);
   });
 });
 

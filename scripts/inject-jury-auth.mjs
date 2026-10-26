@@ -1,16 +1,17 @@
 /**
- * @file Jury area lock — appends Netlify Basic-Auth rules to dist/_headers at build time
- * @description The reflective sheets (`/jury/*`) live on the same Netlify site as the
- *   public portfolio but behind a server-side password. The credential is read from
- *   the Netlify environment variable `JURY_BASIC_AUTH` (`user:password`) and is
- *   written only into the built `dist/_headers` — never into Git.
- *   - On Netlify (`CONTEXT` set) a missing/weak credential FAILS the build, so the
- *     jury pages can never be published unprotected.
- *   - Locally (no `CONTEXT`) it only warns.
- *   NOTE: Netlify applies `Basic-Auth` in `_headers` on Pro/Enterprise only; on the free plan it is
- *   silently ignored. The real lock is the Edge Function `netlify/edge-functions/jury-auth.ts`;
- *   these rules stay as defence in depth (and for `X-Robots-Tag` / `Cache-Control`).
- *   Usage: `npm run build && node scripts/inject-jury-auth.mjs` (see netlify.toml)
+ * @file Jury area build guard — validates the credential, adds noindex / no-store rules to dist/_headers
+ * @description The reflective sheets (`/jury/*`) live on the same Netlify site as the public portfolio.
+ *   The lock itself is the Edge Function `netlify/edge-functions/jury-auth.ts`, which reads the
+ *   Netlify environment variable `JURY_BASIC_AUTH` (`user:password`) at request time.
+ *   This script runs at build time and:
+ *   - FAILS the Netlify build (`CONTEXT` set) when the credential is missing or weak, so the jury area
+ *     can never be published without a password (locally it only warns);
+ *   - appends `X-Robots-Tag: noindex, nofollow` and `Cache-Control: private, no-store` rules for the
+ *     jury paths to `dist/_headers`.
+ *   It NEVER writes the credential into the build output: `Basic-Auth` in `_headers` only works on
+ *   Netlify Pro/Enterprise (silently ignored on the free plan), and a secret in a published artifact
+ *   is what Netlify's secrets scanner fails builds on.
+ *   Usage: `npm run audit:ci && npm run gate && node scripts/inject-jury-auth.mjs` (see netlify.toml)
  * @see {@link ../docs/SECURITY.md} §0, §7
  */
 import { appendFileSync, existsSync, realpathSync } from 'node:fs';
@@ -41,14 +42,12 @@ export function validateCredential(credential) {
 }
 
 /**
- * Builds the `_headers` block protecting the jury area.
- * @param {string} credential - `user:password`
+ * Builds the `_headers` block for the jury area: no indexing, no shared caching. No credential.
  * @returns {string}
  */
-export function buildJuryHeaders(credential) {
+export function buildJuryHeaders() {
   return JURY_PATHS.map(
-    (path) =>
-      `\n${path}\n  Basic-Auth: ${credential}\n  X-Robots-Tag: noindex, nofollow\n  Cache-Control: private, no-store\n`,
+    (path) => `\n${path}\n  X-Robots-Tag: noindex, nofollow\n  Cache-Control: private, no-store\n`,
   ).join('');
 }
 
@@ -69,8 +68,10 @@ function main() {
     console.error('[jury-auth] dist/_headers not found — run `npm run build` first.');
     process.exit(1);
   }
-  appendFileSync(headersPath, buildJuryHeaders(/** @type {string} */ (credential)));
-  console.log(`[jury-auth] Basic-Auth added for ${JURY_PATHS.join(', ')}`);
+  appendFileSync(headersPath, buildJuryHeaders());
+  console.log(
+    `[jury-auth] credential valid; noindex/no-store rules added for ${JURY_PATHS.join(', ')}`,
+  );
 }
 
 const isCli =
