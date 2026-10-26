@@ -36,10 +36,10 @@ describe('Home featured carousel', () => {
     expect(html.match(/class="project-carousel__image graded-image__img"/g)).toHaveLength(4);
   });
 
-  it('shows primary tech badges', () => {
-    expect(html.match(/>React<\/span>/g)).toHaveLength(2);
-    expect(html).toContain('>Blender</span>');
-    expect(html).toContain('>JS</span>');
+  it('shows primary tech logos (official logo + name, see tech-logos.test.ts)', () => {
+    expect(html.match(/tech-logo__label">React</g)).toHaveLength(2);
+    expect(html).toContain('tech-logo__label">Blender<');
+    expect(html).toContain('tech-logo__label">JavaScript<');
   });
 
   it('uses the catalogue titles (no « (DDEC) » suffix)', () => {

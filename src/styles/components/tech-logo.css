@@ -1,0 +1,164 @@
+/**
+ * @file Tech logo — official logo of a technology on a light marble pastille
+ * @description `.tech-logo` = pastille (28-32 px) holding the brand logo (`.tech-logo__icon`, a CSS mask coloured
+ *   with the brand token `--color-brand-*`) and its name (`.tech-logo__label`, always in the DOM so screen
+ *   readers announce it, shown on hover and when the card has the focus; the card's stretched link covers the
+ *   pastilles, so the whole card is the hover target). Text tags (AR, UI/UX, Motion…) use
+ *   the same pastille with `.tech-logo--text`. Light logos (React, JavaScript) sit on a dark pastille so they stay
+ *   readable. Colours come from `variables.css` only.
+ * @see {@link ../../assets/tech/README.md}
+ */
+
+.tech-logo {
+  --tech-logo-size: 1.875rem;
+  --tech-logo-icon: 1.125rem;
+
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  min-block-size: var(--tech-logo-size);
+  padding-inline: calc((var(--tech-logo-size) - var(--tech-logo-icon)) / 2);
+  border-radius: var(--radius-md);
+  background-color: var(--color-marble);
+  color: var(--color-marble-ink);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.tech-logo--dark {
+  background-color: var(--color-marble-ink);
+  color: var(--color-text);
+  box-shadow: inset 0 0 0 1px var(--color-marble-vein);
+}
+
+.tech-logo__icon,
+.tech-logo__image {
+  flex: none;
+  inline-size: var(--tech-logo-icon);
+  block-size: var(--tech-logo-icon);
+}
+
+.tech-logo__icon {
+  background-color: var(--tech-logo-color, currentcolor);
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
+
+.tech-logo__image {
+  display: block;
+  object-fit: contain;
+}
+
+/* Name: in the accessibility tree at all times, revealed on hover / focus. */
+.tech-logo__label {
+  max-inline-size: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  opacity: 0;
+  transition:
+    max-inline-size var(--duration-normal) var(--ease-out),
+    margin-inline var(--duration-normal) var(--ease-out),
+    opacity var(--duration-fast) var(--ease-out);
+}
+
+.tech-logo:hover .tech-logo__label,
+.project-card:hover .tech-logo__label,
+.project-card:focus-within .tech-logo__label,
+.domain-plate:focus-within .tech-logo__label,
+.tech-logo--labelled .tech-logo__label {
+  max-inline-size: 9rem;
+  margin-inline: var(--space-2) var(--space-1);
+  opacity: 1;
+}
+
+/* Text tags that are not brands (AR, UI/UX, Motion…): same pastille, text always visible. */
+.tech-logo--text {
+  padding-inline: var(--space-3);
+}
+
+.tech-logo--text .tech-logo__label {
+  max-inline-size: none;
+  margin: 0;
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-logo__label {
+    transition: none;
+  }
+}
+
+.tech-logo--react {
+  --tech-logo-color: var(--color-brand-react);
+}
+
+.tech-logo--react .tech-logo__icon {
+  mask-image: url('../../assets/tech/react.svg');
+}
+
+.tech-logo--laravel {
+  --tech-logo-color: var(--color-brand-laravel);
+}
+
+.tech-logo--laravel .tech-logo__icon {
+  mask-image: url('../../assets/tech/laravel.svg');
+}
+
+.tech-logo--docker {
+  --tech-logo-color: var(--color-brand-docker);
+}
+
+.tech-logo--docker .tech-logo__icon {
+  mask-image: url('../../assets/tech/docker.svg');
+}
+
+.tech-logo--threejs {
+  --tech-logo-color: var(--color-brand-threejs);
+}
+
+.tech-logo--threejs .tech-logo__icon {
+  mask-image: url('../../assets/tech/threedotjs.svg');
+}
+
+.tech-logo--blender {
+  --tech-logo-color: var(--color-brand-blender);
+}
+
+.tech-logo--blender .tech-logo__icon {
+  mask-image: url('../../assets/tech/blender.svg');
+}
+
+.tech-logo--javascript {
+  --tech-logo-color: var(--color-brand-javascript);
+}
+
+.tech-logo--javascript .tech-logo__icon {
+  mask-image: url('../../assets/tech/javascript.svg');
+}
+
+.tech-logo--wordpress {
+  --tech-logo-color: var(--color-brand-wordpress);
+}
+
+.tech-logo--wordpress .tech-logo__icon {
+  mask-image: url('../../assets/tech/wordpress.svg');
+}
+
+.tech-logo--springboot {
+  --tech-logo-color: var(--color-brand-springboot);
+}
+
+.tech-logo--springboot .tech-logo__icon {
+  mask-image: url('../../assets/tech/springboot.svg');
+}
+
+.tech-logo--figma {
+  --tech-logo-color: var(--color-brand-figma);
+}
+
+.tech-logo--figma .tech-logo__icon {
+  mask-image: url('../../assets/tech/figma.svg');
+}
