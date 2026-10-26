@@ -37,9 +37,10 @@ describe('Home featured carousel', () => {
   });
 
   it('shows primary tech logos (official logo + name, see tech-logos.test.ts)', () => {
-    expect(html.match(/tech-logo__label">React</g)).toHaveLength(2);
-    expect(html).toContain('tech-logo__label">Blender<');
-    expect(html).toContain('tech-logo__label">JavaScript<');
+    const carousel = /data-project-carousel[\s\S]*?<\/section>/.exec(html)?.[0] ?? '';
+    expect(carousel.match(/tech-logo__label">React</g)).toHaveLength(2);
+    expect(carousel).toContain('tech-logo__label">Blender<');
+    expect(carousel).toContain('tech-logo__label">JavaScript<');
   });
 
   it('uses the catalogue titles (no « (DDEC) » suffix)', () => {

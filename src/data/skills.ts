@@ -9,7 +9,7 @@
  * Skill category identifier.
  */
 export type SkillCategory =
-  'interactive-devices' | 'web-development' | 'webdesign' | 'product-design' | '3d' | 'motion';
+  'interactive-devices' | 'web-development' | 'webdesign' | 'product-design' | '3d';
 
 /**
  * A filterable skill category.
@@ -26,8 +26,7 @@ export type Skill = {
 export const skills: Skill[] = [
   { id: 'interactive-devices', label: 'Dispositifs interactifs' },
   { id: 'web-development', label: 'Développement web' },
-  { id: 'webdesign', label: 'Webdesign & UI/UX' },
+  { id: 'webdesign', label: 'Webdesign et UI/UX' },
   { id: 'product-design', label: 'Design produit' },
   { id: '3d', label: 'Création 3D' },
-  { id: 'motion', label: 'Animation 2D/3D' },
 ];

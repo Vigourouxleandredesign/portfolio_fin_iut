@@ -635,16 +635,16 @@
           </div>
 
           <div class="section__actions" data-reveal>
-            <a class="button button--primary" href="#competences"> Découvrir mes compétences </a>
+            <a class="button button--primary" href="#domaines"> Parcourir par domaine </a>
             <a class="button button--ghost" href="/cv">Mon CV</a>
           </div>
         </div>
       </section>
 
-      <!-- Skills: suspended marble plaques over a graded atelier plate. -->
+      <!-- Domains: five suspended marble plaques (one per catalogue category), each a link to the filtered catalogue. -->
       <section
         class="skills-gallery"
-        id="competences"
+        id="domaines"
         aria-labelledby="skills-title"
         data-skills-gallery
       >
@@ -681,95 +681,140 @@
                 <em class="section__title-accent">faire</em>
               </h2>
               <p class="skills-gallery__lead">
-                Six matières suspendues — du dispositif interactif au code.
+                Choisissez un domaine pour voir les projets qui s’y rattachent.
               </p>
             </header>
 
             <div class="skills-gallery__track">
-              <article class="marble-slab" data-reveal>
+              <a
+                class="marble-slab domain-plate"
+                href="/projects?domaine=interactive-devices"
+                data-reveal
+              >
                 <div class="marble-slab__rig" aria-hidden="true">
-                  <span class="marble-slab__cable"></span>
-                  <span class="marble-slab__clamp"></span>
+                  <span class="marble-slab__cable"></span><span class="marble-slab__clamp"></span>
                 </div>
                 <div class="marble-slab__plaque">
                   <h3 class="marble-slab__title">Dispositifs interactifs</h3>
                 </div>
-                <p class="marble-slab__meta">01 — Interactif</p>
+                <p class="marble-slab__meta">1 projet</p>
                 <p class="marble-slab__description">
-                  Bornes, interfaces embarquées et expériences tactiles — du concept au prototype.
+                  Bornes, interfaces tactiles et parcours en réalité augmentée.
                 </p>
-              </article>
-
-              <article class="marble-slab" data-reveal>
+                <ul class="domain-plate__logos" aria-label="Technologies">
+                  <li class="domain-plate__logo">
+                    <span class="tech-logo tech-logo--blender"
+                      ><span class="tech-logo__icon" aria-hidden="true"></span
+                      ><span class="tech-logo__label">Blender</span></span
+                    >
+                  </li>
+                </ul>
+              </a>
+              <a
+                class="marble-slab domain-plate"
+                href="/projects?domaine=web-development"
+                data-reveal
+              >
                 <div class="marble-slab__rig" aria-hidden="true">
-                  <span class="marble-slab__cable"></span>
-                  <span class="marble-slab__clamp"></span>
+                  <span class="marble-slab__cable"></span><span class="marble-slab__clamp"></span>
                 </div>
                 <div class="marble-slab__plaque">
                   <h3 class="marble-slab__title">Développement web</h3>
                 </div>
-                <p class="marble-slab__meta">02 — Code</p>
+                <p class="marble-slab__meta">6 projets</p>
                 <p class="marble-slab__description">
-                  Front-end exigeant, intégration soignée, bases back pour dialoguer avec toute la
-                  chaîne.
+                  Sites et applications web, surtout côté front, avec les bases du back.
                 </p>
-              </article>
-
-              <article class="marble-slab" data-reveal>
+                <ul class="domain-plate__logos" aria-label="Technologies">
+                  <li class="domain-plate__logo">
+                    <span class="tech-logo tech-logo--react tech-logo--dark"
+                      ><span class="tech-logo__icon" aria-hidden="true"></span
+                      ><span class="tech-logo__label">React</span></span
+                    >
+                  </li>
+                  <li class="domain-plate__logo">
+                    <span class="tech-logo tech-logo--image"
+                      ><img
+                        class="tech-logo__image"
+                        src="/src/assets/tech/angular.svg"
+                        alt=""
+                        width="18"
+                        height="19"
+                        loading="lazy"
+                        decoding="async"
+                      /><span class="tech-logo__label">Angular</span></span
+                    >
+                  </li>
+                  <li class="domain-plate__logo">
+                    <span class="tech-logo tech-logo--springboot"
+                      ><span class="tech-logo__icon" aria-hidden="true"></span
+                      ><span class="tech-logo__label">Spring Boot</span></span
+                    >
+                  </li>
+                </ul>
+              </a>
+              <a class="marble-slab domain-plate" href="/projects?domaine=webdesign" data-reveal>
                 <div class="marble-slab__rig" aria-hidden="true">
-                  <span class="marble-slab__cable"></span>
-                  <span class="marble-slab__clamp"></span>
+                  <span class="marble-slab__cable"></span><span class="marble-slab__clamp"></span>
                 </div>
                 <div class="marble-slab__plaque">
                   <h3 class="marble-slab__title">Webdesign et UI/UX</h3>
                 </div>
-                <p class="marble-slab__meta">03 — Web</p>
+                <p class="marble-slab__meta">1 projet</p>
                 <p class="marble-slab__description">
-                  Interfaces sur mesure, design systems et parcours utilisateurs clairs.
+                  Maquettes, design systems et parcours utilisateur.
                 </p>
-              </article>
-
-              <article class="marble-slab" data-reveal>
+                <ul class="domain-plate__logos" aria-label="Technologies">
+                  <li class="domain-plate__logo">
+                    <span class="tech-logo tech-logo--figma"
+                      ><span class="tech-logo__icon" aria-hidden="true"></span
+                      ><span class="tech-logo__label">Figma</span></span
+                    >
+                  </li>
+                </ul>
+              </a>
+              <a
+                class="marble-slab domain-plate"
+                href="/projects?domaine=product-design"
+                data-reveal
+              >
                 <div class="marble-slab__rig" aria-hidden="true">
-                  <span class="marble-slab__cable"></span>
-                  <span class="marble-slab__clamp"></span>
+                  <span class="marble-slab__cable"></span><span class="marble-slab__clamp"></span>
                 </div>
                 <div class="marble-slab__plaque">
                   <h3 class="marble-slab__title">Design produit</h3>
                 </div>
-                <p class="marble-slab__meta">04 — Produit</p>
+                <p class="marble-slab__meta">1 projet</p>
                 <p class="marble-slab__description">
-                  Conception d’objets et de supports, du croquis au prototype 3D.
+                  Croquis, modélisation et fichiers de fabrication d’objets réels.
                 </p>
-              </article>
-
-              <article class="marble-slab" data-reveal>
+              </a>
+              <a class="marble-slab domain-plate" href="/projects?domaine=3d" data-reveal>
                 <div class="marble-slab__rig" aria-hidden="true">
-                  <span class="marble-slab__cable"></span>
-                  <span class="marble-slab__clamp"></span>
+                  <span class="marble-slab__cable"></span><span class="marble-slab__clamp"></span>
                 </div>
                 <div class="marble-slab__plaque">
                   <h3 class="marble-slab__title">Création 3D</h3>
                 </div>
-                <p class="marble-slab__meta">05 — 3D</p>
+                <p class="marble-slab__meta">3 projets</p>
                 <p class="marble-slab__description">
-                  Modélisation, rendu et intégration temps réel sur le web.
+                  Modélisation, animation et rendu, jusqu’à l’intégration en temps réel sur le web.
                 </p>
-              </article>
-
-              <article class="marble-slab" data-reveal>
-                <div class="marble-slab__rig" aria-hidden="true">
-                  <span class="marble-slab__cable"></span>
-                  <span class="marble-slab__clamp"></span>
-                </div>
-                <div class="marble-slab__plaque">
-                  <h3 class="marble-slab__title">Animation 2D/3D</h3>
-                </div>
-                <p class="marble-slab__meta">06 — Motion</p>
-                <p class="marble-slab__description">
-                  Habillages animés, transitions et micro-interactions.
-                </p>
-              </article>
+                <ul class="domain-plate__logos" aria-label="Technologies">
+                  <li class="domain-plate__logo">
+                    <span class="tech-logo tech-logo--threejs"
+                      ><span class="tech-logo__icon" aria-hidden="true"></span
+                      ><span class="tech-logo__label">Three.js</span></span
+                    >
+                  </li>
+                  <li class="domain-plate__logo">
+                    <span class="tech-logo tech-logo--blender"
+                      ><span class="tech-logo__icon" aria-hidden="true"></span
+                      ><span class="tech-logo__label">Blender</span></span
+                    >
+                  </li>
+                </ul>
+              </a>
             </div>
           </div>
         </div>
