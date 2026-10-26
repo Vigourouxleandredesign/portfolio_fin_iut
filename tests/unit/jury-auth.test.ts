@@ -49,3 +49,22 @@ describe('jury auth — no credential in Git', () => {
     expect(toml).toContain('inject-jury-auth.mjs');
   });
 });
+
+describe('netlify build — deploy gate (L10)', () => {
+  const toml = readFileSync(resolve(process.cwd(), 'netlify.toml'), 'utf8');
+  const command = /command = "([^"]+)"/.exec(toml)?.[1] ?? '';
+
+  it('runs the audit and the gate before the jury lock, in that order', () => {
+    const audit = command.indexOf('npm run audit:ci');
+    const gate = command.indexOf('npm run gate');
+    const lock = command.indexOf('node scripts/inject-jury-auth.mjs');
+    expect(audit).toBeGreaterThanOrEqual(0);
+    expect(gate).toBeGreaterThan(audit);
+    expect(lock).toBeGreaterThan(gate);
+    expect(command).toContain('&&');
+  });
+
+  it('keeps Husky off on the build machine', () => {
+    expect(toml).toMatch(/HUSKY = "0"/);
+  });
+});
