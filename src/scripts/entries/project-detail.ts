@@ -42,7 +42,7 @@ function bootstrap(): void {
 
   if (document.querySelector('[data-glb-showcase]')) {
     void import('../features/three-scene/glb-showcase').then(({ initGlbShowcases }) => {
-      void initGlbShowcases();
+      initGlbShowcases();
     });
   }
 }
