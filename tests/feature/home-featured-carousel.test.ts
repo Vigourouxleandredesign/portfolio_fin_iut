@@ -44,7 +44,7 @@ describe('Home featured carousel', () => {
 
   it('uses the catalogue titles (no « (DDEC) » suffix)', () => {
     expect(html).not.toContain('(DDEC)');
-    expect(html).toContain('Vill’âge Jeunes — Voir le projet');
+    expect(html).toContain('Voir le projet Vill’âge Jeunes');
     const titles = [...html.matchAll(/project-carousel__title"><span>([^<]+)</g)].map((m) => m[1]);
     expect(titles).toEqual(['Lab Horizon', 'MagicalLab', 'Micro-monde', 'Vill’âge Jeunes']);
   });
