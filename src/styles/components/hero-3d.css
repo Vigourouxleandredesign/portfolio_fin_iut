@@ -273,6 +273,64 @@
   }
 }
 
+/*
+ * Phones and touch tablets (no 3D bust): the static image IS the hero. The stage takes the image's own
+ * proportions (4:5 crop centred on the bust) instead of a full-screen box with a letterboxed picture, so there
+ * is no empty band between « Creative » and the bust; the title overlays the stage as on desktop and the
+ * buttons follow in the normal flow.
+ */
+@media (max-width: 47.99rem), (hover: none) and (pointer: coarse) {
+  .hero-3d-shell,
+  .hero-3d {
+    min-height: 0;
+  }
+
+  .hero-3d__stage {
+    position: relative;
+    inset: auto;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    max-height: 72svh;
+  }
+
+  .hero-3d__fallback {
+    object-fit: cover;
+    object-position: 55% center;
+  }
+
+  /* Above the bust's hair: the crop leaves the top ~10 % of the picture dark. */
+  .hero-3d__word--creative {
+    top: 2.5%;
+    left: 6%;
+    font-size: clamp(2.75rem, 11vw, 6rem);
+  }
+
+  .hero-3d__word--developer {
+    right: 8%;
+    bottom: 17%;
+  }
+
+  .hero-3d__subtitle {
+    right: 8%;
+    bottom: 7%;
+    left: 8%;
+    max-width: none;
+    font-size: var(--text-sm);
+    color: var(--color-text);
+    text-shadow:
+      0 0 10px var(--color-abyss),
+      0 0 22px var(--color-abyss),
+      0 2px 18px var(--color-abyss);
+  }
+
+  .hero-3d__actions {
+    position: static;
+    margin: var(--space-4) auto var(--space-10);
+    width: min(94vw, 22rem);
+    transform: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-3d__canvas {
     display: none !important;
