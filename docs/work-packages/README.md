@@ -71,6 +71,6 @@ Les lots L0 à L10, L7s et la red team sont terminés et fusionnés ; leurs fich
 | L12 | `WP-L12-textes-logos-domaines.md` | Textes sans tics d'IA, logos officiels des technos, section domaines cliquable (fait, 26/10) |
 | L13 | `WP-L13-retouches.md` | Visuel arbre Lab Horizon, dernières coquilles (fait, 26/10) |
 | L14 | `WP-L14-mobile-cartels-navigation.md` | Pinceau désactivé sur mobile, cartels sur une ligne, navigation et boutons gouache, texte CI/CD Lab Horizon (fait, 26/10) |
-| L16 | `WP-L16-jury-lab-horizon.md` | Fiches Lab Horizon dans l'espace jury, mentions « Nuit de la Science » et médaille (**à lancer en premier**, 30/10) |
-| L15 | `WP-L15-gabarit-projet-v2.md` | Gabarit de page projet v2 (hiérarchie, fil rouge) : gabarit validé le 26/10, textes prêts le 30/10 (**après L16**) |
-| L11 | `WP-L11-mise-en-production.md` | Mise en production (sam. 31/10), verrouillage du déploiement, remise au jury (dim. 01/11) |
+| L16 | `WP-L16-jury-lab-horizon.md` | Fiches Lab Horizon dans l'espace jury, mentions « Nuit de la Science » et médaille (fait, 01/11) |
+| L15 | `WP-L15-gabarit-projet-v2.md` | Gabarit de page projet v2 (hiérarchie, fil rouge) : gabarit validé le 26/10 : 4 pages prioritaires faites le 01/11 (Visualcom, Vill'âge Jeunes, Lab Horizon, Micro-monde) ; pages secondaires reportées |
+| L11 | `WP-L11-mise-en-production.md` | Mise en production (sam. 31/10), verrouillage du déploiement, remise au jury (dim. 01/11) : partie 1 (vérifications) faite le 01/11, voir `docs/REDTEAM-2026-11-01.md` ; parties 2 à 4 = Léandre |
