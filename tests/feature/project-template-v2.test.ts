@@ -7,7 +7,7 @@ import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 /** Pages migrated to the v2 template (L15 adds each slug when its page is done). */
-const V2_SLUGS = ['visualcom', 'village-jeunes', 'lab-horizon'] as const;
+const V2_SLUGS = ['visualcom', 'village-jeunes', 'lab-horizon', 'micromonde'] as const;
 
 const read = (slug: string): string =>
   readFileSync(resolve(process.cwd(), `pages/projects/${slug}.html`), 'utf8');
@@ -54,7 +54,7 @@ describe('project page v2 — structure', () => {
 
   it.each(V2_SLUGS)('%s keeps action cards inside « Aller plus loin » only', (slug) => {
     const html = read(slug);
-    const further = /<section class="project-further"[\s\S]*?<\/section>/.exec(html)?.[0] ?? '';
+    const further = /<section\s+class="project-further"[\s\S]*?<\/section>/.exec(html)?.[0] ?? '';
     const cards = html.match(/class="project-further__card"/g) ?? [];
     expect(further.match(/class="project-further__card"/g) ?? []).toHaveLength(cards.length);
   });

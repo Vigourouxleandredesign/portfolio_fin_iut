@@ -158,6 +158,10 @@
   border-radius: var(--radius-md);
 }
 
+.project-thread__visual picture {
+  display: block;
+}
+
 .project-thread__visual--phone .graded-image {
   max-width: 16rem;
 }
