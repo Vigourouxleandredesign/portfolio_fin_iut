@@ -14,12 +14,12 @@
     <link rel="canonical" href="https://vigourouxleandre.netlify.app/projects/lab-horizon" />
     <meta
       name="description"
-      content="La recherche calédonienne expliquée au grand public : un catalogue de publications vulgarisées, un espace chercheur pour les relire, et une plateforme qui s’installe en une seule commande."
+      content="Le site de valorisation de la recherche de l’Université de la Nouvelle-Calédonie : un catalogue public de publications vulgarisées et un espace chercheur, pensés pour être repris par une autre équipe."
     />
     <meta property="og:title" content="Lab Horizon | Léandre Vigouroux" />
     <meta
       property="og:description"
-      content="La recherche calédonienne expliquée au grand public : un catalogue de publications vulgarisées, un espace chercheur pour les relire, et une plateforme qui s’installe en une seule commande."
+      content="Le site de valorisation de la recherche de l’Université de la Nouvelle-Calédonie : un catalogue public de publications vulgarisées et un espace chercheur, pensés pour être repris par une autre équipe."
     />
     <meta property="og:image" content="https://vigourouxleandre.netlify.app/og/lab-horizon.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -118,13 +118,17 @@
             </dl>
             <h1 class="page-hero__title" id="lab-horizon-title">Lab Horizon</h1>
             <p class="page-hero__lead">
-              La recherche calédonienne expliquée au grand public&#8239;: un catalogue de
-              publications vulgarisées, un espace chercheur pour les relire, et une plateforme qui
-              s’installe en une seule commande.
+              Le site de valorisation de la recherche de l’Université de la
+              Nouvelle-Calédonie&#8239;: un catalogue public de publications vulgarisées et un
+              espace chercheur, pensés pour être repris par une autre équipe.
+            </p>
+            <p class="project-part">
+              Projet à trois. Ma part&#8239;: le cadrage UX et le parcours utilisateur, le
+              front-end, l’architecture du dépôt, la documentation de passation et la pipeline
+              CI/CD.
             </p>
             <div class="page-hero__actions">
-              <a class="button button--primary" href="#recit">Lire le récit</a>
-              <a class="button" href="/projects">Retour aux projets</a>
+              <a class="button button--ghost" href="#histoire">Lire l’histoire</a>
             </div>
           </div>
           <div class="page-hero__media graded-image">
@@ -141,282 +145,242 @@
         </div>
       </section>
 
-      <section class="project-brief" aria-labelledby="lab-horizon-brief-title" data-reveal>
-        <span class="project-section__eyebrow">En bref</span>
-        <h2 class="visually-hidden" id="lab-horizon-brief-title">En bref</h2>
-        <ul class="project-brief__list">
-          <li class="project-brief__item">
-            <span class="project-brief__label">Le problème</span>
-            <p class="project-brief__text">
-              Les travaux des chercheurs de Nouvelle-Calédonie sont publiés dans des canaux peu
-              accessibles au grand public.
-            </p>
+      <section
+        class="project-essentials"
+        aria-labelledby="lab-horizon-essentials-title"
+        data-reveal
+      >
+        <h2 class="project-section__eyebrow" id="lab-horizon-essentials-title">L’essentiel</h2>
+        <ul class="project-essentials__list">
+          <li>
+            <span class="project-essentials__value">11</span>
+            <p class="project-essentials__text">domaines scientifiques à explorer</p>
           </li>
-          <li class="project-brief__item">
-            <span class="project-brief__label">Ce que j’ai fait</span>
-            <p class="project-brief__text">
-              Développement front, UI/UX (maquettes, parcours utilisateur), architecture et
-              documentation, et mise en place d’une chaîne CI/CD&#8239;: des hooks pre-commit et
-              pre-merge sur la branche main (production) imposent des tests automatisés,
-              reproductibles et impossibles à contourner, contrairement à des tests lancés par une
-              IA.
-            </p>
+          <li>
+            <span class="project-essentials__value">6</span>
+            <p class="project-essentials__text">documents de passation, à lire dans l’ordre</p>
           </li>
-          <li class="project-brief__item">
-            <span class="project-brief__label">Le résultat</span>
-            <p class="project-brief__text">
-              Une plateforme livrée avec son dossier de passation&#8239;: catalogue par domaine,
-              fiche publication vulgarisée, espace chercheur et contrôles anti-régression.
-            </p>
+          <li>
+            <span class="project-essentials__value">2</span>
+            <p class="project-essentials__text">revues de sécurité avant la mise en production</p>
           </li>
         </ul>
       </section>
-
-      <section class="project-story" id="recit" aria-labelledby="lab-horizon-story-title">
-        <h2 class="visually-hidden" id="lab-horizon-story-title">Récit du projet</h2>
-
-        <article class="project-story__block" data-reveal>
-          <div class="project-story__copy">
-            <span class="project-story__index" aria-hidden="true">I</span>
-            <h3 class="project-story__title">Rendre la science lisible</h3>
-            <p class="project-story__text">
-              Chaque publication a sa fiche&#8239;: un résumé vulgarisé, une grille «&#8239;Quoi /
-              Qui / Quand / Labo&#8239;» et le lien vers le document source. Le visiteur explore par
-              domaine (biologie, chimie, géosciences, histoire, informatique, mathématiques,
-              physique) sans créer de compte.
+      <section class="project-thread" id="histoire" aria-labelledby="lab-horizon-story-title">
+        <h2 class="project-section__title" id="lab-horizon-story-title">L’histoire du projet</h2>
+        <ol class="project-thread__list">
+          <li class="project-thread__chapter" data-reveal>
+            <span class="project-thread__marker" aria-hidden="true">I</span>
+            <span class="project-thread__label">Le besoin</span>
+            <h3 class="project-thread__title">Une plateforme à transmettre</h3>
+            <p class="project-thread__text">
+              Les travaux des chercheurs de Nouvelle-Calédonie sont publiés dans des canaux peu
+              accessibles au grand public. L’IUT voulait un catalogue public de publications
+              vulgarisées, en français et en anglais, et un projet qu’une autre équipe de
+              développement puisse reprendre sans y avoir travaillé.
             </p>
-          </div>
-          <div class="project-story__visual project-story__visual--grid">
-            <ul class="project-gallery__grid">
-              <li class="project-gallery__item">
-                <div class="graded-image">
-                  <img
-                    class="graded-image__img"
-                    src="/src/assets/projects/lab-horizon/domaines/biologie.webp"
-                    alt="Domaine Biologie"
-                    width="600"
-                    height="337"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-                <p class="project-gallery__caption">Biologie</p>
-              </li>
-              <li class="project-gallery__item">
-                <div class="graded-image">
-                  <img
-                    class="graded-image__img"
-                    src="/src/assets/projects/lab-horizon/domaines/chimie.webp"
-                    alt="Domaine Chimie"
-                    width="600"
-                    height="337"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-                <p class="project-gallery__caption">Chimie</p>
-              </li>
-              <li class="project-gallery__item">
-                <div class="graded-image">
-                  <img
-                    class="graded-image__img"
-                    src="/src/assets/projects/lab-horizon/domaines/geoscience.webp"
-                    alt="Domaine Géosciences"
-                    width="600"
-                    height="337"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-                <p class="project-gallery__caption">Géosciences</p>
-              </li>
-              <li class="project-gallery__item">
-                <div class="graded-image">
-                  <img
-                    class="graded-image__img"
-                    src="/src/assets/projects/lab-horizon/domaines/histoire.webp"
-                    alt="Domaine Histoire"
-                    width="600"
-                    height="337"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-                <p class="project-gallery__caption">Histoire</p>
-              </li>
-              <li class="project-gallery__item">
-                <div class="graded-image">
-                  <img
-                    class="graded-image__img"
-                    src="/src/assets/projects/lab-horizon/domaines/informatique.webp"
-                    alt="Domaine Informatique"
-                    width="600"
-                    height="337"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-                <p class="project-gallery__caption">Informatique</p>
-              </li>
-              <li class="project-gallery__item">
-                <div class="graded-image">
-                  <img
-                    class="graded-image__img"
-                    src="/src/assets/projects/lab-horizon/domaines/mathematiques.webp"
-                    alt="Domaine Mathématiques"
-                    width="600"
-                    height="337"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-                <p class="project-gallery__caption">Mathématiques</p>
-              </li>
-              <li class="project-gallery__item">
-                <div class="graded-image">
-                  <img
-                    class="graded-image__img"
-                    src="/src/assets/projects/lab-horizon/domaines/physique.webp"
-                    alt="Domaine Physique"
-                    width="600"
-                    height="337"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-                <p class="project-gallery__caption">Physique</p>
-              </li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="project-story__block" data-reveal>
-          <div class="project-story__copy">
-            <span class="project-story__index" aria-hidden="true">II</span>
-            <h3 class="project-story__title">Une plateforme complète</h3>
-            <p class="project-story__text">
-              Front React + TypeScript, API Laravel 12 avec authentification Sanctum, MySQL et
-              Redis&#8239;: tout tourne dans Docker derrière une seule adresse. Les publications
-              peuvent être importées depuis HAL, l’archive ouverte nationale.
+            <figure class="project-thread__visual project-story__visual--grid">
+              <ul class="project-gallery__grid">
+                <li class="project-gallery__item">
+                  <div class="graded-image">
+                    <img
+                      class="graded-image__img"
+                      src="/src/assets/projects/lab-horizon/domaines/biologie.webp"
+                      alt="Domaine Biologie"
+                      width="600"
+                      height="337"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <p class="project-gallery__caption">Biologie</p>
+                </li>
+                <li class="project-gallery__item">
+                  <div class="graded-image">
+                    <img
+                      class="graded-image__img"
+                      src="/src/assets/projects/lab-horizon/domaines/chimie.webp"
+                      alt="Domaine Chimie"
+                      width="600"
+                      height="337"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <p class="project-gallery__caption">Chimie</p>
+                </li>
+                <li class="project-gallery__item">
+                  <div class="graded-image">
+                    <img
+                      class="graded-image__img"
+                      src="/src/assets/projects/lab-horizon/domaines/geoscience.webp"
+                      alt="Domaine Géosciences"
+                      width="600"
+                      height="337"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <p class="project-gallery__caption">Géosciences</p>
+                </li>
+                <li class="project-gallery__item">
+                  <div class="graded-image">
+                    <img
+                      class="graded-image__img"
+                      src="/src/assets/projects/lab-horizon/domaines/histoire.webp"
+                      alt="Domaine Histoire"
+                      width="600"
+                      height="337"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <p class="project-gallery__caption">Histoire</p>
+                </li>
+                <li class="project-gallery__item">
+                  <div class="graded-image">
+                    <img
+                      class="graded-image__img"
+                      src="/src/assets/projects/lab-horizon/domaines/informatique.webp"
+                      alt="Domaine Informatique"
+                      width="600"
+                      height="337"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <p class="project-gallery__caption">Informatique</p>
+                </li>
+                <li class="project-gallery__item">
+                  <div class="graded-image">
+                    <img
+                      class="graded-image__img"
+                      src="/src/assets/projects/lab-horizon/domaines/mathematiques.webp"
+                      alt="Domaine Mathématiques"
+                      width="600"
+                      height="337"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <p class="project-gallery__caption">Mathématiques</p>
+                </li>
+                <li class="project-gallery__item">
+                  <div class="graded-image">
+                    <img
+                      class="graded-image__img"
+                      src="/src/assets/projects/lab-horizon/domaines/physique.webp"
+                      alt="Domaine Physique"
+                      width="600"
+                      height="337"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <p class="project-gallery__caption">Physique</p>
+                </li>
+              </ul>
+              <figcaption class="project-thread__caption">
+                Les domaines scientifiques du catalogue
+              </figcaption>
+            </figure>
+          </li>
+          <li class="project-thread__chapter" data-reveal>
+            <span class="project-thread__marker" aria-hidden="true">II</span>
+            <span class="project-thread__label">Mes choix</span>
+            <h3 class="project-thread__title">Séparer les pages de leurs données</h3>
+            <p class="project-thread__text">
+              J’ai conçu le parcours utilisateur, puis développé le front en React avant que le back
+              existe&#8239;: d’abord sur des données fictives, puis sur l’API publique HAL. Une
+              couche d’adaptateurs sépare les pages de la source de données, et le passage à l’API
+              Laravel s’est fait sans réécrire les pages. Pour que toute l’équipe travaille dans le
+              même environnement, j’ai proposé de regrouper le front et le back dans un seul dépôt,
+              orchestré par Docker.
             </p>
-          </div>
-          <div class="project-story__visual graded-image">
-            <img
-              class="graded-image__img"
-              src="/src/assets/projects/lab-horizon/shots/lab-horizon-accueil-desktop.webp"
-              alt="Lab Horizon sur ordinateur : page d’accueil « La recherche en Nouvelle-Calédonie, accessible par tous et pour tous »"
-              width="1440"
-              height="900"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-        </article>
-
-        <article class="project-story__block" data-reveal>
-          <div class="project-story__copy">
-            <span class="project-story__index" aria-hidden="true">III</span>
-            <h3 class="project-story__title">Penser à l’équipe suivante</h3>
-            <p class="project-story__text">
-              Le projet est remis avec un dossier de passation (lancer, maintenir, faire évoluer).
-              Chaque commit et chaque fusion sur main passent par des hooks pre-commit et pre-merge
-              qui lancent les tests&#8239;: types, secrets, couleurs, tests unitaires, build. Le
-              résultat est le même à chaque exécution et ne peut pas être contourné, contrairement à
-              des tests lancés par une IA.
+            <figure class="project-thread__visual">
+              <div class="graded-image">
+                <img
+                  class="graded-image__img"
+                  src="/src/assets/projects/lab-horizon/shots/lab-horizon-recherche-desktop.webp"
+                  alt="Lab Horizon&#8239;: recherche de publications avec filtres par domaine, année et tri"
+                  width="1440"
+                  height="900"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <figcaption class="project-thread__caption">Recherche, sur ordinateur</figcaption>
+            </figure>
+            <figure class="project-thread__visual project-thread__visual--phone">
+              <div class="graded-image">
+                <img
+                  class="graded-image__img"
+                  src="/src/assets/projects/lab-horizon/shots/lab-horizon-accueil-mobile.webp"
+                  alt="Lab Horizon sur mobile&#8239;: page d’accueil et barre de navigation du bas"
+                  width="780"
+                  height="1688"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <figcaption class="project-thread__caption">Accueil, sur mobile</figcaption>
+            </figure>
+          </li>
+          <li class="project-thread__chapter project-thread__chapter--key" data-reveal>
+            <span class="project-thread__marker" aria-hidden="true">III</span>
+            <span class="project-thread__label">Le défi</span>
+            <h3 class="project-thread__title">Vérifier que rien ne régresse</h3>
+            <p class="project-thread__text">
+              Plus le projet avançait, plus il devenait difficile de savoir si une modification
+              cassait ce qui fonctionnait déjà. Deux revues de sécurité avant la mise en production
+              ont rendu un verdict NO-GO. Une fois les corrections faites, j’ai mis en place une
+              pipeline CI/CD&#8239;: chaque commit est contrôlé, GitHub rejoue tous les tests sur
+              une machine propre, et la branche main n’accepte que du code validé.
             </p>
-          </div>
-          <div class="project-story__visual graded-image">
-            <img
-              class="graded-image__img"
-              src="/src/assets/projects/lab-horizon/unc-recherche.webp"
-              alt="Chercheuse au travail sur un ordinateur portable dans un laboratoire"
-              width="1600"
-              height="1067"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-        </article>
-
-        <article class="project-story__block project-story__block--no-visual" data-reveal>
-          <div class="project-story__copy">
-            <span class="project-story__index" aria-hidden="true">IV</span>
-            <h3 class="project-story__title">Ce qui reste à venir</h3>
-            <p class="project-story__text">
-              L’assistant conversationnel (RAG) et la PWA sont cadrés pour une V2&#8239;: la V1 se
-              concentre sur un catalogue fiable.
+            <blockquote class="project-thread__quote">
+              <p>
+                «&#8239;Cette pipeline ne règle pas tout&#8239;: elle ne vérifie que ce que j’ai
+                prévu de vérifier, et elle n’est qu’une réponse parmi d’autres possibles à ce
+                problème.&#8239;»
+              </p>
+              <footer>Extrait de ma fiche de réflexion</footer>
+            </blockquote>
+          </li>
+          <li class="project-thread__chapter" data-reveal>
+            <span class="project-thread__marker" aria-hidden="true">IV</span>
+            <span class="project-thread__label">Le résultat</span>
+            <h3 class="project-thread__title">Une plateforme livrée avec sa passation</h3>
+            <p class="project-thread__text">
+              Le catalogue couvre onze domaines scientifiques, et l’espace chercheur permet de gérer
+              ses publications et de relire les vulgarisations, en français et en anglais. Le projet
+              est remis avec un dossier de passation en six documents. L’assistant conversationnel
+              et l’application installable (PWA) sont prévus pour une V2.
             </p>
-          </div>
-        </article>
+            <figure class="project-thread__visual project-thread__visual--phone">
+              <div class="graded-image">
+                <img
+                  class="graded-image__img"
+                  src="/src/assets/projects/lab-horizon/shots/lab-horizon-domaine-mobile.webp"
+                  alt="Lab Horizon sur mobile&#8239;: page d’un domaine de recherche"
+                  width="277"
+                  height="599"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <figcaption class="project-thread__caption">Domaine, sur mobile</figcaption>
+            </figure>
+          </li>
+        </ol>
       </section>
-
-      <section class="project-gallery" aria-labelledby="lab-horizon-gallery-title" data-reveal>
-        <span class="project-section__eyebrow">Ambiance</span>
-        <h2 class="visually-hidden" id="lab-horizon-gallery-title">Ambiance du projet</h2>
-        <div class="project-gallery__grid">
-          <figure class="project-gallery__item project-gallery__item--wide">
-            <div class="graded-image project-gallery__frame">
-              <img
-                class="graded-image__img"
-                src="/src/assets/projects/lab-horizon/shots/lab-horizon-recherche-desktop.webp"
-                alt="Lab Horizon : recherche de publications avec filtres par domaine, année et tri"
-                width="1440"
-                height="900"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-            <figcaption class="project-gallery__caption">Recherche, sur ordinateur</figcaption>
-          </figure>
-          <figure class="project-gallery__item">
-            <div class="graded-image project-gallery__frame project-gallery__frame--mobile">
-              <img
-                class="graded-image__img"
-                src="/src/assets/projects/lab-horizon/shots/lab-horizon-accueil-mobile.webp"
-                alt="Lab Horizon sur mobile : page d’accueil et barre de navigation du bas"
-                width="780"
-                height="1688"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-            <figcaption class="project-gallery__caption">Accueil, sur mobile</figcaption>
-          </figure>
-          <figure class="project-gallery__item">
-            <div class="graded-image project-gallery__frame project-gallery__frame--mobile">
-              <img
-                class="graded-image__img"
-                src="/src/assets/projects/lab-horizon/shots/lab-horizon-domaine-mobile.webp"
-                alt="Lab Horizon sur mobile : page d’un domaine de recherche"
-                width="277"
-                height="599"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-            <figcaption class="project-gallery__caption">Domaine, sur mobile</figcaption>
-          </figure>
-        </div>
-        <figure class="project-gallery__item project-gallery__item--wide">
-          <div class="graded-image">
-            <img
-              class="graded-image__img"
-              src="/src/assets/projects/lab-horizon/hero-biodiversite.webp"
-              alt="Branches au printemps dans une brume bleu-vert, particules de lumière"
-              width="1920"
-              height="1080"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-        </figure>
+      <section class="project-notes" aria-label="Équipe" data-reveal>
+        <p class="project-notes__text">
+          Projet à trois&#8239;: un développeur back (API et base de données), un développeur chargé
+          du modèle IA de vulgarisation, et moi.
+        </p>
       </section>
-
       <section class="project-tools" aria-labelledby="lab-horizon-tools-title" data-reveal>
         <h2 class="project-tools__title" id="lab-horizon-tools-title">Outils</h2>
-        <p class="project-tools__lead">
-          Les technologies et les outils qui ont servi à construire ce projet.
-        </p>
         <ul class="project-tools__list">
           <li>
             <span class="tech-logo tech-logo--react tech-logo--dark tech-logo--labelled"

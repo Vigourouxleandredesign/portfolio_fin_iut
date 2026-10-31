@@ -1,6 +1,6 @@
 <!--
   @file Project — Micro-monde
-  @description Case study N° III (Nuit de la Science): AR fresques + 3D Blender. Mobile-only demo, no iframe, Kuby Kolor credit.
+  @description Case study N° III, template v2 (L15): AR on the campus frescoes, Léandre’s part first (3D models, anchoring in 8th Wall, interface, identity). Mobile-only demo, Kuby Kolor credit, no teammate name.
   @route /pages/projects/micromonde.html
   @see docs/content/projects/micromonde.md
 -->
@@ -13,12 +13,12 @@
     <link rel="canonical" href="https://vigourouxleandre.netlify.app/projects/micromonde" />
     <meta
       name="description"
-      content="Scannez une fresque et un petit monde en sort : une tortue, un loriquet et un hibiscus apparaissent en 3D sur les murs du campus, directement dans le navigateur du téléphone."
+      content="Un parcours en réalité augmentée sur les fresques du campus. On scanne une fresque avec son téléphone, sans rien installer, et l’animal peint en sort en 3D."
     />
     <meta property="og:title" content="Micro-monde | Léandre Vigouroux" />
     <meta
       property="og:description"
-      content="Scannez une fresque et un petit monde en sort : une tortue, un loriquet et un hibiscus apparaissent en 3D sur les murs du campus, directement dans le navigateur du téléphone."
+      content="Un parcours en réalité augmentée sur les fresques du campus. On scanne une fresque avec son téléphone, sans rien installer, et l’animal peint en sort en 3D."
     />
     <meta property="og:image" content="https://vigourouxleandre.netlify.app/og/micromonde.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -117,13 +117,16 @@
             </dl>
             <h1 class="page-hero__title" id="micromonde-title">Micro-monde</h1>
             <p class="page-hero__lead">
-              Scannez une fresque et un petit monde en sort&#8239;: une tortue, un loriquet et un
-              hibiscus apparaissent en 3D sur les murs du campus, directement dans le navigateur du
-              téléphone.
+              Un parcours en réalité augmentée sur les fresques du campus. On scanne une fresque
+              avec son téléphone, sans rien installer, et l’animal peint en sort en 3D.
+            </p>
+            <p class="project-part">
+              Projet à trois. Ma part&#8239;: les trois modèles 3D animés, leur pose sur les
+              fresques dans 8th Wall, l’interface et l’identité visuelle.
             </p>
             <div class="page-hero__actions">
               <a class="button button--primary" href="#essayer">Essayer sur mon téléphone</a>
-              <a class="button" href="/projects">Retour aux projets</a>
+              <a class="button button--ghost" href="#histoire">Lire l’histoire</a>
             </div>
           </div>
           <div class="page-hero__media graded-image">
@@ -140,252 +143,214 @@
         </div>
       </section>
 
-      <section class="project-brief" aria-labelledby="micromonde-brief-title" data-reveal>
-        <span class="project-section__eyebrow">En bref</span>
-        <h2 class="visually-hidden" id="micromonde-brief-title">En bref</h2>
-        <ul class="project-brief__list">
-          <li class="project-brief__item">
-            <span class="project-brief__label">Le défi</span>
-            <p class="project-brief__text">
-              Faire apparaître des modèles 3D animés sur des fresques réelles, qui restent ancrés
-              quand on tourne autour, sans application à installer.
+      <section class="project-essentials" aria-labelledby="micromonde-essentials-title" data-reveal>
+        <h2 class="project-section__eyebrow" id="micromonde-essentials-title">L’essentiel</h2>
+        <ul class="project-essentials__list">
+          <li>
+            <span class="project-essentials__value">3</span>
+            <p class="project-essentials__text">modèles 3D animés, posés sur les fresques</p>
+          </li>
+          <li>
+            <span class="project-essentials__value">20</span>
+            <p class="project-essentials__text">
+              étudiants pour le premier test, sur Android et iPhone
             </p>
           </li>
-          <li class="project-brief__item">
-            <span class="project-brief__label">Mon rôle</span>
-            <p class="project-brief__text">
-              Modélisation et animation 3D, intégration dans 8th Wall, direction artistique et
-              interface.
-            </p>
-          </li>
-          <li class="project-brief__item">
-            <span class="project-brief__label">Le résultat</span>
-            <p class="project-brief__text">
-              Un parcours en réalité augmentée présenté à la Nuit de la Science 2026, avec carte des
-              fresques et contenus scientifiques par œuvre.
-            </p>
+          <li>
+            <span class="project-essentials__value">0</span>
+            <p class="project-essentials__text">application à installer</p>
           </li>
         </ul>
       </section>
-
-      <section class="project-story" id="recit" aria-labelledby="micromonde-story-title">
-        <h2 class="visually-hidden" id="micromonde-story-title">Récit du projet</h2>
-
-        <article class="project-story__block" data-reveal>
-          <div class="project-story__copy">
-            <span class="project-story__index" aria-hidden="true">I</span>
-            <h3 class="project-story__title">Des fresques qui s’animent</h3>
-            <p class="project-story__text">
-              Les fresques de Kuby Kolor servent de cibles&#8239;: le téléphone les reconnaît, puis
-              le suivi de l’espace (SLAM) garde le modèle en place pendant qu’on se déplace.
+      <section class="project-thread" id="histoire" aria-labelledby="micromonde-story-title">
+        <h2 class="project-section__title" id="micromonde-story-title">
+          Mon travail, en quatre chapitres
+        </h2>
+        <ol class="project-thread__list">
+          <li class="project-thread__chapter" data-reveal>
+            <span class="project-thread__marker" aria-hidden="true">I</span>
+            <h3 class="project-thread__title">Trois animaux, modélisés pour le plein air</h3>
+            <p class="project-thread__text">
+              J’ai modélisé et animé la tortue verte, le loriquet à tête bleue et l’hibiscus dans
+              Blender. Ils sont en low-poly pour rester fluides sur un téléphone, dehors, face au
+              mur.
             </p>
-          </div>
-          <div class="project-story__visual project-story__visual--phone">
-            <div class="graded-image">
-              <img
-                class="graded-image__img"
-                src="/src/assets/projects/micromonde/fresques-propositions-kuby-kolor.webp"
-                alt="Propositions de fresques de l’artiste Kuby Kolor"
-                width="1000"
-                height="1431"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-            <p class="project-story__caption">Propositions de fresques de Kuby Kolor</p>
-          </div>
-        </article>
-        <article class="project-story__block" data-reveal>
-          <div class="project-story__copy">
-            <span class="project-story__index" aria-hidden="true">II</span>
-            <h3 class="project-story__title">Modéliser léger</h3>
-            <p class="project-story__text">
-              Chaque animal est modélisé et animé dans Blender, puis allégé en low-poly pour rester
-              fluide sur un téléphone, en plein air.
-            </p>
-          </div>
-          <div class="project-story__visual project-story__visual--grid">
-            <ul class="project-gallery__grid">
-              <li class="project-gallery__item">
-                <div class="graded-image">
-                  <img
-                    class="graded-image__img"
-                    src="/src/assets/projects/micromonde/modele-tortue.webp"
-                    alt="Modèle 3D de la tortue marine"
-                    width="706"
-                    height="440"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
+            <ul class="project-thread__pair">
+              <li>
+                <figure class="project-thread__visual">
+                  <div class="graded-image">
+                    <img
+                      class="graded-image__img"
+                      src="/src/assets/projects/micromonde/modele-tortue.webp"
+                      alt="Modèle 3D de la tortue marine"
+                      width="706"
+                      height="440"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                </figure>
               </li>
-              <li class="project-gallery__item">
-                <div class="graded-image">
-                  <img
-                    class="graded-image__img"
-                    src="/src/assets/projects/micromonde/modele-loriquet.webp"
-                    alt="Modèle 3D du loriquet"
-                    width="1200"
-                    height="654"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
+              <li>
+                <figure class="project-thread__visual">
+                  <div class="graded-image">
+                    <img
+                      class="graded-image__img"
+                      src="/src/assets/projects/micromonde/modele-loriquet.webp"
+                      alt="Modèle 3D du loriquet"
+                      width="1200"
+                      height="654"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                </figure>
               </li>
             </ul>
-          </div>
-        </article>
-        <article class="project-story__block" data-reveal>
-          <div class="project-story__copy">
-            <span class="project-story__index" aria-hidden="true">III</span>
-            <h3 class="project-story__title">Une interface à hauteur de mur</h3>
-            <p class="project-story__text">
-              Autour du modèle, quatre boutons ronds ancrés sur l’image ouvrent un panneau
-              «&#8239;molécule&#8239;», «&#8239;histoire&#8239;» ou «&#8239;science&#8239;», avec
-              lecture audio. Une carte situe les fresques sur le campus.
+          </li>
+          <li class="project-thread__chapter project-thread__chapter--key" data-reveal>
+            <span class="project-thread__marker" aria-hidden="true">II</span>
+            <h3 class="project-thread__title">L’animal sort du mur</h3>
+            <p class="project-thread__text">
+              Dans 8th Wall, j’ai calé chaque modèle sur sa fresque&#8239;: une fois l’image
+              reconnue, l’animal apparaît devant le mur et reste en place quand on en fait le tour,
+              même si la fresque sort du cadre.
             </p>
-          </div>
-          <div class="project-story__visual">
-            <div class="graded-image">
-              <img
-                class="graded-image__img"
-                src="/src/assets/projects/micromonde/shots/micromonde-ar-hibiscus.webp"
-                alt="Hibiscus 3D rouge affiché en réalité augmentée devant une fresque de fleurs, avec quatre boutons ronds posés sur l’image"
-                width="1600"
-                height="1000"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-            <p class="project-story__caption">
-              Les boutons ronds, ancrés sur la fresque, ouvrent les panneaux
+            <ul class="project-thread__pair">
+              <li>
+                <figure class="project-thread__visual">
+                  <div class="graded-image">
+                    <img
+                      class="graded-image__img"
+                      src="/src/assets/projects/micromonde/shots/micromonde-ar-tortue-avant.webp"
+                      alt="Fresque de la tortue marine, un téléphone tenu à la main affiche l’application avant la détection de l’image"
+                      width="1600"
+                      height="1200"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <figcaption class="project-thread__caption">
+                    Avant&#8239;: la fresque vue par le téléphone
+                  </figcaption>
+                </figure>
+              </li>
+              <li>
+                <figure class="project-thread__visual">
+                  <div class="graded-image">
+                    <img
+                      class="graded-image__img"
+                      src="/src/assets/projects/micromonde/shots/micromonde-ar-tortue-apres.webp"
+                      alt="Même point de vue&#8239;: une tortue 3D vert sombre nage devant la fresque, entourée des boutons de l’interface"
+                      width="1600"
+                      height="1200"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <figcaption class="project-thread__caption">
+                    Après&#8239;: la tortue sort du mur
+                  </figcaption>
+                </figure>
+              </li>
+            </ul>
+            <figure class="project-thread__visual">
+              <div class="graded-image">
+                <picture>
+                  <source
+                    media="(max-width: 48rem)"
+                    srcset="
+                      /src/assets/projects/micromonde/shots/micromonde-ar-loriquet-mobile.webp
+                    "
+                    width="900"
+                    height="1200"
+                  />
+                  <img
+                    class="graded-image__img"
+                    src="/src/assets/projects/micromonde/shots/micromonde-ar-loriquet.webp"
+                    alt="Loriquet 3D ailes déployées devant la fresque du Patio, téléphone tenu en main au premier plan"
+                    width="1600"
+                    height="1000"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+              <figcaption class="project-thread__caption">
+                Le loriquet prend son envol devant la fresque du Patio
+              </figcaption>
+            </figure>
+          </li>
+          <li class="project-thread__chapter" data-reveal>
+            <span class="project-thread__marker" aria-hidden="true">III</span>
+            <h3 class="project-thread__title">Une interface qui laisse voir l’œuvre</h3>
+            <p class="project-thread__text">
+              Sur la fresque, trois boutons ronds ouvrent la molécule, l’histoire et le fait
+              scientifique, et un bouton lecture fait apparaître l’animal. Chaque contenu s’ouvre en
+              plein écran, avec un bouton audio. L’interface reste discrète pour ne pas masquer le
+              mur.
             </p>
-          </div>
-        </article>
-        <article class="project-story__block project-story__block--no-visual" data-reveal>
-          <div class="project-story__copy">
-            <span class="project-story__index" aria-hidden="true">IV</span>
-            <h3 class="project-story__title">Une identité bois et nature</h3>
-            <p class="project-story__text">
-              Palette olive, taupe et bois, titres manuscrits (Fleur De Leah) et texte en
-              Quicksand&#8239;: une DA douce, pensée pour des visiteurs de tous âges.
+            <figure class="project-thread__visual">
+              <div class="graded-image">
+                <img
+                  class="graded-image__img"
+                  src="/src/assets/projects/micromonde/shots/micromonde-ar-hibiscus.webp"
+                  alt="Hibiscus 3D rouge affiché en réalité augmentée devant une fresque de fleurs, avec quatre boutons ronds posés sur l’image"
+                  width="1600"
+                  height="1000"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <figcaption class="project-thread__caption">
+                Les boutons ronds, ancrés sur la fresque, ouvrent les contenus
+              </figcaption>
+            </figure>
+          </li>
+          <li class="project-thread__chapter" data-reveal>
+            <span class="project-thread__marker" aria-hidden="true">IV</span>
+            <h3 class="project-thread__title">Une identité bois et nature</h3>
+            <p class="project-thread__text">
+              Vert olive, taupe, bois et sable, des titres manuscrits en Fleur De Leah et des textes
+              en Quicksand&#8239;: une identité accordée aux fresques de Kuby Kolor. J’ai aussi
+              rédigé les contenus de l’hibiscus.
             </p>
-          </div>
-        </article>
+            <figure class="project-thread__visual project-thread__visual--phone">
+              <div class="graded-image">
+                <img
+                  class="graded-image__img"
+                  src="/src/assets/projects/micromonde/fresques-propositions-kuby-kolor.webp"
+                  alt="Propositions de fresques de l’artiste Kuby Kolor"
+                  width="1000"
+                  height="1431"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <figcaption class="project-thread__caption">
+                Propositions de fresques de Kuby Kolor
+              </figcaption>
+            </figure>
+          </li>
+        </ol>
       </section>
-
-      <section class="project-gallery" aria-labelledby="micromonde-situ-title" data-reveal>
-        <span class="project-section__eyebrow">En situation</span>
-        <h2 class="project-section__title" id="micromonde-situ-title">
-          Sur le campus, face aux fresques
-        </h2>
-        <div class="project-gallery__grid project-gallery__grid--pair">
-          <figure class="project-gallery__item">
-            <div class="graded-image">
-              <img
-                class="graded-image__img"
-                src="/src/assets/projects/micromonde/shots/micromonde-ar-tortue-avant.webp"
-                alt="Fresque de la tortue marine, un téléphone tenu à la main affiche l’application avant la détection de l’image"
-                width="1600"
-                height="1200"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-            <figcaption class="project-gallery__caption">
-              Avant&#8239;: la fresque vue par le téléphone
-            </figcaption>
-          </figure>
-          <figure class="project-gallery__item">
-            <div class="graded-image">
-              <img
-                class="graded-image__img"
-                src="/src/assets/projects/micromonde/shots/micromonde-ar-tortue-apres.webp"
-                alt="Même point de vue : une tortue 3D vert sombre nage devant la fresque, entourée des boutons de l’interface"
-                width="1600"
-                height="1200"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-            <figcaption class="project-gallery__caption">
-              Après&#8239;: la fresque est reconnue, la tortue apparaît
-            </figcaption>
-          </figure>
-        </div>
-        <figure class="project-gallery__item project-gallery__item--spaced">
-          <div class="graded-image">
-            <picture>
-              <source
-                media="(max-width: 48rem)"
-                srcset="/src/assets/projects/micromonde/shots/micromonde-ar-loriquet-mobile.webp"
-                width="900"
-                height="1200"
-              />
-              <img
-                class="graded-image__img"
-                src="/src/assets/projects/micromonde/shots/micromonde-ar-loriquet.webp"
-                alt="Loriquet 3D ailes déployées devant la fresque du Patio, téléphone tenu en main au premier plan"
-                width="1600"
-                height="1000"
-                loading="lazy"
-                decoding="async"
-              />
-            </picture>
-          </div>
-          <figcaption class="project-gallery__caption">
-            Le loriquet prend son envol devant la fresque du Patio
-          </figcaption>
-        </figure>
-      </section>
-
-      <section
-        class="project-story"
-        id="essayer"
-        aria-labelledby="micromonde-try-title"
-        data-reveal
-      >
-        <article class="project-story__block">
-          <div class="project-story__copy">
-            <h2 class="project-story__title" id="micromonde-try-title">
-              Essayer sur votre téléphone
-            </h2>
-            <p class="project-story__text">
-              Scannez le QR code avec votre téléphone, ou ouvrez directement le lien.
-            </p>
-            <p>
-              <a
-                class="button button--primary"
-                href="https://micromonde-ar.netlify.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Ouvrir la démo<span class="visually-hidden"> (nouvel onglet)</span></a
-              >
-            </p>
-          </div>
-          <div class="project-story__visual project-story__visual--phone">
-            <img
-              class=""
-              src="/src/assets/projects/micromonde/shots/micromonde-qr.webp"
-              alt="QR code d’accès à la démo Micro-monde"
-              width="442"
-              height="442"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-        </article>
-        <p class="project-story__text">
-          Fresques&#8239;: Kuby Kolor. Modèles 3D, animation, intégration AR, direction artistique
-          et interface&#8239;: Léandre Vigouroux.
+      <section class="project-notes" aria-labelledby="micromonde-team-title" data-reveal>
+        <h2 class="project-section__eyebrow" id="micromonde-team-title">Le projet d’équipe</h2>
+        <p class="project-notes__text">
+          Projet à trois&#8239;: un coéquipier a monté l’infrastructure de réalité augmentée et la
+          mise en ligne, une coéquipière a conçu la carte des fresques et la position du visiteur.
+          Fresques&#8239;: Kuby Kolor.
+        </p>
+        <h2 class="project-section__eyebrow" id="micromonde-status-title">Où en est le projet</h2>
+        <p class="project-notes__text">
+          La version 0.4.0 est en ligne, sur Android et iPhone, et a été testée avec une classe de
+          vingt étudiants. Les trois fresques sont reconnues, les animaux apparaissent, la carte
+          fonctionne. Pour le rendu de fin novembre&#8239;: contenus recherchés à la place des
+          textes provisoires, enregistrements audio, langues.
         </p>
       </section>
-
       <section class="project-tools" aria-labelledby="micromonde-tools-title" data-reveal>
         <h2 class="project-tools__title" id="micromonde-tools-title">Outils</h2>
-        <p class="project-tools__lead">
-          Les technologies et les outils qui ont servi à construire ce projet.
-        </p>
         <ul class="project-tools__list">
           <li>
             <span class="tech-logo tech-logo--blender tech-logo--labelled"
@@ -415,6 +380,49 @@
             >
           </li>
         </ul>
+      </section>
+      <section
+        class="project-further"
+        id="essayer"
+        aria-labelledby="micromonde-further-title"
+        data-reveal
+      >
+        <h2 class="project-section__title" id="micromonde-further-title">Aller plus loin</h2>
+        <ul class="project-further__list">
+          <li>
+            <a
+              class="project-further__card"
+              href="https://micromonde-ar.netlify.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><span class="project-further__title"
+                >Essayer sur votre téléphone<span class="visually-hidden"
+                  >, nouvel onglet</span
+                ></span
+              ><span class="project-further__text"
+                >Scannez le QR code avec votre téléphone, ou ouvrez directement le lien.</span
+              ><img
+                class="project-further__qr"
+                src="/src/assets/projects/micromonde/shots/micromonde-qr.webp"
+                alt="QR code d’accès à la démo Micro-monde"
+                width="442"
+                height="442"
+                loading="lazy"
+                decoding="async" /><img
+                class="project-further__arrow"
+                src="/src/assets/decor/paint/arrows/arrow-long-copper-right.webp"
+                alt=""
+                width="480"
+                height="225"
+                loading="lazy"
+                decoding="async"
+            /></a>
+          </li>
+        </ul>
+        <p class="project-notes__text">
+          Fresques&#8239;: Kuby Kolor. Modèles 3D, animation, pose sur les fresques, interface et
+          identité visuelle&#8239;: Léandre Vigouroux.
+        </p>
       </section>
 
       <!-- TODO : texte de Léandre -->

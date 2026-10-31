@@ -33,24 +33,22 @@ describe('C5 — Visualcom stage + dual-device mockup', () => {
     expect(html).toContain('project-detail__mockup--laptop-phone');
   });
 
-  it('shows desktop gallery shots (homogeneous format)', () => {
+  // L15: template v2 replaces the bento galleries; chapter I carries the expertises capture.
+  it('illustrates the « need » chapter with the new expertises section', () => {
     expect(html).toContain('section-expertises.png');
-    expect(html).toContain('section-cap-pilote.png');
-    expect(html).toContain('desktop.webp');
   });
 
   it('adds the AI challenge block without exposing infrastructure details', () => {
-    expect(html).toContain('Ouvrir WordPress à l’IA, sans ouvrir de brèche');
-    expect(html).toContain('sans droit de suppression');
+    expect(html).toContain('Relier WordPress à l’IA avec des droits limités');
+    expect(html.replace(/\s+/g, ' ')).toContain('sans droit de suppression');
     expect(html).not.toContain('refonte.visualcom.nc');
     expect(html).toContain('<span class="cartel__number">N° V</span>');
     expect(html).toContain('Alternance chez Visualcom, en 2026');
   });
 
-  it('offers the long-page captures in a cropped frame', () => {
-    expect(html).toContain('visualcom-home-desktop-full.webp');
-    expect(html).toContain('visualcom-home-mobile-full.webp');
-    expect(html).toContain('project-gallery__frame');
+  it('keeps the long version one card away (« Lire ma version longue » → #recit-complet)', () => {
+    expect(html).toContain('class="project-further__card" href="#recit-complet"');
+    expect(html).toContain('id="recit-complet"');
   });
 
   it('has no leftover Supabase-era evaluator card and no site capture behind the hero', () => {
