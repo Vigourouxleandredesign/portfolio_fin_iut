@@ -111,8 +111,12 @@
             </dl>
             <h1 class="page-hero__title" id="village-jeunes-title">Vill’âge Jeunes</h1>
             <p class="page-hero__lead">
-              Une application web qui remplace les inscriptions papier d’une association. En
-              production, elle sert chaque jour à toute l’équipe.
+              Une application web qui remplace les inscriptions papier d’une association et sert
+              chaque jour à toute l’équipe.
+            </p>
+            <p class="project-part">
+              Ma part&#8239;: maquette, UI/UX et développement front-end, au sein d’une équipe avec
+              un chef de projet et un développeur full stack.
             </p>
             <div class="page-hero__actions">
               <a
@@ -122,7 +126,7 @@
                 rel="noopener noreferrer"
                 >Voir le site<span class="visually-hidden"> (nouvel onglet)</span></a
               >
-              <a class="button" href="/projects">Retour aux projets</a>
+              <a class="button button--ghost" href="#histoire">Lire l’histoire</a>
             </div>
           </div>
           <div class="page-hero__media">
@@ -160,116 +164,92 @@
         </div>
       </section>
 
-      <section class="project-brief" aria-labelledby="village-jeunes-brief-title" data-reveal>
-        <span class="project-section__eyebrow">En bref</span>
-        <h2 class="visually-hidden" id="village-jeunes-brief-title">En bref</h2>
-        <ul class="project-brief__list">
-          <li class="project-brief__item">
-            <span class="project-brief__label">Le besoin</span>
-            <p class="project-brief__text">
-              Les inscriptions et la gestion des adhérents se faisaient sur papier&#8239;; l’équipe
-              voulait se concentrer sur l’accompagnement.
-            </p>
+      <section
+        class="project-essentials"
+        aria-labelledby="village-jeunes-essentials-title"
+        data-reveal
+      >
+        <h2 class="project-section__eyebrow" id="village-jeunes-essentials-title">L’essentiel</h2>
+        <ul class="project-essentials__list">
+          <li>
+            <span class="project-essentials__value">500+</span>
+            <p class="project-essentials__text">inscriptions dès le premier mois</p>
           </li>
-          <li class="project-brief__item">
-            <span class="project-brief__label">Mon rôle</span>
-            <p class="project-brief__text">
-              Maquette, UI/UX et développement front-end, au sein d’une équipe avec un chef de
-              projet et un développeur full stack.
-            </p>
-          </li>
-          <li class="project-brief__item">
-            <span class="project-brief__label">Le résultat</span>
-            <p class="project-brief__text">
-              Une V1 stable, utilisée par toute l’équipe&#8239;: plus de 500 inscriptions dès le
-              premier mois.
-            </p>
+          <li>
+            <span class="project-essentials__value">V1</span>
+            <p class="project-essentials__text">stable, utilisée chaque jour par toute l’équipe</p>
           </li>
         </ul>
       </section>
-
-      <section class="project-brief" aria-label="Chiffre clé" data-reveal>
-        <span class="project-section__eyebrow">Chiffre clé</span>
-        <p class="project-section__title">Plus de 500 inscriptions dès le premier mois</p>
-        <img
-          class="paint paint--md"
-          src="/src/assets/decor/paint/underline-copper.webp"
-          alt=""
-          aria-hidden="true"
-          width="900"
-          height="153"
-          loading="lazy"
-          decoding="async"
-        />
-      </section>
-
-      <section class="project-story" id="recit" aria-labelledby="village-jeunes-story-title">
-        <h2 class="visually-hidden" id="village-jeunes-story-title">Récit du projet</h2>
-
-        <article class="project-story__block project-story__block--no-visual" data-reveal>
-          <div class="project-story__copy">
-            <span class="project-story__index" aria-hidden="true">I</span>
-            <h3 class="project-story__title">Partir du terrain</h3>
-            <p class="project-story__text">
+      <section class="project-thread" id="histoire" aria-labelledby="village-jeunes-story-title">
+        <h2 class="project-section__title" id="village-jeunes-story-title">L’histoire du projet</h2>
+        <ol class="project-thread__list">
+          <li class="project-thread__chapter" data-reveal>
+            <span class="project-thread__marker" aria-hidden="true">I</span>
+            <span class="project-thread__label">Le besoin</span>
+            <h3 class="project-thread__title">Partir du terrain</h3>
+            <p class="project-thread__text">
+              Les inscriptions et la gestion des adhérents se faisaient sur papier&#8239;; l’équipe
+              voulait se concentrer sur l’accompagnement.
+            </p>
+            <p class="project-thread__text">
               Cahier des charges avec le client, puis visite sur place pour valider le besoin et
               écouter les adhérents et l’équipe. Quelques questions simples («&#8239;quelles tâches
               vous pèsent aujourd’hui&#8239;?&#8239;») ont permis de construire un parcours adapté à
               leur quotidien.
             </p>
-          </div>
-        </article>
-        <article class="project-story__block project-story__block--no-visual" data-reveal>
-          <div class="project-story__copy">
-            <span class="project-story__index" aria-hidden="true">II</span>
-            <h3 class="project-story__title">Du papier au code</h3>
-            <p class="project-story__text">
+          </li>
+          <li class="project-thread__chapter" data-reveal>
+            <span class="project-thread__marker" aria-hidden="true">II</span>
+            <span class="project-thread__label">Mes choix</span>
+            <h3 class="project-thread__title">Du papier au code</h3>
+            <p class="project-thread__text">
               Parcours dessiné à la main, zoning, wireframes puis maquette validée par le client.
               Les formulaires d’inscription ont été codés en premier&#8239;: ils portent l’essentiel
               des données, ce qui a permis au back d’avancer en parallèle.
             </p>
-          </div>
-        </article>
-        <article class="project-story__block" data-reveal>
-          <div class="project-story__copy">
-            <span class="project-story__index" aria-hidden="true">III</span>
-            <h3 class="project-story__title">Une interface par rôle</h3>
-            <p class="project-story__text">
-              Connexion, accueil selon le rôle, suivi des inscriptions en temps réel, accès rapide
-              aux fiches adhérents et statistiques lisibles.
-            </p>
-          </div>
-          <div class="project-story__visual project-story__visual--phone">
-            <div class="graded-image">
-              <img
-                class="graded-image__img"
-                src="/src/assets/projects/village-jeunes/shots/village-jeunes-connexion-mobile-fourni.webp"
-                alt="Écran de connexion de l’application sur téléphone, sans donnée"
-                width="273"
-                height="600"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-          </div>
-        </article>
-        <article class="project-story__block project-story__block--no-visual" data-reveal>
-          <div class="project-story__copy">
-            <span class="project-story__index" aria-hidden="true">IV</span>
-            <h3 class="project-story__title">Documenter pour passer le relais</h3>
-            <p class="project-story__text">
+          </li>
+          <li class="project-thread__chapter project-thread__chapter--key" data-reveal>
+            <span class="project-thread__marker" aria-hidden="true">III</span>
+            <span class="project-thread__label">Le défi</span>
+            <h3 class="project-thread__title">Documenter pour passer le relais</h3>
+            <p class="project-thread__text">
               En alternance, je n’étais pas toujours là&#8239;: j’ai documenté le front et le back
               (Documentation.js, en-tête dans chaque fichier) pour que l’équipe puisse reprendre le
               code sans moi.
             </p>
-          </div>
-        </article>
+          </li>
+          <li class="project-thread__chapter" data-reveal>
+            <span class="project-thread__marker" aria-hidden="true">IV</span>
+            <span class="project-thread__label">Le résultat</span>
+            <h3 class="project-thread__title">Une interface par rôle</h3>
+            <p class="project-thread__text">
+              Connexion, accueil selon le rôle, suivi des inscriptions en temps réel, accès rapide
+              aux fiches adhérents et statistiques lisibles.
+            </p>
+            <p class="project-thread__text">
+              Une V1 stable, utilisée par toute l’équipe&#8239;: plus de 500 inscriptions dès le
+              premier mois.
+            </p>
+            <figure class="project-thread__visual project-thread__visual--phone">
+              <div class="graded-image">
+                <img
+                  class="graded-image__img"
+                  src="/src/assets/projects/village-jeunes/shots/village-jeunes-connexion-mobile-fourni.webp"
+                  alt="Écran de connexion de l’application sur téléphone, sans donnée"
+                  width="273"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <figcaption class="project-thread__caption">Connexion, sur mobile</figcaption>
+            </figure>
+          </li>
+        </ol>
       </section>
-
       <section class="project-tools" aria-labelledby="village-jeunes-tools-title" data-reveal>
         <h2 class="project-tools__title" id="village-jeunes-tools-title">Outils</h2>
-        <p class="project-tools__lead">
-          Les technologies et les outils qui ont servi à construire ce projet.
-        </p>
         <ul class="project-tools__list">
           <li>
             <span class="tech-logo tech-logo--text"
@@ -289,6 +269,30 @@
             <span class="tech-logo tech-logo--text"
               ><span class="tech-logo__label">Documentation.js</span></span
             >
+          </li>
+        </ul>
+      </section>
+      <section class="project-further" aria-labelledby="village-jeunes-further-title" data-reveal>
+        <h2 class="project-section__title" id="village-jeunes-further-title">Aller plus loin</h2>
+        <ul class="project-further__list">
+          <li>
+            <a
+              class="project-further__card"
+              href="https://villagejeunes.nc/"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><span class="project-further__title"
+                >Visiter villagejeunes.nc<span class="visually-hidden">, nouvel onglet</span></span
+              ><span class="project-further__text">Le site en ligne, dans un nouvel onglet.</span
+              ><img
+                class="project-further__arrow"
+                src="/src/assets/decor/paint/arrows/arrow-long-copper-right.webp"
+                alt=""
+                width="480"
+                height="225"
+                loading="lazy"
+                decoding="async"
+            /></a>
           </li>
         </ul>
       </section>
