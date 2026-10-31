@@ -124,15 +124,16 @@ describe('project pages — DA v3 on the stage layout', () => {
 describe('Lab Horizon page', () => {
   const html = read('lab-horizon');
 
-  it('follows the brief: cartel, brief, 4 story blocks, 7 domains', () => {
+  it('follows the brief: cartel, 3 essentials, 4 chapters, 7 domains', () => {
     expect(html).toContain('<span class="cartel__number">N° I</span>');
     expect(html).toContain('SAE 501, projet d’équipe à l’IUT de Nouvelle-Calédonie, en 2026');
     const tools = /project-tools__list[\s\S]*?<\/ul>/.exec(html)?.[0] ?? '';
     for (const tool of ['React 19', 'TypeScript', 'Laravel 12', 'MySQL', 'Docker']) {
       expect(tools, tool).toContain(`tech-logo__label">${tool}<`);
     }
-    expect(html.match(/class="project-brief__item"/g)).toHaveLength(3);
-    expect(html.match(/<article class="project-story__block/g)).toHaveLength(4);
+    // L15: v2 template, three essentials and four chapters (the brief cards are gone).
+    expect(html.match(/class="project-essentials__value"/g)).toHaveLength(3);
+    expect(html.match(/<li class="project-thread__chapter[ "]/g)).toHaveLength(4);
     expect(html.match(/domaines\/[a-z]+\.webp/g)).toHaveLength(7);
   });
 
