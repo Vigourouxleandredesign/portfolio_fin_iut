@@ -19,7 +19,7 @@ const CONTEXTS: Record<string, string> = {
   V: 'Alternance chez Visualcom, en 2026',
   VI: 'Devoir Angular de la LP MIAW, en 2026',
   VII: 'TP back-end de la LP MIAW, en 2026',
-  VIII: 'Finaliste du Pacific Dataviz Challenge, en 2025',
+  VIII: 'Pacific Dataviz Challenge, 2e de la catégorie Pacifique, en 2025',
   IX: 'Mission chez Visualcom, en 2025',
 };
 const SLUG_NUMBER: Record<string, string> = {
