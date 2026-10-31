@@ -1,13 +1,13 @@
 # Lots exécutants — mode d’emploi
 
-**Chef de projet :** Claude (cette conversation) · **Product owner :** Léandre · **Mise en production : mercredi 28/10/2026** (jeudi 29 et vendredi 30 = marge d'urgence) · **Remise au jury : au plus tard le 30/10**
+**Chef de projet :** Claude (cette conversation) · **Product owner :** Léandre · **Remise au jury : dimanche 01/11/2026** (date décalée) · **Mise en production : samedi 31/10**
 Chaque lot (`WP-*.md`) contient : objectif, dépendances, périmètre de fichiers, étapes, critères d’acceptation et **un prompt prêt à coller**.
 
 ---
 
 ## Planning (heure de Nouméa)
 
-> **Mise à jour 26/10 (après-midi) :** reste **L12** (lun. 26 - mar. 27) puis **L11 production mer. 28**. Le tableau ci-dessous est le plan initial, conservé pour mémoire.
+> **Mise à jour 30/10 :** L12, L13 et L14 sont fusionnés. Reste, dans cet ordre : **L16** (ven. 30, 2 h), **L15** (ven. 30 soir - sam. 31 matin), **L11** (sam. 31 : production, verrouillage), remise au jury **dim. 01/11**. Les lots passent l'un après l'autre (un seul dossier de travail). Si le temps manque, on coupe les pages secondaires de L15, jamais L16 ni L11. Le tableau ci-dessous est le plan initial, conservé pour mémoire.
 
 | Jour | Lots | Exécutant conseillé | Parallèle ? |
 |---|---|---|---|
@@ -69,7 +69,8 @@ Les lots L0 à L10, L7s et la red team sont terminés et fusionnés ; leurs fich
 | Id | Fichier | Titre |
 |---|---|---|
 | L12 | `WP-L12-textes-logos-domaines.md` | Textes sans tics d'IA, logos officiels des technos, section domaines cliquable (fait, 26/10) |
-| L13 | `WP-L13-retouches.md` | Visuel arbre Lab Horizon, dernières coquilles |
-| L14 | `WP-L14-mobile-cartels-navigation.md` | Pinceau désactivé sur mobile, cartels sur une ligne, navigation et boutons gouache, texte CI/CD Lab Horizon |
-| L15 | `WP-L15-gabarit-projet-v2.md` | Gabarit de page projet v2 (hiérarchie, fil rouge) : **gabarit validé le 26/10 par Léandre** (à lancer après L14 ; Lab Horizon et Micro-monde attendent leurs textes) |
-| L11 | `WP-L11-mise-en-production.md` | Mise en production (mer. 28/10), verrouillage du déploiement, remise au jury |
+| L13 | `WP-L13-retouches.md` | Visuel arbre Lab Horizon, dernières coquilles (fait, 26/10) |
+| L14 | `WP-L14-mobile-cartels-navigation.md` | Pinceau désactivé sur mobile, cartels sur une ligne, navigation et boutons gouache, texte CI/CD Lab Horizon (fait, 26/10) |
+| L16 | `WP-L16-jury-lab-horizon.md` | Fiches Lab Horizon dans l'espace jury, mentions « Nuit de la Science » et médaille (**à lancer en premier**, 30/10) |
+| L15 | `WP-L15-gabarit-projet-v2.md` | Gabarit de page projet v2 (hiérarchie, fil rouge) : gabarit validé le 26/10, textes prêts le 30/10 (**après L16**) |
+| L11 | `WP-L11-mise-en-production.md` | Mise en production (sam. 31/10), verrouillage du déploiement, remise au jury (dim. 01/11) |

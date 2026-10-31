@@ -1,6 +1,6 @@
-# L11 — Mise en production (mercredi 28/10) et remise au jury
+# L11 : mise en production (samedi 31/10) et remise au jury (dimanche 01/11)
 
-**Responsables :** **Léandre** (Netlify, envoi au jury) + Claude Code **Haiku** (vérifications) + Claude chef de projet (validation finale) · **Durée :** 1 h · **Dépend de :** L12 fusionné et déployé
+**Responsables :** **Léandre** (Netlify, envoi au jury) + Claude Code **Haiku** (vérifications) + Claude chef de projet (validation finale) · **Durée :** 1 h · **Dépend de :** L16 puis L15 fusionnés et déployés
 
 ## 1. Vérifications (Haiku)
 
@@ -19,14 +19,15 @@ Plus : dernier run GitHub Actions sur `main` vert (onglet *Actions*, Léandre le
 
 - [ ] Sur **ton téléphone** : accueil (buste en image, pas de 3D), un projet, le CV PDF, la page Micro-monde.
 - [ ] Sur ordinateur : accueil (buste 3D), MagicalLab, la page 404 (`/nimportequoi`).
-- [ ] `/jury` dans une **fenêtre privée** : la boîte de connexion apparaît ; avec ton mot de passe, tout s'ouvre, y compris un PDF ; fermer la fenêtre privée.
+- [ ] `/jury` dans une **fenêtre privée** : la boîte de connexion apparaît ; avec ton mot de passe, tout s'ouvre, y compris les deux PDF Lab Horizon ; fermer la fenêtre privée.
+- [ ] Pages Visualcom, Vill'âge Jeunes, Lab Horizon et Micro-monde : relire les textes de L15 (fil rouge, « L'essentiel ») et signaler ce qui ne te convient pas.
 - [ ] Partage : coller l'URL d'un projet dans une conversation (Messenger, WhatsApp, LinkedIn…) → l'aperçu avec image s'affiche.
 
 ## 3. Geler la production
 
-- Netlify › *Deploys* › le déploiement validé › **Lock to stop auto publishing** : jusqu'au 30/10, un push ne remplace plus la version vue par le jury sans ton accord. Pour publier une mise à jour validée (textes « Ce que j'en retiens ») : *Publish deploy* sur le nouveau déploiement, puis re-verrouiller.
+- Netlify › *Deploys* › le déploiement validé › **Lock to stop auto publishing** : jusqu'à la soutenance, un push ne remplace plus la version vue par le jury sans ton accord. Pour publier une mise à jour validée (textes « Ce que j'en retiens ») : *Publish deploy* sur le nouveau déploiement, puis re-verrouiller.
 
-## 4. Remise au jury (au plus tard le 30/10)
+## 4. Remise au jury (dimanche 01/11)
 
 - Message 1 (e-mail) : lien du portfolio `https://vigourouxleandre.netlify.app` et de l'espace jury `https://vigourouxleandre.netlify.app/jury`, identifiant `jury`.
 - Message 2, **par un autre canal** (SMS, messagerie de l'IUT) : le mot de passe seul.

@@ -43,3 +43,10 @@ Le bloc « En bref » en trois colonnes (Le défi / Mon rôle / Le résultat) di
 2. **Noms des coéquipiers** (MM2-14) : tu les cites avec leur accord, ou on écrit « deux coéquipiers (infrastructure AR et mise en ligne, carte) » sans les nommer ?
 3. **Pose sur les fresques** (MM2-03, MM2-07) : le document attribue « réalité augmentée » à Alexis, tu m'as dit avoir inséré et adapté les modèles dans 8th Wall. La formulation « j'ai calé chaque modèle sur sa fresque » te convient-elle, ou faut-il préciser le partage ?
 4. **Cadre du projet** : le dossier précise que l'artiste et l'UNC n'ont pas été informés. Rien ne l'indique sur le portfolio aujourd'hui ; je propose de ne pas l'écrire, mais de ne rien laisser entendre d'officiel (pas de « commande de l'UNC », pas de logo UNC). D'accord ?
+
+## 4. Décisions (confirmées par Léandre le 30/10)
+
+1. **Nuit de la Science** : la mention est retirée partout (page, meta, catalogue, accueil). Les documents de l'équipe n'en parlent pas.
+2. **Noms des coéquipiers** : MM2-14 devient « Projet à trois : un coéquipier a monté l'infrastructure de réalité augmentée et la mise en ligne, une coéquipière a conçu la carte des fresques et la position du visiteur. Fresques : Kuby Kolor. » Aucun nom.
+3. **Intégration dans 8th Wall** : MM2-03 et MM2-07 restent tels quels.
+4. **Cadre** : rien d'officiel, ni « commande de l'UNC », ni logo de l'UNC.
