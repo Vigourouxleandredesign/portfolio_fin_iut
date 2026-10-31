@@ -1,8 +1,8 @@
 <!--
   @file Project — Visualcom
-  @description Case study with full-bleed stage hero (atmosphere + dual marble
-    mockup). Click mockup opens https://visualcom.nc (new tab). Academic narrative
-    retained in details.
+  @description Case study, template v2 (L15): stage hero (dual marble mockup opening
+    https://visualcom.nc), essentials, story thread I to IV, tools, « Aller plus loin »;
+    the long version stays in a details block (#recit-complet).
   @route /pages/projects/visualcom.html
 -->
 <!doctype html>
@@ -14,12 +14,12 @@
     <link rel="canonical" href="https://vigourouxleandre.netlify.app/projects/visualcom" />
     <meta
       name="description"
-      content="Refonte du site WordPress de Visualcom : thème sur mesure, déploiement depuis GitHub et connexion sécurisée à Claude."
+      content="Le site WordPress de l’entreprise, refait en une semaine avec un thème sur mesure, et relié à Claude Desktop par des comptes à droits limités."
     />
     <meta property="og:title" content="Visualcom | Léandre Vigouroux" />
     <meta
       property="og:description"
-      content="Modernisation du CMS WordPress de Visualcom à l’ère de l’IA, avec thème sur mesure et outillage de déploiement."
+      content="Le site WordPress de l’entreprise, refait en une semaine avec un thème sur mesure, et relié à Claude Desktop par des comptes à droits limités."
     />
     <meta property="og:image" content="https://vigourouxleandre.netlify.app/og-cover.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -124,16 +124,19 @@
               </dl>
               <h1 class="project-stage__title">Visualcom</h1>
               <p class="project-stage__lead">
-                Refonte du site WordPress avec un thème sur mesure, un déploiement depuis GitHub et
-                une réflexion sur la connexion à Claude, sans perdre les actualités existantes.
+                Le site WordPress de l’entreprise, refait en une semaine avec un thème sur mesure,
+                et relié à Claude Desktop par des comptes à droits limités.
               </p>
-              <a
-                class="button button--primary"
-                href="https://visualcom.nc"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Voir le site</a
-              >
+              <div class="page-hero__actions">
+                <a
+                  class="button button--primary"
+                  href="https://visualcom.nc"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Voir le site<span class="visually-hidden">, nouvel onglet</span></a
+                >
+                <a class="button button--ghost" href="#histoire">Lire l’histoire</a>
+              </div>
             </header>
 
             <a
@@ -170,288 +173,92 @@
         </div>
       </section>
 
-      <div class="project-stage__body">
-        <section
-          class="project-detail__snapshot"
-          aria-labelledby="visualcom-snapshot-title"
-          data-reveal
-        >
-          <span class="project-detail__snapshot-eyebrow">En bref</span>
-          <h2 class="project-detail__snapshot-title" id="visualcom-snapshot-title">
-            Survol du projet
-          </h2>
-          <p class="project-detail__pitch">
-            En une semaine sur un serveur de travail (puis basculé en production), j’ai accompagné
-            Visualcom pour moderniser son site WordPress&#8239;: garder la centaine d’actualités
-            existantes, aligner les pages avec l’équipe, et préparer l’usage de Claude Desktop sans
-            mettre en danger le site en ligne.
-          </p>
-          <ul class="project-detail__highlights">
-            <li>
-              Réunion de cadrage avec des exemples de sites du secteur et une maquette interne
-            </li>
-            <li>
-              Thème sur mesure à la place d’Astra, avec des blocs métier modifiables dans l’éditeur
-            </li>
-            <li>Plugin de déploiement du thème depuis la branche main GitHub en un clic</li>
-            <li>
-              Connexion à Claude&#8239;: MCP natif et plugins tiers écartés (droits trop larges),
-              piste HTTP avec un compte éditeur non finalisée
-            </li>
-          </ul>
-          <p class="project-detail__teaser">
-            Le détail de ma réflexion (problématique, démarche, essais MCP) est dans la fiche
-            complète, plus bas…
-          </p>
-        </section>
-
-        <section class="project-detail__snapshot" aria-labelledby="visualcom-ai-title" data-reveal>
-          <span class="project-detail__snapshot-eyebrow">Le défi IA</span>
-          <h2 class="project-detail__snapshot-title" id="visualcom-ai-title">
-            Ouvrir WordPress à l’IA, sans ouvrir de brèche
-          </h2>
-          <p class="project-detail__pitch">
-            L’équipe voulait publier ses actualités depuis Claude. Les plugins IA testés exigeaient
-            des droits administrateur&#8239;: je les ai écartés. À la place, chaque membre a son
-            propre compte, sa propre clé, un profil d’éditeur
-            <strong>sans droit de suppression</strong>. Le serveur reste la seule source de
-            vérité&#8239;; un skill Claude, pensé comme une interface, guide l’équipe vers les
-            bonnes pratiques (SEO, accessibilité, images légères) avant même d’envoyer une demande.
-          </p>
-          <span class="project-detail__snapshot-eyebrow">Ce que j’ai livré</span>
-          <ul class="project-detail__highlights">
-            <li>Centaine d’actualités existantes conservées, nouvelles pages métier.</li>
-            <li>Comptes nominatifs, clés d’application individuelles, droits limités.</li>
-          </ul>
-        </section>
-
-        <section
-          class="project-detail__gallery"
-          aria-labelledby="visualcom-gallery-title"
-          data-reveal
-        >
-          <div class="project-detail__gallery-header">
-            <h2 class="project-detail__gallery-title" id="visualcom-gallery-title">Visuels</h2>
-            <p class="project-detail__gallery-lead">Captures du site en ligne, sur ordinateur.</p>
-          </div>
-          <div class="project-detail__gallery-grid">
-            <figure class="project-detail__figure">
-              <a
-                class="project-detail__demo-link"
-                href="https://visualcom.nc"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div class="project-detail__figure-visual graded-image">
-                  <img
-                    class="graded-image__img"
-                    src="/src/assets/projects/visualcom/desktop.webp"
-                    alt="Visualcom, page d’accueil sur ordinateur"
-                    width="1280"
-                    height="720"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-              </a>
-              <figcaption class="project-detail__figure-caption">Accueil</figcaption>
-            </figure>
-            <figure class="project-detail__figure">
-              <a
-                class="project-detail__demo-link"
-                href="https://visualcom.nc"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div class="project-detail__figure-visual graded-image">
-                  <img
-                    class="graded-image__img"
-                    src="/src/assets/projects/visualcom/section-expertises.png"
-                    alt="Visualcom, section quatre expertises"
-                    width="1280"
-                    height="720"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-              </a>
-              <figcaption class="project-detail__figure-caption">Expertises</figcaption>
-            </figure>
-            <figure class="project-detail__figure">
-              <a
-                class="project-detail__demo-link"
-                href="https://visualcom.nc"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div class="project-detail__figure-visual graded-image">
-                  <img
-                    class="graded-image__img"
-                    src="/src/assets/projects/visualcom/section-cap-pilote.png"
-                    alt="Visualcom, section CAP Pilote"
-                    width="1280"
-                    height="720"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-              </a>
-              <figcaption class="project-detail__figure-caption">CAP Pilote</figcaption>
-            </figure>
-          </div>
-        </section>
-
-        <section class="project-gallery" aria-labelledby="visualcom-long-title" data-reveal>
-          <h2 class="project-section__title" id="visualcom-long-title">Pleine page</h2>
-          <div class="project-gallery__grid">
-            <figure class="project-gallery__item">
-              <div class="graded-image project-gallery__frame">
+      <section class="project-essentials" aria-labelledby="visualcom-essentials-title" data-reveal>
+        <h2 class="project-section__eyebrow" id="visualcom-essentials-title">L’essentiel</h2>
+        <ul class="project-essentials__list">
+          <li>
+            <span class="project-essentials__value">1 semaine</span>
+            <p class="project-essentials__text">pour livrer le nouveau site</p>
+          </li>
+          <li>
+            <span class="project-essentials__value">100+</span>
+            <p class="project-essentials__text">actualités conservées, sans perte</p>
+          </li>
+          <li>
+            <span class="project-essentials__value">0</span>
+            <p class="project-essentials__text">droit administrateur donné à l’IA</p>
+          </li>
+        </ul>
+      </section>
+      <section class="project-thread" id="histoire" aria-labelledby="visualcom-story-title">
+        <h2 class="project-section__title" id="visualcom-story-title">L’histoire du projet</h2>
+        <ol class="project-thread__list">
+          <li class="project-thread__chapter" data-reveal>
+            <span class="project-thread__marker" aria-hidden="true">I</span>
+            <span class="project-thread__label">Le besoin</span>
+            <h3 class="project-thread__title">Un site plus moderne, avec les actualités</h3>
+            <p class="project-thread__text">
+              L’équipe voulait un site plus moderne, garder la centaine d’actualités déjà publiées
+              et pouvoir publier depuis Claude Desktop. J’avais une semaine.
+            </p>
+            <figure class="project-thread__visual">
+              <div class="graded-image">
                 <img
                   class="graded-image__img"
-                  src="/src/assets/projects/visualcom/shots/visualcom-home-desktop-full.webp"
-                  alt="Visualcom, page d’accueil sur ordinateur en pleine hauteur, du haut vers le bas au survol"
-                  width="1440"
-                  height="5400"
+                  src="/src/assets/projects/visualcom/section-expertises.png"
+                  alt="Visualcom, nouvelle section des quatre expertises"
+                  width="1280"
+                  height="720"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
-              <figcaption class="project-gallery__caption">Ordinateur</figcaption>
+              <figcaption class="project-thread__caption">
+                Nouvelle section «&#8239;Expertises&#8239;»
+              </figcaption>
             </figure>
-            <figure class="project-gallery__item">
-              <div class="graded-image project-gallery__frame project-gallery__frame--mobile">
-                <img
-                  class="graded-image__img"
-                  src="/src/assets/projects/visualcom/shots/visualcom-home-mobile-full.webp"
-                  alt="Visualcom, page d’accueil mobile en pleine hauteur, du haut vers le bas au survol"
-                  width="780"
-                  height="10800"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              <figcaption class="project-gallery__caption">Mobile</figcaption>
-            </figure>
-          </div>
-        </section>
-
-        <section
-          class="project-detail__narrative"
-          id="recit-complet"
-          aria-labelledby="visualcom-narrative-title"
-          data-reveal
-        >
-          <h2 class="visually-hidden" id="visualcom-narrative-title">Récit complet du projet</h2>
-          <details class="project-detail__details" data-project-narrative-details>
-            <summary class="project-detail__details-summary">
-              <span class="project-detail__details-label">Fiche de réflexion</span>
-              <span class="project-detail__details-cta">
-                Lire la version longue (UI/UX et développement front)
-              </span>
-              <span class="project-detail__details-hint">
-                Mon texte d’origine, pour suivre le raisonnement étape par étape.
-              </span>
-            </summary>
-            <div class="project-detail__details-body">
-              <h2>Problématique</h2>
+          </li>
+          <li class="project-thread__chapter" data-reveal>
+            <span class="project-thread__marker" aria-hidden="true">II</span>
+            <span class="project-thread__label">Mes choix</span>
+            <h3 class="project-thread__title">Un thème sur mesure, mis à jour depuis GitHub</h3>
+            <p class="project-thread__text">
+              J’ai remplacé Astra par un thème sur mesure, avec des blocs métier que l’équipe
+              modifie seule dans l’éditeur. Un plugin met le thème à jour depuis la branche main du
+              dépôt GitHub.
+            </p>
+          </li>
+          <li class="project-thread__chapter project-thread__chapter--key" data-reveal>
+            <span class="project-thread__marker" aria-hidden="true">III</span>
+            <span class="project-thread__label">Le défi</span>
+            <h3 class="project-thread__title">Relier WordPress à l’IA avec des droits limités</h3>
+            <p class="project-thread__text">
+              Les plugins IA testés exigeaient des droits administrateur&#8239;: je les ai écartés.
+              Chaque membre a son propre compte et sa propre clé, avec un profil d’éditeur sans
+              droit de suppression.
+            </p>
+            <blockquote class="project-thread__quote">
               <p>
-                Comment moderniser, adapter et rendre accessible un CMS à l’ère de l’intelligence
-                artificielle, tout en conservant au maximum la sécurité et la fiabilité de
-                l’outil&#8239;?
+                «&#8239;Il m’a donc fallu réfléchir à une méthode nous permettant de verrouiller les
+                droits par nature, avec le serveur comme seule source de vérité et l’IA avec des
+                droits définis, limités et stricts autant que possible.&#8239;»
               </p>
-
-              <h2>Contexte et client final</h2>
-              <p>
-                L’équipe souhaitait moderniser entièrement le site de l’entreprise et pouvoir tous
-                participer à son évolution. Ils souhaitaient également pouvoir le faire à l’aide de
-                l’interface de Claude Desktop (l’abonnement Claude de l’entreprise). J’avais donc
-                une semaine pour mettre en place le nouveau site Visualcom sur lequel je pouvais
-                travailler en dev (serveur dupliqué sur lequel on a redirigé le domaine par la
-                suite).
-              </p>
-
-              <h2>Process mis en place</h2>
-              <p>
-                Au travers d’une réunion, j’ai pu rassembler les demandes et souhaits de toute
-                l’équipe en leur montrant des exemples de sites d’entreprises plus ou moins dans le
-                même secteur d’activité afin d’avoir un plan de refonte plus net. J’ai même pu
-                composer avec une maquette Claude faite par un de mes collaborateurs et validée en
-                partie par l’équipe.
-              </p>
-              <p>Le défi consistait principalement en deux choses&#8239;:</p>
-              <ul>
-                <li>
-                  Conserver la base de données et le CMS WordPress actuel avec la centaine
-                  d’actualités déjà publiées, à moderniser. Mais aussi créer le contenu et les pages
-                  en fonction de ce sur quoi l’équipe s’était mise plus ou moins d’accord.
-                </li>
-                <li>
-                  Rendre accessibles à des non-développeurs et non habitués de WordPress des
-                  fonctionnalités WordPress. La réflexion que j’ai faite a été en deux temps. Pour
-                  moi, il fallait que quelqu’un de formé à WordPress (3 personnes dans l’équipe)
-                  puisse intervenir si l’IA ne produisait pas correctement, mais il fallait que les
-                  non-initiés comme les initiés puissent utiliser Claude pour accélérer la création
-                  d’articles WordPress.
-                </li>
-              </ul>
-
-              <h2>Solution</h2>
-              <p>
-                La solution a donc été plurielle. Tout d’abord, le thème WordPress que l’on avait au
-                départ était Astra&#8239;: c’est un bon thème, le plus utilisé et solide, mais
-                beaucoup trop générique et contraignant sur les demandes de l’équipe. En effet, il
-                m’aurait fallu créer trop de blocs sur un thème enfant ou en snippet PHP, ce qui
-                n’était pas adapté au besoin. J’ai donc opté pour le thème custom, qui nous oblige à
-                le mettre à jour nous-mêmes si besoin de modification ou de faille, mais qui nous
-                permettait une plus grande liberté, surtout pour les risques d’incompatibilité pour
-                les autres solutions à suivre.
-              </p>
-              <p>
-                Pour nous permettre de mettre facilement et rapidement à jour le thème WordPress,
-                j’ai dû mettre en place un plugin PHP WordPress qui permet manuellement, en un clic,
-                de mettre à jour le thème WordPress en fonction de la dernière version présente sur
-                la branche main du repo GitHub du thème custom.
-              </p>
-              <p>
-                Pour les articles comme les pages, le choix du thème custom n’est pas anodin,
-                puisqu’il m’a permis de créer les blocs métier adaptés et modifiables, ce qui
-                permettait à l’équipe à l’aise avec WordPress de pouvoir naviguer et modifier
-                rapidement et facilement le site en cas de besoin.
-              </p>
-              <p>
-                Viennent maintenant les solutions les plus complexes, c’est-à-dire la tentative de
-                plugin MCP, créé pour connecter le site WordPress au Claude de l’entreprise à
-                travers un compte en éditeur uniquement pour pouvoir suivre systématiquement les
-                modifications, et lui restreindre les accès dont lui ou les collègues non qualifiés
-                n’ont pas besoin. L’objectif était de cadrer le tout pour éviter que l’équipe ou
-                l’IA puisse faire de trop grosses erreurs sur un site en production (même si ce site
-                est sauvegardé tous les jours).
-              </p>
-              <p>
-                Pour ce plugin, j’ai tenté plusieurs approches. La première, c’est par le MCP
-                proposé directement par Claude, mais celui-ci demandait de se connecter avec un
-                compte WordPress (pas un compte uniquement créé pour le site) et ce compte avait les
-                droits super-admin. J’ai donc tenté une autre approche, celle d’utiliser un plugin
-                WordPress prévu à cet effet. Toutefois, le plugin semblait très jeune (peu d’étoiles
-                même s’il était mis en avant par WordPress) et donnait à l’agent beaucoup trop de
-                droits, comme des droits de suppression&#8239;; j’ai donc décidé d’écarter cette
-                possibilité. Enfin, puisque toute l’équipe utilise Claude Desktop et peut accéder au
-                serveur WordPress via HTTP avec une clé liée au compte éditeur, j’ai tenté cette
-                approche&#8239;; malheureusement, par manque de temps, je n’ai pas pu aller au bout
-                de mes tests.
-              </p>
-            </div>
-          </details>
-        </section>
-        <p class="project-stage__back">
-          <a class="button button--ghost" href="/projects">Retour à la liste</a>
-        </p>
-      </div>
+              <footer>Extrait de ma fiche de réflexion</footer>
+            </blockquote>
+          </li>
+          <li class="project-thread__chapter" data-reveal>
+            <span class="project-thread__marker" aria-hidden="true">IV</span>
+            <span class="project-thread__label">Le résultat</span>
+            <h3 class="project-thread__title">Site en ligne, connexion à finaliser</h3>
+            <p class="project-thread__text">
+              Site livré, actualités conservées, nouvelles pages métier, comptes nominatifs aux
+              droits limités. La connexion par compte éditeur reste à finaliser.
+            </p>
+          </li>
+        </ol>
+      </section>
       <section class="project-tools" aria-labelledby="visualcom-tools-title" data-reveal>
         <h2 class="project-tools__title" id="visualcom-tools-title">Outils</h2>
-        <p class="project-tools__lead">
-          Les technologies et les outils qui ont servi à construire ce projet.
-        </p>
         <ul class="project-tools__list">
           <li>
             <span class="tech-logo tech-logo--wordpress tech-logo--labelled"
@@ -461,25 +268,161 @@
           </li>
           <li>
             <span class="tech-logo tech-logo--text"
-              ><span class="tech-logo__label">thème sur mesure</span></span
-            >
-          </li>
-          <li>
-            <span class="tech-logo tech-logo--text"><span class="tech-logo__label">PHP</span></span>
-          </li>
-          <li>
-            <span class="tech-logo tech-logo--text"
               ><span class="tech-logo__label">GitHub</span></span
             >
           </li>
           <li>
             <span class="tech-logo tech-logo--text"
-              ><span class="tech-logo__label">Claude et MCP</span></span
+              ><span class="tech-logo__label">Claude</span></span
             >
           </li>
         </ul>
       </section>
+      <section class="project-further" aria-labelledby="visualcom-further-title" data-reveal>
+        <h2 class="project-section__title" id="visualcom-further-title">Aller plus loin</h2>
+        <ul class="project-further__list">
+          <li>
+            <a class="project-further__card" href="#recit-complet"
+              ><span class="project-further__title">Lire ma version longue</span
+              ><span class="project-further__text"
+                >La démarche complète et les essais de connexion MCP.</span
+              ><img
+                class="project-further__arrow"
+                src="/src/assets/decor/paint/arrows/arrow-long-copper-right.webp"
+                alt=""
+                width="480"
+                height="225"
+                loading="lazy"
+                decoding="async"
+            /></a>
+          </li>
+          <li>
+            <a
+              class="project-further__card"
+              href="https://visualcom.nc"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><span class="project-further__title"
+                >Visiter visualcom.nc<span class="visually-hidden">, nouvel onglet</span></span
+              ><span class="project-further__text">Le site en ligne, dans un nouvel onglet.</span
+              ><img
+                class="project-further__arrow"
+                src="/src/assets/decor/paint/arrows/arrow-long-copper-right.webp"
+                alt=""
+                width="480"
+                height="225"
+                loading="lazy"
+                decoding="async"
+            /></a>
+          </li>
+        </ul>
+      </section>
+      <section
+        class="project-detail__narrative"
+        id="recit-complet"
+        aria-labelledby="visualcom-narrative-title"
+        data-reveal
+      >
+        <h2 class="visually-hidden" id="visualcom-narrative-title">Récit complet du projet</h2>
+        <details class="project-detail__details" data-project-narrative-details>
+          <summary class="project-detail__details-summary">
+            <span class="project-detail__details-label">Fiche de réflexion</span>
+            <span class="project-detail__details-cta">
+              Lire la version longue (UI/UX et développement front)
+            </span>
+            <span class="project-detail__details-hint">
+              Mon texte d’origine, pour suivre le raisonnement étape par étape.
+            </span>
+          </summary>
+          <div class="project-detail__details-body">
+            <h2>Problématique</h2>
+            <p>
+              Comment moderniser, adapter et rendre accessible un CMS à l’ère de l’intelligence
+              artificielle, tout en conservant au maximum la sécurité et la fiabilité de
+              l’outil&#8239;?
+            </p>
 
+            <h2>Contexte et client final</h2>
+            <p>
+              L’équipe souhaitait moderniser entièrement le site de l’entreprise et pouvoir tous
+              participer à son évolution. Ils souhaitaient également pouvoir le faire à l’aide de
+              l’interface de Claude Desktop (l’abonnement Claude de l’entreprise). J’avais donc une
+              semaine pour mettre en place le nouveau site Visualcom sur lequel je pouvais
+              travailler en dev (serveur dupliqué sur lequel on a redirigé le domaine par la suite).
+            </p>
+
+            <h2>Process mis en place</h2>
+            <p>
+              Au travers d’une réunion, j’ai pu rassembler les demandes et souhaits de toute
+              l’équipe en leur montrant des exemples de sites d’entreprises plus ou moins dans le
+              même secteur d’activité afin d’avoir un plan de refonte plus net. J’ai même pu
+              composer avec une maquette Claude faite par un de mes collaborateurs et validée en
+              partie par l’équipe.
+            </p>
+            <p>Le défi consistait principalement en deux choses&#8239;:</p>
+            <ul>
+              <li>
+                Conserver la base de données et le CMS WordPress actuel avec la centaine
+                d’actualités déjà publiées, à moderniser. Mais aussi créer le contenu et les pages
+                en fonction de ce sur quoi l’équipe s’était mise plus ou moins d’accord.
+              </li>
+              <li>
+                Rendre accessibles à des non-développeurs et non habitués de WordPress des
+                fonctionnalités WordPress. La réflexion que j’ai faite a été en deux temps. Pour
+                moi, il fallait que quelqu’un de formé à WordPress (3 personnes dans l’équipe)
+                puisse intervenir si l’IA ne produisait pas correctement, mais il fallait que les
+                non-initiés comme les initiés puissent utiliser Claude pour accélérer la création
+                d’articles WordPress.
+              </li>
+            </ul>
+
+            <h2>Solution</h2>
+            <p>
+              La solution a donc été plurielle. Tout d’abord, le thème WordPress que l’on avait au
+              départ était Astra&#8239;: c’est un bon thème, le plus utilisé et solide, mais
+              beaucoup trop générique et contraignant sur les demandes de l’équipe. En effet, il
+              m’aurait fallu créer trop de blocs sur un thème enfant ou en snippet PHP, ce qui
+              n’était pas adapté au besoin. J’ai donc opté pour le thème custom, qui nous oblige à
+              le mettre à jour nous-mêmes si besoin de modification ou de faille, mais qui nous
+              permettait une plus grande liberté, surtout pour les risques d’incompatibilité pour
+              les autres solutions à suivre.
+            </p>
+            <p>
+              Pour nous permettre de mettre facilement et rapidement à jour le thème WordPress, j’ai
+              dû mettre en place un plugin PHP WordPress qui permet manuellement, en un clic, de
+              mettre à jour le thème WordPress en fonction de la dernière version présente sur la
+              branche main du repo GitHub du thème custom.
+            </p>
+            <p>
+              Pour les articles comme les pages, le choix du thème custom n’est pas anodin,
+              puisqu’il m’a permis de créer les blocs métier adaptés et modifiables, ce qui
+              permettait à l’équipe à l’aise avec WordPress de pouvoir naviguer et modifier
+              rapidement et facilement le site en cas de besoin.
+            </p>
+            <p>
+              Viennent maintenant les solutions les plus complexes, c’est-à-dire la tentative de
+              plugin MCP, créé pour connecter le site WordPress au Claude de l’entreprise à travers
+              un compte en éditeur uniquement pour pouvoir suivre systématiquement les
+              modifications, et lui restreindre les accès dont lui ou les collègues non qualifiés
+              n’ont pas besoin. L’objectif était de cadrer le tout pour éviter que l’équipe ou l’IA
+              puisse faire de trop grosses erreurs sur un site en production (même si ce site est
+              sauvegardé tous les jours).
+            </p>
+            <p>
+              Pour ce plugin, j’ai tenté plusieurs approches. La première, c’est par le MCP proposé
+              directement par Claude, mais celui-ci demandait de se connecter avec un compte
+              WordPress (pas un compte uniquement créé pour le site) et ce compte avait les droits
+              super-admin. J’ai donc tenté une autre approche, celle d’utiliser un plugin WordPress
+              prévu à cet effet. Toutefois, le plugin semblait très jeune (peu d’étoiles même s’il
+              était mis en avant par WordPress) et donnait à l’agent beaucoup trop de droits, comme
+              des droits de suppression&#8239;; j’ai donc décidé d’écarter cette possibilité. Enfin,
+              puisque toute l’équipe utilise Claude Desktop et peut accéder au serveur WordPress via
+              HTTP avec une clé liée au compte éditeur, j’ai tenté cette approche&#8239;;
+              malheureusement, par manque de temps, je n’ai pas pu aller au bout de mes tests.
+            </p>
+          </div>
+        </details>
+      </section>
       <nav class="project-nav" aria-label="Navigation entre projets">
         <a
           class="project-nav__link project-nav__link--prev"

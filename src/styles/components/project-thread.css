@@ -1,0 +1,306 @@
+/**
+ * @file Project page v2 (L15): « Ma part », « L’essentiel », story thread, « Aller plus loin »
+ * @description One reading column (≤ 60 characters). Chapters I to IV hang on a vertical copper
+ *   thread; the key chapter (the challenge) gets a filled marker and a larger title. Action cards
+ *   only live in « Aller plus loin » and carry a gouache arrow (what is clicked has an arrow).
+ * @see docs/work-packages/WP-L15-gabarit-projet-v2.md
+ */
+
+/* —— Ma part (hero) —— */
+
+.project-part {
+  max-width: 60ch;
+  margin: var(--space-4) 0 0;
+  padding-left: var(--space-4);
+  border-left: 2px solid var(--project-pigment, var(--color-pigment-copper));
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+/* —— Shared section frame —— */
+
+.project-essentials,
+.project-thread,
+.project-further,
+.project-notes {
+  position: relative;
+  width: min(100%, var(--layout-max));
+  margin-inline: auto;
+  padding: var(--space-12) var(--space-4);
+}
+
+/* —— L’essentiel —— */
+
+.project-essentials__list {
+  display: grid;
+  gap: var(--space-6);
+  margin: 0;
+  padding: var(--space-6) 0;
+  list-style: none;
+  border-block: 1px solid var(--color-border);
+}
+
+.project-essentials__value {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: clamp(var(--text-4xl), 6vw, var(--text-6xl));
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-pigment-copper-light);
+}
+
+.project-essentials__text {
+  max-width: 28ch;
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+@media (min-width: 48rem) {
+  .project-essentials__list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* —— L’histoire du projet —— */
+
+.project-thread__list {
+  position: relative;
+  max-width: 48rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-thread__list::before {
+  content: '';
+  position: absolute;
+  top: var(--space-2);
+  bottom: var(--space-12);
+  left: calc(1.25rem - 1px);
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    var(--color-pigment-copper),
+    color-mix(in srgb, var(--color-pigment-copper) 20%, transparent)
+  );
+}
+
+.project-thread__chapter {
+  position: relative;
+  padding: 0 0 var(--space-12) calc(2.5rem + var(--space-6));
+}
+
+.project-thread__chapter:last-child {
+  padding-bottom: 0;
+}
+
+.project-thread__marker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 2px solid var(--color-pigment-copper);
+  border-radius: 50%;
+  background-color: var(--color-bg);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--color-pigment-copper-light);
+}
+
+.project-thread__chapter--key .project-thread__marker {
+  background-color: var(--color-pigment-copper);
+  color: var(--color-bg);
+}
+
+.project-thread__label {
+  display: block;
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+}
+
+.project-thread__title {
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text);
+}
+
+.project-thread__chapter--key .project-thread__title {
+  font-size: clamp(var(--text-3xl), 4vw, var(--text-4xl));
+  line-height: 1.1;
+}
+
+.project-thread__text {
+  max-width: 60ch;
+  margin: 0 0 var(--space-3);
+  line-height: 1.7;
+  color: var(--color-text-muted);
+}
+
+.project-thread__visual {
+  margin: var(--space-6) 0 0;
+}
+
+.project-thread__visual .graded-image {
+  border-radius: var(--radius-md);
+}
+
+.project-thread__visual--phone .graded-image {
+  max-width: 16rem;
+}
+
+.project-thread__pair,
+.project-thread__grid {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-thread__pair {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.project-thread__grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (min-width: 48rem) {
+  .project-thread__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.project-thread__caption {
+  margin: var(--space-2) 0 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  color: var(--color-text-faint);
+}
+
+.project-thread__quote {
+  max-width: 60ch;
+  margin: var(--space-6) 0 0;
+  padding-left: var(--space-4);
+  border-left: 2px solid var(--color-pigment-copper);
+}
+
+.project-thread__quote p {
+  margin: 0;
+  font-style: italic;
+  line-height: 1.7;
+  color: var(--color-text);
+}
+
+.project-thread__quote footer {
+  margin-top: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+}
+
+/* —— Notes (équipe, état du projet, crédits) —— */
+
+.project-notes__text {
+  max-width: 60ch;
+  margin: 0 0 var(--space-4);
+  line-height: 1.7;
+  color: var(--color-text-muted);
+}
+
+/* —— Aller plus loin —— */
+
+.project-further__list {
+  display: grid;
+  gap: var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 48rem) {
+  .project-further__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.project-further__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  height: 100%;
+  padding: var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  text-decoration: none;
+  transition:
+    transform var(--duration-normal) var(--ease-out),
+    border-color var(--duration-normal) var(--ease-out);
+}
+
+.project-further__card:hover,
+.project-further__card:focus-visible {
+  transform: translateY(-4px);
+  border-color: var(--color-pigment-copper);
+}
+
+.project-further__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: 700;
+}
+
+.project-further__text {
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+.project-further__arrow {
+  width: 6rem;
+  height: auto;
+  margin-top: auto;
+  align-self: flex-end;
+}
+
+.project-further__qr {
+  width: 8rem;
+  height: auto;
+  border-radius: var(--radius-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-further__card {
+    transition: none;
+  }
+
+  .project-further__card:hover,
+  .project-further__card:focus-visible {
+    transform: none;
+  }
+}
+
+/* —— Long version (details) placed after « Aller plus loin », same column as the other sections —— */
+
+.project-page > .project-detail__narrative {
+  width: min(100%, var(--layout-max));
+  margin-inline: auto;
+  padding: 0 var(--space-4) var(--space-12);
+}
