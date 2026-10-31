@@ -63,11 +63,14 @@ describe('Spring Boot library page', () => {
 describe('Pacific Dataviz page', () => {
   const html = read('pacific-dataviz');
 
-  it('says « finaliste », never « primée », and is dated 2025', () => {
-    expect(html).toContain('finaliste');
+  it('states the real result (finalist, 2nd Pacific category, 6th Open), never « primée », dated 2025', () => {
+    expect(html.replace(/\s+/g, ' ')).toContain(
+      'Finaliste du Pacific Dataviz Challenge 2025&#8239;: 2e de la catégorie Pacifique et 6e de la catégorie Open',
+    );
+    expect(html).toContain('alt="Médaille de 2e place"');
     expect(html).not.toMatch(/prim[ée]e?s?\b/i);
     expect(html).toContain('<span class="cartel__number">N° VIII</span>');
-    expect(html).toContain('Finaliste du Pacific Dataviz Challenge, en 2025');
+    expect(html).toContain('Pacific Dataviz Challenge, 2e de la catégorie Pacifique, en 2025');
     expect(html).not.toContain('2024');
   });
 
