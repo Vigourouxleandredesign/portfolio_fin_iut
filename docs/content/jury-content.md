@@ -11,10 +11,11 @@
 
 | Projet | Fiche projet | Fiche de réflexion |
 |---|---|---|
+| Lab Horizon — SAE 501, plateforme de valorisation de la recherche | `/jury/fiches/lab-horizon/project-sheet.pdf` | `/jury/fiches/lab-horizon/mission-reflection.pdf` |
 | Visualcom — refonte WordPress & connecteur IA | `/jury/fiches/visualcom/project-sheet.pdf` | `/jury/fiches/visualcom/mission-reflection.pdf` |
 | Vill’âge Jeunes — application de gestion des adhérents | `/jury/fiches/village-jeunes/project-sheet.pdf` | `/jury/fiches/village-jeunes/mission-reflection.pdf` |
 
-Liens PDF : `target="_blank" rel="noopener"`, libellé explicite + mention « PDF, n pages » (Visualcom fiche projet 3 p., réflexion 3 p. ; Vill’âge Jeunes fiche projet 2 p., réflexion 2 p.).
+Liens PDF : `target="_blank" rel="noopener"`, libellé explicite + mention « PDF, n pages » (Lab Horizon fiche projet 3 p., réflexion 4 p. ; Visualcom fiche projet 3 p., réflexion 3 p. ; Vill’âge Jeunes fiche projet 2 p., réflexion 2 p.).
 
 ---
 
@@ -35,12 +36,12 @@ Liens PDF : `target="_blank" rel="noopener"`, libellé explicite + mention « PD
 
 `<caption>` : `Compétences prouvées par projet`
 
-| Compétence (lien vers la page) | Visualcom | Vill’âge Jeunes | Quintessence |
-|---|---|---|---|
-| Développement front — conception & réalisation | ● (lien `#visualcom`) | ● (lien `#village-jeunes`) | — |
-| Qualité, sécurité & performance | ● | ● | — |
-| Échange client & gestion de projet | ● | ● | ○ (sans fiche) |
-| Stratégie, analyse & réflexion | ● | ● | — |
+| Compétence (lien vers la page) | Lab Horizon | Visualcom | Vill’âge Jeunes | Quintessence |
+|---|---|---|---|---|
+| Développement front — conception & réalisation | ● (lien `#lab-horizon`) | ● (lien `#visualcom`) | ● (lien `#village-jeunes`) | — |
+| Qualité, sécurité & performance | ● | ● | ● | — |
+| Échange client & gestion de projet | ● | ● | ● | ○ (sans fiche) |
+| Stratégie, analyse & réflexion | ● | ● | ● | — |
 
 Légende sous le tableau : `● preuve détaillée dans une fiche réflexive · ○ preuve citée sans fiche`. Chaque ● est un lien vers l’ancre du projet dans la page compétence (texte accessible : « Voir la preuve Visualcom pour <compétence> »).
 
@@ -77,9 +78,15 @@ Légende sous le tableau : `● preuve détaillée dans une fiche réflexive · 
 - Paramétrage, prototypage et adaptation des applications
 - Maîtriser la programmation
 - Concevoir, déployer, gérer et faire évoluer une application
+- Maîtriser le génie logiciel
 
 **Argumentaire**
 > Sur mes deux missions en alternance chez Visualcom, j’ai porté l’interface du besoin jusqu’à la mise en production : analyse en réunion client, parcours utilisateur, zoning, wireframes et maquette, puis intégration en HTML / CSS / JavaScript. Sur WordPress, j’ai adapté l’outil au besoin réel avec un thème sur mesure et des blocs métier modifiables, plutôt que d’empiler des extensions.
+
+**#lab-horizon — Lab Horizon (SAE 501, plateforme de valorisation de la recherche, 2026)** (en premier : projet le plus récent)
+- Preuves : couche d’adaptateurs entre les pages et les données (données fictives, puis HAL, puis API REST) ; monorepo orchestré par Docker, choisi pour une petite équipe ; lefthook pour un dépôt à deux langages ; pipeline CI/CD et branche `main` protégée ; chaque fonctionnalité ou correction arrive avec au moins un test.
+- Citation : « Sur ce projet, chaque choix d’architecture répond à une contrainte précise. » — *Fiche de réflexion Lab Horizon*
+- Liens : Fiche de réflexion (PDF, 4 pages) · Fiche projet (PDF, 3 pages) · Voir le projet → `/projects/lab-horizon`
 
 **#village-jeunes — Vill’âge Jeunes (application web, 2026)**
 - Preuves : analyse du besoin en réunion client et sur le terrain ; parcours utilisateur, zoning, wireframes, maquette ; développement front-end en HTML / CSS / JavaScript (vanilla) jusqu’à la mise en production ; plus de 500 inscriptions le premier mois.
@@ -104,6 +111,11 @@ Légende sous le tableau : `● preuve détaillée dans une fiche réflexive · 
 **Argumentaire**
 > Ma ligne : un outil doit rester simple pour l’équipe, mais le serveur reste la seule source de vérité. Chez Visualcom, j’ai refusé les plugins IA qui exigeaient des droits administrateur et mis en place des comptes nominatifs aux droits limités. Sur Vill’âge Jeunes, j’ai travaillé un front propre et léger, responsive, accessible et référencé.
 
+**#lab-horizon — Lab Horizon (SAE 501, plateforme de valorisation de la recherche, 2026)** (en premier : projet le plus récent)
+- Preuves : défense en profondeur sur les secrets (commit, historique Git en CI, protection de GitHub) ; protocole de revue de sécurité avant la mise en production, avec charte signée et preuve obligatoire ; deux verdicts NO-GO, corrections, puis contrôles repris dans la pipeline ; rapports de revue volontairement non versionnés.
+- Citation : « Pour les secrets, j’applique le principe de défense en profondeur. » — *Fiche de réflexion Lab Horizon*
+- Liens : Fiche de réflexion (PDF, 4 pages) · Fiche projet (PDF, 3 pages) · Voir le projet → `/projects/lab-horizon`
+
 **#visualcom**
 - Preuves : un compte et une clé d’application par membre de l’équipe (traçabilité, isolement d’un compte compromis) ; profil équivalent éditeur **sans droit de suppression** ; plugins IA écartés pour risque d’élévation de privilège ; rotation mensuelle des clés et double authentification du connecteur prévues ; conversion des images en WebP/JPEG proposée pour préserver la performance.
 - Citation : « Il m’a donc fallu réfléchir à une méthode nous permettant de verrouiller les droits par nature, avec le serveur comme seule source de vérité et l’IA avec des droits définis, limités et stricts autant que possible. » — *Fiche de réflexion Visualcom*
@@ -124,11 +136,16 @@ Légende sous le tableau : `● preuve détaillée dans une fiche réflexive · 
 - Assistance et conseil auprès des utilisateurs
 - Connaître les méthodes de gestion de projet informatique
 - Travailler en équipe et en réseau ainsi qu’en autonomie et responsabilité au service d’un projet
-- Utiliser les outils numériques de référence pour collaborer en interne et en externe
+- Utiliser les outils numériques de référence et les règles de sécurité informatique pour acquérir, traiter, produire et diffuser de l’information ainsi que pour collaborer en interne et en externe
 - Communiquer par oral et par écrit, de façon claire et non ambiguë
 
 **Argumentaire**
 > Je pars du terrain : réunions client, visite sur place, questions précises sur les tâches réelles. En équipe, je cadre la base puis je passe le relais proprement, documentation à l’appui. Après la livraison, j’accompagne : formation à WordPress, comptes et droits configurés pour chacun.
+
+**#lab-horizon — Lab Horizon (SAE 501, plateforme de valorisation de la recherche, 2026)** (en premier : projet le plus récent)
+- Preuves : dossier de passation en six documents pour une équipe qui n’a jamais vu le projet ; règle « quel document fait foi » ; cadrage UX et parcours utilisateur comme référence commune entre le front et le back ; règles communes versionnées pour les agents IA de l’équipe.
+- Citation : « J’ai donc indiqué, pour chaque sujet, quel document fait foi : c’est la base solide sur laquelle se positionner en cas de doute. » — *Fiche de réflexion Lab Horizon*
+- Liens : Fiche de réflexion (PDF, 4 pages) · Fiche projet (PDF, 3 pages) · Voir le projet → `/projects/lab-horizon`
 
 **#village-jeunes**
 - Preuves : cahier des charges établi avec le client puis validé sur place ; réunion technique interne (pistes, difficultés, sécurité) ; équipe chef de projet + développeur full stack + moi (maquette, UX/UI, front) ; présentation des maquettes et échanges réguliers avec le client.
@@ -158,6 +175,11 @@ Légende sous le tableau : `● preuve détaillée dans une fiche réflexive · 
 
 **Argumentaire**
 > J’analyse avant de construire et je justifie mes choix : pourquoi un thème sur mesure, pourquoi écarter un plugin, pourquoi documenter dès le début. Mes fiches se terminent toutes par une prise de recul : ce que je referais autrement, et pourquoi.
+
+**#lab-horizon — Lab Horizon (SAE 501, plateforme de valorisation de la recherche, 2026)** (en premier : projet le plus récent)
+- Preuves : constat de la fiche Vill’âge Jeunes repris et mis en pratique ; passage des tests à la main à des tests confiés à des machines ; portfolio utilisé comme bac à sable ; limites reconnues (tests de parcours non installés, contre-vérification non indépendante).
+- Citation : « Ce que j’ai mis en place reste une première réponse. » — *Fiche de réflexion Lab Horizon*
+- Liens : Fiche de réflexion (PDF, 4 pages) · Fiche projet (PDF, 3 pages) · Voir le projet → `/projects/lab-horizon`
 
 **#village-jeunes**
 - Preuves : traduction des besoins en parcours UX ; documentation technique du front et du back (Documentation.js, en-tête dans chaque fichier) ; prise de recul sur le versioning, la CI/CD et des délais peu réalistes ; évolution proposée en PWA pour une V2.

@@ -65,6 +65,35 @@ describe('jury pages — structure', () => {
   });
 });
 
+describe('jury pages — Lab Horizon (L16)', () => {
+  it('ships both Lab Horizon sheets', () => {
+    for (const sheet of ['project-sheet', 'mission-reflection']) {
+      expect(existsSync(resolve(root, `public/jury/fiches/lab-horizon/${sheet}.pdf`)), sheet).toBe(
+        true,
+      );
+    }
+  });
+
+  it('adds a Lab Horizon column to the matrix, linked on the four competences', () => {
+    const html = read('pages/jury/index.html');
+    expect(html).toContain('<th scope="col">Lab Horizon</th>');
+    for (const slug of COMPETENCES) {
+      expect(html).toContain(`href="/jury/${slug}#lab-horizon"`);
+    }
+  });
+
+  it.each(COMPETENCES)('%s opens with the Lab Horizon proof and links both sheets', (slug) => {
+    const html = read(`pages/jury/${slug}.html`);
+    const lab = html.indexOf('id="lab-horizon"');
+    expect(lab, slug).toBeGreaterThan(-1);
+    // Most recent project first: the first <article> of the page is the Lab Horizon one.
+    expect(html.indexOf('<article')).toBe(html.lastIndexOf('<article', lab));
+    expect(html).toContain('href="/jury/fiches/lab-horizon/mission-reflection.pdf"');
+    expect(html).toContain('href="/jury/fiches/lab-horizon/project-sheet.pdf"');
+    expect(html).toContain('href="/projects/lab-horizon"');
+  });
+});
+
 describe('jury pages — PDF links', () => {
   it('every sheet link opens in a new tab and points to a file shipped in public/', () => {
     for (const stem of COMPETENCES) {

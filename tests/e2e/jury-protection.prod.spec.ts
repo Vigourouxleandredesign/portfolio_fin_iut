@@ -17,6 +17,8 @@ const PROTECTED = [
   '/pages/jury/developpement-front.html',
   '/jury/fiches/visualcom/mission-reflection.pdf',
   '/jury/fiches/village-jeunes/project-sheet.pdf',
+  '/jury/fiches/lab-horizon/mission-reflection.pdf',
+  '/jury/fiches/lab-horizon/project-sheet.pdf',
   // bypass attempts (red team 2026-10-25): repeated slashes, other letter case, encodings
   '//jury',
   '///jury/',
