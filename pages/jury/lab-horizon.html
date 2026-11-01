@@ -1,0 +1,419 @@
+<!--
+  @file Jury — reflective sheet Lab Horizon
+  @description Protected area (Netlify Edge Function, docs/SECURITY.md §0). Text lives in HTML only.
+  @route /jury/lab-horizon
+-->
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Fiche de réflexion Lab Horizon | Espace jury | Léandre Vigouroux</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/logo-leandre.svg" />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="/node_modules/@fontsource/ubuntu/files/ubuntu-latin-400-normal.woff2"
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="/node_modules/@fontsource/ubuntu/files/ubuntu-latin-700-normal.woff2"
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Aller au contenu</a>
+    <header class="site-header">
+      <nav class="site-header__nav" aria-label="Navigation principale">
+        <a class="site-header__logo" href="/" aria-label="Accueil, Léandre Vigouroux">
+          <img
+            class="site-header__logo-image"
+            data-site-logo
+            src="/logo-leandre.svg"
+            alt=""
+            width="91"
+            height="91"
+            decoding="async"
+          />
+        </a>
+        <button
+          class="site-header__toggle"
+          type="button"
+          data-nav-toggle
+          aria-expanded="false"
+          aria-controls="main-nav"
+          hidden
+        >
+          <span class="visually-hidden">Ouvrir le menu</span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+        </button>
+        <ul class="site-header__list" id="main-nav" data-nav-list>
+          <li>
+            <a class="site-header__link" href="/projects">Mes projets</a>
+          </li>
+          <li><a class="site-header__link" href="/cv">Mon CV</a></li>
+          <li><a class="site-header__link" href="/contact">Contact</a></li>
+          <li>
+            <a class="site-header__link site-header__link--jury" href="/jury"
+              ><svg
+                class="site-header__icon"
+                viewBox="0 0 24 24"
+                width="14"
+                height="14"
+                focusable="false"
+                aria-hidden="true"
+              >
+                <rect
+                  x="5"
+                  y="11"
+                  width="14"
+                  height="10"
+                  rx="2"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path
+                  d="M8 11V7a4 4 0 0 1 8 0v4"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                /></svg
+              >Espace jury<span class="visually-hidden"> (accès protégé par mot de passe)</span></a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main" class="jury-page">
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <ol class="breadcrumb__list">
+          <li class="breadcrumb__item"><a class="breadcrumb__link" href="/jury">Espace jury</a></li>
+          <li class="breadcrumb__item">
+            <span class="breadcrumb__current" aria-current="page">Lab Horizon</span>
+          </li>
+        </ol>
+      </nav>
+
+      <header class="jury-header">
+        <h1 class="jury-title">
+          Fiche de réflexion&#8239;: Lab Horizon (SAE 501, plateforme de valorisation de la
+          recherche)
+        </h1>
+        <p class="jury-problem" data-verbatim>
+          <strong>Problématique.</strong> En quoi les choix d’architecture et d’organisation d’un
+          projet web en équipe conditionnent-ils sa fiabilité et sa transmission à une nouvelle
+          équipe&#8239;?
+        </p>
+        <p class="jury-actions">
+          <a
+            class="button button--primary"
+            href="/jury/fiches/lab-horizon/mission-reflection.pdf"
+            target="_blank"
+            rel="noopener"
+            >Fiche de réflexion (PDF, 4 pages)<span class="visually-hidden"
+              >, Lab Horizon, nouvel onglet</span
+            ></a
+          >
+          <a
+            class="button"
+            href="/jury/fiches/lab-horizon/project-sheet.pdf"
+            target="_blank"
+            rel="noopener"
+            >Fiche projet (PDF, 3 pages)<span class="visually-hidden"
+              >, Lab Horizon, nouvel onglet</span
+            ></a
+          >
+          <a class="button button--ghost" href="/projects/lab-horizon"
+            >Voir le projet sur le portfolio<span class="visually-hidden">, Lab Horizon</span></a
+          >
+        </p>
+      </header>
+
+      <nav class="jury-section jury-toc" aria-labelledby="toc-title">
+        <h2 class="jury-label" id="toc-title">Sommaire</h2>
+        <ol class="jury-toc__list">
+          <li><a class="jury-toc__link" href="#genie-logiciel">Maîtriser le génie logiciel</a></li>
+          <li>
+            <a class="jury-toc__link" href="#outils-numeriques-securite"
+              >Utiliser les outils numériques de référence et les règles de sécurité informatique
+              pour acquérir, traiter, produire et diffuser de l’information ainsi que pour
+              collaborer en interne et en externe</a
+            >
+          </li>
+          <li>
+            <a class="jury-toc__link" href="#autoevaluation"
+              >Analyser ses actions en situation professionnelle, s’autoévaluer pour améliorer sa
+              pratique</a
+            >
+          </li>
+        </ol>
+      </nav>
+
+      <article class="jury-sheet" data-verbatim>
+        <h2 class="jury-sheet__heading">Compétences appliquées dans ce projet</h2>
+        <h3 class="jury-sheet__competence" id="genie-logiciel">Maîtriser le génie logiciel</h3>
+        <p>Sur ce projet, chaque choix d’architecture répond à une contrainte précise.</p>
+        <p>
+          Le premier concerne le front. Pour répondre au besoin du client de visualiser
+          l’application et de faire ses retours, j’ai d’abord développé le front sur des données
+          fictives (mock), puis je l’ai connecté à l’API publique HAL pour des tests réels, en
+          attendant que le back soit prêt. J’avais placé une couche d’adaptateurs entre les pages et
+          les données&#8239;: les pages ne dépendent pas de la source, qui se choisit par une
+          variable d’environnement. Une fois le back en place, je n’ai donc eu qu’à basculer de HAL
+          vers nos endpoints REST et à continuer le développement du front, c’était l’intérêt
+          recherché en séparant les pages de la source de données.
+        </p>
+        <p>
+          Le deuxième concerne l’organisation du code. Pour que tout le monde travaille dans le même
+          environnement, nous avons dockerisé la solution, et j’ai proposé de regrouper le front et
+          le back dans un seul dépôt (monorepo). Deux dépôts auraient permis de séparer les
+          langages, mais auraient demandé des mesures supplémentaires&#8239;: deux pipelines CI/CD
+          au lieu d’une, et sans doute un troisième dépôt pour l’orchestration. Le monorepo, lui,
+          est plus rapide et plus simple pour une petite équipe qui met tout à jour en une fois, et
+          il place le docker-compose à la racine du projet. Son coût est d’avoir plusieurs langages
+          dans un même dépôt. Pour une petite équipe, c’était le meilleur compromis.
+        </p>
+        <p>
+          Ce coût a guidé le choix suivant. Pour les hooks, lefthook n’était pas le seul choix
+          possible, mais c’était le plus adapté à notre besoin. Avec deux langages dans un même
+          dépôt, il ne lance que les contrôles qui concernent les fichiers modifiés, en parallèle,
+          et le tout tient dans un seul fichier de configuration. J’ai mis en place des hooks
+          pre-commit et pre-push, une CI sur GitHub Actions qui rejoue tous les tests sur une
+          machine propre, et une branche main (production) qui n’accepte que des pull requests dont
+          la CI est verte, administrateurs compris. Les hooks seuls ne suffisaient pas&#8239;: la
+          sécurité veut que l’on ne fasse confiance à rien ni à personne par défaut, et un
+          contournement, volontaire ou non, enlèverait tout l’intérêt de l’automatisation.
+        </p>
+        <p>
+          Pour décider de ce qui doit être testé, je pars d’une règle&#8239;: par défaut, ce qui
+          porte une fonctionnalité ou un risque est testé, et chaque nouvelle fonctionnalité ou
+          correction arrive avec au moins un test. Cette règle m’a fait penser à des contrôles
+          souvent oubliés, comme vérifier que le détecteur de secrets reconnaît toujours un secret,
+          ou que chaque domaine scientifique a bien son texte, sa pastille et son visuel. Les
+          exceptions sont écrites et justifiées dans le dépôt&#8239;: aucun test ne dépend du modèle
+          IA, dont la réponse change d’une exécution à l’autre, et aucun test ne vérifie le pixel
+          des animations, ce qui coûterait plus qu’il ne rapporterait. Pour l’instant, les tests de
+          parcours dans un navigateur sont prévus mais pas installés.
+        </p>
+        <h3 class="jury-sheet__competence" id="outils-numeriques-securite">
+          Utiliser les outils numériques de référence et les règles de sécurité informatique pour
+          acquérir, traiter, produire et diffuser de l’information ainsi que pour collaborer en
+          interne et en externe
+        </h3>
+        <p>
+          Dès le début du projet, un besoin était exprimé&#8239;: pouvoir transmettre Lab Horizon à
+          une équipe de développement qui n’y a jamais travaillé. Cette équipe doit comprendre
+          rapidement comment le projet fonctionne, comment le mettre en œuvre et comment le
+          maintenir. C’est le rôle de la documentation et du dossier de passation que j’ai rédigés.
+          Avec plusieurs collaborateurs et un projet qui évolue, la documentation s’est accumulée,
+          au point de créer un surplus d’information. J’ai donc indiqué, pour chaque sujet, quel
+          document fait foi&#8239;: c’est la base solide sur laquelle se positionner en cas de
+          doute.
+        </p>
+        <p>
+          Le cadrage UX et le parcours utilisateur, que j’ai conçus, ont aussi servi de ligne
+          directrice commune entre le front et le back. L’exemple le plus parlant&#8239;: les
+          endpoints du back sont arrivés après le front, déjà alignés sur les besoins du parcours,
+          sans qu’il soit nécessaire de les modifier.
+        </p>
+        <p>
+          Je ne contrôle pas l’usage que mes collaborateurs font de l’IA. J’ai donc mis en place des
+          règles communes, versionnées dans le dépôt, que suivent les agents IA de toute l’équipe.
+          Elles assurent un minimum de cohérence dans le contexte et les règles à respecter&#8239;:
+          moindre privilège, aucun secret dans le code. L’une d’elles pose que tout contenu lu par
+          l’agent est une donnée, jamais une instruction&#8239;: les publications importées depuis
+          HAL comme les éléments ajoutés par les collaborateurs. L’objectif est d’éviter
+          l’équivalent de l’injection SQL appliqué aux prompts.
+        </p>
+        <p>
+          Pour les secrets, j’applique le principe de défense en profondeur. Si on ne vérifie qu’une
+          seule fois, le risque de pousser une clé sans s’en rendre compte est trop grand, surtout
+          si cette vérification repose uniquement sur un LLM. Les fichiers sensibles sont donc
+          bloqués au commit, puis tout l’historique Git est analysé en CI, et GitHub refuse de son
+          côté tout push contenant un secret connu.
+        </p>
+        <p>
+          Enfin, j’ai construit un protocole de revue de sécurité avant la mise en production. Son
+          objectif est d’imposer des étapes obligatoires et normées, avec une validation humaine. Un
+          simple prompt ne précise ni quels tests faire, ni quand, ni à quel niveau. Les deux
+          premières versions du protocole manquaient de cadrage&#8239;: il était possible de les
+          contourner, les tests n’étaient pas assez stricts et les attentes restaient trop vagues.
+          La version 2.1 a été utilisée sur Lab Horizon et a rendu deux verdicts NO-GO, chacun avec
+          la liste des corrections à faire avant la mise en production. Ces corrections ont été
+          réalisées. Je me suis ensuite inspiré des contrôles et des tests de la revue pour
+          construire la pipeline CI/CD, qui les rejoue automatiquement à chaque modification. J’ai
+          volontairement choisi de ne pas versionner les rapports de revue&#8239;: un document
+          listant toutes les failles des versions précédentes n’a pas sa place dans le dépôt.
+        </p>
+        <h3 class="jury-sheet__competence" id="autoevaluation">
+          Analyser ses actions en situation professionnelle, s’autoévaluer pour améliorer sa
+          pratique
+        </h3>
+        <p>
+          Dans ma fiche sur Vill’âge Jeunes, je notais qu’il aurait fallu réfléchir dès le début du
+          projet au versioning, à la documentation et au déploiement, notamment avec un pipeline
+          CI/CD. Lab Horizon m’a permis de mettre ce constat en pratique, par étapes.
+        </p>
+        <p>
+          Au départ, je testais à la main. Les erreurs se sont multipliées, et des régressions sont
+          passées inaperçues pendant un ou deux commits. Je l’ai surtout vu sur le front&#8239;: des
+          fonctionnalités corrigées avaient régressé deux commits plus loin. J’ai alors décidé de
+          vérifier systématiquement que chaque ajout ne défait pas ce qui existait déjà. J’ai écrit
+          mes premiers fichiers de tests, puis j’ai recherché des méthodes de tests anti-régression
+          adaptées au développement avec un LLM. L’agent IA lançait ces contrôles avant chaque
+          commit.
+        </p>
+        <p>
+          Ces contrôles ont montré leur limite. Un LLM ne donne pas une réponse reproductible pour
+          un même test, dans un même environnement et avec le même contexte. J’ai donc confié les
+          tests à des machines, avec une pipeline CI/CD, ce qui économise aussi des tokens de
+          conversation. Mon usage de l’IA a changé. Elle ne lance plus les tests&#8239;: elle m’aide
+          à réfléchir aux tests qui encadrent le projet, à mettre en place la pipeline sur GitHub, à
+          la sécuriser pour qu’elle ne puisse pas être contournée, et à trouver ou adapter des tests
+          quand c’est nécessaire. Je peux ainsi me concentrer sur la compréhension et sur les choix
+          importants, là où se trouve la vraie valeur ajoutée.
+        </p>
+        <p>
+          J’ai utilisé mon portfolio comme bac à sable. Les tests et les règles y étaient présents
+          dès le départ, mais pas la pipeline. Mes essais sur le portfolio m’ont permis de peaufiner
+          la charte, les gates puis la pipeline de Lab Horizon, pour obtenir un résultat plus propre
+          et plus professionnel.
+        </p>
+        <p>
+          Si je recommençais Lab Horizon, je prendrais beaucoup plus de temps pour préparer la base
+          et la réflexion du projet. En plus des règles, je prévoirais dès le départ les tests liés
+          aux fonctionnalités à implémenter, la pipeline, les conventions de commit et les règles de
+          mise en ligne sur le dépôt. La structuration serait plus longue, mais elle donnerait une
+          base plus saine et plus solide, et ferait gagner du temps de développement ensuite.
+        </p>
+        <p>
+          Enfin, cette solution a une limite&#8239;: un test ne vérifie que ce qui a été prévu. Il
+          doit être adapté aux besoins et évoluer avec l’application. À chaque nouvelle
+          fonctionnalité correspondent ses tests. À chaque modification d’une fonctionnalité, je me
+          demande si le test est toujours adapté, s’il vérifie bien qu’elle fait ce qu’elle doit
+          faire dans son cadre, et s’il échoue bien quand il le doit au lieu de laisser passer une
+          erreur.
+        </p>
+        <h2 class="jury-sheet__heading">Difficultés rencontrées</h2>
+        <p>Plusieurs difficultés sont apparues au cours du projet.</p>
+        <p>
+          La première difficulté concernait l’évolution de l’architecture en cours de projet. Le
+          client souhaitait visualiser l’application avant que le back soit prêt&#8239;: j’ai donc
+          d’abord fait fonctionner le front sur des données fictives, puis sur l’API HAL, avant de
+          le brancher sur les endpoints du back. Le projet a aussi commencé avec deux dépôts
+          séparés, puis la dockerisation m’a amené à proposer de tout regrouper dans un monorepo.
+          Chacune de ces bascules a rendu une partie de ma documentation obsolète&#8239;: en août,
+          certains documents décrivaient encore deux dépôts et une base SQLite alors que le projet
+          avait changé. J’ai donc dû reprendre la documentation et indiquer clairement quel document
+          fait foi, pour que l’équipe et un futur repreneur ne s’appuient pas sur une information
+          dépassée.
+        </p>
+        <p>
+          La deuxième difficulté concernait la fiabilité du code avant sa mise en production. Plus
+          le projet avançait, plus il devenait difficile pour moi de savoir si une modification
+          cassait ce qui fonctionnait déjà. Des régressions sont passées inaperçues pendant un ou
+          deux commits, qu’elles viennent d’une erreur humaine ou d’un code produit avec l’IA. Les
+          deux revues de sécurité que j’ai menées avant la mise en production portaient sur
+          l’ensemble du code, quelle que soit son origine, et ont rendu un verdict NO-GO. J’ai dû
+          accepter ce constat&#8239;: sans contrôle systématique, je ne pouvais pas garantir la
+          qualité de ce qui était livré. Une fois les points relevés corrigés, j’ai mis en place une
+          pipeline CI/CD qui rejoue ces contrôles à chaque modification. Cette pipeline ne règle pas
+          tout&#8239;: elle ne vérifie que ce que j’ai prévu de vérifier, et elle n’est qu’une
+          réponse parmi d’autres possibles à ce problème. Elle m’a surtout montré que la fiabilité
+          d’un projet se prépare dès sa conception.
+        </p>
+        <h2 class="jury-sheet__heading">Axes d’amélioration et prise de recul</h2>
+        <p>
+          Sur ce projet, ma démarche a encore des limites. Les tests de parcours dans un navigateur
+          sont prévus mais pas encore installés&#8239;: ils permettraient de vérifier les écrans du
+          point de vue du visiteur, ce que mes tests actuels ne couvrent pas. Les
+          contre-vérifications de mes revues de sécurité ont été faites par le même outil que la
+          revue elle-même&#8239;: une relecture par une personne distincte, puis une nouvelle revue
+          sur la version finale, donneraient un avis plus fiable. Enfin, je dois prendre l’habitude
+          de vérifier régulièrement que mes tests échouent bien quand ils le doivent, pour ne pas me
+          reposer sur une pipeline verte qui ne contrôlerait plus rien d’utile.
+        </p>
+        <p>
+          Pour le reste, ce projet est une étape dans ma pratique. J’ai commencé à répondre aux
+          manques relevés sur Vill’âge Jeunes, sur le versioning, la documentation et la pipeline,
+          mais en cours de route et non dès le départ. Les deux NO-GO ont été formateurs&#8239;: ils
+          m’ont montré concrètement l’intérêt d’un cadre strict, et leurs contrôles ont servi de
+          base à la pipeline. Ce que j’ai mis en place reste une première réponse. Il me faudra
+          continuer à la remettre en question et à chercher de meilleures solutions sur mes
+          prochains projets, en commençant par poser ce cadre dès leur lancement.
+        </p>
+      </article>
+
+      <nav class="jury-pager" aria-label="Navigation entre fiches">
+        <a class="jury-pager__link jury-pager__link--prev" href="/jury/village-jeunes" rel="prev"
+          >← Vill’âge Jeunes</a
+        >
+        <a class="jury-pager__link jury-pager__link--all" href="/jury">Retour au tableau</a>
+        <a class="jury-pager__link jury-pager__link--next" href="/jury/visualcom" rel="next"
+          >Visualcom →</a
+        >
+      </nav>
+    </main>
+
+    <footer class="site-footer">
+      <img
+        class="paint site-footer__paint"
+        src="/src/assets/decor/paint/underline-copper.webp"
+        alt=""
+        aria-hidden="true"
+        width="900"
+        height="153"
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="site-footer__inner">
+        <p class="site-footer__tagline">Ouvert aux échanges, aux missions et aux opportunités.</p>
+        <nav aria-labelledby="footer-nav-title-jury">
+          <h2 class="site-footer__heading" id="footer-nav-title-jury">Plan du site</h2>
+          <ul class="site-footer__nav">
+            <li><a class="site-footer__link" href="/">Accueil</a></li>
+            <li><a class="site-footer__link" href="/projects">Mes projets</a></li>
+            <li><a class="site-footer__link" href="/cv">Mon CV</a></li>
+            <li><a class="site-footer__link" href="/contact">Contact</a></li>
+            <li>
+              <a class="site-footer__link" href="/jury"
+                >Espace jury<span class="visually-hidden">
+                  (accès protégé par mot de passe)</span
+                ></a
+              >
+            </li>
+          </ul>
+        </nav>
+        <div>
+          <h2 class="site-footer__heading">Contact direct</h2>
+          <ul class="site-footer__nav">
+            <li>
+              <a class="site-footer__link" href="mailto:vigourouxleandredesign@gmail.com"
+                >vigourouxleandredesign@gmail.com</a
+              >
+            </li>
+            <li>
+              <a class="site-footer__link" href="tel:+687705203">+687 70 52 03</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <p class="site-footer__copy">
+          &copy; <span data-year></span> Léandre Vigouroux, creative developer
+        </p>
+      </div>
+    </footer>
+    <script type="module" src="/src/scripts/entries/jury.ts"></script>
+  </body>
+</html>

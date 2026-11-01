@@ -11,7 +11,7 @@ const routes = [
   '/pages/projects/magicallab.html',
   '/pages/contact.html',
   '/pages/jury/index.html',
-  '/pages/jury/developpement-front.html',
+  '/pages/jury/lab-horizon.html',
   '/pages/cv.html',
 ];
 

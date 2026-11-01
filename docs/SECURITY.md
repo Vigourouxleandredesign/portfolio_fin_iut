@@ -3,7 +3,7 @@
 **Version:** 2.1 (2026-10-21 — single Netlify site, jury area behind server-side Basic-Auth)  
 **Status:** Non-negotiable for all contributors and AI agents.
 
-**Principle:** one **static, backend-less** Netlify site. Everything is public except the **jury area** (`/jury/*`: competence pages + reflective PDFs), locked **server-side** by Netlify Basic-Auth. The password exists only in a Netlify environment variable — never in Git, HTML or JS.
+**Principle:** one **static, backend-less** Netlify site. Everything is public except the **jury area** (`/jury/*`: one page per reflective sheet + the PDFs), locked **server-side** by Netlify Basic-Auth. The password exists only in a Netlify environment variable — never in Git, HTML or JS.
 
 Related: [ARCHITECTURE.md](./ARCHITECTURE.md) · [AGENTS.md](../AGENTS.md) · [TESTING.md](./TESTING.md)
 
@@ -17,7 +17,7 @@ Supabase is **out** and its code was **deleted** on 2026-10-21. Do not recreate 
 | Zone | URL | Protection | Contents |
 |------|-----|------------|----------|
 | **Public portfolio** | `/`, `/projects/*`, `/cv`, `/contact` | None (open) | Home, case studies, CV, contact. |
-| **Jury area** | `/jury`, `/jury/*`, `/pages/jury/*` | **Basic-Auth** (Netlify **Edge Function**, server-side) | One page per competence (`pages/jury/*.html`) + PDFs (`public/jury/fiches/<slug>/*.pdf`). |
+| **Jury area** | `/jury`, `/jury/*`, `/pages/jury/*` | **Basic-Auth** (Netlify **Edge Function**, server-side) | A matrix (`pages/jury/index.html`) and one page per reflective sheet (`pages/jury/<slug>.html`) + PDFs (`public/jury/fiches/<slug>/*.pdf`). |
 
 How the lock works:
 
@@ -121,7 +121,7 @@ Major upgrades are made only when `npm run ci` stays green without code changes;
 
 ## 7. Jury area (password-protected)
 
-- Pages `pages/jury/*.html` (built to `/pages/jury/`, pretty routes `/jury`, `/jury/<competence>` in `public/_redirects`); PDFs in `public/jury/fiches/<slug>/`.
+- Pages `pages/jury/*.html` (built to `/pages/jury/`, pretty routes `/jury`, `/jury/<slug>` in `public/_redirects`); PDFs in `public/jury/fiches/<slug>/`.
 - Lock = §0 (Edge Function). All path families are protected: `/jury`, `/jury/*`, `/pages/jury`, `/pages/jury/*`.
 - Extra headers on those paths: `X-Robots-Tag: noindex, nofollow`, `Cache-Control: private, no-store`. `robots.txt` adds `Disallow: /jury`.
 - Jury pages load only shared CSS/JS (no jury text in bundles) and no third-party resource.

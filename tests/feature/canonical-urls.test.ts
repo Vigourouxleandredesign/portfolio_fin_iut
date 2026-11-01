@@ -82,9 +82,7 @@ describe('local server serves the same canonical URLs', () => {
     expect(resolveCleanUrl('/projects/')).toBe('/pages/projects.html');
     expect(resolveCleanUrl('/projects/lab-horizon')).toBe('/pages/projects/lab-horizon.html');
     expect(resolveCleanUrl('/cv')).toBe('/pages/cv.html');
-    expect(resolveCleanUrl('/jury/developpement-front')).toBe(
-      '/pages/jury/developpement-front.html',
-    );
+    expect(resolveCleanUrl('/jury/lab-horizon')).toBe('/pages/jury/lab-horizon.html');
   });
 
   it('ignores assets, unknown pages and legacy paths', () => {
