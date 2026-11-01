@@ -2,7 +2,6 @@
   @file Jury — competence IV
   @description Protected area (Netlify Basic-Auth, docs/SECURITY.md §0). Text lives in HTML only.
   @route /jury/strategie-analyse
-  @see docs/content/jury-content.md
 -->
 <!doctype html>
 <html lang="fr">
@@ -62,6 +61,35 @@
           </li>
           <li><a class="site-header__link" href="/cv">Mon CV</a></li>
           <li><a class="site-header__link" href="/contact">Contact</a></li>
+          <li>
+            <a class="site-header__link site-header__link--jury" href="/jury"
+              ><svg
+                class="site-header__icon"
+                viewBox="0 0 24 24"
+                width="14"
+                height="14"
+                focusable="false"
+                aria-hidden="true"
+              >
+                <rect
+                  x="5"
+                  y="11"
+                  width="14"
+                  height="10"
+                  rx="2"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path
+                  d="M8 11V7a4 4 0 0 1 8 0v4"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                /></svg
+              >Espace jury<span class="visually-hidden"> (accès protégé par mot de passe)</span></a
+            >
+          </li>
         </ul>
       </nav>
     </header>
@@ -106,6 +134,8 @@
           J’analyse avant de construire et je justifie mes choix&#8239;: pourquoi un thème sur
           mesure, pourquoi écarter un plugin, pourquoi documenter dès le début. Mes fiches se
           terminent toutes par une prise de recul&#8239;: ce que je referais autrement, et pourquoi.
+          Sur Lab Horizon, j’analyse comment ma façon de vérifier le code a évolué, et ce qui reste
+          à améliorer.
         </p>
       </section>
 

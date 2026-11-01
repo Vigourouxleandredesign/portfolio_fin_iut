@@ -5,7 +5,7 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
-/** Catalogue order I → IX (docs/content/projects/_TEMPLATE.md). */
+/** Catalogue order I → IX. */
 const CATALOGUE_TITLES = [
   'Lab Horizon',
   'MagicalLab',
@@ -106,7 +106,7 @@ describe('C2 — projects listing card links', () => {
     const titles = [...html.matchAll(/class="project-card__title">([^<]+)</g)].map((m) => m[1]);
     expect(titles).toEqual(CATALOGUE_TITLES);
     expect(html).toContain('La recherche calédonienne expliquée au grand public');
-    expect(html).toContain('Finaliste 2025');
+    expect(html).toContain('2e de la catégorie Pacifique, 2025');
     expect(html).not.toContain('Refonte site Visualcom');
     expect(html).not.toContain('(DDEC)');
   });

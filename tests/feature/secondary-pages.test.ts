@@ -54,8 +54,8 @@ describe('Spring Boot library page', () => {
     expect(html).not.toMatch(/localhost|127\.0\.0\.1/);
   });
 
-  it('is text-only with a TODO for the local captures', () => {
-    expect(html).toContain('<!-- TODO L6');
+  it('is text-only, with no work note left in the published source', () => {
+    expect(html).not.toContain('TODO');
     expect(html).toContain('Des droits par rôle');
   });
 });
@@ -83,7 +83,7 @@ describe('Pacific Dataviz page', () => {
     expect(html).toContain('https://leandredatavizchallenge.figma.site/');
     expect(html).toContain('Ouvrir la réalisation');
     const headers = readFileSync(resolve(root, 'public/_headers'), 'utf8');
-    // Only the exact Figma site is framed — no wildcard on third-party subdomains (REDTEAM P2-7).
+    // Only the exact Figma site is framed — no wildcard on third-party subdomains (red team audit of 25/10, P2-7).
     expect(headers).toMatch(/frame-src [^;]*https:\/\/leandredatavizchallenge\.figma\.site(?:;| )/);
     expect(headers).not.toContain('*.figma.site');
   });

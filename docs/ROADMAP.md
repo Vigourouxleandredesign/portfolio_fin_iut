@@ -1,7 +1,7 @@
 # Roadmap — portfolio de fin d’année
 
-**Mise à jour :** 2026-10-30 · **Mise en production :** samedi **31/10/2026** · **Remise au jury :** dimanche **01/11** (date décalée) · **Chef de projet :** Claude · **PO :** Léandre
-**Exécution :** lots détaillés dans [`docs/work-packages/`](work-packages/README.md) (planning, dépendances, prompts, critères d’acceptation).
+**Statut :** remis au jury le 01/11/2026 · **Mise en production :** 31/10-01/11/2026 · **Chef de projet :** Claude · **PO :** Léandre
+**Exécution :** le projet a été découpé en lots confiés à des assistants IA, chacun validé par la chaîne de contrôle (hook pre-commit et GitHub Actions). Les lots et les rapports de red team (25/10 et 01/11) sont conservés hors du dépôt.
 
 ---
 
@@ -9,13 +9,12 @@
 
 | Chantier | État |
 |---|---|
-| Stack, CI/CD, sécurité | ✅ CI complète (audit bloquant, tests, E2E) + Dependabot + run quotidien · jury protégé par **Edge Function** (401 vérifié en prod le 26/10, contournements testés) |
-| DA v3, briefs, fiches réflexives | ✅ · fiche Lab Horizon rédigée (28-30/10), PDF dans `public/jury/fiches/lab-horizon/` |
-| Intégration L1 → L14 | ✅ fusionné (L13, L14 le 26/10 au soir) |
-| L16 jury Lab Horizon + mentions | ⏳ à lancer en premier (30/10) |
-| L15 gabarit projet v2 | ⏳ après L16 : Visualcom, Vill’âge Jeunes, Lab Horizon, Micro-monde prioritaires ; pages secondaires si le temps le permet |
-| L11 production | ⏳ samedi 31/10 |
-| Textes de Léandre | ⏳ « Ce que j’en retiens » (blocs masqués sans texte, non bloquant) |
+| Stack, CI/CD, sécurité | ✅ CI complète (audit bloquant, tests, E2E) + Dependabot + run quotidien · jury protégé par **Edge Function** (401 vérifié en prod, contournements testés le 26/10 et le 01/11) |
+| DA v3, fiches réflexives | ✅ · fiche Lab Horizon rédigée (28-30/10), PDF dans `public/jury/fiches/lab-horizon/` |
+| Intégration L1 → L17 | ✅ fusionné et en production (L16 jury Lab Horizon, L15 gabarit v2 sur les 4 pages prioritaires, L17 textes finaux et accès au jury sur mobile) |
+| Pages projet secondaires (MagicalLab, HyperLoop, Spring Boot, Borne) | Ancien gabarit conservé, migration v2 après la soutenance |
+| Performance mobile de l’accueil | Lighthouse 63, alléger le buste 3D et la physique après la soutenance |
+| Textes de Léandre | « Ce que j’en retiens » (blocs masqués sans texte, non bloquant) |
 
 ## Planning
 
@@ -23,9 +22,7 @@
 |---|---|
 | 24-26/10 | ✅ L1 → L14 (intégration, préprod, red team, captures AR, textes sans tics d’IA, logos, cartels une ligne, navigation gouache, pas de pinceau au tactile) |
 | 27-30/10 | ✅ Fiche réflexive et fiche projet Lab Horizon (compétences : génie logiciel ; outils numériques et sécurité pour collaborer ; s’autoévaluer) |
-| **30/10** | **L16** (2 h) puis **L15** (soirée et samedi matin) |
-| **31/10** | **L11** : vérifications, test sur téléphone, relecture des pages v2, verrouillage du déploiement Netlify |
-| **01/11** | Remise au jury : lien `/jury` par e-mail, mot de passe par un autre canal |
+| 01/11 | ✅ L16, L15, L17 ; red team de la production ; remise au jury (lien `/jury` par e-mail, mot de passe par un autre canal) |
 
 ## Décisions (journal)
 
@@ -41,14 +38,16 @@
 | 28/10 | Rapports de revue de sécurité Lab Horizon : jamais publiés (diffusion limitée), seul le processus est cité (deux NO-GO, corrections, pipeline) ; aucun travail de coéquipier mis en porte-à-faux, coéquipiers cités par leur rôle |
 | 30/10 | Remise décalée au dimanche 01/11 ; lots passés l’un après l’autre (un seul dossier de travail) ; Micro-monde : décisions par défaut (Nuit de la Science retirée, coéquipiers sans nom) ; médaille Pacific Dataviz retirée sauf confirmation d’une 2e place |
 | 30/10 | Dossier de conception MicroMonde corrigé (tics d’IA, « MMI » → LP MIAW, brouillons, incohérences, mise en page violette) : fichier livré à Léandre, hors portfolio |
+| 01/11 | Pacific Dataviz : 2e de la catégorie Pacifique et 6e de la catégorie Open, médaille rétablie ; Micro-monde : textes revalidés par Léandre (sans « je » écrit à sa place) ; « Espace jury » ajouté à la navigation principale (introuvable sur téléphone) |
+| 01/11 | Dépôt rendu public (décision de Léandre, avec l’accord de l’évaluateur) : la protection du jury porte sur le site ; rapports de red team et lots de travail conservés hors du dépôt |
 
-## Questions ouvertes (non bloquantes, une valeur par défaut existe)
+## Questions ouvertes
 
-| # | Question | Défaut si pas de réponse |
+| # | Question | État |
 |---|---|---|
 | Q12 | Micro-monde présenté à la Nuit de la Science 2026 ? | Mention retirée |
 | Q13 | Nommer les coéquipiers de Micro-monde ? | Rôles seulement |
-| Q14 | La médaille « 2 » de Pacific Dataviz = 2e place ? | Image retirée, « finaliste » conservé |
+| Q14 | La médaille « 2 » de Pacific Dataviz = 2e place ? | ✅ Confirmé (01/11) |
 | Q7 | « Ce que j’en retiens » des projets | Blocs masqués |
 
 ## Risques
@@ -58,5 +57,5 @@
 | L15 trop long | Couper les pages secondaires ; jamais L16 ni L11 |
 | Word réenregistre une ancienne version d’une fiche | Fermer le document avant toute modification par Claude |
 | Faille publiée sur une dépendance | Audit bloquant + Dependabot ; `fix(deps)` |
-| Exécutant qui invente du texte | Textes ligne par ligne (`*-v2.md`), règles d’écriture, test garde-fou, rapport obligatoire |
+| Exécutant qui invente du texte | Textes validés ligne par ligne, règles d’écriture, test garde-fou, rapport obligatoire |
 | Fuite des fiches | Edge Function sur `/jury*`, test E2E 401 sur la prod, aucun lien public vers un PDF |

@@ -1,5 +1,5 @@
 /**
- * @file Feature — one address per page (L10, REDTEAM P2-2)
+ * @file Feature — one address per page (L10, red team audit of 25/10, P2-2)
  */
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join, resolve } from 'node:path';

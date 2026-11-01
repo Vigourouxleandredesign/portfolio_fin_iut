@@ -5,7 +5,7 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
-/** Catalogue order (docs/content/projects/_TEMPLATE.md). */
+/** Catalogue order. */
 const PROJECT_SLUGS = [
   'lab-horizon',
   'magicallab',
@@ -143,7 +143,7 @@ describe('Lab Horizon page', () => {
     expect(html).not.toMatch(/labhorizon\.nc/);
     expect(html).not.toContain('[À CONFIRMER]');
     expect(html).not.toContain('class="project-takeaway');
-    expect(html).toContain('<!-- TODO');
+    expect(html).not.toContain('TODO'); // L17: no work note left in the published source
   });
 });
 
@@ -174,12 +174,12 @@ describe('Micro-monde page — AR captures (L9)', () => {
 
 describe('« Ce que j’en retiens » written by the assistant stays hidden (relecture MM-03, VJ-04)', () => {
   it.each(['micromonde', 'village-jeunes'])(
-    '%s shows no takeaway block, only the TODO comment',
+    '%s shows no takeaway block and no work note in the source',
     (slug) => {
       const html = read(slug);
       expect(html).not.toContain('class="project-takeaway');
       expect(html).not.toContain('Ce que j’en retiens</span');
-      expect(html).toContain('<!-- TODO : texte de Léandre -->');
+      expect(html).not.toContain('TODO');
     },
   );
 });

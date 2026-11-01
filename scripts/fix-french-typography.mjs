@@ -1,5 +1,5 @@
 /**
- * @file French typography fixer for the HTML pages (L10, docs/REDTEAM-2026-10-25.md P3-1)
+ * @file French typography fixer for the HTML pages (L10, red team audit of 25/10, P3-1)
  * @description Edits **text nodes only** of `pages/**\/*.html` (never attributes, `<head>`, `<script>`,
  *   `<style>`, `<code>`, `<pre>`, `<textarea>`, URLs or comments):
  *   - narrow no-break space (U+202F, written `&#8239;`) before `; : ! ?` and inside « guillemets » ;

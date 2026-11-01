@@ -1,5 +1,5 @@
 /**
- * @file Unit — French typography fixer + guard on the published pages (L10, REDTEAM P3-1)
+ * @file Unit — French typography fixer + guard on the published pages (L10, red team audit of 25/10, P3-1)
  */
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join, resolve } from 'node:path';

@@ -1,5 +1,5 @@
 /**
- * @file Feature — writing guards on the visible text of the pages (L12 part E, docs/content/relecture-textes.md)
+ * @file Feature — writing guards on the visible text of the pages (L12 part E, proofreading of 26/10)
  * @description Visible text = text nodes, `<title>`, `<meta content>`, `alt`, `aria-label`. Quotes of the
  *   jury sheets (`<blockquote>`, Léandre's own words) are excluded. Comments, scripts, styles are not text.
  */

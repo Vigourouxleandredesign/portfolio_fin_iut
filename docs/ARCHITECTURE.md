@@ -16,7 +16,7 @@ Before any change, read this document and `docs/SECURITY.md`. If a rule must cha
 4. **Performance** — Heavy JS (Three.js, hero canvas) only on pages/sections that need it; prefer `import()`.
 5. **Single source of truth** — Colors → `variables.css` only; project data → `src/data/` only.
 6. **English technical naming** — File names, folders, `data-*`, CSS blocks, TS symbols, and code comments in **English**. UI copy in HTML may be **French**.
-7. **Security first** — No secrets in front or Git; the only private zone is `/jury` (reflective sheets), locked server-side by Netlify Basic-Auth injected at build (see `docs/SECURITY.md` §0).
+7. **Security first** — No secrets in front or Git; the only private zone is `/jury` (reflective sheets), locked server-side by a Netlify Edge Function (see `docs/SECURITY.md` §0).
 8. **Decisions already taken win** — e.g. the 3D fractured-bust hero on home (`features/three-scene/`) is source of truth; do not replace with legacy patterns. The previous canvas-brush reveal hero was removed on 2026-10-21 (git history keeps it).
 9. **DA is frozen** — `docs/DA.md` (v3 « Le Sanctuaire nocturne ») is the visual source of truth; recipes in `docs/skills/portfolio-da/SKILL.md`. Old references (legacy portfolio, moodboards) now live outside the repo in `../Sources/` and never override it.
 
@@ -41,7 +41,7 @@ Before any change, read this document and `docs/SECURITY.md`. If a rule must cha
 | Contact | `pages/contact.html` | Netlify Forms |
 | Mon univers | Section `#univers` on home (after projects) | Not a separate route |
 
-Reflective sheets for the jury live under **`/jury`** (pages `pages/jury/*.html`, PDFs `public/jury/fiches/`), password-protected by Netlify (`docs/content/teacher-site.md`). Not in the public nav; one « Espace jury » link in footer + CV.
+Reflective sheets for the jury live under **`/jury`** (pages `pages/jury/*.html`, PDFs `public/jury/fiches/`), password-protected server-side by a Netlify Edge Function (`docs/SECURITY.md` §0). Reached from the « Espace jury » entry of the main navigation (lock icon), the footer, the CV and a « Lire mes fiches réflexives » card on the projects that have a sheet; never a direct link to a PDF.
 
 ---
 
@@ -74,7 +74,6 @@ portfolio/
 │   │   └── pages/               # Page-specific overrides only
 │   ├── scripts/
 │   │   ├── entries/             # One TS entry per HTML page
-│   │   ├── modules/             # Pure utilities (optional DOM)
 │   │   ├── components/          # DOM logic tied to a UI block
 │   │   └── features/            # three-scene, home-brush
 │   ├── assets/                  # Images imported via Vite — projects/<slug>/, decor/paint/, hero/
@@ -209,8 +208,7 @@ Example — cursor brush (home, whole page):
 - Images in `src/assets/` when processed by Vite; `public/` only for fixed paths (favicon, `robots.txt`, `_headers`, default `og` image).
 - **Private** media (reflective PDFs) → `public/jury/fiches/` only, behind Basic-Auth; jury text only in `pages/jury/*.html`, never in TS/JSON bundles (`docs/SECURITY.md` §0).
 - **Public** portfolio media → `src/assets/` or Vite imports; keep lightweight for the static site
-- **Project page briefs (authoring):** `docs/content/projects/<slug>.md` — one brief per case-study page (DA + copy intent). Not served as public site content.
-- **Ready-to-use project visuals:** `src/assets/projects/<slug>/` (WebP, `shots/` = screenshots from `scripts/capture-project-shots.mjs`) — inventory in `docs/content/assets-kit.md`.
+- **Ready-to-use project visuals:** `src/assets/projects/<slug>/` (WebP, `shots/` = screenshots from `scripts/capture-project-shots.mjs`).
 - **Heavy sources (outside this repo):** `../Sources/` (PSD, .blend, raw GLB, references) and `../Liste des projets/` (project code, DOCX). **Never** copy whole project builds into the portfolio — curate only display-ready images/copy into `src/assets/projects/<slug>/`. See `docs/ROADMAP.md` catalogue + Netlify demos.
 - **Device mockups / stage CTAs (case studies):**
   - Flat Mac marble (`mac-marble.png`) → live `<iframe>` or shot mode when a desktop site needs a device frame.
@@ -225,9 +223,9 @@ Example — cursor brush (home, whole page):
 | Zone | Source | Access |
 |------|--------|--------|
 | Public pages | `pages/*.html`, `pages/projects/*.html` | Open |
-| Jury area | `pages/jury/*.html` + `public/jury/fiches/**.pdf` | Netlify Basic-Auth on `/jury`, `/jury/*`, `/pages/jury/*` — injected into `dist/_headers` by `scripts/inject-jury-auth.mjs` from env `JURY_BASIC_AUTH` (`netlify.toml`) |
+| Jury area | `pages/jury/*.html` + `public/jury/fiches/**.pdf` | Basic-Auth checked by the Edge Function `netlify/edge-functions/jury-auth.ts` (env `JURY_BASIC_AUTH`) on `/jury`, `/jury/*`, `/pages/jury/*`; `scripts/inject-jury-auth.mjs` fails the build without a credential |
 
-GitHub repo must stay **private** while PDFs are committed. There is no app auth in this repo.
+The repository is public since 01/11/2026 (decision of Léandre, with the evaluator’s agreement): the PDFs are readable on GitHub, the password protects the site (`docs/SECURITY.md` §0). There is no app auth in this repo.
 
 ---
 

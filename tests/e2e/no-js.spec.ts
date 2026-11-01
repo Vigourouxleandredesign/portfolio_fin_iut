@@ -1,5 +1,5 @@
 /**
- * @file E2E — the home page stays complete and readable without JavaScript (L10, REDTEAM P2-1)
+ * @file E2E — the home page stays complete and readable without JavaScript (L10, red team audit of 25/10, P2-1)
  */
 import { expect, test } from '@playwright/test';
 

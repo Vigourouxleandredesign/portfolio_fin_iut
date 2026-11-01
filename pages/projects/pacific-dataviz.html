@@ -2,7 +2,6 @@
   @file Project — Pacific Dataviz Challenge
   @description Case study N° VIII (finaliste 2025 : 2e catégorie Pacifique, 6e Open ; thème Blue Pacific 2050). Figma site embed with open-in-new-tab fallback.
   @route /pages/projects/pacific-dataviz.html
-  @see docs/content/projects/pacific-dataviz.md
 -->
 <!doctype html>
 <html lang="fr">
@@ -75,6 +74,35 @@
           </li>
           <li><a class="site-header__link" href="/cv">Mon CV</a></li>
           <li><a class="site-header__link" href="/contact">Contact</a></li>
+          <li>
+            <a class="site-header__link site-header__link--jury" href="/jury"
+              ><svg
+                class="site-header__icon"
+                viewBox="0 0 24 24"
+                width="14"
+                height="14"
+                focusable="false"
+                aria-hidden="true"
+              >
+                <rect
+                  x="5"
+                  y="11"
+                  width="14"
+                  height="10"
+                  rx="2"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path
+                  d="M8 11V7a4 4 0 0 1 8 0v4"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                /></svg
+              >Espace jury<span class="visually-hidden"> (accès protégé par mot de passe)</span></a
+            >
+          </li>
         </ul>
       </nav>
     </header>
@@ -332,8 +360,6 @@
           </li>
         </ul>
       </section>
-
-      <!-- TODO: « Ce que j’en retiens » — texte de Léandre attendu ; .project-takeaway non affiché sans texte. -->
 
       <nav class="project-nav" aria-label="Navigation entre projets">
         <a
