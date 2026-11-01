@@ -11,7 +11,7 @@
 |---|---|
 | Stack, CI/CD, sécurité | ✅ CI complète (audit bloquant, tests, E2E) + Dependabot + run quotidien · jury protégé par **Edge Function** (401 vérifié en prod, contournements testés le 26/10 et le 01/11) |
 | DA v3, fiches réflexives | ✅ · fiche Lab Horizon rédigée (28-30/10), PDF dans `public/jury/fiches/lab-horizon/` |
-| Intégration L1 → L17 | ✅ fusionné et en production (L16 jury Lab Horizon, L15 gabarit v2 sur les 4 pages prioritaires, L17 textes finaux et accès au jury sur mobile) |
+| Intégration L1 → L18 | ✅ fusionné et en production (L16 jury Lab Horizon, L15 gabarit v2 sur les 4 pages prioritaires, L17 textes finaux et accès au jury sur mobile, L18 espace jury par fiche réflexive) |
 | Pages projet secondaires (MagicalLab, HyperLoop, Spring Boot, Borne) | Ancien gabarit conservé, migration v2 après la soutenance |
 | Performance mobile de l’accueil | Lighthouse 63, alléger le buste 3D et la physique après la soutenance |
 | Textes de Léandre | « Ce que j’en retiens » (blocs masqués sans texte, non bloquant) |
@@ -22,7 +22,7 @@
 |---|---|
 | 24-26/10 | ✅ L1 → L14 (intégration, préprod, red team, captures AR, textes sans tics d’IA, logos, cartels une ligne, navigation gouache, pas de pinceau au tactile) |
 | 27-30/10 | ✅ Fiche réflexive et fiche projet Lab Horizon (compétences : génie logiciel ; outils numériques et sécurité pour collaborer ; s’autoévaluer) |
-| 01/11 | ✅ L16, L15, L17 ; red team de la production ; remise au jury (lien `/jury` par e-mail, mot de passe par un autre canal) |
+| 01/11 | ✅ L16, L15, L17, L18 ; red team de la production ; remise au jury (lien `/jury` par e-mail, mot de passe par un autre canal) |
 
 ## Décisions (journal)
 
@@ -39,6 +39,7 @@
 | 30/10 | Remise décalée au dimanche 01/11 ; lots passés l’un après l’autre (un seul dossier de travail) ; Micro-monde : décisions par défaut (Nuit de la Science retirée, coéquipiers sans nom) ; médaille Pacific Dataviz retirée sauf confirmation d’une 2e place |
 | 30/10 | Dossier de conception MicroMonde corrigé (tics d’IA, « MMI » → LP MIAW, brouillons, incohérences, mise en page violette) : fichier livré à Léandre, hors portfolio |
 | 01/11 | Pacific Dataviz : 2e de la catégorie Pacifique et 6e de la catégorie Open, médaille rétablie ; Micro-monde : textes revalidés par Léandre (sans « je » écrit à sa place) ; « Espace jury » ajouté à la navigation principale (introuvable sur téléphone) |
+| 01/11 | Espace jury réorganisé par fiche réflexive (L18) : le tableau croise les compétences mises en avant dans chaque fiche, un point ouvre le passage de la fiche, le nom d’un projet ouvre sa page ; les fiches se lisent en entier sur le site ; Quintessence retiré (pas de fiche) |
 | 01/11 | Dépôt rendu public (décision de Léandre, avec l’accord de l’évaluateur) : la protection du jury porte sur le site ; rapports de red team et lots de travail conservés hors du dépôt |
 
 ## Questions ouvertes

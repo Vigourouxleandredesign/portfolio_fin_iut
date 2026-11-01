@@ -25,7 +25,7 @@ test.describe('jury access on mobile (390 px)', () => {
 
     test(`${path}: « Aller plus loin » has a card to the jury area`, async ({ page }) => {
       await page.goto(path);
-      const card = page.locator('.project-further__card[href="/jury"]');
+      const card = page.locator('.project-further__card[href^="/jury/"]');
       await card.scrollIntoViewIfNeeded();
       await expect(card).toBeVisible();
       await expect(card).toContainText('Lire mes fiches réflexives');

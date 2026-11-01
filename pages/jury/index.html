@@ -1,6 +1,6 @@
 <!--
-  @file Jury — matrix (index)
-  @description Protected area (Netlify Basic-Auth, docs/SECURITY.md §0). Text lives in HTML only.
+  @file Jury — matrix of the reflective sheets (index)
+  @description Protected area (Netlify Edge Function, docs/SECURITY.md §0). Text lives in HTML only.
   @route /jury
 -->
 <!doctype html>
@@ -98,17 +98,19 @@
       <header class="jury-header">
         <p class="jury-banner">Espace jury · LP MIAW · IUT de Nouvelle-Calédonie · 2026</p>
         <p><a class="jury-back" href="/">← Retour au portfolio</a></p>
-        <h1 class="jury-title">Mes compétences et leurs preuves</h1>
+        <h1 class="jury-title">Mes fiches réflexives</h1>
         <p class="jury-intro">
-          Cet espace regroupe mes fiches réflexives, classées par compétence du référentiel de la LP
-          Métiers de l’informatique&#8239;: applications web. Chaque compétence renvoie aux projets
-          qui la prouvent et à la fiche PDF correspondante. Les projets restent consultables sur le
-          portfolio public.
+          Cet espace regroupe mes trois fiches réflexives. Le tableau croise les compétences du
+          référentiel de la licence professionnelle Métiers de l’informatique&#8239;: applications
+          web avec les projets qui les mettent en pratique.
         </p>
         <ol class="jury-steps">
-          <li>Choisissez une compétence dans le tableau.</li>
-          <li>Lisez l’argumentaire puis ouvrez la fiche réflexive (PDF).</li>
-          <li>Passez à la compétence suivante ou revenez ici à tout moment.</li>
+          <li>
+            Un point du tableau ouvre le passage de la fiche de réflexion qui traite cette
+            compétence.
+          </li>
+          <li>Le nom d’un projet ouvre sa page sur le portfolio.</li>
+          <li>Chaque fiche se lit ici en entier, ou en PDF avec sa fiche projet.</li>
         </ol>
       </header>
 
@@ -117,209 +119,264 @@
         <div class="jury-matrix-wrap">
           <table class="jury-matrix">
             <caption>
-              Compétences prouvées par projet
+              Compétences mises en avant dans chaque fiche réflexive
             </caption>
             <thead>
               <tr>
                 <th scope="col">Compétence</th>
-                <th scope="col">Lab Horizon</th>
-                <th scope="col">Visualcom</th>
-                <th scope="col">Vill’âge Jeunes</th>
-                <th scope="col">Quintessence</th>
+                <th scope="col">
+                  <a class="jury-matrix__project" href="/projects/visualcom"
+                    ><span class="visually-hidden">Voir le projet </span>Visualcom<span
+                      class="visually-hidden"
+                    >
+                      sur le portfolio</span
+                    ></a
+                  >
+                </th>
+                <th scope="col">
+                  <a class="jury-matrix__project" href="/projects/village-jeunes"
+                    ><span class="visually-hidden">Voir le projet </span>Vill’âge Jeunes<span
+                      class="visually-hidden"
+                    >
+                      sur le portfolio</span
+                    ></a
+                  >
+                </th>
+                <th scope="col">
+                  <a class="jury-matrix__project" href="/projects/lab-horizon"
+                    ><span class="visually-hidden">Voir le projet </span>Lab Horizon<span
+                      class="visually-hidden"
+                    >
+                      sur le portfolio</span
+                    ></a
+                  >
+                </th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <th scope="row">
-                  <a class="jury-matrix__row-link" href="/jury/developpement-front"
-                    >Développement front&#8239;: conception et réalisation</a
-                  >
+                  Analyse, conception, déploiement et maintenance d’applications, de serveurs
+                  d’applications
                 </th>
                 <td class="jury-matrix__cell">
-                  <a class="jury-matrix__link" href="/jury/developpement-front#lab-horizon"
-                    ><span aria-hidden="true">●</span
-                    ><span class="visually-hidden"
-                      >Voir la preuve Lab Horizon pour Développement front</span
-                    ></a
-                  >
-                </td>
-                <td class="jury-matrix__cell">
-                  <a class="jury-matrix__link" href="/jury/developpement-front#visualcom"
-                    ><span aria-hidden="true">●</span
-                    ><span class="visually-hidden"
-                      >Voir la preuve Visualcom pour Développement front</span
-                    ></a
-                  >
-                </td>
-                <td class="jury-matrix__cell">
-                  <a class="jury-matrix__link" href="/jury/developpement-front#village-jeunes"
-                    ><span aria-hidden="true">●</span
-                    ><span class="visually-hidden"
-                      >Voir la preuve Vill’âge Jeunes pour Développement front</span
-                    ></a
-                  >
-                </td>
-                <td class="jury-matrix__cell">
-                  <span aria-hidden="true">○</span
-                  ><span class="visually-hidden">Aucune preuve</span>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <a class="jury-matrix__row-link" href="/jury/qualite-securite-performance"
-                    >Qualité, sécurité et performance</a
-                  >
-                </th>
-                <td class="jury-matrix__cell">
-                  <a class="jury-matrix__link" href="/jury/qualite-securite-performance#lab-horizon"
-                    ><span aria-hidden="true">●</span
-                    ><span class="visually-hidden"
-                      >Voir la preuve Lab Horizon pour Qualité, sécurité et performance</span
-                    ></a
-                  >
-                </td>
-                <td class="jury-matrix__cell">
-                  <a class="jury-matrix__link" href="/jury/qualite-securite-performance#visualcom"
-                    ><span aria-hidden="true">●</span
-                    ><span class="visually-hidden"
-                      >Voir la preuve Visualcom pour Qualité, sécurité et performance</span
-                    ></a
-                  >
+                  <span aria-hidden="true">–</span
+                  ><span class="visually-hidden">Non traitée dans cette fiche</span>
                 </td>
                 <td class="jury-matrix__cell">
                   <a
                     class="jury-matrix__link"
-                    href="/jury/qualite-securite-performance#village-jeunes"
+                    href="/jury/village-jeunes#analyse-conception-deploiement"
                     ><span aria-hidden="true">●</span
                     ><span class="visually-hidden"
-                      >Voir la preuve Vill’âge Jeunes pour Qualité, sécurité et performance</span
+                      >Lire ce passage de la fiche Vill’âge Jeunes&#8239;: Analyse, conception,
+                      déploiement et maintenance d’applications, de serveurs d’applications</span
                     ></a
                   >
                 </td>
                 <td class="jury-matrix__cell">
-                  <span aria-hidden="true">○</span
-                  ><span class="visually-hidden">Aucune preuve</span>
+                  <span aria-hidden="true">–</span
+                  ><span class="visually-hidden">Non traitée dans cette fiche</span>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Conception d’interface</th>
+                <td class="jury-matrix__cell">
+                  <a class="jury-matrix__link" href="/jury/visualcom#conception-interface"
+                    ><span aria-hidden="true">●</span
+                    ><span class="visually-hidden"
+                      >Lire ce passage de la fiche Visualcom&#8239;: Conception d’interface</span
+                    ></a
+                  >
+                </td>
+                <td class="jury-matrix__cell">
+                  <a class="jury-matrix__link" href="/jury/village-jeunes#conception-interface"
+                    ><span aria-hidden="true">●</span
+                    ><span class="visually-hidden"
+                      >Lire ce passage de la fiche Vill’âge Jeunes&#8239;: Conception
+                      d’interface</span
+                    ></a
+                  >
+                </td>
+                <td class="jury-matrix__cell">
+                  <span aria-hidden="true">–</span
+                  ><span class="visually-hidden">Non traitée dans cette fiche</span>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Rédaction de documentation technique</th>
+                <td class="jury-matrix__cell">
+                  <span aria-hidden="true">–</span
+                  ><span class="visually-hidden">Non traitée dans cette fiche</span>
+                </td>
+                <td class="jury-matrix__cell">
+                  <a class="jury-matrix__link" href="/jury/village-jeunes#documentation-technique"
+                    ><span aria-hidden="true">●</span
+                    ><span class="visually-hidden"
+                      >Lire ce passage de la fiche Vill’âge Jeunes&#8239;: Rédaction de
+                      documentation technique</span
+                    ></a
+                  >
+                </td>
+                <td class="jury-matrix__cell">
+                  <span aria-hidden="true">–</span
+                  ><span class="visually-hidden">Non traitée dans cette fiche</span>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Maîtriser le génie logiciel</th>
+                <td class="jury-matrix__cell">
+                  <span aria-hidden="true">–</span
+                  ><span class="visually-hidden">Non traitée dans cette fiche</span>
+                </td>
+                <td class="jury-matrix__cell">
+                  <span aria-hidden="true">–</span
+                  ><span class="visually-hidden">Non traitée dans cette fiche</span>
+                </td>
+                <td class="jury-matrix__cell">
+                  <a class="jury-matrix__link" href="/jury/lab-horizon#genie-logiciel"
+                    ><span aria-hidden="true">●</span
+                    ><span class="visually-hidden"
+                      >Lire ce passage de la fiche Lab Horizon&#8239;: Maîtriser le génie
+                      logiciel</span
+                    ></a
+                  >
                 </td>
               </tr>
               <tr>
                 <th scope="row">
-                  <a class="jury-matrix__row-link" href="/jury/client-gestion-projet"
-                    >Échange client et gestion de projet</a
-                  >
+                  Assurer la qualité, la sûreté, la sécurité et la performance des applications
                 </th>
                 <td class="jury-matrix__cell">
-                  <a class="jury-matrix__link" href="/jury/client-gestion-projet#lab-horizon"
+                  <a class="jury-matrix__link" href="/jury/visualcom#qualite-securite-performance"
                     ><span aria-hidden="true">●</span
                     ><span class="visually-hidden"
-                      >Voir la preuve Lab Horizon pour Échange client et gestion de projet</span
+                      >Lire ce passage de la fiche Visualcom&#8239;: Assurer la qualité, la sûreté,
+                      la sécurité et la performance des applications</span
                     ></a
                   >
                 </td>
                 <td class="jury-matrix__cell">
-                  <a class="jury-matrix__link" href="/jury/client-gestion-projet#visualcom"
+                  <span aria-hidden="true">–</span
+                  ><span class="visually-hidden">Non traitée dans cette fiche</span>
+                </td>
+                <td class="jury-matrix__cell">
+                  <span aria-hidden="true">–</span
+                  ><span class="visually-hidden">Non traitée dans cette fiche</span>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  Travailler en équipe et en réseau ainsi qu’en autonomie et responsabilité au
+                  service d’un projet
+                </th>
+                <td class="jury-matrix__cell">
+                  <a class="jury-matrix__link" href="/jury/visualcom#travailler-en-equipe"
                     ><span aria-hidden="true">●</span
                     ><span class="visually-hidden"
-                      >Voir la preuve Visualcom pour Échange client et gestion de projet</span
+                      >Lire ce passage de la fiche Visualcom&#8239;: Travailler en équipe et en
+                      réseau ainsi qu’en autonomie et responsabilité au service d’un projet</span
                     ></a
                   >
                 </td>
                 <td class="jury-matrix__cell">
-                  <a class="jury-matrix__link" href="/jury/client-gestion-projet#village-jeunes"
-                    ><span aria-hidden="true">●</span
-                    ><span class="visually-hidden"
-                      >Voir la preuve Vill’âge Jeunes pour Échange client et gestion de projet</span
-                    ></a
-                  >
+                  <span aria-hidden="true">–</span
+                  ><span class="visually-hidden">Non traitée dans cette fiche</span>
                 </td>
                 <td class="jury-matrix__cell">
-                  <a class="jury-matrix__link" href="/jury/client-gestion-projet#quintessence"
-                    ><span aria-hidden="true">○</span
+                  <span aria-hidden="true">–</span
+                  ><span class="visually-hidden">Non traitée dans cette fiche</span>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  Analyser ses actions en situation professionnelle, s’autoévaluer pour améliorer sa
+                  pratique
+                </th>
+                <td class="jury-matrix__cell">
+                  <span aria-hidden="true">–</span
+                  ><span class="visually-hidden">Non traitée dans cette fiche</span>
+                </td>
+                <td class="jury-matrix__cell">
+                  <span aria-hidden="true">–</span
+                  ><span class="visually-hidden">Non traitée dans cette fiche</span>
+                </td>
+                <td class="jury-matrix__cell">
+                  <a class="jury-matrix__link" href="/jury/lab-horizon#autoevaluation"
+                    ><span aria-hidden="true">●</span
                     ><span class="visually-hidden"
-                      >Voir la preuve Quintessence (sans fiche) pour Échange client et gestion de
-                      projet</span
+                      >Lire ce passage de la fiche Lab Horizon&#8239;: Analyser ses actions en
+                      situation professionnelle, s’autoévaluer pour améliorer sa pratique</span
                     ></a
                   >
                 </td>
               </tr>
               <tr>
                 <th scope="row">
-                  <a class="jury-matrix__row-link" href="/jury/strategie-analyse"
-                    >Stratégie, analyse et réflexion</a
-                  >
+                  Utiliser les outils numériques de référence et les règles de sécurité informatique
+                  pour acquérir, traiter, produire et diffuser de l’information ainsi que pour
+                  collaborer en interne et en externe
                 </th>
                 <td class="jury-matrix__cell">
-                  <a class="jury-matrix__link" href="/jury/strategie-analyse#lab-horizon"
-                    ><span aria-hidden="true">●</span
-                    ><span class="visually-hidden"
-                      >Voir la preuve Lab Horizon pour Stratégie, analyse et réflexion</span
-                    ></a
-                  >
+                  <span aria-hidden="true">–</span
+                  ><span class="visually-hidden">Non traitée dans cette fiche</span>
                 </td>
                 <td class="jury-matrix__cell">
-                  <a class="jury-matrix__link" href="/jury/strategie-analyse#visualcom"
-                    ><span aria-hidden="true">●</span
-                    ><span class="visually-hidden"
-                      >Voir la preuve Visualcom pour Stratégie, analyse et réflexion</span
-                    ></a
-                  >
+                  <span aria-hidden="true">–</span
+                  ><span class="visually-hidden">Non traitée dans cette fiche</span>
                 </td>
                 <td class="jury-matrix__cell">
-                  <a class="jury-matrix__link" href="/jury/strategie-analyse#village-jeunes"
+                  <a class="jury-matrix__link" href="/jury/lab-horizon#outils-numeriques-securite"
                     ><span aria-hidden="true">●</span
                     ><span class="visually-hidden"
-                      >Voir la preuve Vill’âge Jeunes pour Stratégie, analyse et réflexion</span
+                      >Lire ce passage de la fiche Lab Horizon&#8239;: Utiliser les outils
+                      numériques de référence et les règles de sécurité informatique pour acquérir,
+                      traiter, produire et diffuser de l’information ainsi que pour collaborer en
+                      interne et en externe</span
                     ></a
                   >
-                </td>
-                <td class="jury-matrix__cell">
-                  <span aria-hidden="true">○</span
-                  ><span class="visually-hidden">Aucune preuve</span>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
         <p class="jury-legend">
-          ● preuve détaillée dans une fiche réflexive · ○ preuve citée sans fiche
+          ● compétence traitée dans la fiche, le point ouvre le passage · – non traitée
         </p>
       </section>
 
       <section class="jury-section" aria-labelledby="cards-title">
-        <h2 class="visually-hidden" id="cards-title">Les quatre compétences</h2>
+        <h2 class="jury-label" id="cards-title">Les trois fiches</h2>
         <ul class="jury-cards">
           <li class="jury-card">
-            <span class="jury-card__index">I</span>
-            <h3 class="jury-card__title">
-              <a href="/jury/developpement-front">Développement front</a>
-            </h3>
-            <p class="jury-card__text">
-              Du besoin client à l’interface en production, en passant par la maquette et le code.
+            <h3 class="jury-card__title">Visualcom</h3>
+            <p class="jury-card__text" data-verbatim>
+              Comment rendre accessible un CMS à l’ère de l’intelligence artificielle, tout en
+              conservant au maximum la sécurité de l’outil&#8239;?
             </p>
+            <a class="jury-card__link" href="/jury/visualcom"
+              >Lire la fiche<span class="visually-hidden"> Visualcom</span></a
+            >
           </li>
           <li class="jury-card">
-            <span class="jury-card__index">II</span>
-            <h3 class="jury-card__title">
-              <a href="/jury/qualite-securite-performance">Qualité, sécurité et performance</a>
-            </h3>
-            <p class="jury-card__text">Un outil simple à utiliser et sûr.</p>
+            <h3 class="jury-card__title">Vill’âge Jeunes</h3>
+            <p class="jury-card__text" data-verbatim>
+              Comment concevoir, développer et documenter une solution front-end adaptée aux
+              contraintes métier, techniques et humaines d’une association&#8239;?
+            </p>
+            <a class="jury-card__link" href="/jury/village-jeunes"
+              >Lire la fiche<span class="visually-hidden"> Vill’âge Jeunes</span></a
+            >
           </li>
           <li class="jury-card">
-            <span class="jury-card__index">III</span>
-            <h3 class="jury-card__title">
-              <a href="/jury/client-gestion-projet">Échange client et gestion de projet</a>
-            </h3>
-            <p class="jury-card__text">
-              Écouter le terrain, cadrer avec l’équipe, accompagner après la livraison.
+            <h3 class="jury-card__title">Lab Horizon</h3>
+            <p class="jury-card__text" data-verbatim>
+              En quoi les choix d’architecture et d’organisation d’un projet web en équipe
+              conditionnent-ils sa fiabilité et sa transmission à une nouvelle équipe&#8239;?
             </p>
-          </li>
-          <li class="jury-card">
-            <span class="jury-card__index">IV</span>
-            <h3 class="jury-card__title">
-              <a href="/jury/strategie-analyse">Stratégie, analyse et réflexion</a>
-            </h3>
-            <p class="jury-card__text">
-              Analyser, justifier ses choix, documenter pour les autres.
-            </p>
+            <a class="jury-card__link" href="/jury/lab-horizon"
+              >Lire la fiche<span class="visually-hidden"> Lab Horizon</span></a
+            >
           </li>
         </ul>
       </section>

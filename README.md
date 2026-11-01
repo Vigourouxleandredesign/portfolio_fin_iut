@@ -5,7 +5,7 @@ Portfolio de fin de licence professionnelle Métiers de l’informatique : appli
 - **Site en ligne :** https://vigourouxleandre.netlify.app
 - **Espace jury :** https://vigourouxleandre.netlify.app/jury (protégé par mot de passe, communiqué à part)
 
-Site statique multipage, sans backend : neuf projets présentés comme les salles d’un musée de nuit, un buste 3D interactif sur ordinateur, un CV et un espace jury qui regroupe les fiches réflexives classées par compétence du référentiel.
+Site statique multipage, sans backend : neuf projets présentés comme les salles d’un musée de nuit, un buste 3D interactif sur ordinateur, un CV et un espace jury qui présente les trois fiches réflexives, avec un tableau qui croise chaque fiche avec les compétences du référentiel.
 
 ## Stack
 

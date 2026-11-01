@@ -1,0 +1,345 @@
+<!--
+  @file Jury — reflective sheet Visualcom
+  @description Protected area (Netlify Edge Function, docs/SECURITY.md §0). Text lives in HTML only.
+  @route /jury/visualcom
+-->
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Fiche de réflexion Visualcom | Espace jury | Léandre Vigouroux</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/logo-leandre.svg" />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="/node_modules/@fontsource/ubuntu/files/ubuntu-latin-400-normal.woff2"
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="/node_modules/@fontsource/ubuntu/files/ubuntu-latin-700-normal.woff2"
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Aller au contenu</a>
+    <header class="site-header">
+      <nav class="site-header__nav" aria-label="Navigation principale">
+        <a class="site-header__logo" href="/" aria-label="Accueil, Léandre Vigouroux">
+          <img
+            class="site-header__logo-image"
+            data-site-logo
+            src="/logo-leandre.svg"
+            alt=""
+            width="91"
+            height="91"
+            decoding="async"
+          />
+        </a>
+        <button
+          class="site-header__toggle"
+          type="button"
+          data-nav-toggle
+          aria-expanded="false"
+          aria-controls="main-nav"
+          hidden
+        >
+          <span class="visually-hidden">Ouvrir le menu</span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+        </button>
+        <ul class="site-header__list" id="main-nav" data-nav-list>
+          <li>
+            <a class="site-header__link" href="/projects">Mes projets</a>
+          </li>
+          <li><a class="site-header__link" href="/cv">Mon CV</a></li>
+          <li><a class="site-header__link" href="/contact">Contact</a></li>
+          <li>
+            <a class="site-header__link site-header__link--jury" href="/jury"
+              ><svg
+                class="site-header__icon"
+                viewBox="0 0 24 24"
+                width="14"
+                height="14"
+                focusable="false"
+                aria-hidden="true"
+              >
+                <rect
+                  x="5"
+                  y="11"
+                  width="14"
+                  height="10"
+                  rx="2"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path
+                  d="M8 11V7a4 4 0 0 1 8 0v4"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                /></svg
+              >Espace jury<span class="visually-hidden"> (accès protégé par mot de passe)</span></a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main" class="jury-page">
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <ol class="breadcrumb__list">
+          <li class="breadcrumb__item"><a class="breadcrumb__link" href="/jury">Espace jury</a></li>
+          <li class="breadcrumb__item">
+            <span class="breadcrumb__current" aria-current="page">Visualcom</span>
+          </li>
+        </ol>
+      </nav>
+
+      <header class="jury-header">
+        <h1 class="jury-title">
+          Fiche de réflexion&#8239;: Visualcom (refonte WordPress et connexion à l’IA)
+        </h1>
+        <p class="jury-problem" data-verbatim>
+          <strong>Problématique.</strong> Comment rendre accessible un CMS à l’ère de l’intelligence
+          artificielle, tout en conservant au maximum la sécurité de l’outil&#8239;?
+        </p>
+        <p class="jury-actions">
+          <a
+            class="button button--primary"
+            href="/jury/fiches/visualcom/mission-reflection.pdf"
+            target="_blank"
+            rel="noopener"
+            >Fiche de réflexion (PDF, 3 pages)<span class="visually-hidden"
+              >, Visualcom, nouvel onglet</span
+            ></a
+          >
+          <a
+            class="button"
+            href="/jury/fiches/visualcom/project-sheet.pdf"
+            target="_blank"
+            rel="noopener"
+            >Fiche projet (PDF, 3 pages)<span class="visually-hidden"
+              >, Visualcom, nouvel onglet</span
+            ></a
+          >
+          <a class="button button--ghost" href="/projects/visualcom"
+            >Voir le projet sur le portfolio<span class="visually-hidden">, Visualcom</span></a
+          >
+        </p>
+      </header>
+
+      <nav class="jury-section jury-toc" aria-labelledby="toc-title">
+        <h2 class="jury-label" id="toc-title">Sommaire</h2>
+        <ol class="jury-toc__list">
+          <li>
+            <a class="jury-toc__link" href="#travailler-en-equipe"
+              >Travailler en équipe et en réseau ainsi qu’en autonomie et responsabilité au service
+              d’un projet</a
+            >
+          </li>
+          <li><a class="jury-toc__link" href="#conception-interface">Conception d’interface</a></li>
+          <li>
+            <a class="jury-toc__link" href="#qualite-securite-performance"
+              >Assurer la qualité, la sûreté, la sécurité et la performance des applications</a
+            >
+          </li>
+        </ol>
+      </nav>
+
+      <article class="jury-sheet" data-verbatim>
+        <h2 class="jury-sheet__heading">Compétences appliquées dans ce projet</h2>
+        <h3 class="jury-sheet__competence" id="travailler-en-equipe">
+          Travailler en équipe et en réseau ainsi qu’en autonomie et responsabilité au service d’un
+          projet
+        </h3>
+        <p>
+          Dans ce projet, je me suis chargé de cadrer la base de la refonte avec le thème custom, la
+          création des pages métier et la reprise des premiers articles importants. Puis le
+          développeur full-stack a repris la suite en continuant à développer le reste des nouvelles
+          pages métiers et l’ajout de nouveaux blocs au thème custom. Pour la partie connecteur IA,
+          une discussion en équipe entre le gérant, le développeur full-stack et moi a permis de
+          définir le mode de fonctionnement, les prérequis minimums à mettre en place ainsi que la
+          répartition de la charge. Je me suis chargé de créer les comptes de notre équipe ainsi que
+          de configurer leurs droits, pendant que le développeur full-stack doit maintenant créer le
+          connecteur MCP pour passer les requêtes de Claude Desktop Team au serveur WordPress en
+          HTTPS.
+        </p>
+        <h3 class="jury-sheet__competence" id="conception-interface">Conception d’interface</h3>
+        <p>
+          Sur ce projet, l’interface a été pensée différemment. Ici, il fallait guider les
+          utilisateurs alors qu’ils échangent avec un LLM. Pour cela, il a fallu concevoir le
+          skill.md comme un front, avec les mêmes contraintes et limites de sécurité. Il serait
+          simple pour les utilisateurs de le contourner&#8239;: le skill devait donc servir de guide
+          et faciliter l’utilisation du canal. Il n’empêche rien&#8239;: s’il est contourné, les
+          mêmes limitations s’appliquent. Le skill évite à l’utilisateur des requêtes refusées
+          inutilement, le conseille sur les bonnes pratiques, améliore le SEO, le GEO et l’AEO dès
+          la conception, et guide l’utilisateur pour faciliter son expérience. L’objectif est
+          d’adapter l’ergonomie à l’utilisateur pour l’inciter à utiliser l’outil proprement plutôt
+          qu’à tenter de le contourner. J’ai également refait les blocs du thème custom pour qu’ils
+          restent utilisables et agréables à modifier via Gutenberg, afin qu’un membre de l’équipe
+          formé à WordPress puisse modifier ou corriger des erreurs sans passer systématiquement par
+          le canal IA.
+        </p>
+        <h3 class="jury-sheet__competence" id="qualite-securite-performance">
+          Assurer la qualité, la sûreté, la sécurité et la performance des applications
+        </h3>
+        <p>
+          Comme expliqué dans le process mis en place, la vraie difficulté était de conserver les
+          avantages de WordPress et de Gutenberg, qui permettent de faire des modifications
+          rapidement et simplement sans code, tout en préservant la sûreté et la sécurité du CMS et
+          de la base de données. Il fallait également permettre aux équipes d’utiliser l’outil
+          Claude Desktop Team mis en place par l’entreprise pour créer des articles et contenus avec
+          un minimum d’effort afin d’avoir du contenu frais régulièrement. J’ai donc dû prendre le
+          temps de chercher des solutions à proposer, des technologies et des plugins à conseiller
+          ou à déconseiller. J’ai créé les comptes sur le site WordPress pour chaque membre de
+          l’équipe afin que tout le monde ait une clé d’application différente, pour pouvoir
+          identifier une faille ou une panne et surtout ne pas pénaliser les autres si un compte
+          rencontre des problèmes. Pour tous ces comptes, j’ai créé un profil d’autorisation
+          équivalent à un profil éditeur WordPress, qui peut créer, modifier, publier ou mettre en
+          privé, mais auquel j’ai retiré tout droit de suppression.
+        </p>
+        <p>
+          Il me restera encore à créer la rotation automatisée des clés au moins une fois par mois.
+          Il a également été confié au deuxième développeur de l’équipe la tâche de créer le
+          connecteur Claude et d’ajouter à ce connecteur la double authentification obligatoire.
+        </p>
+        <p>
+          Pour la performance, il est prévu que je développe un skill Claude dont le seul travail
+          est, à la manière du front, d’améliorer l’expérience de l’équipe en déconseillant l’envoi
+          d’une demande qui serait refusée par le serveur, par exemple une suppression, avant
+          qu’elle ne soit tentée, afin d’éviter la frustration et d’expliquer la raison à
+          l’utilisateur. Ce skill devra également améliorer la qualité des articles et des textes
+          avec des vérifications SEO, GEO, AEO, de lisibilité et d’accessibilité. Enfin, il devra
+          contribuer à améliorer la performance du site en proposant de convertir les images en WebP
+          ou en JPEG lorsque l’utilisateur veut envoyer du PNG ou une image trop volumineuse, afin
+          de préserver la performance du site.
+        </p>
+        <h2 class="jury-sheet__heading">Difficultés rencontrées</h2>
+        <p>Plusieurs difficultés sont apparues au cours du projet.</p>
+        <p>
+          La première difficulté concernait l’environnement. En effet, étant sur un PC personnel et
+          non sur les PC de l’entreprise pour des raisons de besoins en performances et ressources,
+          je n’ai pas accès au Claude Desktop installé directement sur les machines. Ainsi, pour les
+          phases de tests, il me fallait systématiquement préparer au maximum en amont pour pouvoir
+          tester dès qu’un des postes se libérait. Cette première limitation physique m’a tout de
+          même obligé à beaucoup plus théoriser et réfléchir en amont à la stratégie à mettre en
+          place pour régler un problème au vu des fenêtres courtes de mise en place que j’avais. Par
+          la suite, j’ai préféré, avec l’accord du gérant, confier la tâche de la compatibilité
+          Claude Desktop, via le connecteur MCP, au développeur full-stack de l’équipe, qui
+          travaille sur une machine du réseau avec Claude Desktop de l’entreprise.
+        </p>
+        <p>
+          La deuxième difficulté concernait le choix entre sécurité et fonctionnalité. Dans
+          l’entreprise, l’équipe voulait pouvoir être libre de tout faire avec Claude sans
+          restriction. Mais, d’un point de vue sécurité, ce n’était pas possible. Tout d’abord parce
+          que le commercial et l’ingénieur ne devraient pas avoir les droits de supprimer ou de
+          modifier entièrement tout le site. Mais surtout parce qu’en cas de mauvaise manipulation
+          de la part de l’IA, ou d’intrusion en passant par leur accès, un individu ne devrait pas
+          avoir tous les droits. D’où le problème que j’ai relevé avec les plugins IA de WordPress,
+          dont celui utilisé temporairement sur le site en mon absence. Ce genre de plugin demande
+          obligatoirement les droits administrateurs, ce qui, même s’ils ne sont pas donnés en tant
+          que rôle à l’utilisateur, constitue un risque d’élévation de privilège. Il m’a donc fallu
+          réfléchir à une méthode nous permettant de verrouiller les droits par nature, avec le
+          serveur comme seule source de vérité et l’IA avec des droits définis, limités et stricts
+          autant que possible.
+        </p>
+        <h2 class="jury-sheet__heading">Axes d’amélioration et prise de recul</h2>
+        <p>
+          Sur ce projet, le processus de mise en place aurait pu être amélioré. Il aurait été
+          pertinent d’augmenter le temps de mise en place de l’IA dans le processus de création. En
+          effet, puisque la refonte du site était urgente et devait être faite quasiment entièrement
+          en une semaine, pour les besoins du commercial et de l’ingénieur, il aurait été judicieux
+          de faire le site dans un premier temps et d’essayer d’intégrer l’ajout des articles via IA
+          par la suite. Cela nous aurait permis de prendre le temps d’effectuer des recherches de
+          solutions et une première approche du sujet lors de la création du site, puis une réunion
+          technique afin de poser le fonctionnement, la sécurité que l’on souhaitait mettre en place
+          ainsi que la répartition des rôles. Cela aurait rendu plus fluide la mise en place du
+          projet, en nous évitant les allers-retours inutiles, les tests en double sans le savoir et
+          les solutions mises en pratique chacun de son côté sans mise en commun.
+        </p>
+        <p>
+          Pour le reste, les erreurs et les échecs ont été très formateurs sur le projet. Chaque
+          piste qui a fini sur une impasse m’a permis de comprendre le problème et le projet de
+          manière générale sous un autre angle. Grâce au plugin AI WordPress qui forçait l’obtention
+          d’accès administrateurs, j’ai pu me rendre compte que cette solution ne convenait pas aux
+          besoins et aux décisions associées à ce projet en matière de sécurité. C’est ce qui, par
+          la suite, a permis d’écarter plus rapidement une autre piste de plugin AI WordPress qui,
+          même s’il était mis à jour et corrigé régulièrement, présentait le même problème. De même,
+          l’authentification OAuth nous obligeait à nous connecter avec le compte super-admin du
+          gérant, ce qui ne nous convenait pas et a donc aussi écarté les connecteurs MCP classiques
+          de Claude.
+        </p>
+      </article>
+
+      <nav class="jury-pager" aria-label="Navigation entre fiches">
+        <a class="jury-pager__link jury-pager__link--prev" href="/jury/lab-horizon" rel="prev"
+          >← Lab Horizon</a
+        >
+        <a class="jury-pager__link jury-pager__link--all" href="/jury">Retour au tableau</a>
+        <a class="jury-pager__link jury-pager__link--next" href="/jury/village-jeunes" rel="next"
+          >Vill’âge Jeunes →</a
+        >
+      </nav>
+    </main>
+
+    <footer class="site-footer">
+      <img
+        class="paint site-footer__paint"
+        src="/src/assets/decor/paint/underline-copper.webp"
+        alt=""
+        aria-hidden="true"
+        width="900"
+        height="153"
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="site-footer__inner">
+        <p class="site-footer__tagline">Ouvert aux échanges, aux missions et aux opportunités.</p>
+        <nav aria-labelledby="footer-nav-title-jury">
+          <h2 class="site-footer__heading" id="footer-nav-title-jury">Plan du site</h2>
+          <ul class="site-footer__nav">
+            <li><a class="site-footer__link" href="/">Accueil</a></li>
+            <li><a class="site-footer__link" href="/projects">Mes projets</a></li>
+            <li><a class="site-footer__link" href="/cv">Mon CV</a></li>
+            <li><a class="site-footer__link" href="/contact">Contact</a></li>
+            <li>
+              <a class="site-footer__link" href="/jury"
+                >Espace jury<span class="visually-hidden">
+                  (accès protégé par mot de passe)</span
+                ></a
+              >
+            </li>
+          </ul>
+        </nav>
+        <div>
+          <h2 class="site-footer__heading">Contact direct</h2>
+          <ul class="site-footer__nav">
+            <li>
+              <a class="site-footer__link" href="mailto:vigourouxleandredesign@gmail.com"
+                >vigourouxleandredesign@gmail.com</a
+              >
+            </li>
+            <li>
+              <a class="site-footer__link" href="tel:+687705203">+687 70 52 03</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <p class="site-footer__copy">
+          &copy; <span data-year></span> Léandre Vigouroux, creative developer
+        </p>
+      </div>
+    </footer>
+    <script type="module" src="/src/scripts/entries/jury.ts"></script>
+  </body>
+</html>

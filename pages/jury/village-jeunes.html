@@ -1,0 +1,324 @@
+<!--
+  @file Jury — reflective sheet Vill’âge Jeunes
+  @description Protected area (Netlify Edge Function, docs/SECURITY.md §0). Text lives in HTML only.
+  @route /jury/village-jeunes
+-->
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Fiche de réflexion Vill’âge Jeunes | Espace jury | Léandre Vigouroux</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/logo-leandre.svg" />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="/node_modules/@fontsource/ubuntu/files/ubuntu-latin-400-normal.woff2"
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="/node_modules/@fontsource/ubuntu/files/ubuntu-latin-700-normal.woff2"
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Aller au contenu</a>
+    <header class="site-header">
+      <nav class="site-header__nav" aria-label="Navigation principale">
+        <a class="site-header__logo" href="/" aria-label="Accueil, Léandre Vigouroux">
+          <img
+            class="site-header__logo-image"
+            data-site-logo
+            src="/logo-leandre.svg"
+            alt=""
+            width="91"
+            height="91"
+            decoding="async"
+          />
+        </a>
+        <button
+          class="site-header__toggle"
+          type="button"
+          data-nav-toggle
+          aria-expanded="false"
+          aria-controls="main-nav"
+          hidden
+        >
+          <span class="visually-hidden">Ouvrir le menu</span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+          <span class="site-header__toggle-bar" aria-hidden="true"></span>
+        </button>
+        <ul class="site-header__list" id="main-nav" data-nav-list>
+          <li>
+            <a class="site-header__link" href="/projects">Mes projets</a>
+          </li>
+          <li><a class="site-header__link" href="/cv">Mon CV</a></li>
+          <li><a class="site-header__link" href="/contact">Contact</a></li>
+          <li>
+            <a class="site-header__link site-header__link--jury" href="/jury"
+              ><svg
+                class="site-header__icon"
+                viewBox="0 0 24 24"
+                width="14"
+                height="14"
+                focusable="false"
+                aria-hidden="true"
+              >
+                <rect
+                  x="5"
+                  y="11"
+                  width="14"
+                  height="10"
+                  rx="2"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path
+                  d="M8 11V7a4 4 0 0 1 8 0v4"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                /></svg
+              >Espace jury<span class="visually-hidden"> (accès protégé par mot de passe)</span></a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main" class="jury-page">
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <ol class="breadcrumb__list">
+          <li class="breadcrumb__item"><a class="breadcrumb__link" href="/jury">Espace jury</a></li>
+          <li class="breadcrumb__item">
+            <span class="breadcrumb__current" aria-current="page">Vill’âge Jeunes</span>
+          </li>
+        </ol>
+      </nav>
+
+      <header class="jury-header">
+        <h1 class="jury-title">
+          Fiche de réflexion&#8239;: Vill’âge Jeunes (application de gestion des adhérents)
+        </h1>
+        <p class="jury-problem" data-verbatim>
+          <strong>Problématique.</strong> Comment concevoir, développer et documenter une solution
+          front-end adaptée aux contraintes métier, techniques et humaines d’une association&#8239;?
+        </p>
+        <p class="jury-actions">
+          <a
+            class="button button--primary"
+            href="/jury/fiches/village-jeunes/mission-reflection.pdf"
+            target="_blank"
+            rel="noopener"
+            >Fiche de réflexion (PDF, 2 pages)<span class="visually-hidden"
+              >, Vill’âge Jeunes, nouvel onglet</span
+            ></a
+          >
+          <a
+            class="button"
+            href="/jury/fiches/village-jeunes/project-sheet.pdf"
+            target="_blank"
+            rel="noopener"
+            >Fiche projet (PDF, 2 pages)<span class="visually-hidden"
+              >, Vill’âge Jeunes, nouvel onglet</span
+            ></a
+          >
+          <a class="button button--ghost" href="/projects/village-jeunes"
+            >Voir le projet sur le portfolio<span class="visually-hidden"
+              >, Vill’âge Jeunes</span
+            ></a
+          >
+        </p>
+      </header>
+
+      <nav class="jury-section jury-toc" aria-labelledby="toc-title">
+        <h2 class="jury-label" id="toc-title">Sommaire</h2>
+        <ol class="jury-toc__list">
+          <li>
+            <a class="jury-toc__link" href="#analyse-conception-deploiement"
+              >Analyse, conception, déploiement et maintenance d’applications, de serveurs
+              d’applications</a
+            >
+          </li>
+          <li><a class="jury-toc__link" href="#conception-interface">Conception d’interface</a></li>
+          <li>
+            <a class="jury-toc__link" href="#documentation-technique"
+              >Rédaction de documentation technique</a
+            >
+          </li>
+        </ol>
+      </nav>
+
+      <article class="jury-sheet" data-verbatim>
+        <h2 class="jury-sheet__heading">Compétences appliquées dans ce projet</h2>
+        <h3 class="jury-sheet__competence" id="analyse-conception-deploiement">
+          Analyse, conception, déploiement et maintenance d’applications, de serveurs d’applications
+        </h3>
+        <p>
+          Dans ce projet, j’ai participé à l’analyse du besoin, à la conception de l’application
+          avec l’équipe, puis à son déploiement en production. Après la mise en ligne, la
+          documentation, les bonnes pratiques de versioning et les mesures de sécurité mises en
+          place ont permis de faciliter la maintenance de l’application et de réduire le temps
+          nécessaire aux corrections ou aux évolutions.
+        </p>
+        <h3 class="jury-sheet__competence" id="conception-interface">Conception d’interface</h3>
+        <p>
+          Sur ce projet, j’ai conçu l’interface de bout en bout, depuis l’analyse du besoin et du
+          cahier des charges jusqu’au développement front-end de l’application. Cette démarche est
+          passée par le zoning, les wireframes et la maquette. J’ai également adapté le parcours
+          utilisateur à la réalité métier du client afin de rendre l’expérience la plus fluide
+          possible, aussi bien pour le staff que pour les adhérents.
+        </p>
+        <h3 class="jury-sheet__competence" id="documentation-technique">
+          Rédaction de documentation technique
+        </h3>
+        <p>
+          Comme expliqué dans les difficultés rencontrées, la documentation technique est rapidement
+          devenue indispensable. Elle m’a obligé à prendre le temps de commenter le code et de
+          décrire le rôle de chaque fichier. Pour la partie front-end, j’ai utilisé
+          Documentation.js, qui permet de générer une documentation structurée avec une arborescence
+          claire, proche de ce que propose Doxygen. Cette expérience m’a permis de mieux comprendre
+          l’importance d’une documentation technique claire, mais aussi l’intérêt de la mettre en
+          place dès le début d’un projet.
+        </p>
+        <h2 class="jury-sheet__heading">Partie réflexion détaillée</h2>
+        <p>
+          Ayant déjà fait de la création de parcours utilisateur, j’ai posé certaines questions
+          précises qui m’avaient manqué sur des projets précédents, afin d’assurer la pertinence du
+          parcours utilisateur.
+        </p>
+        <p><strong>Exemples de questions posées&#8239;:</strong></p>
+        <ul class="jury-sheet__list">
+          <li>Quelles sont les tâches que vous, le staff, accomplissez tous les jours&#8239;?</li>
+          <li>
+            Quel est le déroulement typique du premier contact avec un adhérent et son
+            inscription&#8239;?
+          </li>
+          <li>
+            Quelles sont les tâches que vous trouvez pénibles actuellement et pourquoi&#8239;?
+          </li>
+          <li>Quelles sont les raisons principales de venue de vos adhérents&#8239;?</li>
+        </ul>
+        <p>
+          Ce genre de questions évite de proposer un parcours utilisateur qui paraît pertinent sur
+          le papier, mais qui ne serait finalement pas utilisé ou qui deviendrait un frein à
+          l’utilisation.
+        </p>
+        <h2 class="jury-sheet__heading">Difficultés rencontrées</h2>
+        <p>Plusieurs difficultés sont apparues au cours du projet.</p>
+        <p>
+          La première difficulté concernait le versioning. Au début du projet, nous avions bien un
+          historique, mais celui-ci n’était pas assez détaillé. Nous travaillions principalement
+          avec deux branches, une pour chaque développeur, avant de faire une pull request puis un
+          merge lorsque les développements étaient validés. Cette organisation rendait le suivi des
+          corrections et des fonctionnalités plus compliqué. Elle provoquait aussi parfois des
+          conflits lors des merges, avec un risque de revenir en arrière sur certaines parties du
+          code. Pour corriger ce problème, nous avons mis en place une branche dédiée par correction
+          ou par fonctionnalité, ce qui nous a permis de mieux suivre l’avancement du projet.
+        </p>
+        <p>
+          La deuxième difficulté concernait la documentation. Étant en alternance, je ne pouvais pas
+          être présent en permanence sur le projet. Il fallait donc que le développeur full stack
+          puisse reprendre certaines parties après moi. Au début, cela ne posait pas de problème,
+          car le code était encore simple, court et peu modifié. Cependant, lorsque le projet a
+          commencé à grossir et que les premiers tests ont entraîné des corrections, la reprise du
+          code est devenue plus complexe. J’ai donc mis en place une documentation permettant à
+          n’importe quel développeur de comprendre où se trouvent les fonctionnalités, à quoi elles
+          servent et comment elles sont structurées. Avec du recul, cette documentation aurait dû
+          être prévue dès le début du projet.
+        </p>
+        <h2 class="jury-sheet__heading">Axes d’amélioration et prise de recul</h2>
+        <p>
+          Sur ce projet, le processus de mise en place aurait pu être amélioré. Il aurait été
+          pertinent d’ajouter, dès la réunion technique de début de projet, une réflexion plus
+          précise sur les méthodes de versioning, l’organisation des branches, la documentation et
+          le processus de déploiement, notamment avec un éventuel pipeline CI/CD. Ces sujets
+          auraient pu être abordés au même titre que les choix techniques, la cybersécurité ou le
+          cahier des charges. Comme il s’agissait du premier projet sur lequel nous travaillions en
+          équipe dans cette configuration, les délais n’étaient pas totalement réalistes. Cela nous
+          a parfois poussés à privilégier une solution rapidement fonctionnelle, ce qui a ensuite
+          entraîné des corrections et des ajouts pour la V1. Certaines fonctionnalités ont même dû
+          être reprises, notamment à cause des limites de notre organisation initiale du versioning.
+        </p>
+        <p>
+          Pour le reste, la partie front-end répond à la demande du client et propose une ergonomie
+          suffisante pour faciliter le travail quotidien du staff. Une évolution importante serait
+          cependant de faire évoluer l’application vers une véritable Progressive Web App lors de la
+          V2. Cela permettrait notamment d’intégrer des notifications sur les téléphones des
+          adhérents, ainsi que de nouvelles fonctionnalités liées aux activités et à l’amélioration
+          des statistiques. Ces évolutions ont déjà été envisagées pour une V2, qui pourra être mise
+          en place une fois le budget validé.
+        </p>
+      </article>
+
+      <nav class="jury-pager" aria-label="Navigation entre fiches">
+        <a class="jury-pager__link jury-pager__link--prev" href="/jury/visualcom" rel="prev"
+          >← Visualcom</a
+        >
+        <a class="jury-pager__link jury-pager__link--all" href="/jury">Retour au tableau</a>
+        <a class="jury-pager__link jury-pager__link--next" href="/jury/lab-horizon" rel="next"
+          >Lab Horizon →</a
+        >
+      </nav>
+    </main>
+
+    <footer class="site-footer">
+      <img
+        class="paint site-footer__paint"
+        src="/src/assets/decor/paint/underline-copper.webp"
+        alt=""
+        aria-hidden="true"
+        width="900"
+        height="153"
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="site-footer__inner">
+        <p class="site-footer__tagline">Ouvert aux échanges, aux missions et aux opportunités.</p>
+        <nav aria-labelledby="footer-nav-title-jury">
+          <h2 class="site-footer__heading" id="footer-nav-title-jury">Plan du site</h2>
+          <ul class="site-footer__nav">
+            <li><a class="site-footer__link" href="/">Accueil</a></li>
+            <li><a class="site-footer__link" href="/projects">Mes projets</a></li>
+            <li><a class="site-footer__link" href="/cv">Mon CV</a></li>
+            <li><a class="site-footer__link" href="/contact">Contact</a></li>
+            <li>
+              <a class="site-footer__link" href="/jury"
+                >Espace jury<span class="visually-hidden">
+                  (accès protégé par mot de passe)</span
+                ></a
+              >
+            </li>
+          </ul>
+        </nav>
+        <div>
+          <h2 class="site-footer__heading">Contact direct</h2>
+          <ul class="site-footer__nav">
+            <li>
+              <a class="site-footer__link" href="mailto:vigourouxleandredesign@gmail.com"
+                >vigourouxleandredesign@gmail.com</a
+              >
+            </li>
+            <li>
+              <a class="site-footer__link" href="tel:+687705203">+687 70 52 03</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <p class="site-footer__copy">
+          &copy; <span data-year></span> Léandre Vigouroux, creative developer
+        </p>
+      </div>
+    </footer>
+    <script type="module" src="/src/scripts/entries/jury.ts"></script>
+  </body>
+</html>
