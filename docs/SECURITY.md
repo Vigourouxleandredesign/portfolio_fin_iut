@@ -17,7 +17,7 @@ Supabase is **out** and its code was **deleted** on 2026-10-21. Do not recreate 
 | Zone | URL | Protection | Contents |
 |------|-----|------------|----------|
 | **Public portfolio** | `/`, `/projects/*`, `/cv`, `/contact` | None (open) | Home, case studies, CV, contact. |
-| **Jury area** | `/jury`, `/jury/*`, `/pages/jury/*` | **Basic-Auth** (Netlify **Edge Function**, server-side) | One page per competence (`pages/jury/*.html`) + PDFs (`public/jury/fiches/<slug>/*.pdf`). Spec: `docs/content/teacher-site.md`. |
+| **Jury area** | `/jury`, `/jury/*`, `/pages/jury/*` | **Basic-Auth** (Netlify **Edge Function**, server-side) | One page per competence (`pages/jury/*.html`) + PDFs (`public/jury/fiches/<slug>/*.pdf`). |
 
 How the lock works:
 
@@ -28,12 +28,13 @@ How the lock works:
 
 Rules:
 
-- The **GitHub repo must be private**: the PDFs are committed under `public/jury/`, so a public repo would expose them without password.
+- **Public repository (decision of 01/11/2026, Léandre, with the evaluator’s agreement):** the PDFs committed under `public/jury/fiches/` are readable on GitHub. The password protects the **site** only; the repository is the material handed to the technical evaluator.
 - Jury text lives **only in the jury HTML pages**. Never import jury content into TS/JSON: `/assets/*.js` bundles are public.
-- Never link a PDF from a public page. Public pages may link to `/jury` (one « Espace jury » link in footer + CV) — the URL is not a secret, the password is the lock.
+- Never link a PDF from a public page. Public pages may link to `/jury` (« Espace jury » entry of the main navigation, footer, CV, « Lire mes fiches réflexives » cards) — the URL is not a secret, the password is the lock.
 - Never a client-side password, JS check or « secret » URL.
 - Never password-protect the public portfolio.
 - After the jury: remove `public/jury/`, the env var and the public link (or rotate the password).
+- Les rapports de red team (25/10 et 01/11) sont conservés hors du dépôt : un document qui liste des failles, même corrigées, n'a pas sa place dans le dépôt.
 
 ---
 
@@ -56,7 +57,7 @@ Rules:
 | **Lab Horizon (SAE 501)** | Never publish the seed accounts / `.env` of the SAE repo. Screens captured from a local Docker run must not show credentials. |
 | **Visualcom / clients** | Public pages only; logos used with the employer’s agreement. |
 | **Images** | Export as WebP/JPG through the pipeline (strips EXIF/GPS). No personal documents (ID, payslips…) anywhere. |
-| **Reflective sheets** | `/jury/` only, behind Basic-Auth (§0). Private GitHub repo. |
+| **Reflective sheets** | `/jury/` only on the site, behind Basic-Auth (§0). Public repository since 01/11 (§0). |
 
 ---
 
@@ -103,6 +104,7 @@ Netlify Forms (`data-netlify="true"`) with a honeypot field (`bot-field`, tested
 | **Minimal dependencies** | Runtime: `three`, `@dimforge/rapier3d-compat`, `@fontsource/*`, `tweakpane` (debug, lazy). Any new runtime dependency must be justified in the PR. |
 | **Lockfile committed** | `package-lock.json` — install with `npm ci` on Netlify/CI. |
 | **Audit (mandatory, blocking)** | `npm run audit:ci` = `npm audit --audit-level=high && npm audit signatures`, **dev dependencies included**. It is the first step of `npm run ci`: pre-commit hook, every GitHub Actions run and a **daily** scheduled run (05:00 Nouméa). A `high`/`critical` advisory turns the pipeline red; there is no bypass (`--no-verify`, `HUSKY=0`). |
+| **Known advisories (01/11/2026)** | 11 `moderate`, dev only: `minimatch` < 11.0.1 through the ESLint / typescript-eslint toolchain (lint at commit time, never shipped in the site). No fix without a major ESLint upgrade (`npm audit fix` changes nothing); to be handled with that upgrade. |
 | **Dependabot** | `.github/dependabot.yml`: weekly npm + GitHub Actions PRs (patch/minor grouped) and security updates; each PR runs the same CI. `three` stays pinned. |
 
 ### Fixing a red audit (in this order, in a separate `fix(deps): …` commit)

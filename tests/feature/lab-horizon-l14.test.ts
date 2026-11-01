@@ -1,6 +1,5 @@
 /**
  * @file Feature — Lab Horizon texts (L14 part B, replaced by the v2 texts of 30/10, L15)
- * @see docs/content/projects/lab-horizon-v2.md
  */
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';

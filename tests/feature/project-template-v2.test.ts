@@ -1,6 +1,5 @@
 /**
  * @file Feature — project page template v2 (L15): section order, one key chapter, no « En bref »
- * @see docs/work-packages/WP-L15-gabarit-projet-v2.md
  */
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';

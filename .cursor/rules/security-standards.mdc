@@ -19,7 +19,7 @@ Read `docs/SECURITY.md` before touching headers, iframes, forms, private content
 
 ## Always
 
-- **Delivery (locked 2026-10-21):** one Netlify site; public pages open; `/jury` (pages + PDFs) behind server-side Basic-Auth from env `JURY_BASIC_AUTH`, injected by `scripts/inject-jury-auth.mjs` (`docs/SECURITY.md` §0, `docs/content/teacher-site.md`). GitHub repo private.
+- **Delivery (locked 2026-10-21):** one Netlify site; public pages open; `/jury` (pages + PDFs) behind server-side Basic-Auth (Edge Function `netlify/edge-functions/jury-auth.ts`, env `JURY_BASIC_AUTH`, `docs/SECURITY.md` §0). Public GitHub repo since 01/11: the password protects the site, not the PDFs on GitHub.
 - Keep `public/_headers` strict; a new iframe origin goes in `frame-src` **and** in `tests/feature/catalog-and-headers.test.ts`
 - `npm run gate` green before done; `npm run audit:prod` before deploy
 

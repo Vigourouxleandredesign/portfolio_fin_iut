@@ -114,7 +114,7 @@ describe('home — opening veil', () => {
   });
 });
 
-describe('cache headers on non-hashed static files (REDTEAM P2-3)', () => {
+describe('cache headers on non-hashed static files (red team audit of 25/10, P2-3)', () => {
   const headers = read('public/_headers');
 
   it('caches draco, share previews, favicon and logo for a bounded time', () => {

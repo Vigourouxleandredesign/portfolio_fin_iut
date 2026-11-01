@@ -4,7 +4,7 @@
  *   right click turns the bust. It is loaded only on a hovering, fine pointer (mouse / trackpad), when
  *   motion is allowed and the visitor did not ask to save data. Everywhere else (phones, tablets,
  *   reduced motion) the static hero image stays as the final visual and **nothing** of the 3D is
- *   downloaded (docs/REDTEAM-2026-10-25.md, P1-1 a — decision of 2026-10-26: accessibility and UX first).
+ *   downloaded (red team audit of 25/10, P1-1 a — decision of 2026-10-26: accessibility and UX first).
  */
 
 type NetworkInformationLike = { saveData?: boolean; effectiveType?: string };

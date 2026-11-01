@@ -13,6 +13,6 @@ Avant toute modification de `pages/`, `src/styles/`, `src/assets/` ou d’un vis
 4. Typo : Ubuntu (structure), Updock (1–2 mots, discret, jamais de signature), Ubuntu Mono (cartels). Le logo LV or est la seule signature.
 5. Images de projets : étalonnage « Odyssée » (`.graded-image`).
 6. Le buste 3D du hero et le pinceau du curseur sont conservés (améliorer, ne pas remplacer).
-7. Pages projet : suivre `docs/content/projects/<slug>.md`, n’utiliser que les assets de `src/assets/projects/<slug>/`.
+7. Pages projet : la page HTML est la source des textes validés ; n’utiliser que les assets de `src/assets/projects/<slug>/`.
 
 Valider avec `npm run gate` + checklist `docs/DA.md §9`.

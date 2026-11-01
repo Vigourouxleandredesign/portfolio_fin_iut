@@ -5,7 +5,7 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
-/** Catalogue order I → IX (docs/content/projects/_TEMPLATE.md). */
+/** Catalogue order I → IX. */
 const CATALOGUE_TITLES = [
   'Lab Horizon',
   'MagicalLab',

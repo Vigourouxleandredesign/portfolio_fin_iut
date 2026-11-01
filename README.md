@@ -19,7 +19,7 @@ Site statique multipage, sans backend : neuf projets présentés comme les salle
 
 ## Démarrer
 
-Prérequis : Node.js 20 ou plus (`.nvmrc`), npm.
+Prérequis : Node.js 20 ou plus (22 recommandé, voir `.nvmrc`), npm.
 
 ```bash
 npm install          # installe aussi les hooks Git (Husky)
@@ -76,7 +76,6 @@ docs/           architecture, direction artistique, sécurité, tests, journal d
 | [docs/TESTING.md](docs/TESTING.md) | Stratégie de test |
 | [docs/RECETTE.md](docs/RECETTE.md) | Recette avant mise en production |
 | [docs/ROADMAP.md](docs/ROADMAP.md) | Journal des décisions du projet |
-| [docs/content/](docs/content/) | Textes sources des pages |
 | [AGENTS.md](AGENTS.md) | Règles suivies par les assistants IA sur ce dépôt |
 
 ## Méthode

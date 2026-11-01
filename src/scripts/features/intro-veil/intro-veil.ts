@@ -16,7 +16,7 @@ export const MIN_VISIBLE_MS = 900;
 /** Hard cap since navigation start: past this the page shows as-is (3D pops in later). */
 export const MAX_WAIT_MS = 3200;
 
-/** Same cap on touch devices / slow connections: they never wait for the 3D (docs/REDTEAM P1-2). */
+/** Same cap on touch devices / slow connections: they never wait for the 3D (red team audit of 25/10, P1-2). */
 export const MAX_WAIT_CONSTRAINED_MS = 1500;
 
 /** Matches the CSS transition of `.intro-veil` (700 ms) with a little margin. */

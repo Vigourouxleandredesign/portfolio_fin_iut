@@ -10,7 +10,7 @@ const read = (path: string): string => readFileSync(resolve(root, path), 'utf8')
 /** Prettier wraps long inline markup: compare on whitespace-collapsed HTML (single spaces are kept). */
 const flat = (path: string): string => read(path).replace(/\s+/g, ' ').replace(/ >/g, '>');
 
-/** Number → context sentence (docs/work-packages/WP-L14, written with linking words). */
+/** Number → context sentence (L14, written with linking words). */
 const CONTEXTS: Record<string, string> = {
   I: 'SAE 501, projet d’équipe à l’IUT de Nouvelle-Calédonie, en 2026',
   II: 'Projet de cours à l’IUT, en 2026',

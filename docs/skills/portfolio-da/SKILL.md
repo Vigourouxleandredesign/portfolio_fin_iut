@@ -11,7 +11,7 @@ Tu appliques une DA **déjà validée**. Tu n’inventes pas de nouvelle couleur
 
 1. Lis `docs/DA.md` (concept, palette, typo, lumière, pigment, composants, checklist).
 2. Lis `AGENTS.md`, `docs/ARCHITECTURE.md`, `docs/SECURITY.md` (règles projet : pas de `<style>`/`<script>` inline, pas de `style=""` → la CSP est `style-src 'self'`, couleurs uniquement dans `src/styles/variables.css`, BEM, en-tête JSDoc ligne 1).
-3. Si tu travailles une page projet : lis son brief `docs/content/projects/<slug>.md` et utilise uniquement les assets listés dans `src/assets/projects/<slug>/`.
+3. Si tu travailles une page projet : la page HTML est la source des textes (textes validés par Léandre, jamais réécrits) ; utilise uniquement les assets de `src/assets/projects/<slug>/`.
 
 ## Les 6 règles qui ne se discutent pas
 

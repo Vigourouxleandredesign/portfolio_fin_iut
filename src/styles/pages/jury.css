@@ -1,6 +1,6 @@
 /**
  * @file Jury area — sober reading layout
- * @description Protected `/jury` pages (docs/content/teacher-site.md): body 18 px, measure 68 ch, single gold
+ * @description Protected `/jury` pages: body 18 px, measure 68 ch, single gold
  *   accent, no decor beyond the shared footer gesture, clean `@media print`. Colors via var(--color-*) only.
  */
 

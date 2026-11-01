@@ -9,7 +9,6 @@
  *     node scripts/capture-project-shots.mjs magicallab --headed   # WebGL needs a real GPU
  *   Local targets (Docker / Spring Boot) need the app running first — see
  *   `LOCAL_TARGETS` below. Only public, non-personal screens are captured.
- * @see {@link ../docs/content/assets-kit.md}
  */
 import { mkdirSync } from 'node:fs';
 import { resolve } from 'node:path';
