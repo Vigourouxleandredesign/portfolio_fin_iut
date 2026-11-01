@@ -63,12 +63,14 @@ describe('C11 — no inline style or script in pages', () => {
   });
 });
 
-describe('C12 — jury link in public footers only', () => {
-  it('links /jury from every public page footer', () => {
+describe('C12 — jury link in the header only (fix/jury-links, 01/11)', () => {
+  it('links /jury from the header of every public page, never from the footer', () => {
     for (const file of publicPages) {
       const html = readFileSync(file, 'utf8');
-      const footer = /<footer\b[\s\S]*<\/footer>/i.exec(html)?.[0] ?? '';
-      expect(footer, rel(file)).toContain('href="/jury"');
+      const header = /<header class="site-header"[\s\S]*?<\/header>/i.exec(html)?.[0] ?? '';
+      const footer = /<footer class="site-footer"[\s\S]*<\/footer>/i.exec(html)?.[0] ?? '';
+      expect(header, rel(file)).toContain('href="/jury"');
+      expect(footer, rel(file)).not.toContain('href="/jury"');
     }
   });
 

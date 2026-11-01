@@ -41,7 +41,7 @@ Before any change, read this document and `docs/SECURITY.md`. If a rule must cha
 | Contact | `pages/contact.html` | Netlify Forms |
 | Mon univers | Section `#univers` on home (after projects) | Not a separate route |
 
-Reflective sheets for the jury live under **`/jury`** (matrix `pages/jury/index.html`, one page per sheet `pages/jury/<slug>.html` with the full text, PDFs `public/jury/fiches/`), password-protected server-side by a Netlify Edge Function (`docs/SECURITY.md` §0). Reached from the « Espace jury » entry of the main navigation (lock icon), the footer, the CV and a « Lire mes fiches réflexives » card on the projects that have a sheet; never a direct link to a PDF.
+Reflective sheets for the jury live under **`/jury`** (matrix `pages/jury/index.html`, one page per sheet `pages/jury/<slug>.html` with the full text, PDFs `public/jury/fiches/`), password-protected server-side by a Netlify Edge Function (`docs/SECURITY.md` §0). Reached only from the « Espace jury » entry of the header (navigation and burger menu, lock icon) and the « Lire mes fiches réflexives » card of the projects that have a sheet; never a direct link to a PDF.
 
 ---
 
