@@ -139,6 +139,14 @@
   color: var(--color-text-muted);
 }
 
+/* Project name in a column header: 44 px target, also in the vertical headers of phones. */
+.jury-matrix__project {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 2.75rem;
+  min-inline-size: 2.75rem;
+}
+
 .jury-matrix__link {
   display: inline-block;
   min-width: 2.75rem;
