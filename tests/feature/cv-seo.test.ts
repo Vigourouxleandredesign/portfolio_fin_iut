@@ -28,9 +28,10 @@ describe('CV page', () => {
     expect(existsSync(resolve(root, 'public/documents/cv.pdf'))).toBe(true);
   });
 
-  it('links the jury area and the Pacific Dataviz distinction', () => {
-    expect(html).toContain('Espace jury (fiches réflexives)');
-    expect(html).toContain('href="/jury"');
+  it('reaches the jury area from the header only, and links the Pacific Dataviz distinction', () => {
+    // fix/jury-links (01/11): the CV button was removed, the header entry is the single way in.
+    expect(html).not.toContain('Espace jury (fiches réflexives)');
+    expect(html).toContain('class="site-header__link site-header__link--jury" href="/jury"');
     expect(html.replace(/\s+/g, ' ')).toContain(
       'Pacific Dataviz Challenge 2025&#8239;: 2e de la catégorie Pacifique et 6e de la catégorie Open (internationale), en dataviz interactive',
     );

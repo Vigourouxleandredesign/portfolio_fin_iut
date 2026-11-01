@@ -30,7 +30,7 @@ Rules:
 
 - **Public repository (decision of 01/11/2026, Léandre, with the evaluator’s agreement):** the PDFs committed under `public/jury/fiches/` are readable on GitHub. The password protects the **site** only; the repository is the material handed to the technical evaluator.
 - Jury text lives **only in the jury HTML pages**. Never import jury content into TS/JSON: `/assets/*.js` bundles are public.
-- Never link a PDF from a public page. Public pages may link to `/jury` (« Espace jury » entry of the main navigation, footer, CV, « Lire mes fiches réflexives » cards) — the URL is not a secret, the password is the lock.
+- Never link a PDF from a public page. Public pages may link to `/jury` (only two places: the « Espace jury » entry of the header, in the navigation and the burger menu, and the « Lire mes fiches réflexives » cards of Visualcom, Vill’âge Jeunes and Lab Horizon) — the URL is not a secret, the password is the lock.
 - Never a client-side password, JS check or « secret » URL.
 - Never password-protect the public portfolio.
 - After the jury: remove `public/jury/`, the env var and the public link (or rotate the password).
