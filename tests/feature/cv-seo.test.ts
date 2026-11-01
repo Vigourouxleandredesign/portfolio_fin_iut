@@ -31,7 +31,9 @@ describe('CV page', () => {
   it('links the jury area and the Pacific Dataviz distinction', () => {
     expect(html).toContain('Espace jury (fiches réflexives)');
     expect(html).toContain('href="/jury"');
-    expect(html).toContain('Finaliste du Pacific Dataviz Challenge 2025');
+    expect(html.replace(/\s+/g, ' ')).toContain(
+      'Pacific Dataviz Challenge 2025&#8239;: 2e de la catégorie Pacifique et 6e de la catégorie Open (internationale), en dataviz interactive',
+    );
   });
 
   it('keeps private details out of the page', () => {
