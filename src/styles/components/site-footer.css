@@ -90,3 +90,16 @@
     align-items: start;
   }
 }
+
+/* Touch screens: 44 px targets (WCAG 2.5.5); the list gap is no longer needed. */
+@media (pointer: coarse) {
+  .site-footer__nav {
+    gap: 0;
+  }
+
+  .site-footer__link {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: 2.75rem;
+  }
+}

@@ -1,7 +1,7 @@
 /**
  * @file Site navigation — mobile disclosure
  * @module components/site-nav
- * @description Toggles the main nav list on small screens. Markup stays in HTML for SEO.
+ * @description Toggles the main nav list on small screens; Escape or a tap outside closes it. Markup stays in HTML for SEO.
  */
 
 /**
@@ -32,13 +32,24 @@ export function initSiteNav(): () => void {
     }
   };
 
+  /** A tap or click outside the open menu closes it (phones: the menu covers the page). */
+  const onPointerdown = (event: PointerEvent): void => {
+    if (toggle.getAttribute('aria-expanded') !== 'true') return;
+    const target = event.target;
+    if (target instanceof Node && !list.contains(target) && !toggle.contains(target)) {
+      setOpen(false);
+    }
+  };
+
   setOpen(false);
   toggle.hidden = false;
   toggle.addEventListener('click', onToggle);
   document.addEventListener('keydown', onKeydown);
+  document.addEventListener('pointerdown', onPointerdown);
 
   return () => {
     toggle.removeEventListener('click', onToggle);
     document.removeEventListener('keydown', onKeydown);
+    document.removeEventListener('pointerdown', onPointerdown);
   };
 }

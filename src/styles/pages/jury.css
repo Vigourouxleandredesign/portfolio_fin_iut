@@ -176,6 +176,27 @@
   background-color: var(--color-surface-elevated);
 }
 
+/* Phones: the whole matrix fits the screen (no hidden column behind a horizontal scroll):
+   vertical project headers, tighter cells, 44 px dots kept. */
+@media (max-width: 47.99rem) {
+  .jury-matrix th,
+  .jury-matrix td {
+    padding: var(--space-2);
+  }
+
+  .jury-matrix thead th:not(:first-child) {
+    writing-mode: vertical-rl;
+    vertical-align: bottom;
+    white-space: nowrap;
+    padding-block: var(--space-3);
+  }
+
+  .jury-matrix th[scope='row'] {
+    font-size: var(--text-sm);
+    hyphens: auto;
+  }
+}
+
 .jury-legend {
   margin: var(--space-3) 0 0;
   font-size: var(--text-sm);
@@ -193,6 +214,7 @@
 }
 
 .jury-card {
+  position: relative;
   padding: var(--space-4) var(--space-6);
   border: 1px solid var(--color-border);
   border-left: 2px solid var(--color-pigment-gold);
@@ -209,6 +231,21 @@
 .jury-card__title {
   margin: 0;
   font-size: var(--text-xl);
+}
+
+/* The whole card is the tap target (link stretched over it). */
+.jury-card__title a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+@media (pointer: coarse) {
+  .jury-back {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: 2.75rem; /* 44 px touch target (WCAG 2.5.5) */
+  }
 }
 
 .jury-card__text {

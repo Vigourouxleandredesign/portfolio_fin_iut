@@ -82,6 +82,11 @@
 
 .projects-page__lead {
   max-width: 46ch;
+  /* Sits on the lightest part of the veil: full text colour and a dark halo keep it above 4.5:1. */
+  color: var(--color-text);
+  text-shadow:
+    0 0 1.25rem var(--color-bg),
+    0 1px 2px var(--color-bg);
 }
 
 .projects-page__grid {

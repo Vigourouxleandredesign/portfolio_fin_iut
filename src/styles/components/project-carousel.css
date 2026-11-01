@@ -364,7 +364,7 @@
   }
 
   .project-carousel__btn {
-    --size: 2.25rem;
+    --size: 2.75rem; /* 44 px touch target (WCAG 2.5.5) */
   }
 
   .project-carousel__copy {

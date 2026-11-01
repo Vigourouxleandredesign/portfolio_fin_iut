@@ -1,5 +1,5 @@
 /**
- * @file E2E — L17-A4: on a phone, the jury area is reachable from a project page (menu or card), never through a PDF link.
+ * @file E2E — L17-A4: on a phone, the jury area is reachable from a project page (menu or card), never through a PDF link; the menu closes on a tap outside.
  */
 import { expect, test } from '@playwright/test';
 
@@ -32,4 +32,17 @@ test.describe('jury access on mobile (390 px)', () => {
       await expect(page.locator('a[href*="/jury/"][href$=".pdf"]')).toHaveCount(0);
     });
   }
+});
+
+test.describe('mobile menu (390 px)', () => {
+  test.use({ viewport: { width: 390, height: 844 }, hasTouch: true });
+
+  test('a tap outside the open menu closes it', async ({ page }) => {
+    await page.goto('/pages/projects/visualcom.html');
+    const toggle = page.locator('[data-nav-toggle]');
+    await toggle.click();
+    await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+    await page.mouse.click(200, 700);
+    await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+  });
 });
