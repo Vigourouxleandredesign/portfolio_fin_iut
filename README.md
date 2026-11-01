@@ -1,61 +1,84 @@
-# Portfolio — Léandre Vigouroux · Vite + Vanilla TypeScript
+# Portfolio de Léandre Vigouroux
 
-Site portfolio statique (MPA) de creative developer : hero 3D (buste marbre fracturé + force field curseur, Three.js/Rapier), pinceau-curseur, DA « Le Sanctuaire nocturne » (nuit, lumière de feu, pigments cuivre / or / vert phtalo). Aucun backend.
+Portfolio de fin de licence professionnelle Métiers de l’informatique : applications web (LP MIAW), IUT de Nouvelle-Calédonie, 2026.
 
-## Documentation obligatoire
+- **Site en ligne :** https://vigourouxleandre.netlify.app
+- **Espace jury :** https://vigourouxleandre.netlify.app/jury (protégé par mot de passe, communiqué à part)
 
-| Fichier | Contenu |
-|---------|---------|
-| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Charte d’architecture (référence unique) |
-| [docs/DA.md](docs/DA.md) | **Direction artistique** (source de vérité) — recettes : [docs/skills/portfolio-da/SKILL.md](docs/skills/portfolio-da/SKILL.md) |
-| [docs/SECURITY.md](docs/SECURITY.md) | **Sécurité obligatoire** (site statique, headers, site enseignants protégé) |
-| [docs/TESTING.md](docs/TESTING.md) | Gate anti-régression |
-| [docs/ROADMAP.md](docs/ROADMAP.md) | **État, planning, décisions, questions ouvertes** |
-| [docs/work-packages/](docs/work-packages/README.md) | **Lots exécutants** : protocole, prompts, critères d’acceptation |
-| [docs/content/](docs/content/) | Contenus prêts à intégrer (briefs projets, accueil, CV, espace jury) |
-| [docs/content/assets-kit.md](docs/content/assets-kit.md) | Inventaire des visuels projets prêts à intégrer |
-| [AGENTS.md](AGENTS.md) | Instructions obligatoires pour les IA |
+Site statique multipage, sans backend : neuf projets présentés comme les salles d’un musée de nuit, un buste 3D interactif sur ordinateur, un CV et un espace jury qui regroupe les fiches réflexives classées par compétence du référentiel.
 
-**Toute contribution (humaine ou IA) doit respecter ces documents.**
+## Stack
 
-## Prérequis
+| Domaine | Choix |
+|---|---|
+| Build | Vite, TypeScript strict, une entrée par page (MPA) |
+| Interface | HTML sémantique, CSS natif (variables de couleur centralisées), aucune bibliothèque d’interface |
+| 3D | Three.js et Rapier (physique), chargés à la demande, jamais sur écran tactile |
+| Polices | Ubuntu, Ubuntu Mono, Updock, auto-hébergées (`@fontsource`) |
+| Hébergement | Netlify : en-têtes de sécurité, redirections, Edge Function d’authentification du jury |
 
-- Node.js 20+
-- npm
+## Démarrer
 
-## Commandes
+Prérequis : Node.js 20 ou plus (`.nvmrc`), npm.
 
 ```bash
-npm install
-npm run dev      # http://localhost:5173/pages/index.html
-npm run gate     # typecheck + secrets + tests + build (avant chaque commit)
-npm run build    # build production → dist/
-npm run preview  # prévisualiser dist/
-node scripts/capture-project-shots.mjs          # captures des démos en ligne
-npm run decor:paint                             # régénère les taches de peinture (Python : numpy, opencv-python, scikit-image, pillow)
+npm install          # installe aussi les hooks Git (Husky)
+npm run dev          # http://localhost:5173/pages/index.html
+npm run build        # build de production dans dist/
+npm run preview      # prévisualise dist/
 ```
 
-**Routes :** `/` (→ `/pages/index.html`), `/projects`, `/projects/<slug>`, `/cv`, `/contact` — voir `public/_redirects`.
+## Qualité et contrôle
 
-**Fiches réflexives :** zone **`/jury`** du même site, protégée par mot de passe Netlify (variable `JURY_BASIC_AUTH`, jamais dans le repo) — voir [docs/SECURITY.md](docs/SECURITY.md) §0 et `docs/content/teacher-site.md`. Le repo GitHub doit rester **privé**.
+Chaque commit passe par un hook pre-commit qui lance `npm run ci`, la même chaîne que GitHub Actions. Un contrôle rouge bloque le commit.
 
-## Structure rapide
+| Commande | Contenu |
+|---|---|
+| `npm run audit:ci` | Audit des dépendances, bloquant dès une faille haute ou critique |
+| `npm run ci:static` | Prettier, ESLint (zéro avertissement), Stylelint |
+| `npm run gate` | Typecheck, recherche de secrets, tests Vitest, build |
+| `npm run test:e2e` | Tests Playwright (pages, parcours, accessibilité avec axe) |
+| `npm run ci` | Tout ce qui précède, dans cet ordre |
+
+GitHub Actions rejoue la chaîne à chaque push et chaque nuit, et Dependabot propose les mises à jour. Netlify ne publie que si l’audit et la gate passent.
+
+## Sécurité
+
+- Aucun secret dans le dépôt : le mot de passe du jury vit dans une variable d’environnement Netlify (`JURY_BASIC_AUTH`). Sans elle, la zone jury reste fermée (le build échoue).
+- La zone `/jury` est protégée par une Edge Function (`netlify/edge-functions/jury-auth.ts`) qui normalise le chemin (casse, encodage, doubles barres) avant de vérifier l’authentification. Des tests de bout en bout vérifient le refus sur la production.
+- Politique de sécurité du contenu stricte, HSTS, `X-Frame-Options: DENY`, `nosniff` (`public/_headers`).
+- Détail : [docs/SECURITY.md](docs/SECURITY.md).
+
+## Structure
 
 ```
-pages/                 → HTML (SEO, contenu FR)
-src/styles/            → CSS (couleurs → variables.css uniquement)
-src/scripts/           → TypeScript (entries par page, components, features)
-src/assets/            → Visuels importés par Vite (projects/<slug>/, decor/paint/, hero/)
-public/                → _headers, _redirects, favicon, draco/
-docs/                  → Charte, DA, sécurité, briefs projets
+pages/          HTML de chaque page (contenu en français, SEO)
+  projects/     une page par projet
+  jury/         espace jury (servi seulement après authentification)
+src/
+  styles/       CSS (couleurs dans variables.css uniquement)
+  scripts/      TypeScript : une entrée par page, composants, fonctionnalités (3D, pinceau…)
+  assets/       visuels importés par Vite
+public/         en-têtes, redirections, CV, fiches PDF du jury, modèles 3D
+netlify/        Edge Function d’authentification du jury
+tests/          tests unitaires, de fonctionnalité et de bout en bout
+scripts/        outils (vérification de secrets, captures, typographie française)
+docs/           architecture, direction artistique, sécurité, tests, journal du projet
 ```
 
-Les sources lourdes (PSD, .blend, références) vivent **hors du repo**, dans le dossier `Sources/` voisin.
+## Documentation
 
-## Déploiement
+| Document | Contenu |
+|---|---|
+| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Architecture et conventions de code |
+| [docs/DA.md](docs/DA.md) | Direction artistique |
+| [docs/SECURITY.md](docs/SECURITY.md) | Sécurité |
+| [docs/TESTING.md](docs/TESTING.md) | Stratégie de test |
+| [docs/RECETTE.md](docs/RECETTE.md) | Recette avant mise en production |
+| [docs/ROADMAP.md](docs/ROADMAP.md) | Journal des décisions du projet |
+| [docs/content/](docs/content/) | Textes sources des pages |
+| [AGENTS.md](AGENTS.md) | Règles suivies par les assistants IA sur ce dépôt |
 
-Netlify lit `netlify.toml` : `npm run build && node scripts/inject-jury-auth.mjs`, publish `dist`. Définir `JURY_BASIC_AUTH` dans les variables d’environnement Netlify.
+## Méthode
 
-## IA (Cursor / Claude Code)
-
-Règles dans `.cursor/rules/` (`alwaysApply: true`). Lire `AGENTS.md` puis `docs/DA.md` avant toute modification visuelle.
+Le projet a été mené avec des assistants IA encadrés : règles communes versionnées (`AGENTS.md`, `.cursor/rules/`), règles d’écriture vérifiées par un test, et une chaîne de contrôle automatique qui ne dépend pas de l’agent. Les contrôles qui tournent sur des machines restent l’arbitre final.
