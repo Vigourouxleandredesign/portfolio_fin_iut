@@ -29,6 +29,9 @@
 }
 
 .contact-card__value a {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 2.75rem; /* 44 px touch target (WCAG 2.5.5): the main actions of the page */
   color: var(--color-text);
   text-decoration: none;
 }

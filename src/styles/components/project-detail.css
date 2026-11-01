@@ -61,6 +61,14 @@
   text-decoration: none;
 }
 
+@media (pointer: coarse) {
+  .breadcrumb__link {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: 2.75rem; /* 44 px touch target (WCAG 2.5.5) */
+  }
+}
+
 .breadcrumb__link:hover {
   color: var(--color-ember);
 }
